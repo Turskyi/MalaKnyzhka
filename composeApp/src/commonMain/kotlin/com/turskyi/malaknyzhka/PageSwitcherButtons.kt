@@ -16,16 +16,20 @@ fun PageSwitcherButtons(
     onPageChange: (Int) -> Unit,
     totalPages: Int
 ) {
+    val firstPage = 0
     Box(Modifier.fillMaxSize()) {
         // Previous Page Button on the left side
         Button(
             onClick = {
-                onPageChange((currentPage - 1).coerceAtLeast(0))
+                onPageChange((currentPage - 1).coerceAtLeast(firstPage))
             },
             modifier = Modifier
                 .align(Alignment.BottomStart).padding(all = 4.dp)
-                .size(50.dp), // Makes the button circular
-            shape = CircleShape
+                // Makes the button circular.
+                .size(50.dp),
+            shape = CircleShape,
+            // Disable button if it's the first page.
+            enabled = currentPage != firstPage
         ) {
             Text("<")
         }
@@ -37,8 +41,11 @@ fun PageSwitcherButtons(
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd).padding(all = 4.dp)
-                .size(50.dp), // Makes the button circular
-            shape = CircleShape
+                // Makes the button circular.
+                .size(50.dp),
+            shape = CircleShape,
+            // Disable button if it's the last page.
+            enabled = currentPage < totalPages - 1,
         ) {
             Text(">")
         }
