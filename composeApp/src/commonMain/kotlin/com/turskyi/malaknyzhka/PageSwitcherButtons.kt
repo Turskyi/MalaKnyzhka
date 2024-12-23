@@ -18,7 +18,7 @@ fun PageSwitcherButtons(
 ) {
     val firstPage = 0
     Box(Modifier.fillMaxSize()) {
-        // Previous Page Button on the left side
+        // Previous com.turskyi.malaknyzhka.Page Button on the left side
         Button(
             onClick = {
                 onPageChange((currentPage - 1).coerceAtLeast(firstPage))
@@ -34,7 +34,7 @@ fun PageSwitcherButtons(
             Text("<")
         }
 
-        // Next Page Button on the right side
+        // Next com.turskyi.malaknyzhka.Page Button on the right side
         Button(
             onClick = {
                 onPageChange((currentPage + 1).coerceAtMost(totalPages - 1))
