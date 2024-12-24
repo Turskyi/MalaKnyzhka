@@ -64,7 +64,7 @@ fun DraggableDividerWithButton(
         // Draggable Button
         Button(onClick = { /* No-op */ }) {
             Text(
-                "⤒⤓",
+                "=",
                 style = MaterialTheme.typography.h6,
                 color = Color.White
             )
