@@ -13,23 +13,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.russhwolf.settings.Settings
 
 @Composable
 fun Page(
-    settings: Settings
+    pageSettings: PageSettings
 ) {
-
-    val firstPage = 0
-
-    // Function to get the current page from Settings
-    fun getCurrentPage(): Int {
-        return settings.getInt("currentPage", firstPage)
-    }
-
-    // Use state to manage the current page
-    var currentPage by remember { mutableStateOf(getCurrentPage()) }
-
     val initialPositionInTheMiddle = 0.5f
     var dividerPosition by remember { mutableStateOf(initialPositionInTheMiddle) }
 
@@ -40,10 +28,14 @@ fun Page(
     // TODO: Adjust as needed for the number of book spreads
     val totalPages = 2
 
-    // Extracted function
+    // State for current page initialized with value from settings
+    var currentPage: Int by remember { mutableStateOf(pageSettings.getCurrentPage()) }
+
+    // Function to handle page changes
     fun onNewPage(newPage: Int) {
-        settings.putInt("currentPage", newPage) // Save new page in Settings
-        currentPage = newPage // Update state with new page
+        pageSettings.saveCurrentPage(newPage)
+        // Update state with new page
+        currentPage = newPage
     }
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -55,7 +47,7 @@ fun Page(
                 onDividerPositionChange = { newPosition ->
                     dividerPosition = newPosition.coerceIn(
                         maxTopFraction,
-                        minBottomFraction
+                        minBottomFraction,
                     )
                 }
             )

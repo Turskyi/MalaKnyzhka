@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.Page
+import com.turskyi.malaknyzhka.PageSettings
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -63,6 +64,6 @@ fun App(
         typography = customTypography,
         shapes = customShapes
     ) {
-        Page(settings)
+        Page(PageSettings(settings))
     }
 }
