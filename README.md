@@ -1,9 +1,35 @@
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
+
 # Мала Книжка (Тарас Шевченко)
 
 Welcome to "Мала Книжка (Тарас Шевченко)," a Compose Multiplatform project
 designed to deliver a cohesive reading experience across Android, iOS, Web, and
 Desktop. This project aims to celebrate the lyrical beauty of Taras Shevchenko's
 poetry.
+
+## PROJECT SPECIFICATION
+
+• Programming language: [Kotlin](https://kotlinlang.org/);
+
+•
+Framework: [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/);
+
+• SDK: [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html);
+
+• Interface: [Compose](https://developer.android.com/jetpack/compose);
+
+• Version control system: [Git](https://git-scm.com);
+
+• Git Hosting Service: [GitHub](https://github.com);
+
+• **Code Readability:** code is easily readable with no unnecessary blank
+lines, no unused variables or methods, and no commented-out code, all
+variables, methods, and resource IDs are descriptively named such that another
+developer reading the code can easily understand their function.
+
+• Architectural pattern:
+[Monolith](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures#all-in-one-applications);
 
 ## Project Structure
 
@@ -41,7 +67,7 @@ Multiplatform, sharing a unified codebase.
 
 ## Credits
 
-This project utilizes book spreads and texts from the website 
+This project utilizes book spreads and texts from the website
 [t-shevchenko.name](https://www.t-shevchenko.name/uk/Gallery/Works/1850MalaKn.html).
 The site's creators kindly allow reproduction with proper referencing. *
 *Передрук статей із сайту заохочується за умови посилання (гіперпосилання) на
