@@ -9,11 +9,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.russhwolf.settings.Settings
+import com.turskyi.malaknyzhka.Page
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
+fun App(
+    settings: Settings
+) {
     val customColors = lightColors(
         // Amber (bright and energetic).
         primary = Color(0xFFFF6F00),
@@ -59,6 +63,6 @@ fun App() {
         typography = customTypography,
         shapes = customShapes
     ) {
-        Page()
+        Page(settings)
     }
 }
