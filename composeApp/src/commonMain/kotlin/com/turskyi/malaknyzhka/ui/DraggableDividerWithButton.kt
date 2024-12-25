@@ -1,3 +1,5 @@
+package com.turskyi.malaknyzhka.ui
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable

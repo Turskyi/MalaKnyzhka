@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka
+package com.turskyi.malaknyzhka.models
 
 import com.russhwolf.settings.Settings
 

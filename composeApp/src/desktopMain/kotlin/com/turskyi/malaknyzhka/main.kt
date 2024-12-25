@@ -1,8 +1,8 @@
 package com.turskyi.malaknyzhka
 
-import App
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.turskyi.malaknyzhka.ui.App
 
 fun main() {
     application {

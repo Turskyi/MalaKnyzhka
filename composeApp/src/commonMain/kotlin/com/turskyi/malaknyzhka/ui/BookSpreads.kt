@@ -1,3 +1,6 @@
+package com.turskyi.malaknyzhka.ui
+
+import TextPages
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures

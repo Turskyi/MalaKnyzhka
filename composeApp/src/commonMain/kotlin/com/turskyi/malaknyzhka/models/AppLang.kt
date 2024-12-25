@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka
+package com.turskyi.malaknyzhka.models
 
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.en

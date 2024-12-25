@@ -8,17 +8,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources.dawn
-import malaknyzhka.composeapp.generated.resources.thoughts
+import malaknyzhka.composeapp.generated.resources._002
+import malaknyzhka.composeapp.generated.resources._003
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TextPages(
     currentPage: Int
 ) {
-    val texts = listOf(
-        Res.string.thoughts,
-        Res.string.dawn,
+    val texts: List<StringResource> = listOf(
+        Res.string._002,
+        Res.string._003,
     )
 
     Box(

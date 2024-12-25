@@ -1,4 +1,7 @@
+package com.turskyi.malaknyzhka.ui
+
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
@@ -10,8 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.russhwolf.settings.Settings
-import com.turskyi.malaknyzhka.Page
-import com.turskyi.malaknyzhka.PageSettings
+import com.turskyi.malaknyzhka.models.PageSettings
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -19,7 +21,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App(
     settings: Settings
 ) {
-    val customColors = lightColors(
+    val customColors: Colors = lightColors(
         // Amber (bright and energetic).
         primary = Color(0xFFFF6F00),
         // Deep orange (more intense).
