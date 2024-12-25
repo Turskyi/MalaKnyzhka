@@ -2,6 +2,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +30,8 @@ fun TextPages(
             .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
-        Text(stringResource(texts[currentPage]))
+        SelectionContainer {
+            Text(stringResource(texts[currentPage]))
+        }
     }
 }
