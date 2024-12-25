@@ -18,14 +18,18 @@ fun Page(
     pageSettings: PageSettings
 ) {
     val initialPositionInTheMiddle = 0.5f
-    var dividerPosition by remember { mutableStateOf(initialPositionInTheMiddle) }
+    var dividerPosition by remember {
+        mutableStateOf(initialPositionInTheMiddle)
+    }
 
-    // Constants for divider limits
+    // Constants for divider limits.
     val maxTopFraction = 0.025f
     val minBottomFraction = 0.94f
 
     // State for current page initialized with value from settings
-    var currentPage: Int by remember { mutableStateOf(pageSettings.getCurrentPage()) }
+    var currentPage: Int by remember {
+        mutableStateOf(pageSettings.getCurrentPage())
+    }
 
     // Function to handle page changes
     fun onNewPage(newPage: Int) {

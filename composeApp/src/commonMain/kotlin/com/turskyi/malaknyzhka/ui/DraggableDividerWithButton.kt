@@ -32,30 +32,34 @@ fun DraggableDividerWithButton(
         modifier = modifier
             .fillMaxWidth()
             .offset {
-                val offsetY = (dividerPosition * screenHeightPx).coerceIn(
-                    0f,
-                    // Prevent from going beyond the screen.
-                    screenHeightPx - dividerHeightPx
+                val offsetY: Float =
+                    (dividerPosition * screenHeightPx).coerceIn(
+                        0f,
+                        // Prevent from going beyond the screen.
+                        screenHeightPx - dividerHeightPx
+                    )
+                IntOffset(
+                    0, offsetY.toInt() - (dividerHeightPx / 2).toInt(),
                 )
-                IntOffset(0, offsetY.toInt() - (dividerHeightPx / 2).toInt())
             }
             // Combined height for button + divider.
             .height(50.dp)
             .draggable(
                 orientation = Orientation.Vertical,
                 state = rememberDraggableState { delta ->
-                    // Calculate the new position, ensuring it stays within the 0 to 1 range
-                    val newPosition =
+                    // Calculate the new position,
+                    // ensuring it stays within the 0 to 1 range.
+                    val newPosition: Float =
                         (dividerPosition + delta / screenHeightPx).coerceIn(
                             0f,
-                            1f
+                            1f,
                         )
                     onPositionChange(newPosition)
                 }
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Divider Line
+        // Divider Line.
         Box(
             Modifier
                 .fillMaxWidth()
@@ -63,7 +67,7 @@ fun DraggableDividerWithButton(
                 .background(MaterialTheme.colors.primary)
         )
 
-        // Draggable Button
+        // Draggable Button.
         Button(onClick = { /* No-op */ }) {
             Text(
                 "=",

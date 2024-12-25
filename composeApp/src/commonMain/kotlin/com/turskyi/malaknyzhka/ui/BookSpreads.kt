@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -28,33 +29,43 @@ fun BookSpreads(
     onPageChange: (Int) -> Unit,
     onDividerPositionChange: (Float) -> Unit
 ) {
-    val dividerHeightPx = with(LocalDensity.current) { 50.dp.toPx() }
-    val bookSpreads = listOf(
+    val dividerHeightPx: Float = with(LocalDensity.current) { 50.dp.toPx() }
+    val bookSpreads: List<DrawableResource> = listOf(
         Res.drawable._002,
         Res.drawable._003,
     )
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
-        val screenHeightPx = with(LocalDensity.current) { maxHeight.toPx() }
+        val screenHeightPx: Float = with(LocalDensity.current) {
+            maxHeight.toPx()
+        }
 
         Box(Modifier.fillMaxSize()) {
-            // Detect swipe gestures to switch pages
+            // Detect swipe gestures to switch pages.
             Box(
                 Modifier
                     .fillMaxSize()
                     .pointerInput(Unit) {
-                        detectHorizontalDragGestures { change, dragAmount ->
-                            if (dragAmount < 0) { // Swiping left
+                        detectHorizontalDragGestures { _, dragAmount ->
+                            val swipingLeft: Boolean = dragAmount < 0
+                            val swipingRight: Boolean = dragAmount > 0
+                            if (swipingLeft) {
                                 onPageChange(
-                                    (currentPage + 1).coerceAtMost(bookSpreads.size - 1)
+                                    (currentPage + 1).coerceAtMost(
+                                        bookSpreads.size - 1,
+                                    )
                                 )
-                            } else if (dragAmount > 0) { // Swiping right
-                                onPageChange((currentPage - 1).coerceAtLeast(0))
+                            } else if (swipingRight) {
+                                onPageChange(
+                                    (currentPage - 1).coerceAtLeast(
+                                        0,
+                                    )
+                                )
                             }
                         }
                     }
             ) {
-                // Top section: Book spreads with background matching the page
+                // Top section: Book spreads with background matching the page.
                 Box(
                     Modifier
                         .fillMaxWidth()
@@ -62,7 +73,7 @@ fun BookSpreads(
                         .background(Color(0xFFf0e7d8)),
                     contentAlignment = Alignment.Center
                 ) {
-                    // Show the current book spread image
+                    // Show the current book spread image.
                     Image(
                         painter = painterResource(bookSpreads[currentPage]),
                         contentDescription = "Book Spread",
@@ -70,7 +81,7 @@ fun BookSpreads(
                     )
                 }
 
-                // Position TextPages at the bottom
+                // Position TextPages at the bottom.
                 Box(
                     Modifier
                         .align(Alignment.BottomStart)
