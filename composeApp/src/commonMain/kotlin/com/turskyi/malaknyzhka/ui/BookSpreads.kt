@@ -4,11 +4,13 @@ import TextPages
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +43,8 @@ fun BookSpreads(
         }
 
         Box(Modifier.fillMaxSize()) {
-            // Detect swipe gestures to switch pages.
+            // Detect swipe gestures for the top section
+            // (not overlapping TextPages).
             Box(
                 Modifier
                     .fillMaxSize()
@@ -81,18 +84,24 @@ fun BookSpreads(
                     )
                 }
 
-                // Position TextPages at the bottom.
+                // Position TextPages at the bottom and allow text selection.
                 Box(
                     Modifier
                         .align(Alignment.BottomStart)
                         .fillMaxHeight(fraction = 1f - dividerPosition)
+                        .pointerInput(Unit) {
+                            // Allow interaction.
+                            detectTapGestures(onPress = {})
+                        }
                 ) {
-                    TextPages(
-                        currentPage = currentPage
-                    )
+                    SelectionContainer {
+                        TextPages(
+                            currentPage = currentPage
+                        )
+                    }
                 }
 
-                // Draggable Divider with Button
+                // Draggable Divider with Button.
                 DraggableDividerWithButton(
                     modifier = Modifier.align(Alignment.TopStart),
                     dividerPosition = dividerPosition,
