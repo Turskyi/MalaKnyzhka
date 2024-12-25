@@ -12,16 +12,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.turskyi.malaknyzhka.models.PageSettings
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.turskyi.malaknyzhka.models.WindowInfo
+import com.turskyi.malaknyzhka.util.rememberWindowSize
 
 @Composable
-@Preview
-fun Page(
-    pageSettings: PageSettings
-) {
+fun Page(pageSettings: PageSettings) {
     val initialPositionInTheMiddle = 0.5f
     var dividerPosition: Float by remember {
-        mutableStateOf(initialPositionInTheMiddle)
+        mutableStateOf(
+            initialPositionInTheMiddle
+        )
     }
 
     // Constants for divider limits.
@@ -33,35 +33,33 @@ fun Page(
         mutableStateOf(pageSettings.getCurrentPage())
     }
 
-    // Function to handle page changes
+    // Function to handle page changes.
     fun onNewPage(newPage: Int) {
         pageSettings.saveCurrentPage(newPage)
-        // Update state with new page
         currentPage = newPage
     }
+
+    // Screen width detection
+    val windowInfo: WindowInfo = rememberWindowSize()
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         Box(Modifier.fillMaxSize()) {
             BookSpreads(
                 dividerPosition = dividerPosition,
                 currentPage = currentPage,
-                onPageChange = ::onNewPage,
-                onDividerPositionChange = { newPosition: Float ->
+                onDividerPositionChange = { newPosition ->
                     dividerPosition = newPosition.coerceIn(
                         maxTopFraction,
                         minBottomFraction,
                     )
-                }
+                },
+                screenWidth = windowInfo.screenWidth
             )
 
-            Box(
-                Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-            ) {
+            Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth()) {
                 PageSwitcherButtons(
                     currentPage = currentPage,
-                    onPageChange = ::onNewPage,
+                    onPageChange = ::onNewPage
                 )
             }
         }

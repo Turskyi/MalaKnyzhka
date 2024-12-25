@@ -11,44 +11,40 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun PageSwitcherButtons(
     currentPage: Int,
-    onPageChange: (Int) -> Unit,
+    onPageChange: (Int) -> Unit
 ) {
     // TODO: Adjust as needed for the number of book spreads
     val totalPages = 3
     val firstPage = 0
+
     Box(Modifier.fillMaxSize()) {
-        // Previous com.turskyi.malaknyzhka.Page Button on the left side
+        // Previous Page Button
         Button(
             onClick = {
-                onPageChange((currentPage - 1).coerceAtLeast(firstPage))
+                val newPage: Int = (currentPage - 1).coerceAtLeast(firstPage)
+                onPageChange(newPage)
             },
-            modifier = Modifier
-                .align(Alignment.BottomStart).padding(all = 4.dp)
-                // Makes the button circular.
+            modifier = Modifier.align(Alignment.BottomStart).padding(4.dp)
                 .size(50.dp),
             shape = CircleShape,
-            // Disable button if it's the first page.
             enabled = currentPage != firstPage
         ) {
             Text("<")
         }
 
-        // Next com.turskyi.malaknyzhka.Page Button on the right side
+        // Next Page Button.
         Button(
             onClick = {
-                onPageChange(
-                    (currentPage + 1).coerceAtMost(totalPages - 1),
+                val newPage: Int = (currentPage + 1).coerceAtMost(
+                    totalPages - 1,
                 )
+                onPageChange(newPage)
             },
-            modifier = Modifier
-                .align(Alignment.BottomEnd).padding(all = 4.dp)
-                // Makes the button circular.
+            modifier = Modifier.align(Alignment.BottomEnd).padding(4.dp)
                 .size(50.dp),
             shape = CircleShape,
             // Disable button if it's the last page.

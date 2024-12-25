@@ -5,15 +5,18 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
@@ -25,52 +28,74 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun DraggableDividerWithButton(
     modifier: Modifier = Modifier,
     dividerPosition: Float,
-    screenHeightPx: Float,
-
+    screenHeightOrWidthPx: Float,
+    dragOrientation: Orientation,
     onPositionChange: (Float) -> Unit
 ) {
-    val dividerHeightPx: Float = with(LocalDensity.current) { 50.dp.toPx() }
+    val dividerSizePx: Float = with(LocalDensity.current) { 50.dp.toPx() }
+
+    val offset: IntOffset = if (dragOrientation == Orientation.Vertical) {
+        IntOffset(
+            0, (dividerPosition * screenHeightOrWidthPx).coerceIn(
+                0f,
+                screenHeightOrWidthPx - dividerSizePx
+            ).toInt() - (dividerSizePx / 2).toInt()
+        )
+    } else {
+        IntOffset(
+            (dividerPosition * screenHeightOrWidthPx).coerceIn(
+                0f,
+                screenHeightOrWidthPx - dividerSizePx
+            ).toInt() - (dividerSizePx / 2).toInt(), 0
+        )
+    }
+
     Box(
         modifier = modifier
-            .fillMaxWidth()
+            .then(
+                if (dragOrientation == Orientation.Vertical)
+                    Modifier.fillMaxWidth().height(50.dp)
+                else
+                    Modifier.fillMaxHeight().width(50.dp)
+            )
             .offset {
-                val offsetY: Float =
-                    (dividerPosition * screenHeightPx).coerceIn(
-                        0f,
-                        // Prevent from going beyond the screen.
-                        screenHeightPx - dividerHeightPx
-                    )
-                IntOffset(
-                    0, offsetY.toInt() - (dividerHeightPx / 2).toInt(),
-                )
+                offset
             }
-            // Combined height for button + divider.
-            .height(50.dp)
             .draggable(
-                orientation = Orientation.Vertical,
+                orientation = dragOrientation,
                 state = rememberDraggableState { delta: Float ->
-                    // Calculate the new position,
-                    // ensuring it stays within the 0 to 1 range.
                     val newPosition: Float =
-                        (dividerPosition + delta / screenHeightPx).coerceIn(
+                        (dividerPosition + delta / screenHeightOrWidthPx).coerceIn(
                             0f,
-                            1f,
+                            1f
                         )
                     onPositionChange(newPosition)
                 }
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Divider Line.
+        // Divider Line
         Box(
             Modifier
-                .fillMaxWidth()
-                .height(2.dp)
+                .then(
+                    if (dragOrientation == Orientation.Vertical)
+                        Modifier.fillMaxWidth().height(2.dp)
+                    else
+                        Modifier.fillMaxHeight().width(2.dp)
+                )
                 .background(MaterialTheme.colors.primary)
         )
 
-        // Draggable Button.
-        Button(onClick = { /* No-op */ }) {
+        // Draggable Button
+        Button(
+            onClick = { /* No-op */ },
+            modifier = Modifier.then(
+                if (dragOrientation == Orientation.Horizontal)
+                    Modifier.rotate(90f)
+                else
+                    Modifier.rotate(0f)
+            )
+        ) {
             Text(
                 "=",
                 style = MaterialTheme.typography.h6,
@@ -79,3 +104,6 @@ fun DraggableDividerWithButton(
         }
     }
 }
+
+
+
