@@ -14,8 +14,10 @@ import malaknyzhka.composeapp.generated.resources._003
 import malaknyzhka.composeapp.generated.resources._004
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
+@Preview
 fun TextPages(
     currentPage: Int
 ) {

@@ -12,13 +12,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.turskyi.malaknyzhka.models.PageSettings
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
+@Preview
 fun Page(
     pageSettings: PageSettings
 ) {
     val initialPositionInTheMiddle = 0.5f
-    var dividerPosition by remember {
+    var dividerPosition: Float by remember {
         mutableStateOf(initialPositionInTheMiddle)
     }
 
@@ -44,7 +46,7 @@ fun Page(
                 dividerPosition = dividerPosition,
                 currentPage = currentPage,
                 onPageChange = ::onNewPage,
-                onDividerPositionChange = { newPosition ->
+                onDividerPositionChange = { newPosition: Float ->
                     dividerPosition = newPosition.coerceIn(
                         maxTopFraction,
                         minBottomFraction,

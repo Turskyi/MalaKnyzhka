@@ -16,22 +16,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
 import malaknyzhka.composeapp.generated.resources._004
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
+@Preview
 fun BookSpreads(
     dividerPosition: Float,
     currentPage: Int,
     onPageChange: (Int) -> Unit,
     onDividerPositionChange: (Float) -> Unit
 ) {
-    val dividerHeightPx: Float = with(LocalDensity.current) { 50.dp.toPx() }
+
     val bookSpreads: List<DrawableResource> = listOf(
         Res.drawable._002,
         Res.drawable._003,
@@ -50,7 +51,7 @@ fun BookSpreads(
                 Modifier
                     .fillMaxSize()
                     .pointerInput(Unit) {
-                        detectHorizontalDragGestures { _, dragAmount ->
+                        detectHorizontalDragGestures { _, dragAmount: Float ->
                             val swipingLeft: Boolean = dragAmount < 0
                             val swipingRight: Boolean = dragAmount > 0
                             if (swipingLeft) {
@@ -105,7 +106,6 @@ fun BookSpreads(
                     modifier = Modifier.align(Alignment.TopStart),
                     dividerPosition = dividerPosition,
                     screenHeightPx = screenHeightPx,
-                    dividerHeightPx = dividerHeightPx,
                     onPositionChange = onDividerPositionChange
                 )
             }

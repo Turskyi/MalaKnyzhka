@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -25,9 +26,10 @@ fun DraggableDividerWithButton(
     modifier: Modifier = Modifier,
     dividerPosition: Float,
     screenHeightPx: Float,
-    dividerHeightPx: Float,
+
     onPositionChange: (Float) -> Unit
 ) {
+    val dividerHeightPx: Float = with(LocalDensity.current) { 50.dp.toPx() }
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -46,7 +48,7 @@ fun DraggableDividerWithButton(
             .height(50.dp)
             .draggable(
                 orientation = Orientation.Vertical,
-                state = rememberDraggableState { delta ->
+                state = rememberDraggableState { delta: Float ->
                     // Calculate the new position,
                     // ensuring it stays within the 0 to 1 range.
                     val newPosition: Float =
