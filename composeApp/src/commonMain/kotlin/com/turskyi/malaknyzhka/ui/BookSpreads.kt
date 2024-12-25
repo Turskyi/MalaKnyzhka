@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
+import malaknyzhka.composeapp.generated.resources._004
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -34,6 +35,7 @@ fun BookSpreads(
     val bookSpreads: List<DrawableResource> = listOf(
         Res.drawable._002,
         Res.drawable._003,
+        Res.drawable._004,
     )
 
     BoxWithConstraints(Modifier.fillMaxSize()) {

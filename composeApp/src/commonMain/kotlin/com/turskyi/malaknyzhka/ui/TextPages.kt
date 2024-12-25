@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
+import malaknyzhka.composeapp.generated.resources._004
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -21,6 +22,7 @@ fun TextPages(
     val texts: List<StringResource> = listOf(
         Res.string._002,
         Res.string._003,
+        Res.string._004,
     )
 
     Box(
