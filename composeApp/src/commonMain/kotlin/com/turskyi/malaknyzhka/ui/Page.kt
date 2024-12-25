@@ -24,9 +24,6 @@ fun Page(
     val maxTopFraction = 0.025f
     val minBottomFraction = 0.94f
 
-    // TODO: Adjust as needed for the number of book spreads
-    val totalPages = 2
-
     // State for current page initialized with value from settings
     var currentPage: Int by remember { mutableStateOf(pageSettings.getCurrentPage()) }
 
@@ -59,7 +56,6 @@ fun Page(
                 PageSwitcherButtons(
                     currentPage = currentPage,
                     onPageChange = ::onNewPage,
-                    totalPages = totalPages
                 )
             }
         }

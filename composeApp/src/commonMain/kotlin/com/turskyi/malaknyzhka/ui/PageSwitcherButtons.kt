@@ -16,8 +16,9 @@ import androidx.compose.ui.unit.dp
 fun PageSwitcherButtons(
     currentPage: Int,
     onPageChange: (Int) -> Unit,
-    totalPages: Int
 ) {
+    // TODO: Adjust as needed for the number of book spreads
+    val totalPages = 2
     val firstPage = 0
     Box(Modifier.fillMaxSize()) {
         // Previous com.turskyi.malaknyzhka.Page Button on the left side
