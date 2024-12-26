@@ -1,7 +1,6 @@
 package com.turskyi.malaknyzhka.ui
 
 import TextPages
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Box
@@ -22,7 +21,6 @@ import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
 import malaknyzhka.composeapp.generated.resources._004
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -62,11 +60,7 @@ fun BookSpreads(
                         .background(Color(0xFFf0e7d8)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(bookSpreads[currentPage]),
-                        contentDescription = "Book Spread",
-                        modifier = Modifier.fillMaxSize()
-                    )
+                    ZoomableImage(bookSpreads[currentPage])
                 }
 
                 // Position TextPages.
