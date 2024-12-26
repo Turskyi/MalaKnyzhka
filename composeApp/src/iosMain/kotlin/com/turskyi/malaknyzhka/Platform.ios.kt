@@ -1,9 +1,9 @@
 package com.turskyi.malaknyzhka
 
-import platform.UIKit.UIDevice
+import com.turskyi.malaknyzhka.models.PlatformType
 
 class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+    override val type: PlatformType = PlatformType.MOBILE
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()

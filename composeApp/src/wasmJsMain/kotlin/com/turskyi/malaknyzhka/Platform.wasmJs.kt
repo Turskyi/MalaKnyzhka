@@ -1,7 +1,9 @@
 package com.turskyi.malaknyzhka
 
-class WasmPlatform: Platform {
-    override val name: String = "Web with Kotlin/Wasm"
+import com.turskyi.malaknyzhka.models.PlatformType
+
+class WasmPlatform : Platform {
+    override val type: PlatformType = PlatformType.WEB
 }
 
 actual fun getPlatform(): Platform = WasmPlatform()

@@ -1,9 +1,9 @@
 package com.turskyi.malaknyzhka
 
-import android.os.Build
+import com.turskyi.malaknyzhka.models.PlatformType
 
 class AndroidPlatform : Platform {
-    override val name: String = "Android ${Build.VERSION.SDK_INT}"
+    override val type: PlatformType = PlatformType.MOBILE
 }
 
 actual fun getPlatform(): Platform = AndroidPlatform()

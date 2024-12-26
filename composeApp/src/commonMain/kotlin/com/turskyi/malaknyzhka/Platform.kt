@@ -1,7 +1,9 @@
 package com.turskyi.malaknyzhka
 
+import com.turskyi.malaknyzhka.models.PlatformType
+
 interface Platform {
-    val name: String
+    val type: PlatformType
 }
 
 expect fun getPlatform(): Platform
