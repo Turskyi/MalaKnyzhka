@@ -16,7 +16,7 @@ fun PageSwitcherButtons(
     onPageChange: (Int) -> Unit
 ) {
     // TODO: Adjust as needed for the number of book spreads
-    val totalPages = 3
+    val totalPages = 4
     val firstPage = 0
 
     Box(Modifier.fillMaxSize()) {

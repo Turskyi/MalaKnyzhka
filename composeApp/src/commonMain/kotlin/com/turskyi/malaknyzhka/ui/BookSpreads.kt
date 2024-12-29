@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources._001
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
 import malaknyzhka.composeapp.generated.resources._004
@@ -32,6 +33,7 @@ fun BookSpreads(
     screenWidth: Dp
 ) {
     val bookSpreads: List<DrawableResource> = listOf(
+        Res.drawable._001,
         Res.drawable._002,
         Res.drawable._003,
         Res.drawable._004,

@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources._001
 import malaknyzhka.composeapp.generated.resources._002
 import malaknyzhka.composeapp.generated.resources._003
 import malaknyzhka.composeapp.generated.resources._004
@@ -26,6 +27,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun TextPages(currentPage: Int) {
     val texts: List<StringResource> = listOf(
+        Res.string._001,
         Res.string._002,
         Res.string._003,
         Res.string._004,
