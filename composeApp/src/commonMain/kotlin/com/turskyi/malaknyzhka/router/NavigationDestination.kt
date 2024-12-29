@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka.models
+package com.turskyi.malaknyzhka.router
 
 sealed class NavigationDestination {
     data object Landing : NavigationDestination()

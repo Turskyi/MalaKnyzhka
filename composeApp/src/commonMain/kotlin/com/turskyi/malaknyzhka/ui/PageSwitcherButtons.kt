@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.turskyi.malaknyzhka.models.BookSpreadsRegistry
+import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
