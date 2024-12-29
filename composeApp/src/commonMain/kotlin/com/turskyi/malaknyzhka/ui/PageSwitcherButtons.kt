@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.models.BookSpreadsRegistry
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -15,8 +16,7 @@ fun PageSwitcherButtons(
     currentPage: Int,
     onPageChange: (Int) -> Unit
 ) {
-    // TODO: Adjust as needed for the number of book spreads
-    val totalPages = 4
+    val totalPages = BookSpreadsRegistry.allBookSpreads.size
     val firstPage = 0
 
     Box(Modifier.fillMaxSize()) {

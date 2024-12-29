@@ -14,11 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources._001
-import malaknyzhka.composeapp.generated.resources._002
-import malaknyzhka.composeapp.generated.resources._003
-import malaknyzhka.composeapp.generated.resources._004
+import com.turskyi.malaknyzhka.models.BookContentRegistry
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -26,12 +22,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun TextPages(currentPage: Int) {
-    val texts: List<StringResource> = listOf(
-        Res.string._001,
-        Res.string._002,
-        Res.string._003,
-        Res.string._004,
-    )
+    val poemPages: List<StringResource> = BookContentRegistry.allPoemPages
 
     val scrollState: ScrollState = rememberScrollState()
 
@@ -46,7 +37,7 @@ fun TextPages(currentPage: Int) {
     ) {
         SelectionContainer {
             Text(
-                text = stringResource(texts[currentPage]),
+                text = stringResource(poemPages[currentPage]),
                 textAlign = TextAlign.Justify
             )
         }

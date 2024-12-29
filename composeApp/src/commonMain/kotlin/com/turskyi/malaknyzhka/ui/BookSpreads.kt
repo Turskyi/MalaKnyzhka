@@ -16,11 +16,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources._001
-import malaknyzhka.composeapp.generated.resources._002
-import malaknyzhka.composeapp.generated.resources._003
-import malaknyzhka.composeapp.generated.resources._004
+import com.turskyi.malaknyzhka.models.BookSpreadsRegistry
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -32,12 +28,7 @@ fun BookSpreads(
     onDividerPositionChange: (Float) -> Unit,
     screenWidth: Dp
 ) {
-    val bookSpreads: List<DrawableResource> = listOf(
-        Res.drawable._001,
-        Res.drawable._002,
-        Res.drawable._003,
-        Res.drawable._004,
-    )
+    val bookSpreads: List<DrawableResource> = BookSpreadsRegistry.allBookSpreads
 
     val isWideScreen = screenWidth > 600.dp
 
