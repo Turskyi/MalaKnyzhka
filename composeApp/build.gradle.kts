@@ -2,7 +2,9 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -10,6 +12,52 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 }
+
+val keyPropertiesFile: File = rootProject.file(
+    "composeApp/src/androidMain/key.properties",
+)
+
+val keyProperties: Properties = Properties()
+
+if (keyPropertiesFile.exists()) {
+    keyProperties.load(keyPropertiesFile.inputStream())
+} else {
+    throw IllegalStateException("keyPropertiesFile is missing")
+}
+
+// Debug environment variables.
+val signingKeyDebugPath: String = keyProperties.getProperty(
+    "dev.SIGNING_KEY_DEBUG_PATH",
+)
+
+val signingKeyDebugPassword: String = keyProperties.getProperty(
+    "dev.SIGNING_KEY_DEBUG_PASSWORD",
+)
+
+val signingKeyDebugKey: String = keyProperties.getProperty(
+    "dev.SIGNING_KEY_DEBUG_KEY",
+)
+
+val signingKeyDebugKeyPassword: String = keyProperties.getProperty(
+    "dev.SIGNING_KEY_DEBUG_KEY_PASSWORD",
+)
+
+// Release environment variables.
+val signingKeyReleasePath: String = keyProperties.getProperty(
+    "production.SIGNING_KEY_RELEASE_PATH",
+)
+
+val signingKeyReleasePassword: String = keyProperties.getProperty(
+    "production.SIGNING_KEY_RELEASE_PASSWORD",
+)
+
+val signingKeyReleaseKey: String = keyProperties.getProperty(
+    "production.SIGNING_KEY_RELEASE_KEY",
+)
+
+val signingKeyReleaseKeyPassword: String = keyProperties.getProperty(
+    "production.SIGNING_KEY_RELEASE_KEY_PASSWORD",
+)
 
 kotlin {
     androidTarget {
@@ -23,7 +71,7 @@ kotlin {
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
-    ).forEach { iosTarget ->
+    ).forEach { iosTarget: KotlinNativeTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
@@ -83,26 +131,62 @@ kotlin {
 }
 
 android {
-    namespace = "com.turskyi.malaknyzhka"
+    namespace = libs.versions.applicationId.get()
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.turskyi.malaknyzhka"
+        applicationId = libs.versions.applicationId.get()
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+
+    signingConfigs {
+        create("dev") {
+            if (System.getenv("FCI_BUILD_ID") != null) {
+                storeFile = file(System.getenv("CM_KEYSTORE_PATH"))
+                storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("CM_KEY_ALIAS")
+                keyPassword = System.getenv("CM_KEY_PASSWORD")
+            } else {
+                storeFile = file(signingKeyDebugPath)
+                storePassword = signingKeyDebugPassword
+                keyAlias = signingKeyDebugKey
+                keyPassword = signingKeyDebugKeyPassword
+            }
+        }
+        create("production") {
+            if (System.getenv("FCI_BUILD_ID") != null) {
+                storeFile = file(System.getenv("CM_KEYSTORE_PATH"))
+                storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("CM_KEY_ALIAS")
+                keyPassword = System.getenv("CM_KEY_PASSWORD")
+            } else {
+                storeFile = file(signingKeyReleasePath)
+                storePassword = signingKeyReleasePassword
+                keyAlias = signingKeyReleaseKey
+                keyPassword = signingKeyReleaseKeyPassword
+            }
         }
     }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("dev")
+        }
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("production")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -120,8 +204,32 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.turskyi.malaknyzhka"
-            packageVersion = "1.0.0"
+            packageName = libs.versions.dockName.get()
+            packageVersion = libs.versions.versionName.get()
+
+            macOS {
+                iconFile.set(
+                    project.file(
+                        "../composeApp/src/desktopMain/icons/icon.icns",
+                    )
+                )
+                bundleID = libs.versions.applicationId.get()
+                dockName = libs.versions.dockName.get()
+            }
+            windows {
+                iconFile.set(
+                    project.file(
+                        "../composeApp/src/desktopMain/icons/icon.ico",
+                    )
+                )
+            }
+            linux {
+                iconFile.set(
+                    project.file(
+                        "../composeApp/src/desktopMain/icons/icon.png",
+                    )
+                )
+            }
         }
     }
 }

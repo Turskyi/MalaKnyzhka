@@ -32,7 +32,7 @@ fun TextPages(currentPage: Int) {
             .fillMaxHeight()
             .verticalScroll(scrollState)
             .background(Color.White)
-            .padding(10.dp),
+            .padding(start = 4.dp, top = 8.dp, end = 4.dp, bottom = 32.dp),
         contentAlignment = Alignment.Center
     ) {
         SelectionContainer {
