@@ -30,7 +30,9 @@ fun DraggableDividerWithButton(
     dividerPosition: Float,
     screenHeightOrWidthPx: Float,
     dragOrientation: Orientation,
-    onPositionChange: (Float) -> Unit
+    onPositionChange: (Float) -> Unit,
+    currentPage: Int,
+    totalPages: Int,
 ) {
     val dividerSizePx: Float = with(LocalDensity.current) { 50.dp.toPx() }
 
@@ -65,16 +67,17 @@ fun DraggableDividerWithButton(
                 orientation = dragOrientation,
                 state = rememberDraggableState { delta: Float ->
                     val newPosition: Float =
-                        (dividerPosition + delta / screenHeightOrWidthPx).coerceIn(
-                            0f,
-                            1f
-                        )
+                        (dividerPosition + delta / screenHeightOrWidthPx)
+                            .coerceIn(
+                                0f,
+                                1f,
+                            )
                     onPositionChange(newPosition)
                 }
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Divider Line
+        // Divider line
         Box(
             Modifier
                 .then(
@@ -88,7 +91,7 @@ fun DraggableDividerWithButton(
 
         // Draggable Button
         Button(
-            onClick = { /* No-op */ },
+            onClick = { /* No-op: purely decorative */ },
             modifier = Modifier.then(
                 if (dragOrientation == Orientation.Horizontal)
                     Modifier.rotate(90f)
@@ -97,9 +100,15 @@ fun DraggableDividerWithButton(
             )
         ) {
             Text(
-                "=",
-                style = MaterialTheme.typography.h6,
-                color = Color.White
+                if (dragOrientation == Orientation.Horizontal)
+                    "="
+                else
+                    "$currentPage / $totalPages",
+                style = if (dragOrientation == Orientation.Horizontal)
+                    MaterialTheme.typography.h6
+                else
+                    MaterialTheme.typography.button,
+                color = Color.White,
             )
         }
     }

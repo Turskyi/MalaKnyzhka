@@ -30,7 +30,7 @@ fun BookSpreads(
 ) {
     val bookSpreads: List<DrawableResource> = BookSpreadsRegistry.allBookSpreads
 
-    val isWideScreen = screenWidth > 600.dp
+    val isWideScreen: Boolean = screenWidth > 600.dp
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val density: Density = LocalDensity.current
@@ -94,20 +94,11 @@ fun BookSpreads(
                         Orientation.Horizontal
                     else
                         Orientation.Vertical,
-                    onPositionChange = onDividerPositionChange
+                    onPositionChange = onDividerPositionChange,
+                    currentPage = currentPage,
+                    totalPages = bookSpreads.size,
                 )
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

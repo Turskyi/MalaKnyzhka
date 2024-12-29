@@ -3,9 +3,11 @@ package com.turskyi.malaknyzhka.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -29,6 +31,23 @@ fun PageSwitcherButtons(
             enabled = currentPage != firstPage,
             modifier = Modifier.align(Alignment.BottomStart).padding(4.dp),
             label = "<"
+        )
+
+        // Slider for page selection
+        Slider(
+            value = currentPage.toFloat(),
+            onValueChange = { value: Float ->
+                val newPage: Int = value.toInt()
+                    .coerceIn(firstPage, totalPages - 1)
+                onPageChange(newPage)
+            },
+            valueRange = 0f..(totalPages - 1).toFloat(),
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .align(Alignment.BottomCenter)
+                .padding(horizontal = 40.dp, vertical = 4.dp).then(
+                    Modifier.rotate(0f)
+                )
         )
 
         // Next Page Button.

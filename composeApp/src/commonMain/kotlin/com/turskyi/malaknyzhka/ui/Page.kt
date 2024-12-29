@@ -52,7 +52,7 @@ fun Page(pageSettings: PageSettings) {
             BookSpreads(
                 dividerPosition = dividerPosition,
                 currentPage = currentPage,
-                onDividerPositionChange = { newPosition ->
+                onDividerPositionChange = { newPosition: Float ->
                     dividerPosition = newPosition.coerceIn(
                         maxTopFraction,
                         minBottomFraction,
@@ -64,7 +64,7 @@ fun Page(pageSettings: PageSettings) {
             Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth()) {
                 PageSwitcherButtons(
                     currentPage = currentPage,
-                    onPageChange = ::onNewPage
+                    onPageChange = ::onNewPage,
                 )
             }
         }
