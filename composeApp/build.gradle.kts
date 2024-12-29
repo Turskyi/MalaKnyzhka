@@ -11,6 +11,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.googleGmsGoogleServices)
+    alias(libs.plugins.googleFirebaseCrashlytics)
 }
 
 val keyPropertiesFile: File = rootProject.file(
@@ -195,6 +197,8 @@ android {
 
 dependencies {
     implementation(libs.androidx.ui.android)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
     debugImplementation(compose.uiTooling)
 }
 
