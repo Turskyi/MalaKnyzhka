@@ -8,6 +8,12 @@ designed to deliver a cohesive reading experience across Android, iOS, Web, and
 Desktop. This project aims to celebrate the lyrical beauty of Taras Shevchenko's
 poetry.
 
+### Testing the App:
+
+Join our testing program and provide valuable feedback:
+
+- [Android App Distribution Tester Invite](https://appdistribution.firebase.dev/i/598cf84a44dfa4de)
+
 ## PROJECT SPECIFICATION
 
 • Programming language: [Kotlin](https://kotlinlang.org/);
