@@ -1,4 +1,5 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
+[![Upload Android Build to App Tester](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/compose_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/compose_ci.yml)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
 # Мала Книжка (Тарас Шевченко)
