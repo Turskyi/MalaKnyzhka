@@ -16,8 +16,10 @@ import androidx.compose.ui.graphics.Color
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.util.rememberWindowSize
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
+@Preview
 fun Page(pageSettings: PageSettings) {
     val initialPositionInTheMiddle = 0.5f
     var dividerPosition: Float by remember {
