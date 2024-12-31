@@ -1,7 +1,7 @@
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
-[![Upload Android Build to App Tester](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/compose_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/compose_ci.yml)
-[![Deploy to Firebase Hosting on merge](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml)
+[![Upload Android Build to App Tester](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/android_compose_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/android_compose_ci.yml)
 [![Deploy to Firebase Hosting on PR](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml)
+[![Deploy to Firebase Hosting on merge](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
 # Мала Книжка (Тарас Шевченко)
