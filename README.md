@@ -107,3 +107,20 @@ We welcome contributions to enhance this project. Here’s how you can contribut
   on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
 
 Enjoy the poetic journey! 🌟
+
+## Screenshots:
+
+<!--suppress CheckImageSize -->
+<img src="screenshots/Screenshot_book_and_text.png" width="400"  alt="screenshot">
+<!--suppress CheckImageSize -->
+<img src="screenshots/Screenshot_book_spread.png" width="400"  alt="screenshot">
+<!--suppress CheckImageSize -->
+<img src="screenshots/Screenshot_text.png" width="400"  alt="screenshot">
+<!--suppress CheckImageSize -->
+<img src="screenshots/Screenshot_landscape_tablet.png" width="400"  alt="screenshot">
+
+## Download
+
+<a href="https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka" target="_blank">
+<img src="https://play.google.com/intl/en_gb/badges/static/images/badges/en_badge_web_generic.png" width=240  alt="google play badge"/>
+</a>
