@@ -1,4 +1,6 @@
 <resources>
+    <string name="app_name">Мала Книжка (Тарас Шевченко)</string>
+    <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 – 1850 рр.</string>
     <string name="en">English</string>
     <string name="uk">Ukraine</string>
     <string name="app_language">App Language: %1$s</string>

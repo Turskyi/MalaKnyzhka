@@ -1,10 +1,10 @@
 package com.turskyi.malaknyzhka.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.router.NavigationDestination
@@ -13,25 +13,24 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App(settings: Settings) {
-    var currentDestination: NavigationDestination by remember {
-        mutableStateOf(
-            if (isOnWeb())
-                NavigationDestination.Landing
-            else
-                NavigationDestination.Book
-        )
-    }
-
+fun App(
+    settings: Settings,
+    navController: NavHostController = rememberNavController()
+) {
     AppTheme {
-        when (currentDestination) {
-            is NavigationDestination.Landing -> {
+        NavHost(
+            navController = navController,
+            startDestination = if (isOnWeb())
+                NavigationDestination.Landing.name
+            else
+                NavigationDestination.Book.name
+        ) {
+            composable(route = NavigationDestination.Landing.name) {
                 LandingPage(onNavigateToBook = {
-                    currentDestination = NavigationDestination.Book
+                    navController.navigate(NavigationDestination.Book.name)
                 })
             }
-
-            is NavigationDestination.Book -> {
+            composable(route = NavigationDestination.Book.name) {
                 Page(PageSettings(settings))
             }
         }
