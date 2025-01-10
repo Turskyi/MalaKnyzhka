@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka.ui
+package com.turskyi.malaknyzhka.ui.book
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape

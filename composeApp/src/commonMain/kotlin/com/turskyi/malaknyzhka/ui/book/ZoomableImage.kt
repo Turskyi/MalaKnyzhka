@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka.ui
+package com.turskyi.malaknyzhka.ui.book
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

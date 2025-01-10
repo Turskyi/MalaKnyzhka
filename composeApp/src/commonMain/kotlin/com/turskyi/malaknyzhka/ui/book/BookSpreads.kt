@@ -1,6 +1,5 @@
-package com.turskyi.malaknyzhka.ui
+package com.turskyi.malaknyzhka.ui.book
 
-import TextPages
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Box

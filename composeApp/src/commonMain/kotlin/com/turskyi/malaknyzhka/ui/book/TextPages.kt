@@ -1,3 +1,5 @@
+package com.turskyi.malaknyzhka.ui.book
+
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
