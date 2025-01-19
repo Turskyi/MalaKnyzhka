@@ -39,6 +39,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
 import org.jetbrains.compose.resources.painterResource
@@ -111,7 +112,24 @@ fun LandingPage(
                             Text("Читати")
                         }
 
+                        // Spacer and Google Play Badge
                         Spacer(modifier = Modifier.height(24.dp))
+                        Image(
+                            painter = painterResource(Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian),
+                            contentDescription = "Значок Google Play",
+                            modifier = Modifier
+                                .clickable {
+                                    uriHandler.openUri(
+                                        uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                                    )
+                                }
+                                .size(
+                                    240.dp,
+                                    64.dp,
+                                )
+                        )
+                        Spacer(modifier = Modifier.height(24.dp))
+
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 text = "Джерела:",
@@ -121,7 +139,7 @@ fun LandingPage(
                                 )
                             )
                             Spacer(Modifier.width(4.dp))
-                            val url =
+                            val url: String =
                                 "https://www.t-shevchenko.name/uk/Gallery/" +
                                         "Works/1850MalaKn.html"
                             val annotatedLinkString: AnnotatedString =
@@ -168,7 +186,7 @@ fun LandingPage(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Privacy Policy",
+                    text = "Політика конфіденційності",
                     style = MaterialTheme.typography.caption.copy(
                         color = MaterialTheme.colors.primary,
                         textDecoration = TextDecoration.Underline

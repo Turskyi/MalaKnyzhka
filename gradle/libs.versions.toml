@@ -1,9 +1,9 @@
 [versions]
-agp = "8.7.3"
+agp = "8.8.0"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
-androidx-activityCompose = "1.9.3"
+androidx-activityCompose = "1.10.0"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.0"
 androidx-core-ktx = "1.15.0"
@@ -23,8 +23,8 @@ versionCode = "2"
 applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка (Тарас Шевченко)"
 googleGmsGoogleServices = "4.4.2"
-firebaseAnalytics = "22.1.2"
-firebaseCrashlytics = "19.3.0"
+firebaseAnalytics = "22.2.0"
+firebaseCrashlytics = "19.4.0"
 googleFirebaseCrashlytics = "3.0.2"
 
 [libraries]
@@ -44,7 +44,6 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
-multiplatform-settings-datastore = { module = "com.russhwolf:multiplatform-settings-datastore", version.ref = "multiplatformSettings" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
