@@ -1,6 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import java.util.Properties
@@ -20,7 +21,11 @@ val keyPropertiesFile: File = rootProject.file(
 
 val keyProperties: Properties = Properties()
 
-keyProperties.load(keyPropertiesFile.inputStream())
+if (keyPropertiesFile.exists()) {
+    keyProperties.load(keyPropertiesFile.inputStream())
+} else {
+    throw IllegalStateException("key.properties file is missing")
+}
 
 // Debug environment variables.
 val signingKeyDebugPath: String = keyProperties.getProperty(
@@ -98,7 +103,7 @@ kotlin {
     }
 
     sourceSets {
-        val desktopMain by getting
+        val desktopMain: KotlinSourceSet by getting
 
         androidMain.dependencies {
             implementation(compose.preview)
