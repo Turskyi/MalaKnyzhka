@@ -45,10 +45,11 @@ developer reading the code can easily understand their function.
 
 - **`/composeApp`**: Contains shared code for the Compose Multiplatform
   applications.
-    - **`commonMain`**: Houses the common code for all targets.
-    - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
-      contain code for specific platforms like CoreCrypto for iOS in the
-      `iosMain` folder.
+
+  - **`commonMain`**: Houses the common code for all targets.
+  - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
+    contain code for specific platforms like CoreCrypto for iOS in the
+    `iosMain` folder.
 
 - **`/iosApp`**: Contains the iOS applications. Despite sharing UI code, this
   serves as the entry point for the iOS app and can include Swift/SwiftUI code
@@ -79,9 +80,9 @@ Multiplatform, sharing a unified codebase.
 
 This project utilizes book spreads and texts from the website
 [t-shevchenko.name](https://www.t-shevchenko.name/uk/Gallery/Works/1850MalaKn.html).
-The site's creators kindly allow reproduction with proper referencing. *
-*Передрук статей із сайту заохочується за умови посилання (гіперпосилання) на
-наш сайт**. Many thanks for their valuable contributions.
+The site's creators kindly allow reproduction with proper referencing. \*
+\*Передрук статей із сайту заохочується за умови посилання (гіперпосилання) на
+наш сайт\*\*. Many thanks for their valuable contributions.
 
 ## Getting Started
 
@@ -102,7 +103,8 @@ Build and run the web application using this Gradle task:
 
 ## How to Contribute
 
-We welcome contributions to enhance this project. Here’s how you can contribute:
+We welcome contributions to enhance this project. Here&#39;s how you can
+contribute:
 
 - **Report Issues**: Encountered a bug or have a suggestion? Report issues
   on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).

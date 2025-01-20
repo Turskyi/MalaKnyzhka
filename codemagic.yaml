@@ -25,6 +25,11 @@ workflows:
       - name: Generate key.properties file
         script: |
           echo $KEY_PROPERTIES | base64 --decode > $FCI_BUILD_DIR/composeApp/src/androidMain/key.properties
+
+      - name: Generate google-services.json file
+        script: |
+          echo $GOOGLE_SERVICES | base64 --decode > $FCI_BUILD_DIR/composeApp/google-services.json
+
       - name: Build Android release
         script: |
           LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
