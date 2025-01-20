@@ -9,7 +9,7 @@ workflows:
         JAVA_HOME: /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 
       android_signing:
-        - keystore_reference
+        - mala_knyzhka_keystore_reference
 
       groups:
         # Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS – google-services.json here.
