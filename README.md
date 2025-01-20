@@ -2,6 +2,7 @@
 [![Upload Android Build to App Tester](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/android_compose_ci.yml/badge.svg?event=push)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/android_compose_ci.yml)
 [![Deploy to Firebase Hosting on PR](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml)
 [![Deploy to Firebase Hosting on merge](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml)
+[![Codemagic build status](https://api.codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/status_badge.svg)](https://codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/latest_build)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
 # Мала Книжка (Тарас Шевченко)
