@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
@@ -21,11 +20,7 @@ val keyPropertiesFile: File = rootProject.file(
 
 val keyProperties: Properties = Properties()
 
-if (keyPropertiesFile.exists()) {
-    keyProperties.load(keyPropertiesFile.inputStream())
-} else {
-    throw IllegalStateException("keyPropertiesFile is missing")
-}
+keyProperties.load(keyPropertiesFile.inputStream())
 
 // Debug environment variables.
 val signingKeyDebugPath: String = keyProperties.getProperty(
@@ -63,7 +58,6 @@ val signingKeyReleaseKeyPassword: String = keyProperties.getProperty(
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
