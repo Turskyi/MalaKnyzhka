@@ -3,6 +3,7 @@
 [![Deploy to Firebase Hosting on PR](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-pull-request.yml)
 [![Deploy to Firebase Hosting on merge](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml)
 [![Codemagic build status](https://api.codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/status_badge.svg)](https://codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/latest_build)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Turskyi/MalaKnyzhka)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
 # Мала Книжка (Тарас Шевченко)
@@ -22,8 +23,8 @@ Join our testing program and provide valuable feedback:
 
 • Programming language: [Kotlin](https://kotlinlang.org/);
 
-•
-Framework: [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/);
+• Framework:
+[Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/);
 
 • SDK: [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html);
 
@@ -84,6 +85,11 @@ The site's creators kindly allow reproduction with proper referencing. \*
 \*Передрук статей із сайту заохочується за умови посилання (гіперпосилання) на
 наш сайт\*\*. Many thanks for their valuable contributions.
 
+The implementation of this project was inspired by the
+[Get started with Compose Multiplatform – tutorial](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-getting-started.html)
+provided by [JetBrains](https://github.com/JetBrains). Their resources were
+instrumental in guiding the development process.
+
 ## Getting Started
 
 To get started, ensure you have the necessary development environments for each
@@ -100,6 +106,11 @@ Build and run the web application using this Gradle task:
 ```bash
 ./gradlew :composeApp:wasmJsBrowserDevelopmentRun
 ```
+
+**Browser Compatibility:** The web application is specifically designed to run
+within Google Chrome. While other browsers may technically load the
+application, they may not display it correctly or support all features. For
+the best experience, use Google Chrome.
 
 ## How to Contribute
 
