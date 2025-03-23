@@ -17,7 +17,8 @@ poetry.
 
 Join our testing program and provide valuable feedback:
 
-- [Android App Distribution Tester Invite](https://appdistribution.firebase.dev/i/598cf84a44dfa4de)
+- [Android App Tester Invite](https://appdistribution.firebase.dev/i/598cf84a44dfa4de)
+- [iOS TestFlight Invite](https://testflight.apple.com/join/cEN4y79T)
 
 ## PROJECT SPECIFICATION
 
@@ -69,8 +70,8 @@ Multiplatform, sharing a unified codebase.
 
 - **Platform Support**: A single codebase approach for Android, iOS, Web, and
   Desktop.
-- **Interactive UI**: Draggable dividers allowing users to switch between text
-  and images effortlessly.
+- **Interactive UI**: Draggable dividers allowing users to switch between the
+  text and images effortlessly.
 - **Swipe Gestures**: Smooth page transitions with horizontal drag gestures.
 - **Multilingual Support**: Access Shevchenko's poetry in its native language.
 - **Authentic Scans**: Includes scanned book spreads of the original "Мала
