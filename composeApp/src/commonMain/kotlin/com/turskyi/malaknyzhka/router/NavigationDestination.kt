@@ -7,4 +7,5 @@ enum class NavigationDestination {
     Landing,
     Book,
     PrivacyPolicy,
+    Support,
 }

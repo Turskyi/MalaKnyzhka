@@ -1,23 +1,27 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.1"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
-compose-multiplatform = "1.8.0-alpha01"
+
+# Consider upgrading when relase will be stable, I checked the 1.8.0-beta01,
+# but it throws "object webassembly.exception"
+# https://github.com/JetBrains/compose-multiplatform/releases
+compose-multiplatform = "1.8.0-alpha02"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.9.0"
 multiplatformSettings = "1.2.0"
 navigationComposeVersion = "2.8.0-alpha11"
 uiAndroid = "1.7.8"
-versionName = "1.0.3"
-versionCode = "3"
+versionName = "1.0.4"
+versionCode = "4"
 applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка (Тарас Шевченко)"
 googleGmsGoogleServices = "4.4.2"
-firebaseAnalytics = "22.3.0"
-firebaseCrashlytics = "19.4.1"
+firebaseAnalytics = "22.4.0"
+firebaseCrashlytics = "19.4.2"
 googleFirebaseCrashlytics = "3.0.3"
 
 [libraries]

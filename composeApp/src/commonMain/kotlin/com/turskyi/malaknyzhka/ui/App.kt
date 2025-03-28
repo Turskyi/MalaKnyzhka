@@ -11,6 +11,7 @@ import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
+import com.turskyi.malaknyzhka.ui.support.SupportPage
 import com.turskyi.malaknyzhka.util.isOnWeb
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -37,6 +38,11 @@ fun App(
                         navController.navigate(
                             NavigationDestination.PrivacyPolicy.name,
                         )
+                    },
+                    onNavigateToSupport = {
+                        navController.navigate(
+                            NavigationDestination.Support.name,
+                        )
                     }
                 )
             }
@@ -45,6 +51,9 @@ fun App(
             }
             composable(route = NavigationDestination.PrivacyPolicy.name) {
                 PrivacyPolicyPage(onBack = { navController.popBackStack() })
+            }
+            composable(route = NavigationDestination.Support.name) {
+                SupportPage(onBack = { navController.popBackStack() })
             }
         }
     }
