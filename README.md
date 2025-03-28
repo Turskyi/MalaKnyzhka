@@ -8,7 +8,7 @@
 
 # Мала Книжка (Тарас Шевченко)
 
-Welcome to "Мала Книжка (Тарас Шевченко)," a Compose Multiplatform project
+Welcome to "Мала Книжка (Тарас Шевченко)", a Compose Multiplatform project
 designed to deliver a cohesive reading experience across Android, iOS, Web, and
 Desktop. This project aims to celebrate the lyrical beauty of Taras Shevchenko's
 poetry.

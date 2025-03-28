@@ -39,10 +39,14 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import malaknyzhka.composeapp.generated.resources.Download_on_the_App_Store_Badge_UA
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.privacy_policy
 import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
+import malaknyzhka.composeapp.generated.resources.support
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -50,6 +54,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun LandingPage(
     onNavigateToBook: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
+    onNavigateToSupport: () -> Unit,
 ) {
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
@@ -62,7 +67,9 @@ fun LandingPage(
                 .padding(24.dp),
             contentAlignment = Alignment.Center
         ) {
-            Column {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Card(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
@@ -112,22 +119,35 @@ fun LandingPage(
                             Text("Читати")
                         }
 
-                        // Spacer and Google Play Badge
                         Spacer(modifier = Modifier.height(24.dp))
-                        Image(
-                            painter = painterResource(Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian),
-                            contentDescription = "Значок Google Play",
-                            modifier = Modifier
-                                .clickable {
-                                    uriHandler.openUri(
-                                        uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                        Row {
+                            Image(
+                                painter = painterResource(Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian),
+                                contentDescription = "Значок Google Play",
+                                modifier = Modifier
+                                    .clickable {
+                                        uriHandler.openUri(
+                                            uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                                        )
+                                    }
+                                    .size(
+                                        240.dp,
+                                        64.dp,
                                     )
-                                }
-                                .size(
-                                    240.dp,
-                                    64.dp,
-                                )
-                        )
+                            )
+                            Image(
+                                painter = painterResource(Res.drawable.Download_on_the_App_Store_Badge_UA),
+                                contentDescription = "Значок App Store",
+                                modifier = Modifier
+                                    .clickable {
+                                        uriHandler.openUri("https://apps.apple.com/app/id6743679879")
+                                    }
+                                    .size(
+                                        240.dp,
+                                        64.dp,
+                                    )
+                            )
+                        }
                         Spacer(modifier = Modifier.height(24.dp))
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -185,16 +205,28 @@ fun LandingPage(
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "Політика конфіденційності",
-                    style = MaterialTheme.typography.caption.copy(
-                        color = MaterialTheme.colors.primary,
-                        textDecoration = TextDecoration.Underline
-                    ),
-                    modifier = Modifier.clickable { onNavigateToPrivacyPolicy() }
-                        .align(Alignment.CenterHorizontally)
-                        .padding(16.dp)
-                )
+                Row {
+                    Text(
+                        text = stringResource(Res.string.privacy_policy),
+                        style = MaterialTheme.typography.caption.copy(
+                            color = MaterialTheme.colors.primary,
+                            textDecoration = TextDecoration.Underline
+                        ),
+                        modifier = Modifier.clickable {
+                            onNavigateToPrivacyPolicy()
+                        }
+                            .padding(16.dp)
+                    )
+                    Text(
+                        text = stringResource(Res.string.support),
+                        style = MaterialTheme.typography.caption.copy(
+                            color = MaterialTheme.colors.primary,
+                            textDecoration = TextDecoration.Underline
+                        ),
+                        modifier = Modifier.clickable { onNavigateToSupport() }
+                            .padding(16.dp)
+                    )
+                }
             }
         }
     }
