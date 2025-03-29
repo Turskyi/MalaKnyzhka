@@ -189,12 +189,14 @@ fun LandingPage(
                                 contentDescription = "Значок App Store",
                                 modifier = Modifier
                                     .clickable {
-                                        uriHandler.openUri("https://apps.apple.com/app/id6743679879")
+                                        uriHandler.openUri(
+                                            uri = "https://apps.apple.com/app/id6743679879",
+                                        )
                                     }
-                                    .size(
-                                        240.dp,
-                                        64.dp,
-                                    )
+                                    .weight(1f, fill = false)
+                                    .height(64.dp)
+                                    .width(240.dp),
+                                contentScale = ContentScale.Fit,
                             )
                             Image(
                                 painter = painterResource(
@@ -207,11 +209,12 @@ fun LandingPage(
                                             uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
                                         )
                                     }
-                                    .size(
-                                        240.dp,
-                                        64.dp,
-                                    )
-                            )
+                                    .weight(1f, fill = false)
+                                    .height(64.dp)
+                                    .width(240.dp),
+                                contentScale = ContentScale.Fit,
+
+                                )
                         }
                         Spacer(modifier = Modifier.height(24.dp))
 
