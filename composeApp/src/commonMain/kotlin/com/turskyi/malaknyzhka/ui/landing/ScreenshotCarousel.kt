@@ -3,8 +3,10 @@ package com.turskyi.malaknyzhka.ui.landing
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -23,10 +25,16 @@ fun ScreenshotCarousel(
     height: Dp,
 ) {
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
         items(screenshots.size) { index: Int ->
             val screenshotResId: DrawableResource = screenshots[index]
+            val isFirst: Boolean = index == 0
+            val isLast: Boolean = index == screenshots.size - 1
+            val paddingStart: Dp = if (isFirst) 0.dp else 0.dp
+            val paddingEnd: Dp = if (isLast) 0.dp else 0.dp
+
             Image(
                 painter = painterResource(screenshotResId),
                 contentDescription = "Screenshot",
@@ -39,6 +47,7 @@ fun ScreenshotCarousel(
                         MaterialTheme.colors.onSurface.copy(alpha = 0.2f),
                         RoundedCornerShape(8.dp)
                     )
+                    .padding(start = paddingStart, end = paddingEnd)
             )
         }
     }

@@ -88,10 +88,10 @@ fun LandingPage(
                 Card(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(vertical = 16.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(40.dp),
+                        modifier = Modifier.padding(vertical = 40.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
