@@ -11,6 +11,10 @@
     <string name="support_ukr_eng">Підтримка (Support)</string>
     <string name="support">Підтримка</string>
     <string name="about_app">Огляд додатку</string>
+    <string name="portrait_description">Портрет Тараса Шевченка</string>
+    <string name="title">Мала Книжка</string>
+    <string name="subtitle">Оригінал рукопису Тараса Шевченка</string>
+    <string name="read_now">Почати читати зараз</string>
     <string name="privacy_ukr_eng">
         <![CDATA[
 Політика конфіденційності (українською мовою)

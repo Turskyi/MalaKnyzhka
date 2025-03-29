@@ -36,15 +36,30 @@ import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.Download_on_the_App_Store_Badge_UA
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.portrait_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
+import malaknyzhka.composeapp.generated.resources.read_now
+import malaknyzhka.composeapp.generated.resources.screenshot_1
+import malaknyzhka.composeapp.generated.resources.screenshot_2
+import malaknyzhka.composeapp.generated.resources.screenshot_3
+import malaknyzhka.composeapp.generated.resources.screenshot_4
+import malaknyzhka.composeapp.generated.resources.screenshot_5
+import malaknyzhka.composeapp.generated.resources.screenshot_6
+import malaknyzhka.composeapp.generated.resources.screenshot_7
+import malaknyzhka.composeapp.generated.resources.screenshot_8
+import malaknyzhka.composeapp.generated.resources.screenshot_9
 import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
+import malaknyzhka.composeapp.generated.resources.subtitle
 import malaknyzhka.composeapp.generated.resources.support
+import malaknyzhka.composeapp.generated.resources.title
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -83,7 +98,9 @@ fun LandingPage(
                             painter = painterResource(
                                 Res.drawable.shevchenko_portrait,
                             ),
-                            contentDescription = "Портрет Тараса Шевченка",
+                            contentDescription = stringResource(
+                                Res.string.portrait_description,
+                            ),
                             modifier = Modifier
                                 .size(180.dp)
                                 .clip(CircleShape),
@@ -91,44 +108,88 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = "Мала Книжка",
-                            style = MaterialTheme.typography.h5,
+                            text = stringResource(Res.string.title),
+                            style = MaterialTheme.typography.h4,
                             color = MaterialTheme.colors.primaryVariant
                         )
                         Text(
-                            text = "Оригінал рукопису Тараса Шевченка",
+                            text = stringResource(Res.string.subtitle),
                             style = MaterialTheme.typography.subtitle1,
                             color = MaterialTheme.colors.onSurface.copy(
                                 alpha = 0.7f,
                             )
                         )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = "Додаток дозволяє читати рукопис разом із " +
-                                    "друкованим текстом, порівнюючи оригінал з " +
-                                    "сучасним текстом.",
-                            style = MaterialTheme.typography.body2,
-                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.8f),
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                            text = "Основні можливості",
+                            style = MaterialTheme.typography.h6,
+                            color = MaterialTheme.colors.primary
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Column(horizontalAlignment = Alignment.Start) {
+                            listOf(
+                                "• Читайте рукопис разом із друкованим текстом.",
+                                "• Порівнюйте оригінал із сучасним написанням.",
+                                "• Автоматичне збереження останньої прочитаної сторінки."
+                            ).forEach { feature ->
+                                Text(
+                                    text = feature,
+                                    style = MaterialTheme.typography.body2,
+                                    color = MaterialTheme.colors.onSurface.copy(
+                                        alpha = 0.8f,
+                                    )
+                                )
+                            }
+                        }
                         Spacer(modifier = Modifier.height(24.dp))
                         Button(
                             onClick = onNavigateToBook,
                             shape = RoundedCornerShape(8.dp)
                         ) {
-                            Text("Читати")
+                            Text(text = stringResource(Res.string.read_now))
                         }
-
+                        Spacer(modifier = Modifier.height(16.dp))
+                        val iPhoneScreenshots: List<DrawableResource> = listOf(
+                            Res.drawable.screenshot_1,
+                            Res.drawable.screenshot_2,
+                            Res.drawable.screenshot_3,
+                            Res.drawable.screenshot_4,
+                        )
+                        ScreenshotCarousel(
+                            screenshots = iPhoneScreenshots,
+                            ratio = 9f / 19.5f,
+                            height = 480.dp,
+                        )
+                        val iPadScreenshots: List<DrawableResource> = listOf(
+                            Res.drawable.screenshot_5,
+                            Res.drawable.screenshot_6,
+                            Res.drawable.screenshot_7,
+                            Res.drawable.screenshot_8,
+                            Res.drawable.screenshot_9,
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        ScreenshotCarousel(
+                            screenshots = iPadScreenshots,
+                            ratio = 9f / 12,
+                            height = 240.dp,
+                        )
                         Spacer(modifier = Modifier.height(24.dp))
+                        Text(
+                            text = "Доступно у App Store та Google Play!",
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.primaryVariant
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        // 🏪 Google Play & App Store Badges.
                         Row {
                             Image(
-                                painter = painterResource(Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian),
-                                contentDescription = "Значок Google Play",
+                                painter = painterResource(
+                                    Res.drawable.Download_on_the_App_Store_Badge_UA,
+                                ),
+                                contentDescription = "Значок App Store",
                                 modifier = Modifier
                                     .clickable {
-                                        uriHandler.openUri(
-                                            uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
-                                        )
+                                        uriHandler.openUri("https://apps.apple.com/app/id6743679879")
                                     }
                                     .size(
                                         240.dp,
@@ -136,11 +197,15 @@ fun LandingPage(
                                     )
                             )
                             Image(
-                                painter = painterResource(Res.drawable.Download_on_the_App_Store_Badge_UA),
-                                contentDescription = "Значок App Store",
+                                painter = painterResource(
+                                    Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian,
+                                ),
+                                contentDescription = "Значок Google Play",
                                 modifier = Modifier
                                     .clickable {
-                                        uriHandler.openUri("https://apps.apple.com/app/id6743679879")
+                                        uriHandler.openUri(
+                                            uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                                        )
                                     }
                                     .size(
                                         240.dp,
@@ -212,6 +277,7 @@ fun LandingPage(
                             color = MaterialTheme.colors.primary,
                             textDecoration = TextDecoration.Underline
                         ),
+                        textAlign = TextAlign.Center,
                         modifier = Modifier.clickable {
                             onNavigateToPrivacyPolicy()
                         }
@@ -223,6 +289,7 @@ fun LandingPage(
                             color = MaterialTheme.colors.primary,
                             textDecoration = TextDecoration.Underline
                         ),
+                        textAlign = TextAlign.Center,
                         modifier = Modifier.clickable { onNavigateToSupport() }
                             .padding(16.dp)
                     )
