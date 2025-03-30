@@ -126,7 +126,10 @@ fun LandingPage(
                             color = MaterialTheme.colors.primary
                         )
                         Spacer(modifier = Modifier.height(8.dp))
-                        Column(horizontalAlignment = Alignment.Start) {
+                        Column(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            horizontalAlignment = Alignment.Start,
+                        ) {
                             listOf(
                                 "• Читайте рукопис разом із друкованим текстом.",
                                 "• Порівнюйте оригінал із сучасним написанням.",
@@ -181,7 +184,9 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         // 🏪 Google Play & App Store Badges.
-                        Row {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                        ) {
                             Image(
                                 painter = painterResource(
                                     Res.drawable.Download_on_the_App_Store_Badge_UA,
@@ -218,7 +223,10 @@ fun LandingPage(
                         }
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             Text(
                                 text = "Джерела:",
                                 style = MaterialTheme.typography.caption,
