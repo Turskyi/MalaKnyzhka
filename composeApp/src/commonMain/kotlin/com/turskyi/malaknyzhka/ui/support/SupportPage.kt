@@ -172,6 +172,37 @@ fun SupportPage(onBack: () -> Unit) {
                                 }
                         }
                     )
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    val annotatedSupportString: AnnotatedString =
+                        buildAnnotatedString {
+                            append("• Форма підтримки від розробника: ")
+                            pushStringAnnotation(
+                                tag = "SUPPORT_LINK",
+                                annotation = "https://turskyi.com/#/support"
+                            )
+                            withStyle(
+                                style = SpanStyle(
+                                    color = androidx.compose.material.MaterialTheme.colors.primary,
+                                    textDecoration = TextDecoration.Underline
+                                )
+                            ) {
+                                append("turskyi.com/#/support")
+                            }
+                            pop()
+                        }
+                    @Suppress("DEPRECATION")
+                    ClickableText(
+                        text = annotatedSupportString,
+                        onClick = { offset ->
+                            annotatedSupportString.getStringAnnotations(
+                                tag = "SUPPORT_LINK",
+                                start = offset,
+                                end = offset
+                            ).firstOrNull()?.let { annotation ->
+                                uriHandler.openUri(annotation.item)
+                            }
+                        }
+                    )
                 }
             }
 
