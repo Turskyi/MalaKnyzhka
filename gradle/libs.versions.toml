@@ -11,7 +11,7 @@ androidx-lifecycle = "2.8.4"
 # https://github.com/JetBrains/compose-multiplatform/releases
 compose-multiplatform = "1.8.0-alpha02"
 kotlin = "2.1.0"
-kotlinx-coroutines = "1.9.0"
+kotlinx-coroutines = "1.10.1"
 multiplatformSettings = "1.2.0"
 navigationComposeVersion = "2.8.0-alpha11"
 uiAndroid = "1.7.8"

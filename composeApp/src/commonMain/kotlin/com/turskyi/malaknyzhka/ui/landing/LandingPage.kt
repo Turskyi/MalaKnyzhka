@@ -39,10 +39,11 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import malaknyzhka.composeapp.generated.resources.Download_on_the_App_Store_Badge_UA
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.portrait_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
 import malaknyzhka.composeapp.generated.resources.read_now
@@ -58,6 +59,7 @@ import malaknyzhka.composeapp.generated.resources.screenshot_9
 import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
 import malaknyzhka.composeapp.generated.resources.subtitle
 import malaknyzhka.composeapp.generated.resources.support
+import malaknyzhka.composeapp.generated.resources.test_flight_badge
 import malaknyzhka.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -134,7 +136,7 @@ fun LandingPage(
                                 "• Читайте рукопис разом із друкованим текстом.",
                                 "• Порівнюйте оригінал із сучасним написанням.",
                                 "• Автоматичне збереження останньої прочитаної сторінки."
-                            ).forEach { feature ->
+                            ).forEach { feature: String ->
                                 Text(
                                     text = feature,
                                     style = MaterialTheme.typography.body2,
@@ -178,31 +180,16 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = "Доступно у App Store та Google Play!",
+                            text = "Доступно для Android, iOS та macOS!",
                             style = MaterialTheme.typography.subtitle1,
                             color = MaterialTheme.colors.primaryVariant
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        // 🏪 Google Play & App Store Badges.
+                        // 🏪 Google Play, TestFlight and MacOS Badges.
+                        val badgeSpacing: Dp = 12.dp
                         Row(
                             modifier = Modifier.padding(horizontal = 16.dp),
                         ) {
-                            Image(
-                                painter = painterResource(
-                                    Res.drawable.Download_on_the_App_Store_Badge_UA,
-                                ),
-                                contentDescription = "Значок App Store",
-                                modifier = Modifier
-                                    .clickable {
-                                        uriHandler.openUri(
-                                            uri = "https://apps.apple.com/app/id6743679879",
-                                        )
-                                    }
-                                    .weight(1f, fill = false)
-                                    .height(64.dp)
-                                    .width(240.dp),
-                                contentScale = ContentScale.Fit,
-                            )
                             Image(
                                 painter = painterResource(
                                     Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian,
@@ -216,11 +203,43 @@ fun LandingPage(
                                     }
                                     .weight(1f, fill = false)
                                     .height(64.dp)
-                                    .width(240.dp),
+                                    .width(216.dp),
                                 contentScale = ContentScale.Fit,
-
-                                )
+                            )
+                            Spacer(modifier = Modifier.width(badgeSpacing))
+                            Image(
+                                painter = painterResource(
+                                    Res.drawable.test_flight_badge,
+                                ),
+                                contentDescription = "Значок TestFlight",
+                                modifier = Modifier
+                                    .clickable {
+                                        uriHandler.openUri(
+                                            uri = "https://testflight.apple.com/join/cEN4y79T",
+                                        )
+                                    }
+                                    .weight(1f, fill = false)
+                                    .height(64.dp),
+                                contentScale = ContentScale.Fit,
+                            )
+                            Spacer(modifier = Modifier.width(badgeSpacing))
+                            Image(
+                                painter = painterResource(
+                                    Res.drawable.macos_badge,
+                                ),
+                                contentDescription = "Значок MacOS",
+                                modifier = Modifier
+                                    .clickable {
+                                        uriHandler.openUri(
+                                            uri = "https://github.com/Turskyi/MalaKnyzhka/releases/download/1.0.4(4)/mala_knyzhka.dmg",
+                                        )
+                                    }
+                                    .weight(1f, fill = false)
+                                    .height(64.dp),
+                                contentScale = ContentScale.Fit,
+                            )
                         }
+
                         Spacer(modifier = Modifier.height(24.dp))
 
                         Row(
