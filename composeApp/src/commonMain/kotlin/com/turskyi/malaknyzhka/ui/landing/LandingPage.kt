@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -81,8 +83,7 @@ fun LandingPage(
     ) {
         Box(
             modifier = Modifier.fillMaxSize().verticalScroll(scrollState)
-                .padding(24.dp),
-            contentAlignment = Alignment.Center
+                .padding(vertical = 24.dp), contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -90,7 +91,9 @@ fun LandingPage(
                 Card(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.padding(vertical = 16.dp)
+                    modifier = Modifier.padding(
+                        vertical = 16.dp, horizontal = 24.dp
+                    ).widthIn(min = 1000.dp, max = 2000.dp)
                 ) {
                     Column(
                         modifier = Modifier.padding(vertical = 40.dp),
@@ -103,9 +106,7 @@ fun LandingPage(
                             contentDescription = stringResource(
                                 Res.string.portrait_description,
                             ),
-                            modifier = Modifier
-                                .size(180.dp)
-                                .clip(CircleShape),
+                            modifier = Modifier.size(180.dp).clip(CircleShape),
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.height(24.dp))
@@ -154,30 +155,13 @@ fun LandingPage(
                             Text(text = stringResource(Res.string.read_now))
                         }
                         Spacer(modifier = Modifier.height(16.dp))
-                        val iPhoneScreenshots: List<DrawableResource> = listOf(
-                            Res.drawable.screenshot_1,
-                            Res.drawable.screenshot_2,
-                            Res.drawable.screenshot_3,
-                            Res.drawable.screenshot_4,
-                        )
-                        ScreenshotCarousel(
-                            screenshots = iPhoneScreenshots,
-                            ratio = 9f / 19.5f,
-                            height = 480.dp,
-                        )
-                        val iPadScreenshots: List<DrawableResource> = listOf(
-                            Res.drawable.screenshot_5,
-                            Res.drawable.screenshot_6,
-                            Res.drawable.screenshot_7,
-                            Res.drawable.screenshot_8,
-                            Res.drawable.screenshot_9,
-                        )
+
+                        // Reserve space for iPhone ScreenshotCarousel.
+                        Spacer(modifier = Modifier.height(480.dp))
                         Spacer(modifier = Modifier.height(8.dp))
-                        ScreenshotCarousel(
-                            screenshots = iPadScreenshots,
-                            ratio = 9f / 12,
-                            height = 240.dp,
-                        )
+
+                        // Reserve space for iPad ScreenshotCarousel.
+                        Spacer(modifier = Modifier.height(240.dp))
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
                             text = "Доступно для Android, iOS та macOS!",
@@ -195,14 +179,11 @@ fun LandingPage(
                                     Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian,
                                 ),
                                 contentDescription = "Значок Google Play",
-                                modifier = Modifier
-                                    .clickable {
-                                        uriHandler.openUri(
-                                            uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
-                                        )
-                                    }
-                                    .weight(1f, fill = false)
-                                    .height(64.dp)
+                                modifier = Modifier.clickable {
+                                    uriHandler.openUri(
+                                        uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                                    )
+                                }.weight(1f, fill = false).height(64.dp)
                                     .width(216.dp),
                                 contentScale = ContentScale.Fit,
                             )
@@ -212,14 +193,11 @@ fun LandingPage(
                                     Res.drawable.test_flight_badge,
                                 ),
                                 contentDescription = "Значок TestFlight",
-                                modifier = Modifier
-                                    .clickable {
-                                        uriHandler.openUri(
-                                            uri = "https://testflight.apple.com/join/cEN4y79T",
-                                        )
-                                    }
-                                    .weight(1f, fill = false)
-                                    .height(64.dp),
+                                modifier = Modifier.clickable {
+                                    uriHandler.openUri(
+                                        uri = "https://testflight.apple.com/join/cEN4y79T",
+                                    )
+                                }.weight(1f, fill = false).height(64.dp),
                                 contentScale = ContentScale.Fit,
                             )
                             Spacer(modifier = Modifier.width(badgeSpacing))
@@ -228,14 +206,11 @@ fun LandingPage(
                                     Res.drawable.macos_badge,
                                 ),
                                 contentDescription = "Значок MacOS",
-                                modifier = Modifier
-                                    .clickable {
-                                        uriHandler.openUri(
-                                            uri = "https://github.com/Turskyi/MalaKnyzhka/releases/download/1.0.4(4)/mala_knyzhka.dmg",
-                                        )
-                                    }
-                                    .weight(1f, fill = false)
-                                    .height(64.dp),
+                                modifier = Modifier.clickable {
+                                    uriHandler.openUri(
+                                        uri = "https://github.com/Turskyi/MalaKnyzhka/releases/download/1.0.4(4)/mala_knyzhka.dmg",
+                                    )
+                                }.weight(1f, fill = false).height(64.dp),
                                 contentScale = ContentScale.Fit,
                             )
                         }
@@ -255,13 +230,11 @@ fun LandingPage(
                             )
                             Spacer(Modifier.width(4.dp))
                             val url: String =
-                                "https://www.t-shevchenko.name/uk/Gallery/" +
-                                        "Works/1850MalaKn.html"
+                                "https://www.t-shevchenko.name/uk/Gallery/" + "Works/1850MalaKn.html"
                             val annotatedLinkString: AnnotatedString =
                                 buildAnnotatedString {
                                     pushStringAnnotation(
-                                        tag = "URL",
-                                        annotation = url
+                                        tag = "URL", annotation = url
                                     )
                                     withStyle(
                                         style = SpanStyle(
@@ -274,8 +247,7 @@ fun LandingPage(
                                     pop()
                                 }
                             SelectionContainer {
-                                @Suppress("DEPRECATION")
-                                ClickableText(
+                                @Suppress("DEPRECATION") ClickableText(
                                     text = annotatedLinkString,
                                     style = MaterialTheme.typography.caption,
                                     onClick = { offset: Int ->
@@ -287,8 +259,7 @@ fun LandingPage(
                                             ?.let { annotation: AnnotatedString.Range<String> ->
                                                 uriHandler.openUri(annotation.item)
                                             }
-                                    }
-                                )
+                                    })
                             }
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
@@ -299,6 +270,45 @@ fun LandingPage(
                         }
                     }
                 }
+
+                Box(
+                    // Move ScreenshotCarousel upwards.
+                    modifier = Modifier.offset(y = (-960).dp)
+                ) {
+                    val iPhoneScreenshots: List<DrawableResource> = listOf(
+                        Res.drawable.screenshot_1,
+                        Res.drawable.screenshot_2,
+                        Res.drawable.screenshot_3,
+                        Res.drawable.screenshot_4,
+                    )
+
+                    ScreenshotCarousel(
+                        screenshots = iPhoneScreenshots,
+                        ratio = 9f / 19.5f,
+                        height = 480.dp,
+                    )
+
+                }
+
+                Box(
+                    // Move ScreenshotCarousel upwards.
+                    modifier = Modifier.offset(y = (-940).dp)
+                ) {
+
+                    val iPadScreenshots: List<DrawableResource> = listOf(
+                        Res.drawable.screenshot_5,
+                        Res.drawable.screenshot_6,
+                        Res.drawable.screenshot_7,
+                        Res.drawable.screenshot_8,
+                        Res.drawable.screenshot_9,
+                    )
+                    ScreenshotCarousel(
+                        screenshots = iPadScreenshots,
+                        ratio = 9f / 12,
+                        height = 240.dp,
+                    )
+                }
+
                 Spacer(modifier = Modifier.height(16.dp))
                 Row {
                     Text(
@@ -310,8 +320,7 @@ fun LandingPage(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable {
                             onNavigateToPrivacyPolicy()
-                        }
-                            .padding(16.dp)
+                        }.padding(16.dp)
                     )
                     Text(
                         text = stringResource(Res.string.support),
@@ -321,8 +330,7 @@ fun LandingPage(
                         ),
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable { onNavigateToSupport() }
-                            .padding(16.dp)
-                    )
+                            .padding(16.dp))
                 }
             }
         }

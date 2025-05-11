@@ -25,7 +25,7 @@ fun ScreenshotCarousel(
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
+        contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
         items(screenshots.size) { index: Int ->
             val screenshotResId: DrawableResource = screenshots[index]
