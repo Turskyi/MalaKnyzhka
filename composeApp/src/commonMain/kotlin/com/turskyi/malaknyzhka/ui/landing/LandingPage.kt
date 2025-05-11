@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -26,8 +25,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.arrow_forward
 import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.portrait_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
@@ -83,7 +81,7 @@ fun LandingPage(
     ) {
         Box(
             modifier = Modifier.fillMaxSize().verticalScroll(scrollState)
-                .padding(vertical = 24.dp), contentAlignment = Alignment.Center
+                .padding(vertical = 8.dp), contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -158,10 +156,12 @@ fun LandingPage(
 
                         // Reserve space for iPhone ScreenshotCarousel.
                         Spacer(modifier = Modifier.height(480.dp))
+
                         Spacer(modifier = Modifier.height(8.dp))
 
                         // Reserve space for iPad ScreenshotCarousel.
                         Spacer(modifier = Modifier.height(240.dp))
+
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
                             text = "Доступно для Android, iOS та macOS!",
@@ -262,51 +262,17 @@ fun LandingPage(
                                     })
                             }
                             Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                                painter = painterResource(
+                                    Res.drawable.arrow_forward,
+                                ),
                                 contentDescription = "Відкрити в новому вікні",
                                 tint = MaterialTheme.colors.primary,
-                                modifier = Modifier.size(16.dp)
+                                modifier = Modifier.size(16.dp).padding(
+                                    start = 4.dp,
+                                )
                             )
                         }
                     }
-                }
-
-                Box(
-                    // Move ScreenshotCarousel upwards.
-                    modifier = Modifier.offset(y = (-960).dp)
-                ) {
-                    val iPhoneScreenshots: List<DrawableResource> = listOf(
-                        Res.drawable.screenshot_1,
-                        Res.drawable.screenshot_2,
-                        Res.drawable.screenshot_3,
-                        Res.drawable.screenshot_4,
-                    )
-
-                    ScreenshotCarousel(
-                        screenshots = iPhoneScreenshots,
-                        ratio = 9f / 19.5f,
-                        height = 480.dp,
-                    )
-
-                }
-
-                Box(
-                    // Move ScreenshotCarousel upwards.
-                    modifier = Modifier.offset(y = (-940).dp)
-                ) {
-
-                    val iPadScreenshots: List<DrawableResource> = listOf(
-                        Res.drawable.screenshot_5,
-                        Res.drawable.screenshot_6,
-                        Res.drawable.screenshot_7,
-                        Res.drawable.screenshot_8,
-                        Res.drawable.screenshot_9,
-                    )
-                    ScreenshotCarousel(
-                        screenshots = iPadScreenshots,
-                        ratio = 9f / 12,
-                        height = 240.dp,
-                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -332,6 +298,38 @@ fun LandingPage(
                         modifier = Modifier.clickable { onNavigateToSupport() }
                             .padding(16.dp))
                 }
+            }
+
+            Column(
+                modifier = Modifier.padding(top = 220.dp),
+            ) {
+                val iPhoneScreenshots: List<DrawableResource> = listOf(
+                    Res.drawable.screenshot_1,
+                    Res.drawable.screenshot_2,
+                    Res.drawable.screenshot_3,
+                    Res.drawable.screenshot_4,
+                )
+
+                ScreenshotCarousel(
+                    screenshots = iPhoneScreenshots,
+                    ratio = 9f / 19.5f,
+                    height = 480.dp,
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                val iPadScreenshots: List<DrawableResource> = listOf(
+                    Res.drawable.screenshot_5,
+                    Res.drawable.screenshot_6,
+                    Res.drawable.screenshot_7,
+                    Res.drawable.screenshot_8,
+                    Res.drawable.screenshot_9,
+                )
+                ScreenshotCarousel(
+                    screenshots = iPadScreenshots,
+                    ratio = 9f / 12,
+                    height = 240.dp,
+                )
             }
         }
     }
