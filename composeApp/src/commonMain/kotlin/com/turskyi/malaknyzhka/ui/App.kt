@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.router.NavigationDestination
+import com.turskyi.malaknyzhka.ui.about.AboutPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
@@ -43,17 +44,42 @@ fun App(
                         navController.navigate(
                             NavigationDestination.Support.name,
                         )
+                    },
+                    onNavigateToAbout = {
+                        navController.navigate(
+                            NavigationDestination.About.name,
+                        )
                     }
                 )
             }
             composable(route = NavigationDestination.Book.name) {
-                Page(PageSettings(settings))
+                Page(
+                    PageSettings(settings),
+                    onNavigateToPrivacyPolicy = {
+                        navController.navigate(
+                            NavigationDestination.PrivacyPolicy.name,
+                        )
+                    },
+                    onNavigateToSupport = {
+                        navController.navigate(
+                            NavigationDestination.Support.name,
+                        )
+                    },
+                    onNavigateToAbout = {
+                        navController.navigate(
+                            NavigationDestination.About.name,
+                        )
+                    }
+                )
             }
             composable(route = NavigationDestination.PrivacyPolicy.name) {
                 PrivacyPolicyPage(onBack = { navController.popBackStack() })
             }
             composable(route = NavigationDestination.Support.name) {
                 SupportPage(onBack = { navController.popBackStack() })
+            }
+            composable(route = NavigationDestination.About.name) {
+                AboutPage(onBack = { navController.popBackStack() })
             }
         }
     }

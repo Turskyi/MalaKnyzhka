@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.arrow_forward
 import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.portrait_description
@@ -72,6 +73,7 @@ fun LandingPage(
     onNavigateToBook: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
+    onNavigateToAbout: () -> Unit,
 ) {
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
@@ -296,7 +298,19 @@ fun LandingPage(
                         ),
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable { onNavigateToSupport() }
-                            .padding(16.dp))
+                            .padding(16.dp),
+                    )
+                    Text(
+                        text = stringResource(Res.string.about_app),
+                        style = MaterialTheme.typography.caption.copy(
+                            color = MaterialTheme.colors.primary,
+                            textDecoration = TextDecoration.Underline
+                        ),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.clickable {
+                            onNavigateToAbout()
+                        }.padding(16.dp)
+                    )
                 }
             }
 
