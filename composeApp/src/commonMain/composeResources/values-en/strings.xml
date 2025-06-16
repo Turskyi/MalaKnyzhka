@@ -49,9 +49,27 @@
     <string name="portrait_description">Portrait of Taras Shevchenko</string>
     <string name="email_option">• Email Address: </string>
     <string name="chat_option">• For questions and suggestions, please use our Telegram chat: </string>
-    <string name="title">Mala Knyzhka</string>
+    <string name="title">Mala Knyzhka (Little Book)</string>
     <string name="subtitle">Original Manuscript by Taras Shevchenko</string>
+
+    <string name="available_on_platforms">Available for Android, iOS, and macOS!</string>
+
+    <string name="feature_manuscript_with_printed">• Read the manuscript alongside the printed text.</string>
+    <string name="feature_compare_original_modern">• Compare the original with modern spelling.</string>
+    <string name="feature_autosave_last_page">• Automatic saving of the last read page.</string>
+
     <string name="read_now">Start Reading Now</string>
+
+    <string name="main_features">Main Features</string>
+
+    <string name="badge_google_play_description">Google Play Badge</string>
+    <string name="badge_macos_description">MacOS Badge</string>
+    <string name="badge_test_flight_description">TestFlight Badge</string>
+
+    <string name="open_in_new_window_description">Open in new window</string>
+
+    <string name="sources_label">Sources:</string>
+
     <string name="privacy">
         <![CDATA[
 This privacy policy applies to the Мала Книжка (Тарас Шевченко) app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".

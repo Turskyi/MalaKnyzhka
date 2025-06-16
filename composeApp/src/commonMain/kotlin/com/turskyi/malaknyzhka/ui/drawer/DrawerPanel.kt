@@ -23,7 +23,11 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
+import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.cover
@@ -40,6 +44,8 @@ fun DrawerPanel(
     onNavigateToAbout: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
+    currentLanguage: AppLang,
+    onLanguageChange: (AppLang) -> Unit,
 ) {
     // Desired duration. 700 milliseconds.
     val customAnimationDurationMillis = 700
@@ -60,15 +66,17 @@ fun DrawerPanel(
             animationSpec = tween(customAnimationDurationMillis),
         )
     ) {
+        val width: Dp = 312.dp
+
         Box(
             modifier = Modifier
-                .width(280.dp)
+                .width(width)
                 .fillMaxHeight()
         ) {
             // 🖼️ Background image.
 
-            val borderWidth = 2.dp
-            val borderColor = Color.Black
+            val borderWidth: Dp = 2.dp
+            val borderColor: Color = Color.Black
 
             Image(
                 painter = painterResource(Res.drawable.cover),
@@ -88,14 +96,14 @@ fun DrawerPanel(
                                 size.width - borderWidth.toPx() / 2,
                                 size.height
                             ),
-                            strokeWidth = borderWidth.toPx()
+                            strokeWidth = borderWidth.toPx(),
                         )
-                    }
+                    },
             )
 
             Column(
                 Modifier
-                    .width(280.dp)
+                    .width(width)
                     .fillMaxHeight()
                     .background(Color.Black.copy(alpha = 0.4f))
                     .shadow(1.dp)
@@ -109,7 +117,8 @@ fun DrawerPanel(
                     onClick = {
                         onClose()
                         onNavigateToAbout()
-                    })
+                    },
+                )
 
                 // 🔗 Privacy Policy.
                 DrawerButton(
@@ -117,7 +126,8 @@ fun DrawerPanel(
                     onClick = {
                         onClose()
                         onNavigateToPrivacyPolicy()
-                    })
+                    },
+                )
 
                 // 🔧 Support.
                 DrawerButton(
@@ -125,7 +135,16 @@ fun DrawerPanel(
                     onClick = {
                         onClose()
                         onNavigateToSupport()
-                    })
+                    },
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                if (!isOnWeb())
+                    LanguageSwitcher(
+                        currentLanguage = currentLanguage,
+                        onLanguageChange = onLanguageChange
+                    )
             }
         }
     }

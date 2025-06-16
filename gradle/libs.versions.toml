@@ -19,6 +19,7 @@ versionName = "1.0.5"
 versionCode = "5"
 applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка (Тарас Шевченко)"
+appcompat = "1.7.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -31,6 +32,7 @@ multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", vers
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

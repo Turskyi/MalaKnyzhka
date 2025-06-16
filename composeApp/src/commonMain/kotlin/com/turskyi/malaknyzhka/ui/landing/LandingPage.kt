@@ -40,11 +40,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.AppConstants
+import com.turskyi.malaknyzhka.URL_TAG
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.arrow_forward
+import malaknyzhka.composeapp.generated.resources.available_on_platforms
+import malaknyzhka.composeapp.generated.resources.badge_google_play_description
+import malaknyzhka.composeapp.generated.resources.badge_macos_description
+import malaknyzhka.composeapp.generated.resources.badge_test_flight_description
+import malaknyzhka.composeapp.generated.resources.feature_autosave_last_page
+import malaknyzhka.composeapp.generated.resources.feature_compare_original_modern
+import malaknyzhka.composeapp.generated.resources.feature_manuscript_with_printed
 import malaknyzhka.composeapp.generated.resources.macos_badge
+import malaknyzhka.composeapp.generated.resources.main_features
+import malaknyzhka.composeapp.generated.resources.open_in_new_window_description
 import malaknyzhka.composeapp.generated.resources.portrait_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
 import malaknyzhka.composeapp.generated.resources.read_now
@@ -58,6 +69,7 @@ import malaknyzhka.composeapp.generated.resources.screenshot_7
 import malaknyzhka.composeapp.generated.resources.screenshot_8
 import malaknyzhka.composeapp.generated.resources.screenshot_9
 import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
+import malaknyzhka.composeapp.generated.resources.sources_label
 import malaknyzhka.composeapp.generated.resources.subtitle
 import malaknyzhka.composeapp.generated.resources.support
 import malaknyzhka.composeapp.generated.resources.test_flight_badge
@@ -75,6 +87,7 @@ fun LandingPage(
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
+
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
     Surface(
@@ -83,7 +96,8 @@ fun LandingPage(
     ) {
         Box(
             modifier = Modifier.fillMaxSize().verticalScroll(scrollState)
-                .padding(vertical = 8.dp), contentAlignment = Alignment.Center
+                .padding(vertical = 8.dp),
+            contentAlignment = Alignment.Center,
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -96,9 +110,13 @@ fun LandingPage(
                     ).widthIn(min = 1000.dp, max = 2000.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(vertical = 40.dp),
+                        modifier = Modifier.padding(
+                            bottom = 40.dp,
+                            top = 20.dp,
+                        ),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+//               TODO: implement language switcher.
                         Image(
                             painter = painterResource(
                                 Res.drawable.shevchenko_portrait,
@@ -113,7 +131,11 @@ fun LandingPage(
                         Text(
                             text = stringResource(Res.string.title),
                             style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.primaryVariant
+                            color = MaterialTheme.colors.primaryVariant,
+                            modifier = Modifier.padding(
+                                bottom = 8.dp,
+                                start = 8.dp,
+                            )
                         )
                         Text(
                             text = stringResource(Res.string.subtitle),
@@ -124,7 +146,7 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = "Основні можливості",
+                            text = stringResource(Res.string.main_features),
                             style = MaterialTheme.typography.h6,
                             color = MaterialTheme.colors.primary
                         )
@@ -134,9 +156,15 @@ fun LandingPage(
                             horizontalAlignment = Alignment.Start,
                         ) {
                             listOf(
-                                "• Читайте рукопис разом із друкованим текстом.",
-                                "• Порівнюйте оригінал із сучасним написанням.",
-                                "• Автоматичне збереження останньої прочитаної сторінки."
+                                stringResource(
+                                    Res.string.feature_manuscript_with_printed,
+                                ),
+                                stringResource(
+                                    Res.string.feature_compare_original_modern,
+                                ),
+                                stringResource(
+                                    Res.string.feature_autosave_last_page,
+                                ),
                             ).forEach { feature: String ->
                                 Text(
                                     text = feature,
@@ -166,7 +194,9 @@ fun LandingPage(
 
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = "Доступно для Android, iOS та macOS!",
+                            text = stringResource(
+                                Res.string.available_on_platforms,
+                            ),
                             style = MaterialTheme.typography.subtitle1,
                             color = MaterialTheme.colors.primaryVariant
                         )
@@ -180,10 +210,12 @@ fun LandingPage(
                                 painter = painterResource(
                                     Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian,
                                 ),
-                                contentDescription = "Значок Google Play",
+                                contentDescription = stringResource(
+                                    Res.string.badge_google_play_description,
+                                ),
                                 modifier = Modifier.clickable {
                                     uriHandler.openUri(
-                                        uri = "https://play.google.com/store/apps/details?id=com.turskyi.malaknyzhka",
+                                        uri = AppConstants.ANDROID_URI,
                                     )
                                 }.weight(1f, fill = false).height(64.dp)
                                     .width(216.dp),
@@ -194,10 +226,12 @@ fun LandingPage(
                                 painter = painterResource(
                                     Res.drawable.test_flight_badge,
                                 ),
-                                contentDescription = "Значок TestFlight",
+                                contentDescription = stringResource(
+                                    Res.string.badge_test_flight_description,
+                                ),
                                 modifier = Modifier.clickable {
                                     uriHandler.openUri(
-                                        uri = "https://testflight.apple.com/join/cEN4y79T",
+                                        uri = AppConstants.TEST_FLIGHT_URI,
                                     )
                                 }.weight(1f, fill = false).height(64.dp),
                                 contentScale = ContentScale.Fit,
@@ -207,10 +241,12 @@ fun LandingPage(
                                 painter = painterResource(
                                     Res.drawable.macos_badge,
                                 ),
-                                contentDescription = "Значок MacOS",
+                                contentDescription = stringResource(
+                                    Res.string.badge_macos_description,
+                                ),
                                 modifier = Modifier.clickable {
                                     uriHandler.openUri(
-                                        uri = "https://github.com/Turskyi/MalaKnyzhka/releases/download/1.0.4(4)/mala_knyzhka.dmg",
+                                        uri = AppConstants.MACOS_URI,
                                     )
                                 }.weight(1f, fill = false).height(64.dp),
                                 contentScale = ContentScale.Fit,
@@ -224,19 +260,18 @@ fun LandingPage(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Джерела:",
+                                text = stringResource(Res.string.sources_label),
                                 style = MaterialTheme.typography.caption,
                                 color = MaterialTheme.colors.onSurface.copy(
                                     alpha = 0.6f
                                 )
                             )
                             Spacer(Modifier.width(4.dp))
-                            val url: String =
-                                "https://www.t-shevchenko.name/uk/Gallery/" + "Works/1850MalaKn.html"
+                            val url: String = AppConstants.SOURCE_URL
                             val annotatedLinkString: AnnotatedString =
                                 buildAnnotatedString {
                                     pushStringAnnotation(
-                                        tag = "URL", annotation = url
+                                        tag = URL_TAG, annotation = url,
                                     )
                                     withStyle(
                                         style = SpanStyle(
@@ -254,20 +289,25 @@ fun LandingPage(
                                     style = MaterialTheme.typography.caption,
                                     onClick = { offset: Int ->
                                         annotatedLinkString.getStringAnnotations(
-                                            tag = "URL",
+                                            tag = URL_TAG,
                                             start = offset,
                                             end = offset
                                         ).firstOrNull()
                                             ?.let { annotation: AnnotatedString.Range<String> ->
-                                                uriHandler.openUri(annotation.item)
+                                                uriHandler.openUri(
+                                                    annotation.item,
+                                                )
                                             }
-                                    })
+                                    },
+                                )
                             }
                             Icon(
                                 painter = painterResource(
                                     Res.drawable.arrow_forward,
                                 ),
-                                contentDescription = "Відкрити в новому вікні",
+                                contentDescription = stringResource(
+                                    Res.string.open_in_new_window_description,
+                                ),
                                 tint = MaterialTheme.colors.primary,
                                 modifier = Modifier.size(16.dp).padding(
                                     start = 4.dp,
@@ -288,7 +328,7 @@ fun LandingPage(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable {
                             onNavigateToPrivacyPolicy()
-                        }.padding(16.dp)
+                        }.padding(12.dp)
                     )
                     Text(
                         text = stringResource(Res.string.support),
@@ -298,7 +338,7 @@ fun LandingPage(
                         ),
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable { onNavigateToSupport() }
-                            .padding(16.dp),
+                            .padding(12.dp),
                     )
                     Text(
                         text = stringResource(Res.string.about_app),
@@ -309,7 +349,7 @@ fun LandingPage(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.clickable {
                             onNavigateToAbout()
-                        }.padding(16.dp)
+                        }.padding(12.dp)
                     )
                 }
             }

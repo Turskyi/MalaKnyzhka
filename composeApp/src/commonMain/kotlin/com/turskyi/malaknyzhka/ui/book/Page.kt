@@ -21,8 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.models.WindowInfo
+import com.turskyi.malaknyzhka.ui.LocalAppLanguage
+import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import com.turskyi.malaknyzhka.util.rememberWindowSize
 import malaknyzhka.composeapp.generated.resources.Res
@@ -39,12 +42,22 @@ fun Page(
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
-    var isDrawerOpen by remember { mutableStateOf(false) }
+    // Get the global app language and the function to change i.t.
+    val appGlobalLanguage: AppLang = LocalAppLanguage.current
+
+    val changeAppGlobalLanguage: (AppLang) -> Unit =
+        LocalChangeAppLanguage.current
+
+    var isDrawerOpen: Boolean by remember { mutableStateOf(false) }
+
     val initialPositionInTheMiddle = 0.5f
+
+    var currentLanguage: String by remember {
+        mutableStateOf(pageSettings.getCurrentLanguage())
+    }
+
     var dividerPosition: Float by remember {
-        mutableStateOf(
-            initialPositionInTheMiddle
-        )
+        mutableStateOf(initialPositionInTheMiddle)
     }
 
     // Constants for divider limits.
@@ -67,8 +80,9 @@ fun Page(
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         Box(
-            Modifier.fillMaxSize()
-                .background(Color.White)
+            Modifier.fillMaxSize().background(
+                Color.White,
+            )
         ) {
             BookSpreads(
                 dividerPosition = dividerPosition,
@@ -123,6 +137,12 @@ fun Page(
                 onNavigateToAbout = onNavigateToAbout,
                 onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
                 onNavigateToSupport = onNavigateToSupport,
+                currentLanguage = appGlobalLanguage,
+                onLanguageChange = {
+                    pageSettings.saveCurrentLanguage(it.code)
+                    currentLanguage = it.code
+                    changeAppGlobalLanguage(it)
+                },
             )
         }
     }
