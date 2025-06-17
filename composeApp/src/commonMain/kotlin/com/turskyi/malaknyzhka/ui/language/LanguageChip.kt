@@ -24,7 +24,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun LanguageChip(
     label: String,
-    icon: DrawableResource,
+    icon: DrawableResource?,
     selected: Boolean,
     onClick: () -> Unit
 ) {
@@ -50,6 +50,7 @@ fun LanguageChip(
                 vertical = 8.dp,
             )
     ) {
+        if (icon != null)
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
@@ -67,5 +68,11 @@ fun LanguageChip(
                 style = MaterialTheme.typography.button,
             )
         }
+        else
+            Text(
+                text = label,
+                color = textColor,
+                style = MaterialTheme.typography.button,
+            )
     }
 }

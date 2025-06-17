@@ -24,6 +24,7 @@ import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
+import com.turskyi.malaknyzhka.util.isOnAndroid
 import com.turskyi.malaknyzhka.util.isOnWeb
 import com.turskyi.malaknyzhka.util.toApLang
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -55,7 +56,7 @@ fun App(
     // This is because getLocale() might just READ the default without APPLYING
     // it.
     LaunchedEffect(Unit) {
-        if (!appLocaleManager.hasUserEverSetLanguage()) {
+        if (isOnAndroid() && !appLocaleManager.hasUserEverSetLanguage()) {
             // This is the very first session where no language has been
             // explicitly set.
             // Even if appGlobalLanguage was initialized to Ukrainian by
