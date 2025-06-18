@@ -1,8 +1,11 @@
 package com.turskyi.malaknyzhka.ui.book
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,10 +21,13 @@ fun PageSwitcherButtons(
     currentPage: Int,
     onPageChange: (Int) -> Unit
 ) {
-    val totalPages = BookSpreadsRegistry.allBookSpreads.size
+    val totalPages: Int = BookSpreadsRegistry.allBookSpreads.size
     val firstPage = 0
 
-    Box(Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .windowInsetsPadding(WindowInsets.navigationBars),
+    ) {
         // Previous Page Button.
         PageSwitcherButton(
             onClick = {
@@ -33,7 +39,7 @@ fun PageSwitcherButtons(
             label = "<"
         )
 
-        // Slider for page selection
+        // Slider for page selection.
         Slider(
             value = currentPage.toFloat(),
             onValueChange = { value: Float ->

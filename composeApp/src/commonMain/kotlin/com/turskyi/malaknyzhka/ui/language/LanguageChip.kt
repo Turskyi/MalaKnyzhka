@@ -73,6 +73,7 @@ fun LanguageChip(
                 text = label,
                 color = textColor,
                 style = MaterialTheme.typography.button,
+                modifier = Modifier.padding(horizontal = 8.dp),
             )
     }
 }

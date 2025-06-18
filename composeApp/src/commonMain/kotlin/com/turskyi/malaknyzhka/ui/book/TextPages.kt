@@ -3,9 +3,12 @@ package com.turskyi.malaknyzhka.ui.book
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -34,6 +37,7 @@ fun TextPages(currentPage: Int) {
             .fillMaxHeight()
             .verticalScroll(scrollState)
             .background(Color.White)
+            .windowInsetsPadding(WindowInsets.navigationBars)
             .padding(start = 4.dp, top = 8.dp, end = 4.dp, bottom = 32.dp),
         contentAlignment = Alignment.Center
     ) {
