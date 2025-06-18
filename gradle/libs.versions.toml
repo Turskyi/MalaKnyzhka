@@ -1,28 +1,25 @@
 [versions]
-agp = "8.9.1"
+agp = "8.10.1"
+androidx-activityCompose = "1.10.1"
+androidx-lifecycle = "2.9.0"
+compose-multiplatform = "1.8.1"
+kotlin = "2.1.21"
+kotlinx-coroutines = "1.10.2"
+multiplatformSettings = "1.2.0"
+navigationComposeVersion = "2.9.0-beta02"
+uiAndroid = "1.8.2"
+googleGmsGoogleServices = "4.4.2"
+firebaseAnalytics = "22.4.0"
+firebaseCrashlytics = "19.4.4"
+googleFirebaseCrashlytics = "3.0.4"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
-androidx-activityCompose = "1.10.1"
-androidx-lifecycle = "2.8.4"
-
-# Consider upgrading when relase will be stable, I checked the 1.8.0-beta01,
-# but it throws "object webassembly.exception"
-# https://github.com/JetBrains/compose-multiplatform/releases
-compose-multiplatform = "1.8.0-alpha02"
-kotlin = "2.1.0"
-kotlinx-coroutines = "1.9.0"
-multiplatformSettings = "1.2.0"
-navigationComposeVersion = "2.8.0-alpha11"
-uiAndroid = "1.7.8"
-versionName = "1.0.4"
-versionCode = "4"
+versionName = "1.0.5"
+versionCode = "5"
 applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка (Тарас Шевченко)"
-googleGmsGoogleServices = "4.4.2"
-firebaseAnalytics = "22.4.0"
-firebaseCrashlytics = "19.4.2"
-googleFirebaseCrashlytics = "3.0.3"
+appcompat = "1.7.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -35,6 +32,7 @@ multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", vers
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -193,12 +193,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
 
 dependencies {
     implementation(libs.androidx.ui.android)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.androidx.appcompat)
     debugImplementation(compose.uiTooling)
 }
 
