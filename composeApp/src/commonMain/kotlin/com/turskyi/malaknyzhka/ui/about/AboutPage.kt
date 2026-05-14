@@ -32,8 +32,11 @@ import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.about_app_ai_translation_info
 import malaknyzhka.composeapp.generated.resources.about_app_description_part1
 import malaknyzhka.composeapp.generated.resources.about_app_description_part2
+import malaknyzhka.composeapp.generated.resources.about_app_linguistic_example
 import malaknyzhka.composeapp.generated.resources.about_app_little_book
 import malaknyzhka.composeapp.generated.resources.about_app_no_alternatives
+import malaknyzhka.composeapp.generated.resources.about_app_search_description
+import malaknyzhka.composeapp.generated.resources.about_app_search_title
 import malaknyzhka.composeapp.generated.resources.about_app_target_audience
 import malaknyzhka.composeapp.generated.resources.about_app_thank_you_message
 import malaknyzhka.composeapp.generated.resources.arrow_back
@@ -127,6 +130,26 @@ fun AboutPage(onBack: () -> Unit) {
 
             Text(
                 text = stringResource(Res.string.about_app_target_audience),
+                style = MaterialTheme.typography.body1
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = stringResource(Res.string.about_app_search_title),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+
+            Text(
+                text = stringResource(Res.string.about_app_search_description),
+                style = MaterialTheme.typography.body1
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = stringResource(Res.string.about_app_linguistic_example),
                 style = MaterialTheme.typography.body1
             )
 

@@ -12,6 +12,17 @@
     <string name="support_ukr_eng">Support (Підтримка)</string>
     <string name="about_app_little_book">About App «Mala Knyzhka (Taras Shevchenko)»</string>
 
+    <string name="search_hint">Search in manuscript…</string>
+    <string name="search_results">Search results: %1$d</string>
+    <string name="no_results">Nothing found</string>
+    <string name="page_label">Page %1$s</string>
+    <string name="search_description">Search in manuscript text</string>
+    <string name="clear_search">Clear search</string>
+
+    <string name="about_app_search_title">Interactive Research</string>
+    <string name="about_app_search_description">The app now features a full-text search system, transforming it into a linguistic and historical research tool. You can explore the evolution of the Ukrainian language through Shevchenko’s original spelling.</string>
+    <string name="about_app_linguistic_example">For example, you can discover variations like «Кіевъ» (page 13) and «Кыев» (page 15), reflecting historical spelling evolution preserved in the manuscript.</string>
+
 
     <string name="about_app_description_part1">This application is more than just an e-book. It allows readers to see the handwritten version of Taras Shevchenko's collection "Mala Knyzhka" alongside the printed text. For the first time, you can explore what the Ukrainian language looked like in its original literary form, preserved by the author himself.</string>
     <string name="about_app_description_part2">This is the first known attempt to create a tool where Shevchenko's original handwriting is combined with recognized text in a user-friendly format for reading, without the need for a constant internet connection.</string>
@@ -902,7 +913,7 @@ The place where once you played is still.
 The house — a window’s shattered out,
 The dog has wandered off at will…
 By day, lambs graze in shadows deep,
-At night, the owls and nightbirds weep
+At night, the owls and night-birds weep
 And let no neighbor sleep nearby.
 Your periwinkle, once so spry,
 Is choked with thistle, waiting still
@@ -1005,7 +1016,7 @@ The girl, love’s promise granted.
 The ashes withered, would not grow,
 The poplar drooped in dying,
 The maples shriveled long ago,
-The kalyna stopped blooming.
+The guelder rose stopped blooming.
 The brothers never have returned,
 The mother weeps and prays,
 The wife sits cold in rooms unburned

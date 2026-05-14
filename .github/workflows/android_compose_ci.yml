@@ -49,11 +49,11 @@ jobs:
       - name: Generate Release APK
         run: ./gradlew assembleRelease
 
-      - name: upload artifact to Firebase App Distribution
+      - name: Upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
           groups: testers
           releaseNotes: "Android Application Build"
           file: composeApp/build/outputs/apk/release/composeApp-release.apk

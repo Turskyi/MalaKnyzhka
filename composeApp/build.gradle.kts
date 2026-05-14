@@ -1,6 +1,16 @@
+import org.gradle.declarative.dsl.schema.FqName.Empty.packageName
+import org.gradle.kotlin.dsl.android
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.libs
+import org.gradle.kotlin.dsl.sourceSets
+import org.jetbrains.compose.ComposePlugin.CommonComponentsDependencies.resources
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.reload.core.Environment.Companion.application
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.idea.proto.com.google.protobuf.api
+import org.jetbrains.kotlin.gradle.internal.platform.wasm.WasmPlatforms.wasmJs
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -78,7 +88,7 @@ kotlin {
         }
     }
 
-    jvm("desktop")
+    KotlinPlatformType.jvm("desktop")
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -112,6 +122,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
