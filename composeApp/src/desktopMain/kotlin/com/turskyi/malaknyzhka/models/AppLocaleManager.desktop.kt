@@ -50,10 +50,22 @@ class DesktopAppLocaleManager : AppLocaleManager {
 
     override fun setLocale(appLang: AppLang) {
         // 1. Store the user's chosen language code.
-        prefs.put(PREFERRED_DESKTOP_LOCALE_CODE_KEY, appLang.code)
+        val currentSavedCode: String? = prefs.get(
+            PREFERRED_DESKTOP_LOCALE_CODE_KEY,
+            null
+        )
+        if (currentSavedCode != appLang.code) {
+            prefs.put(PREFERRED_DESKTOP_LOCALE_CODE_KEY, appLang.code)
+        }
 
         // 2. Store the flag indicating the user has explicitly made a choice.
-        prefs.putBoolean(PREFERRED_DESKTOP_LOCALE_USER_SET_KEY, true)
+        val alreadySet: Boolean = prefs.getBoolean(
+            PREFERRED_DESKTOP_LOCALE_USER_SET_KEY,
+            false
+        )
+        if (!alreadySet) {
+            prefs.putBoolean(PREFERRED_DESKTOP_LOCALE_USER_SET_KEY, true)
+        }
 
         // Set the JVM's default locale.
         // This affects new Locale.getDefault() calls within the current application instance.
