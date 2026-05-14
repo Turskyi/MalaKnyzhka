@@ -16,16 +16,16 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
+import com.turskyi.malaknyzhka.models.AppLang
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun BookSpreads(
     dividerPosition: Float,
     currentPage: Int,
     onDividerPositionChange: (Float) -> Unit,
-    screenWidth: Dp
+    screenWidth: Dp,
+    appLang: AppLang
 ) {
     val bookSpreads: List<DrawableResource> = BookSpreadsRegistry.allBookSpreads
 
@@ -72,7 +72,7 @@ fun BookSpreads(
                 ) {
                     // if too narrow.
                     if (dividerPosition < 0.88f) {
-                        TextPages(currentPage)
+                        TextPages(currentPage, appLang)
                     }
                 }
 

@@ -35,10 +35,8 @@ import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun Page(
     pageSettings: PageSettings,
     onNavigateToPrivacyPolicy: () -> Unit,
@@ -54,10 +52,6 @@ fun Page(
     var isDrawerOpen: Boolean by remember { mutableStateOf(false) }
 
     val initialPositionInTheMiddle = 0.5f
-
-    var currentLanguage: String by remember {
-        mutableStateOf(pageSettings.getCurrentLanguage())
-    }
 
     var dividerPosition: Float by remember {
         mutableStateOf(initialPositionInTheMiddle)
@@ -96,7 +90,8 @@ fun Page(
                         minBottomFraction,
                     )
                 },
-                screenWidth = windowInfo.screenWidth
+                screenWidth = windowInfo.screenWidth,
+                appLang = appGlobalLanguage
             )
 
             // 📖 Bottom page switcher.
@@ -146,7 +141,6 @@ fun Page(
                 currentLanguage = appGlobalLanguage,
                 onLanguageChange = {
                     pageSettings.saveCurrentLanguage(it.code)
-                    currentLanguage = it.code
                     changeAppGlobalLanguage(it)
                 },
             )
