@@ -70,9 +70,16 @@ class SearchIndex {
         val snippetRadius = 40
         val start = (matchIndex - snippetRadius).coerceAtLeast(0)
         val end =
-            (matchIndex + queryLength + snippetRadius).coerceAtMost(content.length)
+            (matchIndex + queryLength + snippetRadius).coerceAtMost(
+                content.length,
+            )
 
-        val snippet = content.substring(start, end).replace("\n", " ").trim()
+        val rawSnippet =
+            content.substring(start, end).replace(
+                '\n', ' ',
+            ).replace('\r', ' ')
+        val snippet = rawSnippet.trim()
+        val leadingTrimmed = rawSnippet.length - rawSnippet.trimStart().length
 
         // Adjust snippet if it was truncated
         val prefix = if (start > 0) "..." else ""
@@ -81,13 +88,15 @@ class SearchIndex {
         val finalSnippet = prefix + snippet + suffix
 
         // Recalculate match range in the snippet
-        val matchInSnippetStart = prefix.length + (matchIndex - start)
+        val matchInSnippetStart =
+            prefix.length + (matchIndex - start) - leadingTrimmed
         val matchRange =
             matchInSnippetStart until (matchInSnippetStart + queryLength)
 
         return SearchResult(
             pageIndex = pageIndex,
-            pageLabel = (pageIndex + 1).toString(), // Using 1-based page numbering
+            // Using 1-based page numbering
+            pageLabel = (pageIndex + 1).toString(),
             snippet = finalSnippet,
             matchedRange = matchRange
         )

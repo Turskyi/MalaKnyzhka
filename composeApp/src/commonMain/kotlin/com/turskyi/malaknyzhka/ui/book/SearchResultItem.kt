@@ -59,15 +59,33 @@ private fun buildHighlightedSnippet(
     range: IntRange
 ): AnnotatedString {
     return buildAnnotatedString {
-        append(snippet.substring(0, range.first))
+        if (range.isEmpty() || range.first >= snippet.length || range.last < 0) {
+            append(snippet)
+            return@buildAnnotatedString
+        }
+
+        val safeStart: Int = range.firstOrNull()?.coerceAtLeast(
+            0,
+        ) ?: 0
+        val safeEnd = (range.last + 1).coerceAtMost(
+            snippet.length,
+        )
+
+        if (safeStart > 0) {
+            append(snippet.substring(0, safeStart))
+        }
+
         withStyle(
             style = SpanStyle(
                 background = Color.Yellow.copy(alpha = 0.5f),
                 fontWeight = FontWeight.Bold
             )
         ) {
-            append(snippet.substring(range))
+            append(snippet.substring(safeStart, safeEnd))
         }
-        append(snippet.substring(range.last + 1))
+
+        if (safeEnd < snippet.length) {
+            append(snippet.substring(safeEnd))
+        }
     }
 }

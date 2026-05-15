@@ -48,7 +48,8 @@ import malaknyzhka.composeapp.generated.resources.search_results
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * A search panel that allows users to search through the transcribed manuscript.
+ * A search panel that allows users to search through the transcribed
+ * manuscript.
  */
 @Composable
 fun SearchPanel(
@@ -58,7 +59,11 @@ fun SearchPanel(
 ) {
     val searchIndex = remember { SearchIndex() }
     var query by remember { mutableStateOf("") }
-    var results by remember { mutableStateOf<List<SearchResult>>(emptyList()) }
+    var results by remember {
+        mutableStateOf<List<SearchResult>>(
+            emptyList()
+        )
+    }
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(query) {
@@ -89,7 +94,9 @@ fun SearchPanel(
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = stringResource(Res.string.search_description),
+                    contentDescription = stringResource(
+                        Res.string.search_description,
+                    ),
                     tint = Color.Gray,
                     modifier = Modifier.size(20.dp)
                 )
@@ -116,9 +123,13 @@ fun SearchPanel(
                             color = MaterialTheme.colors.onSurface,
                             fontSize = 16.sp
                         ),
-                        cursorBrush = SolidColor(MaterialTheme.colors.primary),
+                        cursorBrush = SolidColor(
+                            MaterialTheme.colors.primary,
+                        ),
                         singleLine = true,
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search)
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Search,
+                        )
                     )
                 }
 
@@ -129,7 +140,9 @@ fun SearchPanel(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(Res.string.clear_search),
+                            contentDescription = stringResource(
+                                Res.string.clear_search,
+                            ),
                             tint = Color.Gray
                         )
                     }
@@ -169,7 +182,9 @@ fun SearchPanel(
                             items(results) { result ->
                                 SearchResultItem(
                                     result = result,
-                                    onClick = { onResultClick(result.pageIndex) }
+                                    onClick = {
+                                        onResultClick(result.pageIndex)
+                                    }
                                 )
                             }
                         }

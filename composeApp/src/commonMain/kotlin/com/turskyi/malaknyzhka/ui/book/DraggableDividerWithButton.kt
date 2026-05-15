@@ -60,6 +60,12 @@ fun DraggableDividerWithButton(
         )
     }
 
+    /**
+     * The internal page index is 0-based, but for the UI we display it as
+     * 1-based to match the user's expectation of book page numbering.
+     */
+    val pageLabel = "${currentPage + 1} / $totalPages"
+
     Box(
         modifier = modifier
             .then(
@@ -112,7 +118,7 @@ fun DraggableDividerWithButton(
                     .padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
                 Text(
-                    text = "$currentPage / $totalPages",
+                    text = pageLabel,
                     style = MaterialTheme.typography.button,
                     color = Color.White,
                     softWrap = false,
@@ -143,7 +149,7 @@ fun DraggableDividerWithButton(
                 )
             } else {
                 Text(
-                    text = "$currentPage / $totalPages",
+                    text = pageLabel,
                     style = MaterialTheme.typography.button,
                     color = Color.White,
                 )
