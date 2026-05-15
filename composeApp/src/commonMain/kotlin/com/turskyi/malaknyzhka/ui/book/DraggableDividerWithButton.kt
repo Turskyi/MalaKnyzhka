@@ -5,14 +5,19 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,10 +26,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun DraggableDividerWithButton(
     modifier: Modifier = Modifier,
     dividerPosition: Float,
@@ -34,7 +37,9 @@ fun DraggableDividerWithButton(
     currentPage: Int,
     totalPages: Int,
 ) {
-    val dividerSizePx: Float = with(LocalDensity.current) { 50.dp.toPx() }
+    val dividerSizePx: Float = with(LocalDensity.current) {
+        50.dp.toPx()
+    }
 
     val offset: IntOffset = if (dragOrientation == Orientation.Vertical) {
         IntOffset(
@@ -97,19 +102,26 @@ fun DraggableDividerWithButton(
                     Modifier.rotate(90f)
                 else
                     Modifier.rotate(0f)
-            )
+            ),
+            contentPadding = if (dragOrientation == Orientation.Horizontal) {
+                PaddingValues(0.dp)
+            } else {
+                ButtonDefaults.ContentPadding
+            }
         ) {
-            Text(
-                if (dragOrientation == Orientation.Horizontal)
-                    "="
-                else
-                    "$currentPage / $totalPages",
-                style = if (dragOrientation == Orientation.Horizontal)
-                    MaterialTheme.typography.h6
-                else
-                    MaterialTheme.typography.button,
-                color = Color.White,
-            )
+            if (dragOrientation == Orientation.Horizontal) {
+                Icon(
+                    imageVector = Icons.Default.DragHandle,
+                    contentDescription = null,
+                    tint = Color.White,
+                )
+            } else {
+                Text(
+                    text = "$currentPage / $totalPages",
+                    style = MaterialTheme.typography.button,
+                    color = Color.White,
+                )
+            }
         }
     }
 }
