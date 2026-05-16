@@ -274,10 +274,10 @@ Contact Us
 If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at dmytro@turskyi.com.
 ]]>
     </string>
-    <string name="001">
+    <string name="manuscript_page_001_text">
         1847.
     </string>
-    <string name="002">
+    <string name="manuscript_page_002_text">
         Думи мої, думи мої,
         Ви мої єдині,
         Не кидайте хоч ви мене
@@ -295,7 +295,7 @@ If you have any questions regarding privacy while using the Application, or have
         Привітаю вас, як діток,
         І заплачу з вами.
     </string>
-    <string name="003">
+    <string name="manuscript_page_003_text">
         Зоре моя вечірняя,
         Зійди над горою,
         Поговорим на чужині
@@ -318,7 +318,7 @@ If you have any questions regarding privacy while using the Application, or have
         Недолю віщує.
         Як сон-трава при долині
         Вночі процвітає…</string>
-    <string name="004">
+    <string name="manuscript_page_004_text">
 А про людей не розказуй,
 Я їх добре знаю.
 Я розкажу тобі дещо,
@@ -361,7 +361,7 @@ If you have any questions regarding privacy while using the Application, or have
 Музика тне, вино рікою
 Гостей неситих налива…
     </string>
-    <string name="005">
+    <string name="manuscript_page_005_text">
 А князь аж синій похожає,
 Та сам несмілих наливає,
 Та ще й покрикує «віват!».
@@ -410,7 +410,7 @@ If you have any questions regarding privacy while using the Application, or have
 І добро творити,
 Та Божою красотою
 Людей веселити.</string>
-    <string name="006">
+    <string name="manuscript_page_006_text">
 Так же ні, щоб молодії
 Та карії очі
 Помарніли в самотині…
@@ -459,7 +459,7 @@ If you have any questions regarding privacy while using the Application, or have
 Бо княгині тілько вміють
 Привести дитину.
     </string>
-    <string name="007">
+    <string name="manuscript_page_007_text">
 А годувать та доглядать
 Не вміють княгині.
 А потім оха: – Забуває
@@ -508,7 +508,7 @@ If you have any questions regarding privacy while using the Application, or have
 І день за днем
 Радості приносить
     </string>
-    <string name="008">
+    <string name="manuscript_page_008_text">
 Моїй матері щасливій.
 Дочка уродлива.
 Мов тополя, виростає
@@ -552,7 +552,7 @@ If you have any questions regarding privacy while using the Application, or have
 Умилася і добрі люде
 Прибрали, в Київ одвезли
     </string>
-    <string name="009">
+    <string name="manuscript_page_009_text">
 У інститут. А там що буде,
 Побачим. Гусла загули,
 Гуляє князь, гуляють гості,
@@ -598,7 +598,7 @@ If you have any questions regarding privacy while using the Application, or have
 Лютий голод на Вкраїні –
 Тим і невесела.
     </string>
-    <string name="010">
+    <string name="manuscript_page_010_text">
 З п’яним батьком не бачилась
 Село облетіла.
 Мов пташечка, у всіх була,
@@ -643,7 +643,7 @@ If you have any questions regarding privacy while using the Application, or have
 Дивітеся, поки вас гріє,
 А зорі спати не дають.
     </string>
-    <string name="011">
+    <string name="manuscript_page_011_text">
 Головою молодою
 На руки схилилась,
 До півночі невесела
@@ -685,7 +685,7 @@ If you have any questions regarding privacy while using the Application, or have
 Так і ми його покинем,
 Так і Бог покине.
     </string>
-    <string name="012">
+    <string name="manuscript_page_012_text">
 Щоб не лізли такі гади
 В нашу Україну.
 А де ж ділась оскверненна?
@@ -714,7 +714,7 @@ If you have any questions regarding privacy while using the Application, or have
 Отак було, отак і буде.
 В гріхах родились ми для зла,
     </string>
-    <string name="013">
+    <string name="manuscript_page_013_text">
 Яка ж тут Богові хвала,
 Скажіть мені, розумні люде?
 Родилось на світ жить, любить
@@ -767,7 +767,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та й Богу душу отдала
 Позаторік. І де ходила!
     </string>
-    <string name="014">
+    <string name="manuscript_page_014_text">
 В яких-то праведних містах, –
 І показала на могилу, –
 Отут сердешна одпочила
@@ -789,7 +789,7 @@ If you have any questions regarding privacy while using the Application, or have
 Меж людьми як люде.
 А поки те буде,
     </string>
-    <string name="015">
+    <string name="manuscript_page_015_text">
 Любітеся, брати мої,
 Украйну любіте
 І за неї, безталанну,
@@ -816,7 +816,7 @@ If you have any questions regarding privacy while using the Application, or have
 Їх нема, я сама.
 А дружини й не буде!
     </string>
-    <string name="016">
+    <string name="manuscript_page_016_text">
 За байраком байрак,
 А там степ та могила.
 Із могили козак
@@ -859,7 +859,7 @@ If you have any questions regarding privacy while using the Application, or have
 Однаковісінько мені.
 В неволі виріс між чужими
     </string>
-    <string name="017">
+    <string name="manuscript_page_017_text">
 І, неоплаканий своїми,
 В неволі, плачучи, умру.
 І все з собою заберу,
@@ -903,7 +903,7 @@ If you have any questions regarding privacy while using the Application, or have
 І стежечка, де ти ходила,
 Колючим терном поросла.
     </string>
-    <string name="018">
+    <string name="manuscript_page_018_text">
 Куда полинула, де ділась?
 До кого ти перелетіла?
 В чужій землі, в чужій сем’ї
@@ -946,7 +946,7 @@ If you have any questions regarding privacy while using the Application, or have
 Будем вкупочці уранці
 На той світ літати.
     </string>
-    <string name="019">
+    <string name="manuscript_page_019_text">
 І калина прийнялася,
 Віти розпустила,
 І три літа на могилу
@@ -987,7 +987,7 @@ If you have any questions regarding privacy while using the Application, or have
 Дочку вечерять дожидала
 І тяжко плакала, ждучи.
     </string>
-    <string name="020">
+    <string name="manuscript_page_020_text">
 Ой три шляхи широкії
 Докупи зійшлися.
 На чужину з України
@@ -1030,7 +1030,7 @@ If you have any questions regarding privacy while using the Application, or have
 І до дверей, на ключ замкнутих,
 І до решотки на вікні
     </string>
-    <string name="021">
+    <string name="manuscript_page_021_text">
 Привик я трохи, і мені
 Не жаль було давно одбутих,
 Давно похованих, забутих,
@@ -1067,7 +1067,7 @@ If you have any questions regarding privacy while using the Application, or have
 Затихло все, тілько дівчата
 Та соловейко не затих.
     </string>
-    <string name="022">
+    <string name="manuscript_page_022_text">
 Не спалося, а ніч, як море.
 (Хоч діялось не восени,
 Так у неволі.) До стіни
@@ -1112,11 +1112,11 @@ If you have any questions regarding privacy while using the Application, or have
 Та й та, сердешна, умирає,
 А хата пусткою гниє.
     </string>
-    <string name="023">
+    <string name="manuscript_page_023_text">
         42
         43
     </string>
-    <string name="024">
+    <string name="manuscript_page_024_text">
 Я викресав огню, до неї…
 Од неї пахне вже землею,
 Уже й мене не пізнає!
@@ -1160,7 +1160,7 @@ If you have any questions regarding privacy while using the Application, or have
 А за ними, молодими,
 І дівча одно пішло.
     </string>
-    <string name="025">
+    <string name="manuscript_page_025_text">
 Подибала стара мати
 Доню в полі доганяти…
 І догнала, привела;
@@ -1203,7 +1203,7 @@ If you have any questions regarding privacy while using the Application, or have
 Що дався дурням одурить,
 В калюжі волю утопить.
     </string>
-    <string name="026">
+    <string name="manuscript_page_026_text">
 Холоне серце, як згадаю,
 Що не в Украйні поховають,
 Що не в Украйні буду жить,
@@ -1244,7 +1244,7 @@ If you have any questions regarding privacy while using the Application, or have
 Кладе горами покоси,
 Не мина й царя.
     </string>
-    <string name="027">
+    <string name="manuscript_page_027_text">
 І мене не мине,
 На чужині зотне,
 За решоткою задавить,
@@ -1267,7 +1267,7 @@ If you have any questions regarding privacy while using the Application, or have
 Коли забули, бодай заснули,
 Про мою доленьку щоб і не чули.
     </string>
-    <string name="028">
+    <string name="manuscript_page_028_text">
 Молюся, знову уповаю,
 І знову сльози виливаю,
 І думу тяжкую мою
@@ -1289,7 +1289,7 @@ If you have any questions regarding privacy while using the Application, or have
 Шукай собі брата в палатах і в хаті
 І дбай домовину, а слави не дбай,
     </string>
-    <string name="029">
+    <string name="manuscript_page_029_text">
 Бо вона не спинить віку молодого,
 Не верне з-за літа нашої весни!
 Отак-то, мій друже, молись, брате, Богу
@@ -1333,7 +1333,7 @@ If you have any questions regarding privacy while using the Application, or have
 Коло огню, і руки гріла
 На самім полум’ї.
     </string>
-    <string name="030">
+    <string name="manuscript_page_030_text">
 – Ну так,
 Оженився неборак! –
 Сама собі ніби шептала.
@@ -1383,7 +1383,7 @@ If you have any questions regarding privacy while using the Application, or have
 Кого колишете вночі?
 Лягаючи і встаючи,
     </string>
-    <string name="031">
+    <string name="manuscript_page_031_text">
 За кого молитесь!! Ох, діти!
 І все діти! І все діти!
 І мені нема де дітись.
@@ -1432,7 +1432,7 @@ If you have any questions regarding privacy while using the Application, or have
 Відьма
 Дивлюся я, вже ти дивись.
     </string>
-    <string name="032">
+    <string name="manuscript_page_032_text">
 Циган
 Ми рано рушимо, покинем,
 Як не проспишся…
@@ -1484,7 +1484,7 @@ If you have any questions regarding privacy while using the Application, or have
 І вже ніколи не просплюся.
 Бо я вже й Бога не боюся
     </string>
-    <string name="033">
+    <string name="manuscript_page_033_text">
 І не соромлюся людей.
 Коли б мені отих дітей
 Найти де-небудь… Ти не знаєш,
@@ -1530,7 +1530,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та й у село, хотілось, бач,
 Щоб люде не знали.
     </string>
-    <string name="034">
+    <string name="manuscript_page_034_text">
 Підкрадаюся до хати –
 Аж огню немає,
 Я думала, що батько спить –
@@ -1577,7 +1577,7 @@ If you have any questions regarding privacy while using the Application, or have
 Доробили, положили,
 Понесли, сховали…
     </string>
-    <string name="035">
+    <string name="manuscript_page_035_text">
 І одна я, як той палець,
 На світі осталась.
 Через яр ходила
@@ -1625,7 +1625,7 @@ If you have any questions regarding privacy while using the Application, or have
 Чи це не гріх, по-вашому?
 І в вас так уміють??
     </string>
-    <string name="036">
+    <string name="manuscript_page_036_text">
 А мені дав карбованця
 Та послав у Київ.
 Послав Богу молитися,
@@ -1675,7 +1675,7 @@ If you have any questions regarding privacy while using the Application, or have
 В дорогу рушали,
 Та й рушили. Пішли степом.
     </string>
-    <string name="037">
+    <string name="manuscript_page_037_text">
 І відьма устала.
 Та й пішла сама за ними,
 А йдучи співала:
@@ -1719,7 +1719,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та й пішла собі додому,
 На свою країну –
     </string>
-    <string name="038">
+    <string name="manuscript_page_038_text">
 Рада, рада та весела,
 Мов мала дитина.
 Які села прохожала –
@@ -1764,7 +1764,7 @@ If you have any questions regarding privacy while using the Application, or have
 Так собі любили!
 В хатиночці чисто, тихо,
     </string>
-    <string name="039">
+    <string name="manuscript_page_039_text">
 Ясно, мов у Раї:
 І, знай, двері поскрипують,
 Ніхто не минає.
@@ -1806,7 +1806,7 @@ If you have any questions regarding privacy while using the Application, or have
 Взяла горщечок та й пішла,
 Ідучи, діточок згадала…
     </string>
-    <string name="040">
+    <string name="manuscript_page_040_text">
 Заплакала… І жаль їй стало,
 Що панові не помогла!
 
@@ -1850,7 +1850,7 @@ If you have any questions regarding privacy while using the Application, or have
 Вперше зроду… – Я прощаю…
 Я давно простила… –
     </string>
-    <string name="041">
+    <string name="manuscript_page_041_text">
 І свічечку дала в руки,
 І перехрестила.
 Заснув ворог перед нею,
@@ -1893,7 +1893,7 @@ If you have any questions regarding privacy while using the Application, or have
 Що підете ви по світу,
 Так як я ходила,
     </string>
-    <string name="042">
+    <string name="manuscript_page_042_text">
 Батька, матір погубите,
 Як я погубила.
 Дітей своїх на сміх людям
@@ -1937,7 +1937,7 @@ If you have any questions regarding privacy while using the Application, or have
 А дівчата уквітчали
 Могилу квітками
     </string>
-    <string name="043">
+    <string name="manuscript_page_043_text">
 І осику поливали
 Дрібними сльозами.
 І виросла на могилі
@@ -1967,7 +1967,7 @@ If you have any questions regarding privacy while using the Application, or have
 Червоно-рожеву
 До білого пониклого
     </string>
-    <string name="044">
+    <string name="manuscript_page_044_text">
 Личенька Лілеї.
 І заплакала Лілея
 Росою-сльозою…
@@ -2013,7 +2013,7 @@ If you have any questions regarding privacy while using the Application, or have
 Молодого, короткого
 Не дали дожити
     </string>
-    <string name="045">
+    <string name="manuscript_page_045_text">
 Люде віку. Я умерла
 Зимою під тином,
 А весною процвіла я
@@ -2045,7 +2045,7 @@ If you have any questions regarding privacy while using the Application, or have
 На білеє пониклеє
 Личенько Лілеї.
     </string>
-    <string name="046">
+    <string name="manuscript_page_046_text">
 «Породила мене мати
 В високих палатах
 Та й понесла серед ночі
@@ -2087,7 +2087,7 @@ If you have any questions regarding privacy while using the Application, or have
 Мов пліточка. А лозина
 Тихо похитнулась.
     </string>
-    <string name="047">
+    <string name="manuscript_page_047_text">
 Вийшла мати погуляти,
 Не спиться в палатах.
 Пана Яна нема дома,
@@ -2131,7 +2131,7 @@ If you have any questions regarding privacy while using the Application, or have
 Запекло, почервоніло
 І рай запалило.
     </string>
-    <string name="048">
+    <string name="manuscript_page_048_text">
 Мов прокинувся, дивлюся:
 Село почорніло,
 Боже небо голубеє
@@ -2164,7 +2164,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не був би в світі юродивим.
 Людей і .... не прокляв!
     </string>
-    <string name="049">
+    <string name="manuscript_page_049_text">
 Не гріє сонце на чужині,
 А дома надто вже пекло.
 Мені невесело було
@@ -2192,7 +2192,7 @@ If you have any questions regarding privacy while using the Application, or have
 Нащо вже й Бога турбовать,
 Коли по-нашому не буде.
     </string>
-    <string name="050">
+    <string name="manuscript_page_050_text">
 Гори мої високії,
 Не так і високі,
 Як хороші, хорошії,
@@ -2215,7 +2215,7 @@ If you have any questions regarding privacy while using the Application, or have
 На пригорі, ніби капличка,
 Козацька церква невеличка
     </string>
-    <string name="051">
+    <string name="manuscript_page_051_text">
 Стоїть з похиленим хрестом.
 Давно стоїть, виглядає
 Запорожця з Лугу…
@@ -2273,7 +2273,7 @@ If you have any questions regarding privacy while using the Application, or have
 Гетьманщина!!..» І думнеє
 Чоло похмаріло…
     </string>
-    <string name="052">
+    <string name="manuscript_page_052_text">
 Мабуть, щось тяжке, тяжкеє
 Вимовить хотілось.
 Та не вимовив…
@@ -2331,7 +2331,7 @@ If you have any questions regarding privacy while using the Application, or have
 Одинокий вік дожити,
 Тебе восхвалити,
     </string>
-    <string name="053">
+    <string name="manuscript_page_053_text">
 І Твоєю красотою
 Серце веселити…
 І поховать побитеє
@@ -2376,7 +2376,7 @@ If you have any questions regarding privacy while using the Application, or have
 Принести і положити
 На Дніпрових горах.
     </string>
-    <string name="054">
+    <string name="manuscript_page_054_text">
 Наробили колись шведи
 Великої слави,
 Утікали з Мазепою
@@ -2432,7 +2432,7 @@ If you have any questions regarding privacy while using the Application, or have
 Про тяжкеє лихоліття…
 Про лютії кари,
     </string>
-    <string name="055">
+    <string name="manuscript_page_055_text">
 Що ляхи нам завдавали –
 Про все розказали.
 Що ж діялось по шведчині!
@@ -2480,7 +2480,7 @@ If you have any questions regarding privacy while using the Application, or have
 Отам вона й досі плаче
 Та за козаками.
     </string>
-    <string name="056">
+    <string name="manuscript_page_056_text">
 О думи мої! О славо злая!
 За тебе марно я в чужому краю
 Караюсь, мучуся… але не каюсь!..
@@ -2527,7 +2527,7 @@ If you have any questions regarding privacy while using the Application, or have
 Поникли голови козачі,
 Неначе стоптана трава,
     </string>
-    <string name="057">
+    <string name="manuscript_page_057_text">
 Украйна плаче, стогне-плаче!
 За головою голова
 Додолу пада. Кат лютує,
@@ -2561,7 +2561,7 @@ If you have any questions regarding privacy while using the Application, or have
 У Києві на Подолі
 Козаки гуляють.
     </string>
-    <string name="058">
+    <string name="manuscript_page_058_text">
 Як ту воду, цебром-відром
 Вино розливають.
 Льохи, шинки з шинкарками,
@@ -2616,7 +2616,7 @@ If you have any questions regarding privacy while using the Application, or have
 В довгій рясі по келії
 Старий чернець ходить.
     </string>
-    <string name="059">
+    <string name="manuscript_page_059_text">
 Іде чернець у Вишгород
 На Київ дивитись,
 Та посидіть на пригорі,
@@ -2666,7 +2666,7 @@ If you have any questions regarding privacy while using the Application, or have
 І за Україну молитись
 Старий чернець пошкандибав.
     </string>
-    <string name="060">
+    <string name="manuscript_page_060_text">
 „Молися старче, бий поклони,
  Поки й малих дітей погонять
  Гатить глибокі болота:
@@ -2709,7 +2709,7 @@ If you have any questions regarding privacy while using the Application, or have
  Розруйнували і Січ і Спаса,
  А над тобою глину товкмасять.
     </string>
-    <string name="061">
+    <string name="manuscript_page_061_text">
 Один у другого питаєм,
 Нащо нас мати привела?
 Чи для добра? Чи то для зла?
@@ -2737,7 +2737,7 @@ If you have any questions regarding privacy while using the Application, or have
 Невольникам і сиротам
 В степу безкраїм за Уралом.
     </string>
-    <string name="062">
+    <string name="manuscript_page_062_text">
 Ой стрічечка до стрічечки
 Мережаю три ніченьки,
 Мережаю, вишиваю,
@@ -2769,7 +2769,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб мечі-шаблі гострили...
 Та їхали на весілля
     </string>
-    <string name="063">
+    <string name="manuscript_page_063_text">
 Шовками хустину,
 Щоб згадував на чужині
 Свою Катерину.
@@ -2803,7 +2803,7 @@ If you have any questions regarding privacy while using the Application, or have
 А в неділеньку ходила
 Виглядати на могилу.
     </string>
-    <string name="064">
+    <string name="manuscript_page_064_text">
 Мина літо, мина й друге,
 А на третє линуть
 Преславнії компанійці
@@ -2833,7 +2833,7 @@ If you have any questions regarding privacy while using the Application, or have
 А на йому сіделечко,
 Хустиною вкрите.
     </string>
-    <string name="065">
+    <string name="manuscript_page_065_text">
 Давно те діялось. Ще в школі,
 Таки в учителя-дяка,
 Гарненько вкраду п’ятака –
@@ -2861,7 +2861,7 @@ If you have any questions regarding privacy while using the Application, or have
 Що вкрав маленьким у дяка,
 Отак Господь мене карає.
     </string>
-    <string name="066">
+    <string name="manuscript_page_066_text">
 Ось слухай же, мій голубе,
 Мій орле-козаче!
 Як канаю я в неволі,
@@ -2919,7 +2919,7 @@ If you have any questions regarding privacy while using the Application, or have
 Чи, може, крий Боже,
 Тут і загину.
     </string>
-    <string name="067">
+    <string name="manuscript_page_067_text">
 І почорніє червоне поле…
 – Айда в казарми! Айда в неволю! –
 Неначе крикне хто надо мною.
@@ -2964,7 +2964,7 @@ If you have any questions regarding privacy while using the Application, or have
 Минула доля, а надія
 В неволі знову за своє,
     </string>
-    <string name="068">
+    <string name="manuscript_page_068_text">
 Зо мною знову лихо діє
 І серцю жалю завдає.
 А може, ще добро побачу?
@@ -3018,7 +3018,7 @@ If you have any questions regarding privacy while using the Application, or have
 Зносити брівоньки нізащо?..
 Ні, дівонька вона не та!
     </string>
-    <string name="069">
+    <string name="manuscript_page_069_text">
 Таки ж у тім селі, трудящий
 (Бо всюди сироти – ледащо)
 У наймах виріс сирота,
@@ -3095,7 +3095,7 @@ If you have any questions regarding privacy while using the Application, or have
 Нащо тобі жінка —
 Камень за плечима?
     </string>
-    <string name="070">
+    <string name="manuscript_page_070_text">
 1
 Та годі вже тобі співать.
 2
@@ -3158,7 +3158,7 @@ If you have any questions regarding privacy while using the Application, or have
 А вбогії тому раді,
 Що з ними зрівнялись!
     </string>
-    <string name="071">
+    <string name="manuscript_page_071_text">
 Посходились жалкувати,
 Жалю завдавати.
 «Шкода, шкода! Якби знаття,
@@ -3219,7 +3219,7 @@ If you have any questions regarding privacy while using the Application, or have
 Отак по-вашому! Ну, годі ж,
 Нехай собі і не живуть…
     </string>
-    <string name="072">
+    <string name="manuscript_page_072_text">
 А все скажу-таки як хочеш.
 А ви їм жить не даєте,
 Бо ви для себе живете,
@@ -3279,7 +3279,7 @@ If you have any questions regarding privacy while using the Application, or have
 До кого ж він прихилиться?
 Де перезимує?
     </string>
-    <string name="073">
+    <string name="manuscript_page_073_text">
 Уже осінь, незабаром
 Зима залютує.
 Нема його в світі долі,
@@ -3335,7 +3335,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та й викопав. На те літо
 Криницю святили,
     </string>
-    <string name="074">
+    <string name="manuscript_page_074_text">
 На самого Маковія,
 І дуб посадили
 На прикмету проїзжачим.
@@ -3386,11 +3386,11 @@ If you have any questions regarding privacy while using the Application, or have
 Та все-таки меж вами жив,
 То, може, дещо і осталось.
     </string>
-    <string name="081">
+    <string name="manuscript_page_081_text">
         158
         154
     </string>
-    <string name="082">
+    <string name="manuscript_page_082_text">
 А нумо знову віршувать.
 Звичайне, нишком. Нумо знову,
 Поки новинка на основі,
@@ -3421,7 +3421,7 @@ If you have any questions regarding privacy while using the Application, or have
 Про що-небудь тихенького
 Та благого слова,
     </string>
-    <string name="083">
+    <string name="manuscript_page_083_text">
 У Бога за дверми лежала сокира.
 (А Бог тойді з Петром ходив
 По світу та дива творив.)
@@ -3467,7 +3467,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та інде тирса з осокою
 В яру чорніє під горою,
     </string>
-    <string name="084">
+    <string name="manuscript_page_084_text">
 Та дикий інколи кайзак
 Тихенько виїде на гору
 На тім захилім верблюді.
@@ -3511,7 +3511,7 @@ If you have any questions regarding privacy while using the Application, or have
 Од Бога все, а сам нічого
 Дурний не зробить чоловік.
     </string>
-    <string name="085">
+    <string name="manuscript_page_085_text">
 Я сам, як бачиш, марне, всує,
 Я сам занівечив свій вік,
 І ні на кого не жалкую…
@@ -3556,7 +3556,7 @@ If you have any questions regarding privacy while using the Application, or have
 Вона… Не нам Тебе судить,
 Великий Боже наш.
     </string>
-    <string name="086">
+    <string name="manuscript_page_086_text">
 На неї
 Не довелось і надивитись.
 А я ще думав одружитись,
@@ -3602,7 +3602,7 @@ If you have any questions regarding privacy while using the Application, or have
 Панів великих і малих –
 Усіх порізали…
     </string>
-    <string name="087">
+    <string name="manuscript_page_087_text">
 Молила
 Сама стара за молодих,
 До Бога руки піднімала…
@@ -3649,7 +3649,7 @@ If you have any questions regarding privacy while using the Application, or have
 Дивом дивним сяють
 Церкви Божі, ніби з Богом
     </string>
-    <string name="088">
+    <string name="manuscript_page_088_text">
 Самим розмовляють.
 Дивлюся я, а сам млію,
 Тихо задзвонили
@@ -3685,7 +3685,7 @@ If you have any questions regarding privacy while using the Application, or have
 Навчіть мене, люди добрі,
 А то одурію…
     </string>
-    <string name="089">
+    <string name="manuscript_page_089_text">
 Та не дай, Господи, нікому,
 Як мені тепер, старому,
 У неволі пропадати,
@@ -3715,7 +3715,7 @@ If you have any questions regarding privacy while using the Application, or have
 А про журбу та про печаль
 Остило… і паперу жаль.
     </string>
-    <string name="090">
+    <string name="manuscript_page_090_text">
 Чи є поганше що на світі,
 Як та дрюкована нудьга?
 Про марне страчениє літа
@@ -3762,7 +3762,7 @@ If you have any questions regarding privacy while using the Application, or have
 От тобі й сестра з Парна[са].
 Морока, та й годі!..
     </string>
-    <string name="091">
+    <string name="manuscript_page_091_text">
 Іди ж собі, де взялася,
 А я трохи згодом
 Захожуся коло царів
@@ -3806,7 +3806,7 @@ If you have any questions regarding privacy while using the Application, or have
 Подружіє Гурієве,
 Рабиня царева;
     </string>
-    <string name="092">
+    <string name="manuscript_page_092_text">
 Купалася собі з Богом,
 Біле лоно мила
 І царя свого святого
@@ -3841,7 +3841,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб не завадило, буває!..
 . . . . . . . . . . . . . . . . . . .
     </string>
-    <string name="093">
+    <string name="manuscript_page_093_text">
 Давид, святий пророк і цар,
 Не дуже був благочестивий.
 Була дочка в його Фамар
@@ -3886,7 +3886,7 @@ If you have any questions regarding privacy while using the Application, or have
 Пустуючи, на світі!
 От бачте, діти!
     </string>
-    <string name="094">
+    <string name="manuscript_page_094_text">
 І поживе Давид на світі
 Немалі літа.
 І одряхлє, – і покривали
@@ -3918,7 +3918,7 @@ If you have any questions regarding privacy while using the Application, or have
 А у його, сіромахи,
 Зубів не осталось!..
     </string>
-    <string name="095">
+    <string name="manuscript_page_095_text">
 По двору тихо похожає
 Старий веселий Рогволод,
 Дружина, отроки, народ
@@ -3958,7 +3958,7 @@ If you have any questions regarding privacy while using the Application, or have
 Блукає по світу одна…
 Так отакіє-то святії!
     </string>
-    <string name="096">
+    <string name="manuscript_page_096_text">
 Добро, у кого є господа,
 А в тій господі є сестра
 Чи мати добрая. Добра,
@@ -3997,7 +3997,7 @@ If you have any questions regarding privacy while using the Application, or have
 Своїм писанієм; нікого
 Не навчиш ти, тебе самого
     </string>
-    <string name="097">
+    <string name="manuscript_page_097_text">
 Великим дурнем назовуть,
 А книжку граться оддадуть
 Маленьким дітям, більш нічого!
@@ -4026,7 +4026,7 @@ If you have any questions regarding privacy while using the Application, or have
 З табун я коней до обозу,
 Гармату, гаківниць два вози,
     </string>
-    <string name="098">
+    <string name="manuscript_page_098_text">
 Пшона, пшениці, що придбав,
 Я всю мізерію оддав
 Моїй Україні-небозі…
@@ -4071,7 +4071,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не встануть, прокляті, оп’ять
 Дітей козачих мордувать,
     </string>
-    <string name="099">
+    <string name="manuscript_page_099_text">
 Усі до одного згоріли!
 І Пріся бідная моя
 Згоріла з клятими! А я…
@@ -4110,7 +4110,7 @@ If you have any questions regarding privacy while using the Application, or have
 Хто серце чистеє нагріє
 Огнем любові, хто такий?
     </string>
-    <string name="100">
+    <string name="manuscript_page_100_text">
 Ти сирота, нема нікого,
 Опріче праведного Бога.
 Молися ж, серце, помолюсь
@@ -4143,7 +4143,7 @@ If you have any questions regarding privacy while using the Application, or have
 Тихенько Богу помолюсь.
 Молися й ти, з святого неба
     </string>
-    <string name="101">
+    <string name="manuscript_page_101_text">
 На тебе, серце, не зійшла
 Твоя і доля і недоля.
 
@@ -4162,7 +4162,7 @@ If you have any questions regarding privacy while using the Application, or have
 Що без пригоди, мов негода,
 Минула молодость моя.
     </string>
-    <string name="102">
+    <string name="manuscript_page_102_text">
 Чи то недоля та неволя,
 Чи то літа ті, летячи,
 Розбили душу? Чи ніколи
@@ -4197,7 +4197,7 @@ If you have any questions regarding privacy while using the Application, or have
 Душі убогої цураюсь,
 Своєї грішної душі!
     </string>
-    <string name="103">
+    <string name="manuscript_page_103_text">
 На батька бісового я трачу
 І дні, і пера, і папір!
 А іноді то ще й заплачу,
@@ -4223,7 +4223,7 @@ If you have any questions regarding privacy while using the Application, or have
 І усміхається, і стиха
 Промовить нишком: – Де ж те лихо?
     </string>
-    <string name="104">
+    <string name="manuscript_page_104_text">
 Таки поміг Господь дожить
 До радості. Старий читає,
 Перехрестившись, «Отче наш»
@@ -4232,7 +4232,7 @@ If you have any questions regarding privacy while using the Application, or have
 І все почило. Сивий в хату
 Й собі пішов опочивати.
     </string>
-    <string name="105">
+    <string name="manuscript_page_105_text">
 Буває, іноді старий
 Не знає сам, чого зрадіє,
 Неначе стане молодий,
@@ -4255,7 +4255,7 @@ If you have any questions regarding privacy while using the Application, or have
 І в темній ямі, як на те,
 Зелена травка поросте.
     </string>
-    <string name="106">
+    <string name="manuscript_page_106_text">
 Хіба самому написать
 Таки посланіє до себе,
 Та все дочиста розказать,
@@ -4302,7 +4302,7 @@ If you have any questions regarding privacy while using the Application, or have
 Отак-то я тепер терплю
 Та смерть із степу виглядаю,
     </string>
-    <string name="107">
+    <string name="manuscript_page_107_text">
 А за що, єй-богу, не знаю!
 А все-таки її люблю,
 Мою Україну широку,
@@ -4340,7 +4340,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб він де-небудь прихиливсь,
 То оддадуть у москалі.
     </string>
-    <string name="108">
+    <string name="manuscript_page_108_text">
 Ми вкупочці колись росли,
 Маленькими собі любились.
 А матері на нас дивились
@@ -4386,7 +4386,7 @@ If you have any questions regarding privacy while using the Application, or have
 В старій шинелі, помарніла,
 Уже либонь і одуріла,
     </string>
-    <string name="109">
+    <string name="manuscript_page_109_text">
 Та знову десь собі пішла,
 Здалась, сердешна, на ігрище!
 Сидить, було, та чепуриться,
@@ -4417,7 +4417,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не знаю, може, й нагадаю
 Нудьгу колишнюю колись!
     </string>
-    <string name="110">
+    <string name="manuscript_page_110_text">
 Ми восени таки похожі
 Хоч капельку на образ Божий,
 Звичайне, що не всі, а так,
@@ -4458,23 +4458,23 @@ If you have any questions regarding privacy while using the Application, or have
 Сам Бог розмовляє
 Немовлящими устами.
     </string>
-    <string name="111">
+    <string name="manuscript_page_111_text">
 А ти, мій єдиний!
 Одинокий, безталанний,
 Друже на чужині,
 Хто з тобою заговорить,
 Хто розважить горе?
     </string>
-    <string name="112">
+    <string name="manuscript_page_112_text">
         220
         221
     </string>
-    <string name="113">
+    <string name="manuscript_page_113_text">
         222
         223
         1849
     </string>
-    <string name="114">
+    <string name="manuscript_page_114_text">
 Неначе степом чумаки
 Уосени верству проходять,
 Так і мене минають годи,
@@ -4489,7 +4489,7 @@ If you have any questions regarding privacy while using the Application, or have
 Уже два года промережав
 І третій в добрий час почну.
     </string>
-    <string name="115">
+    <string name="manuscript_page_115_text">
 У Оглаві… Чи по знаку
 Кому цей Оглав білохатий?
 Троха лиш! Треба розказати,
@@ -4532,7 +4532,7 @@ If you have any questions regarding privacy while using the Application, or have
 Вони цю страву носом чують.
 . . . . . . . . . . . . . . . . . .
     </string>
-    <string name="116">
+    <string name="manuscript_page_116_text">
 Сидить сотник на причілку
 Та думку гадає,
 А Настуся по садочку
@@ -4582,7 +4582,7 @@ If you have any questions regarding privacy while using the Application, or have
 С[отник]
 Не будеш дівувати.
     </string>
-    <string name="117">
+    <string name="manuscript_page_117_text">
 Н[астуся]
 А що ж, умру хіба?
 С[отник]
@@ -4643,7 +4643,7 @@ If you have any questions regarding privacy while using the Application, or have
 За тихий Дунай».
 Тим часом, як вона співає, у садочок входить молодий хлопець в солом’яному брилі, в корот
     </string>
-    <string name="118">
+    <string name="manuscript_page_118_text">
 кому синьому жупанку, в зелених шароварах, з торбиною за плечима і з нагаєм.
 Петро
 З тим днем, що сьогодня! Боже, помагай!
@@ -4687,7 +4687,7 @@ If you have any questions regarding privacy while using the Application, or have
 Так же ні, самому треба
 Себе одурити,
     </string>
-    <string name="119">
+    <string name="manuscript_page_119_text">
 Оженитися старому
 На такій дитині!
 Схаменися, не женися,
@@ -4738,7 +4738,7 @@ If you have any questions regarding privacy while using the Application, or have
 П[етро]
 А зо мною?
     </string>
-    <string name="120">
+    <string name="manuscript_page_120_text">
 Н[астуся]
 І з тобою нехай собі… Е, ні, нехай повінчає!..
 П[етро]
@@ -4787,7 +4787,7 @@ If you have any questions regarding privacy while using the Application, or have
 На наругу перед Богом.
 А шануйте, чтіте,
     </string>
-    <string name="121">
+    <string name="manuscript_page_121_text">
 Поважайте його, діти,
 Бо то батько сивий!
 Батько мудрий! Добре отим
@@ -4841,7 +4841,7 @@ If you have any questions regarding privacy while using the Application, or have
 Нехай хоч зараз сповідає
 Отець Хома ваш голосний!
     </string>
-    <string name="122">
+    <string name="manuscript_page_122_text">
 С[отник]
 А повінчаємось в неділю?
 Н[астуся]
@@ -4890,7 +4890,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб Настю, бачте, не збудить
 Та сорома не наробить.
     </string>
-    <string name="123">
+    <string name="manuscript_page_123_text">
 Уже й «Достойно» оддзвонили,
 Уже додому люде йдуть –
 Не йде Настусенька, не чуть!
@@ -4944,7 +4944,7 @@ If you have any questions regarding privacy while using the Application, or have
 Уже бродять… А барвінок!
 Барвінок хрещатий!
     </string>
-    <string name="124">
+    <string name="manuscript_page_124_text">
 Притоптаний, коло тину
 Засихає, в’яне!
 А сам сотник у кожусі,
@@ -4986,7 +4986,7 @@ If you have any questions regarding privacy while using the Application, or have
 Вийшли з Оглава ватагу
 З поля виглядати.
     </string>
-    <string name="125">
+    <string name="manuscript_page_125_text">
 За сонцем хмаронька пливе,
 Червоні поли розстилає
 І сонце спатоньки зове
@@ -5028,7 +5028,7 @@ If you have any questions regarding privacy while using the Application, or have
 А так тілько. Надворі, бач,
 Наступає свято…
     </string>
-    <string name="126">
+    <string name="manuscript_page_126_text">
 Тяжко його, друже-брате,
 Самому стрічати
 У пустині. Завтра рано
@@ -5073,7 +5073,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб не росло таке зілля
 На нашому полю.
     </string>
-    <string name="127">
+    <string name="manuscript_page_127_text">
 Козацька доля
 Нащо мені братись?
 Будуть з мене, молодого,
@@ -5115,7 +5115,7 @@ If you have any questions regarding privacy while using the Application, or have
 І рознесе тую славу
 По всій Україні.
     </string>
-    <string name="128">
+    <string name="manuscript_page_128_text">
 тую вдову.
 Не так слава, не так слава,
 Як той поговір,
@@ -5148,7 +5148,7 @@ If you have any questions regarding privacy while using the Application, or have
 А сама на прощу в Київ,
 В черниці пішла.
     </string>
-    <string name="129">
+    <string name="manuscript_page_129_text">
 Якби тобі довелося
 В нас попанувати,
 То знав би ти, пане-брате,
@@ -5172,7 +5172,7 @@ If you have any questions regarding privacy while using the Application, or have
 Оцю одну, останнюю,
 Слухайте ж, панята.
     </string>
-    <string name="130">
+    <string name="manuscript_page_130_text">
 Дівчата на луці гребли,
 А парубки копиці клали,
 Та, знай, на сонце позирали,
@@ -5224,7 +5224,7 @@ If you have any questions regarding privacy while using the Application, or have
 Грала музика троїста,
 Люде гомоніли
     </string>
-    <string name="131">
+    <string name="manuscript_page_131_text">
 Та весільної співали,
 Бо було весілля.
 Молодую везли в хутір
@@ -5276,7 +5276,7 @@ If you have any questions regarding privacy while using the Application, or have
 А молода за етапом
 У Сибір мандрує!
     </string>
-    <string name="132">
+    <string name="manuscript_page_132_text">
 Заросли шляхи тернами
 На тую країну,
 Мабуть, я її навіки,
@@ -5316,7 +5316,7 @@ If you have any questions regarding privacy while using the Application, or have
 На народ отой убитий,
 На тую Украйну!
     </string>
-    <string name="133">
+    <string name="manuscript_page_133_text">
 Зацвіла в долині
 Червона калина,
 Ніби засміялась
@@ -5351,7 +5351,7 @@ If you have any questions regarding privacy while using the Application, or have
 А попам та людям
 Однаково буде.
     </string>
-    <string name="134">
+    <string name="manuscript_page_134_text">
 У нашім раї на землі
 Нічого кращого немає,
 Як тая мати молодая
@@ -5394,7 +5394,7 @@ If you have any questions regarding privacy while using the Application, or have
 З тобою дома. Наготи
 Старої нічим одягти
     </string>
-    <string name="135">
+    <string name="manuscript_page_135_text">
 І витопить зимою хату.
 А ти нездужаєш і встати,
 Щоб хоч огонь той розвести.
@@ -5443,7 +5443,7 @@ If you have any questions regarding privacy while using the Application, or have
 Межи псами на морозі
 Де-небудь під тином.
     </string>
-    <string name="136">
+    <string name="manuscript_page_136_text">
 Отим мені і жаль стане
 Матері-небоги,
 Що вона його так любить,
@@ -5489,7 +5489,7 @@ If you have any questions regarding privacy while using the Application, or have
 – А я в попа обідала. –
 Сирітка сказала.
     </string>
-    <string name="137">
+    <string name="manuscript_page_137_text">
 Було, роблю що, чи гуляю,
 Чи Богу молюся,
 Усе думаю про його
@@ -5537,7 +5537,7 @@ If you have any questions regarding privacy while using the Application, or have
 В самотню душу. Лютий злодій
 Впирається-таки, та й годі.
     </string>
-    <string name="138">
+    <string name="manuscript_page_138_text">
 Не жаль на злого, коло його
 І слава сторожем стоїть.
 А жаль на доброго такого,
@@ -5573,7 +5573,7 @@ If you have any questions regarding privacy while using the Application, or have
 А жаль великий на людей,
 На тих юродивих дітей!
     </string>
-    <string name="139">
+    <string name="manuscript_page_139_text">
 Немає гірше, як в неволі
 Про волю згадувать.
 А я Про тебе, воленько моя,
@@ -5621,7 +5621,7 @@ If you have any questions regarding privacy while using the Application, or have
 Аж чорними – голубими,
 І досі чаруєш
     </string>
-    <string name="140">
+    <string name="manuscript_page_140_text">
 Людські душі? Чи ще й досі
 Дивуються всує
 На стан гнучий? Свято моє!
@@ -5658,7 +5658,7 @@ If you have any questions regarding privacy while using the Application, or have
 А сном лукавим розійшлось,
 Слізьми-водою розлилось
     </string>
-    <string name="141">
+    <string name="manuscript_page_141_text">
 Неначе цвяшок, в серце вбитий,
 Оцю Марину я ношу.
 Давно б списать несамовиту,
@@ -5701,7 +5701,7 @@ If you have any questions regarding privacy while using the Application, or have
 А то скажуть, що на шляху
 Чинимо розбої,
     </string>
-    <string name="142">
+    <string name="manuscript_page_142_text">
 Та ще дальше запровторять.
 Пропадем обоє…
 . . . . . . . . . . . . . . . . . . . .
@@ -5746,7 +5746,7 @@ If you have any questions regarding privacy while using the Application, or have
 Красу і молодость… Мов чари,
 Розсипалось та розлилось,
     </string>
-    <string name="143">
+    <string name="manuscript_page_143_text">
 І знову в люде довелось
 Проситись в найми? Ні, не знову:
 Вона вже панна покойова,
@@ -5794,7 +5794,7 @@ If you have any questions regarding privacy while using the Application, or have
 Путями добрими ходить,
 Святого Господа любить
     </string>
-    <string name="144">
+    <string name="manuscript_page_144_text">
 І брата миловать…
 Насилу
 Прийшла додому, подивилась:
@@ -5843,7 +5843,7 @@ If you have any questions regarding privacy while using the Application, or have
 Доканав, небогу,
 Той правитель… а все-таки
     </string>
-    <string name="145">
+    <string name="manuscript_page_145_text">
 Не вдіє нічого,
 Хоч заріж її, та й годі,
 Така вже вродилась.
@@ -5892,7 +5892,7 @@ If you have any questions regarding privacy while using the Application, or have
 З ножем окровленим в руках
 І приспівувала. . . . . . . . . . . .
     </string>
-    <string name="146">
+    <string name="manuscript_page_146_text">
 «Чи не це ж та кумася,
 Що підтикалася!..
 Як була я пані
@@ -5943,7 +5943,7 @@ If you have any questions regarding privacy while using the Application, or have
 Мати
 Ходімо спать.
     </string>
-    <string name="147">
+    <string name="manuscript_page_147_text">
 (До людей.)
 Хрещені люде, поможіте!
 Марина
@@ -5996,7 +5996,7 @@ If you have any questions regarding privacy while using the Application, or have
 І пострибала через двір
 У поле, виючи мов звір.
     </string>
-    <string name="148">
+    <string name="manuscript_page_148_text">
 Пошкандибала стара мати
 Свою Марину доганяти.
 Пани до одного спеклись,
@@ -6029,7 +6029,7 @@ If you have any questions regarding privacy while using the Application, or have
 І праведно Господь великий,
 Мов на звірей тих лютих, диких,
     </string>
-    <string name="149">
+    <string name="manuscript_page_149_text">
 Кайдани повелів кувать,
 Глибокі тюрми покопать.
 І, роде лютий і жестокий!
@@ -6059,7 +6059,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не вмившися, зайшов
 Гостей довідать… «Та й погані!
     </string>
-    <string name="150">
+    <string name="manuscript_page_150_text">
 Усі до одного сичі –
 Оце тобі вари й печи!»
 Щоб не нести додому
@@ -6092,7 +6092,7 @@ If you have any questions regarding privacy while using the Application, or have
 Талану того попросиш
 Та тієї долі.
     </string>
-    <string name="151">
+    <string name="manuscript_page_151_text">
 Пішов собі темним яром
 Та співає, йдучи:
 – Ой із-під гори та із-під кручі
@@ -6144,7 +6144,7 @@ If you have any questions regarding privacy while using the Application, or have
 У намистах водив!
 Та знемігся неборака,
     </string>
-    <string name="152">
+    <string name="manuscript_page_152_text">
 Хоч продавай хату
 Та йди в найми. Отак його
 Отой пан проклятий
@@ -6198,7 +6198,7 @@ If you have any questions regarding privacy while using the Application, or have
 Як та воля. . . . . . . . . .
 . . . . . . . . . . . . . . . . . . . . . . . .
     </string>
-    <string name="153">
+    <string name="manuscript_page_153_text">
 Прийшов додому уночі.
 Стогнала мати на печі,
 А жінка у коморі спала
@@ -6246,7 +6246,7 @@ If you have any questions regarding privacy while using the Application, or have
 Заридав, як та дитина…
 І простив небогу!
     </string>
-    <string name="154">
+    <string name="manuscript_page_154_text">
 Отак, люде, научайтесь
 Ворогам прощати,
 Як сей неук!….
@@ -6267,7 +6267,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не хоче правдоньки сказать,
 А більше ні в кого спитать.
     </string>
-    <string name="155">
+    <string name="manuscript_page_155_text">
 І виріс я на чужині,
 І сивію в чужому краї:
 То одинокому мені
@@ -6311,7 +6311,7 @@ If you have any questions regarding privacy while using the Application, or have
 А препоганії пани
 Жидам, братам своїм хорошим,
     </string>
-    <string name="156">
+    <string name="manuscript_page_156_text">
 Остатні продають штани…
 . . . . . . . . . . . . . . . . . . .
 Погано дуже, страх погано!
@@ -6356,7 +6356,7 @@ If you have any questions regarding privacy while using the Application, or have
 А іноді... нагадаю
 Мою Україну
     </string>
-    <string name="157">
+    <string name="manuscript_page_157_text">
 І заплачу... Боже милий!
 Нехай я загину
 У цій проклятій пустині,
@@ -6390,7 +6390,7 @@ If you have any questions regarding privacy while using the Application, or have
 – Отак-то ти, кате!
 Згнущаєшся над сестрами… –
     </string>
-    <string name="158">
+    <string name="manuscript_page_158_text">
 І пішли шукати
 Трути-зілля, щоб Івана
 Завтра отруїти.
@@ -6417,7 +6417,7 @@ If you have any questions regarding privacy while using the Application, or have
 І без вітру гойдаються,
 І вітер гойдає.
     </string>
-    <string name="159">
+    <string name="manuscript_page_159_text">
 Якби мені черевики,
 То пішла б я на музики…
 Горенько моє!
@@ -6458,7 +6458,7 @@ If you have any questions regarding privacy while using the Application, or have
 З моїм нелюбом багатим,
 З моїм ворогом злим!
     </string>
-    <string name="160">
+    <string name="manuscript_page_160_text">
 Полюбилася я,
 Одружилася я
 З безталанним сиротою
@@ -6493,7 +6493,7 @@ If you have any questions regarding privacy while using the Application, or have
 На світ Божий не дивлюся,
 Ні до кого не горнуся…
     </string>
-    <string name="161">
+    <string name="manuscript_page_161_text">
 А матір стару…
 Прости мене, моя мати!
 Буду тебе проклинати,
@@ -6521,7 +6521,7 @@ If you have any questions regarding privacy while using the Application, or have
 Увійшов у хату,
 Ударивсь об поли:
     </string>
-    <string name="162">
+    <string name="manuscript_page_162_text">
 Лазять діти у запічку
 Голодні і голі.
 – А де ваша, діти, мати?
@@ -6550,7 +6550,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та в москалі вдовиченка
 Щоб не оддавали.
     </string>
-    <string name="163">
+    <string name="manuscript_page_163_text">
 По улиці вітер віє
 Та сніг замітає.
 По улиці попідтинню
@@ -6581,7 +6581,7 @@ If you have any questions regarding privacy while using the Application, or have
 У свекрухи десь воркує,
 Мене виглядає.
     </string>
-    <string name="164">
+    <string name="manuscript_page_164_text">
 Закувала зозуленька
 В зеленому гаї,
 Заплакала дівчинонька –
@@ -6627,7 +6627,7 @@ If you have any questions regarding privacy while using the Application, or have
 Прийди з того Межигір’я,
 Наш славний Палію,
     </string>
-    <string name="165">
+    <string name="manuscript_page_165_text">
 Подивися ти на Швачку,
 Що він ляхам діє
 У твоєму у Фастові
@@ -6673,7 +6673,7 @@ If you have any questions regarding privacy while using the Application, or have
 Наклювавшись, подохнете
 Коло мене вкупі.
     </string>
-    <string name="166">
+    <string name="manuscript_page_166_text">
 Ой полетіть, гайворони
 Мої сизокрилі,
 До батечка та скажіте,
@@ -6700,7 +6700,7 @@ If you have any questions regarding privacy while using the Application, or have
 Бо як мені у матері…
 То лучше топиться.
     </string>
-    <string name="167">
+    <string name="manuscript_page_167_text">
 У тієї Катерини
 Хата на помості,
 Із славного Запорожжя
@@ -6743,7 +6743,7 @@ If you have any questions regarding privacy while using the Application, or have
 Один утопився
 У Дніпровім гирлі,
     </string>
-    <string name="168">
+    <string name="manuscript_page_168_text">
 Другого в Козлові
 На кіл посадили.
 Третій, [Іван] Ярошенко,
@@ -6770,7 +6770,7 @@ If you have any questions regarding privacy while using the Application, or have
 А славнії запорожці
 В степу побратались.
     </string>
-    <string name="169">
+    <string name="manuscript_page_169_text">
 Із-за гаю сонце сходить,
 За гай і заходить.
 По долині увечері
@@ -6792,7 +6792,7 @@ If you have any questions regarding privacy while using the Application, or have
 А дівчину покриткою
 По світу пускає.
     </string>
-    <string name="170">
+    <string name="manuscript_page_170_text">
 Ой пішла я у яр за водою,
 Аж там милий гуляє з другою.
 А другая тая,
@@ -6829,7 +6829,7 @@ If you have any questions regarding privacy while using the Application, or have
 І на тім світі добряги
 Тебе не забудуть.
     </string>
-    <string name="171">
+    <string name="manuscript_page_171_text">
 Ой люлі, люлі, моя дитино,
 Вдень і вночі.
 Підеш, мій сину, по Україні,
@@ -6872,7 +6872,7 @@ If you have any questions regarding privacy while using the Application, or have
 Мене стиха та орючи
 Долю проклинати.
     </string>
-    <string name="172">
+    <string name="manuscript_page_172_text">
 Туман, туман долиною,
 Добре жити з родиною.
 А ще лучше за горою
@@ -6912,7 +6912,7 @@ If you have any questions regarding privacy while using the Application, or have
 У раннюю пору
 На високу гору
     </string>
-    <string name="173">
+    <string name="manuscript_page_173_text">
 Сходилися полковники.
 І військо, як море,
 З знаменами, з бунчугами
@@ -6958,7 +6958,7 @@ If you have any questions regarding privacy while using the Application, or have
 Буду йому пораду давати,
 По-батьківській научати,
     </string>
-    <string name="174">
+    <string name="manuscript_page_174_text">
 Як на ляха стати.
 Тепер прелютая година
 На нашій славній Україні.
@@ -6996,7 +6996,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та бондаря полюбила,
 Чорноброва.
     </string>
-    <string name="175">
+    <string name="manuscript_page_175_text">
 Бондар відра набиває,
 Мене горне, пригортає,
 Чорноброву.
@@ -7027,7 +7027,7 @@ If you have any questions regarding privacy while using the Application, or have
 А чумаченька мого молодого
 Коло воликів немає.
     </string>
-    <string name="176">
+    <string name="manuscript_page_176_text">
 Ой копали йому в степу при дорозі
 Та притиками яму,
 Завернули його у тую рогожу
@@ -7054,7 +7054,7 @@ If you have any questions regarding privacy while using the Application, or have
 Увесь вік свій дівувати,
 Ні з ким не кохатись.
     </string>
-    <string name="177">
+    <string name="manuscript_page_177_text">
 Утоптала стежечку
 Через яр,
 Через гору, серденько,
@@ -7092,7 +7092,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та згадуєм тії годи,
 Як жили колись.
     </string>
-    <string name="178">
+    <string name="manuscript_page_178_text">
 Навгороді коло броду
 Барвінок не сходить.
 Чомусь дівчина до броду
@@ -7127,7 +7127,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не дай мені вік дівувати,
 Коси мої плести-заплітати,
     </string>
-    <string name="179">
+    <string name="manuscript_page_179_text">
 Бровенята дома зносити,
 В самотині віку дожити.
 А поки я заробляю,
@@ -7153,7 +7153,7 @@ If you have any questions regarding privacy while using the Application, or have
 Пішов козак нерозумний
 Слави добувати,
     </string>
-    <string name="180">
+    <string name="manuscript_page_180_text">
 Осталася сиротою
 Старенькая мати.
 Ой згадала в неділеньку,
@@ -7181,7 +7181,7 @@ If you have any questions regarding privacy while using the Application, or have
 Нема кому води тії
 Каліці подати.
     </string>
-    <string name="181">
+    <string name="manuscript_page_181_text">
 Чума з лопатою ходила,
 Та гробовища рила, рила,
 Та трупом, трупом начиняла
@@ -7223,7 +7223,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб їх, сердешних, поховати,
 Під хатами і погнили.
     </string>
-    <string name="182">
+    <string name="manuscript_page_182_text">
 Мов оазис, в чистім полі
 Село зеленіє.
 Ніхто в його не заходить,
@@ -7260,7 +7260,7 @@ If you have any questions regarding privacy while using the Application, or have
 І довелося знов мені
 Людей на старості… Ні, ні,
     </string>
-    <string name="183">
+    <string name="manuscript_page_183_text">
 Вони з холери повмирали,
 А то б хоч клаптик переслали
 Того паперу. . . . . . . . . . . . . .
@@ -7295,7 +7295,7 @@ If you have any questions regarding privacy while using the Application, or have
 І мов у полі сніг заносить
 Неохолонувший ще труп.
     </string>
-    <string name="184">
+    <string name="manuscript_page_184_text">
 – Ой умер старий батько
 І старенькая мати,
 Та нема кому щирої
@@ -7331,10 +7331,10 @@ If you have any questions regarding privacy while using the Application, or have
 Насміхаються, прокляті,
 Гусаркою звуть.
     </string>
-    <string name="185">
+    <string name="manuscript_page_185_text">
         1850
     </string>
-    <string name="186">
+    <string name="manuscript_page_186_text">
         Лічу в неволі дні і ночі
         І лік забуваю.
         О Господи, як-то тяжко
@@ -7352,7 +7352,7 @@ If you have any questions regarding privacy while using the Application, or have
         І четверту начинаю
         Книжечку в неволі
     </string>
-    <string name="187">
+    <string name="manuscript_page_187_text">
 Мережати, – змережаю
 Кров’ю та сльозами
 Моє горе на чужині,
@@ -7394,7 +7394,7 @@ If you have any questions regarding privacy while using the Application, or have
 На лани тії зелені
 І тії могили!
     </string>
-    <string name="188">
+    <string name="manuscript_page_188_text">
 А не даси, то донеси
 На мою країну
 Мої сльози; бо я, Боже!
@@ -7432,7 +7432,7 @@ If you have any questions regarding privacy while using the Application, or have
 А я таки мережать буду
 Тихенько білії листи.
     </string>
-    <string name="189">
+    <string name="manuscript_page_189_text">
 Ми заспівали, розійшлись
 Без сльоз і без розмови.
 Чи зійдемося ж знову?
@@ -7472,7 +7472,7 @@ If you have any questions regarding privacy while using the Application, or have
 Удвох дивитися з гори
 На Дніпр широкий, на яри,
     </string>
-    <string name="190">
+    <string name="manuscript_page_190_text">
 Та на лани золотополі,
 Та на високії могили;
 Дивитись, думати, гадать,
@@ -7504,7 +7504,7 @@ If you have any questions regarding privacy while using the Application, or have
 Щоб хоч умерти на Дніпрі,
 Хоч на малесенькій горі.
     </string>
-    <string name="191">
+    <string name="manuscript_page_191_text">
 Були на хуторі пани,
 І пан, і пані неба[га]ті.
 І дочечка у їх росла,
@@ -7551,7 +7551,7 @@ If you have any questions regarding privacy while using the Application, or have
 Поїхали в село весною,
 В селі банкети загули,
     </string>
-    <string name="192">
+    <string name="manuscript_page_192_text">
 А генеральша плаче, плаче,
 А генерал того не бачить,
 А всі вже бачили в селі.
@@ -7602,7 +7602,7 @@ If you have any questions regarding privacy while using the Application, or have
 Удвох таки вони зробили.
 Петра на волю одпустили,
     </string>
-    <string name="193">
+    <string name="manuscript_page_193_text">
 У Київ хлопця одвезли,
 Та й там до школи оддали
 І там чимало поповчили.
@@ -7644,7 +7644,7 @@ If you have any questions regarding privacy while using the Application, or have
 За неї рад ти умирати
 Хоч тричі на день, рад оддати
     </string>
-    <string name="194">
+    <string name="manuscript_page_194_text">
 За неї рай свій молодий!
 А більш нічого не даси…
 Бо серце гріх їй оддавати!
@@ -7691,7 +7691,7 @@ If you have any questions regarding privacy while using the Application, or have
 І з тиждень, грішная, нудилась,
 Сама не знала, що робить!
     </string>
-    <string name="195">
+    <string name="manuscript_page_195_text">
 А потім трути наварила
 Та генерала напоїла,
 Щоб знав, як дівчину любить.
@@ -7736,7 +7736,7 @@ If you have any questions regarding privacy while using the Application, or have
 І поволік Петрусь кайдани
 Аж на Сибір…
     </string>
-    <string name="196">
+    <string name="manuscript_page_196_text">
 Мені здається, я не знаю,
 А люде справді не вмирають,
 А перелізе ще живе
@@ -7780,7 +7780,7 @@ If you have any questions regarding privacy while using the Application, or have
 Або про марне литу кров
 З людей великими катами.
     </string>
-    <string name="197">
+    <string name="manuscript_page_197_text">
 Заплачеш тяжко перед нами,
 І ми заплачемо… Жива
 Душа поетова святая,
@@ -7828,7 +7828,7 @@ If you have any questions regarding privacy while using the Application, or have
     https://www.t-shevchenko.name/files/THSh/autographs/1850MalaKn/198.jpg
     https://www.t-shevchenko.name/uk/Kobzar/1850/JakbyVyZnalyPanychi.html#Line21
     -->
-    <string name="198">
+    <string name="manuscript_page_198_text">
 У тій хатині, у раю,
 Я бачив пекло… Там неволя,
 Робота тяжкая, ніколи
@@ -7880,7 +7880,7 @@ If you have any questions regarding privacy while using the Application, or have
 А подивися та спитай!
 </string>
 
-    <string name="199">
+    <string name="manuscript_page_199_text">
 Що там твориться, у тім раї!
 Звичайне, радость та хвала!
 Тобі, єдиному, святому,
@@ -7905,7 +7905,7 @@ If you have any questions regarding privacy while using the Application, or have
 І сон приверзеться… Ніби край могили
 Пасу я ягнята, а я ще малий;
     </string>
-    <string name="200">
+    <string name="manuscript_page_200_text">
 Дивлюся, могила ніби розвернулась,
 А з неї виходить неначе козак,
 Уже й сивоусий собі неборак,
@@ -7931,7 +7931,7 @@ If you have any questions regarding privacy while using the Application, or have
 Усі ми однако за волю лягли,
 Усі ми і встанем, та Бог його знає,
     </string>
-    <string name="201">
+    <string name="manuscript_page_201_text">
 Коли-то те буде. Дивися ж, дитино!
 Та добре дивися – а я розкажу,
 За що Україна наша стала гинуть,
@@ -7966,7 +7966,7 @@ If you have any questions regarding privacy while using the Application, or have
 Найкращий хлопець, та байстрюк,
 Байстрюк собі, та ще й убогий,
     </string>
-    <string name="202">
+    <string name="manuscript_page_202_text">
 Так і нікому не до його,
 Стоїть собі, як той…
 Плечима стелю підпирає
@@ -8012,7 +8012,7 @@ If you have any questions regarding privacy while using the Application, or have
 Тобі його… Нудьга, печаль
 І сором душу оступила,
     </string>
-    <string name="203">
+    <string name="manuscript_page_203_text">
 І ти заплакала! Чого?
 Того, що тяжко полюбила
 Микиту бідного того!
@@ -8055,7 +8055,7 @@ If you have any questions regarding privacy while using the Application, or have
 Так само дрібно танцювали,
 Як і позаторік.
     </string>
-    <string name="204">
+    <string name="manuscript_page_204_text">
 Завзятий,
 У синій шапці, у жупані,
 В червоних, як калина, штанях,
@@ -8102,7 +8102,7 @@ If you have any questions regarding privacy while using the Application, or have
 Не день, не два титарівна
 В садочок ходила,
     </string>
-    <string name="205">
+    <string name="manuscript_page_205_text">
 Не день, не два, як панові,
 Микиті годила!
 Догодилась титарівна
@@ -8149,7 +8149,7 @@ If you have any questions regarding privacy while using the Application, or have
 Та криницю виливали,
 Та дитя теє шукали.
     </string>
-    <string name="206">
+    <string name="manuscript_page_206_text">
 Найшли, найшли твого сина,
 Титарівно, в баговинні.
 Ой узяли безталанну,
@@ -8178,7 +8178,7 @@ If you have any questions regarding privacy while using the Application, or have
 І вас, дівчаточка, дурить
 Вовіки.
     </string>
-    <string name="207">
+    <string name="manuscript_page_207_text">
 Ну що б, здавалося, слова…
 Слова та голос – більш нічого.
 А серце б’ється – ожива,
@@ -8221,7 +8221,7 @@ If you have any questions regarding privacy while using the Application, or have
 Чого тепер тобі, старому,
 У цій неволі стало жаль –
     </string>
-    <string name="208">
+    <string name="manuscript_page_208_text">
 Що світ зав’язаний, закритий!
 Що сам єси тепер москаль,
 Що серце порване, побите,
@@ -8230,7 +8230,7 @@ If you have any questions regarding privacy while using the Application, or have
 Що ось як жити довелося, –
 Чи так, лебедику?! – Еге…
     </string>
-    <string name="209">
+    <string name="manuscript_page_209_text">
 У Вільні, городі преславнім,
 Оце случилося недавно,
 Ще був тойді… От як на те
@@ -8252,7 +8252,7 @@ If you have any questions regarding privacy while using the Application, or have
 В Острій брамі. Добре було,
 Та лихо спіткало!
     </string>
-    <string name="210">
+    <string name="manuscript_page_210_text">
 Улюбилося, сердешне,
 Було молодеє,
 У жидівку молодую
@@ -8301,7 +8301,7 @@ If you have any questions regarding privacy while using the Application, or have
 А жид ізнадвору,
 Мов скажений, вибігає
     </string>
-    <string name="211">
+    <string name="manuscript_page_211_text">
 З сокирою! Горе!
 Горе тобі, стара мати,
 Нема твого сина,
@@ -8336,7 +8336,7 @@ If you have any questions regarding privacy while using the Application, or have
 І вдовицю не забудуть,
 І тую осудять!
     </string>
-    <string name="212">
+    <string name="manuscript_page_212_text">
 Заступила чорна хмара
 Та білую хмару.
 Виступили з-за лиману
@@ -8380,7 +8380,7 @@ If you have any questions regarding privacy while using the Application, or have
 Положили ті клейноди
 Попенкові в ноги.
     </string>
-    <string name="213">
+    <string name="manuscript_page_213_text">
 Іди, Петре, в Межигор’я
 Молитися Богу.
 Не пустили Дорошенка,
@@ -8424,7 +8424,7 @@ If you have any questions regarding privacy while using the Application, or have
 За гетьмана, панахиду
 За Петра служити.
     </string>
-    <string name="214">
+    <string name="manuscript_page_214_text">
 І досі ще що рік Божий,
 Як день той настане,
 Ідуть править панахиду
@@ -8442,7 +8442,7 @@ If you have any questions regarding privacy while using the Application, or have
 Соломою топити,
 Горшком воду носити.
     </string>
-    <string name="217">
+    <string name="manuscript_page_217_text">
         Титарівна
 Давно се діялось колись,
 Ще як борці у нас ходили
