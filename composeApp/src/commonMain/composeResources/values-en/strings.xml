@@ -21,13 +21,24 @@
 
     <string name="about_app_search_title">Interactive Research</string>
     <string name="about_app_search_description">The app now features a full-text search system, transforming it into a linguistic and historical research tool. You can explore the evolution of the Ukrainian language through Shevchenko’s original spelling.</string>
-    <string name="about_app_linguistic_example">For example, you can discover variations like «Кіевъ» (page 13) and «Кыев» (page 15), reflecting historical spelling evolution preserved in the manuscript.</string>
 
+    <!-- https://x.com/DmytroTurskyi/status/1363473770653110272 -->
+    <string name="about_app_linguistic_example">
+For example, you can discover variations like «Кіевъ» (13) and «Кыева» (15), reflecting historical spelling evolution preserved in the manuscript.
+    </string>
 
-    <string name="about_app_description_part1">This application is more than just an e-book. It allows readers to see the handwritten version of Taras Shevchenko's collection "Mala Knyzhka" alongside the printed text. For the first time, you can explore what the Ukrainian language looked like in its original literary form, preserved by the author himself.</string>
-    <string name="about_app_description_part2">This is the first known attempt to create a tool where Shevchenko's original handwriting is combined with recognized text in a user-friendly format for reading, without the need for a constant internet connection.</string>
-    <string name="about_app_no_alternatives">There are no similar applications - neither online nor offline. Previously, users had to search for each poem separately in different sources. Here, they are collected together, structured, and convenient.</string>
-    <string name="about_app_ai_translation_info">The English translation of the poems was generated using artificial intelligence. This not only conveys the meaning but also preserves the mood of the poetry and its artistic style, making Shevchenko\'s works accessible and emotionally resonant for those who do not speak Ukrainian. This is a new, unique way to immerse oneself in Ukrainian culture.</string>
+    <string name="about_app_description_part1">
+This application is more than just an e-book. It allows readers to see the handwritten version of Taras Shevchenko's collection "Mala Knyzhka" alongside the printed text. For the first time, you can explore what the Ukrainian language looked like in its original literary form, preserved by the author himself.
+    </string>
+    <string name="about_app_description_part2">
+This is the first known attempt to create a tool where Shevchenko's original handwriting is combined with recognized text in a user-friendly format for reading, without the need for a constant internet connection.
+    </string>
+    <string name="about_app_no_alternatives">
+There are no similar applications - neither online nor offline. Previously, users had to search for each poem separately in different sources. Here, they are collected together, structured, and convenient.
+    </string>
+    <string name="about_app_ai_translation_info">
+The English translation of the poems was generated using artificial intelligence. This not only conveys the meaning but also preserves the mood of the poetry and its artistic style, making Shevchenko's works accessible and emotionally resonant for those who do not speak Ukrainian. This is a new, unique way to immerse oneself in Ukrainian culture.
+    </string>
 
     <string name="about_app_target_audience">This application is a tool for researchers, students, teachers, and anyone interested in the evolution of the Ukrainian language, the history of literature, and manuscript heritage.</string>
 
