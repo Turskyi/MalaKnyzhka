@@ -216,6 +216,7 @@ compose.desktop {
                 TargetFormat.Dmg,
                 TargetFormat.Msi,
                 TargetFormat.Deb,
+                TargetFormat.Pkg,
             )
             packageName = libs.versions.dockName.get()
             packageVersion = libs.versions.versionName.get()
