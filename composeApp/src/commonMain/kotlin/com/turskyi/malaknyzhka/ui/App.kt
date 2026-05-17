@@ -6,6 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -82,64 +83,66 @@ fun App(
         LocalAppLanguage provides appGlobalLanguage,
         LocalChangeAppLanguage provides changeAppGlobalLanguage,
     ) {
-        AppTheme {
-            NavHost(
-                navController = navController,
-                startDestination = if (isOnWeb())
-                    NavigationDestination.Landing.name
-                else
-                    NavigationDestination.Book.name
-            ) {
-                composable(route = NavigationDestination.Landing.name) {
-                    LandingPage(
-                        onNavigateToBook = {
-                            navController.navigate(NavigationDestination.Book.name)
-                        },
-                        onNavigateToPrivacyPolicy = {
-                            navController.navigate(
-                                NavigationDestination.PrivacyPolicy.name,
-                            )
-                        },
-                        onNavigateToSupport = {
-                            navController.navigate(
-                                NavigationDestination.Support.name,
-                            )
-                        },
-                        onNavigateToAbout = {
-                            navController.navigate(
-                                NavigationDestination.About.name,
-                            )
-                        }
-                    )
-                }
-                composable(route = NavigationDestination.Book.name) {
-                    Page(
-                        PageSettings(settings),
-                        onNavigateToPrivacyPolicy = {
-                            navController.navigate(
-                                NavigationDestination.PrivacyPolicy.name,
-                            )
-                        },
-                        onNavigateToSupport = {
-                            navController.navigate(
-                                NavigationDestination.Support.name,
-                            )
-                        },
-                        onNavigateToAbout = {
-                            navController.navigate(
-                                NavigationDestination.About.name,
-                            )
-                        }
-                    )
-                }
-                composable(route = NavigationDestination.PrivacyPolicy.name) {
-                    PrivacyPolicyPage(onBack = { navController.popBackStack() })
-                }
-                composable(route = NavigationDestination.Support.name) {
-                    SupportPage(onBack = { navController.popBackStack() })
-                }
-                composable(route = NavigationDestination.About.name) {
-                    AboutPage(onBack = { navController.popBackStack() })
+        key(appGlobalLanguage) {
+            AppTheme {
+                NavHost(
+                    navController = navController,
+                    startDestination = if (isOnWeb())
+                        NavigationDestination.Landing.name
+                    else
+                        NavigationDestination.Book.name
+                ) {
+                    composable(route = NavigationDestination.Landing.name) {
+                        LandingPage(
+                            onNavigateToBook = {
+                                navController.navigate(NavigationDestination.Book.name)
+                            },
+                            onNavigateToPrivacyPolicy = {
+                                navController.navigate(
+                                    NavigationDestination.PrivacyPolicy.name,
+                                )
+                            },
+                            onNavigateToSupport = {
+                                navController.navigate(
+                                    NavigationDestination.Support.name,
+                                )
+                            },
+                            onNavigateToAbout = {
+                                navController.navigate(
+                                    NavigationDestination.About.name,
+                                )
+                            }
+                        )
+                    }
+                    composable(route = NavigationDestination.Book.name) {
+                        Page(
+                            PageSettings(settings),
+                            onNavigateToPrivacyPolicy = {
+                                navController.navigate(
+                                    NavigationDestination.PrivacyPolicy.name,
+                                )
+                            },
+                            onNavigateToSupport = {
+                                navController.navigate(
+                                    NavigationDestination.Support.name,
+                                )
+                            },
+                            onNavigateToAbout = {
+                                navController.navigate(
+                                    NavigationDestination.About.name,
+                                )
+                            }
+                        )
+                    }
+                    composable(route = NavigationDestination.PrivacyPolicy.name) {
+                        PrivacyPolicyPage(onBack = { navController.popBackStack() })
+                    }
+                    composable(route = NavigationDestination.Support.name) {
+                        SupportPage(onBack = { navController.popBackStack() })
+                    }
+                    composable(route = NavigationDestination.About.name) {
+                        AboutPage(onBack = { navController.popBackStack() })
+                    }
                 }
             }
         }

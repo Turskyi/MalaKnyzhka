@@ -21,6 +21,7 @@ import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.util.isOnAndroid
 import com.turskyi.malaknyzhka.util.isOnDesktop
 import com.turskyi.malaknyzhka.util.isOnIos
+import com.turskyi.malaknyzhka.util.isOnWeb
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -43,7 +44,7 @@ fun LanguageSwitcher(
             ).padding(horizontal = 12.dp, vertical = 4.dp)
         )
         Spacer(Modifier.height(8.dp))
-        if (isOnAndroid()) Row {
+        if (isOnAndroid() || isOnWeb() || isOnDesktop()) Row {
             LanguageChip(
                 label = stringResource(AppLang.Ukraine.stringRes),
                 icon = AppLang.Ukraine.imageRes,
@@ -72,22 +73,6 @@ fun LanguageSwitcher(
 
                 },
             )
-        } else if (isOnDesktop()) {
-            Row {
-                LanguageChip(
-                    label = stringResource(AppLang.Ukraine.stringRes),
-                    icon = AppLang.Ukraine.imageRes,
-                    selected = currentLanguage == AppLang.Ukraine,
-                    onClick = { onLanguageChange(AppLang.Ukraine) },
-                )
-                Spacer(Modifier.width(8.dp))
-                LanguageChip(
-                    label = stringResource(AppLang.English.stringRes),
-                    icon = AppLang.English.imageRes,
-                    selected = currentLanguage == AppLang.English,
-                    onClick = { onLanguageChange(AppLang.English) },
-                )
-            }
         }
     }
 }

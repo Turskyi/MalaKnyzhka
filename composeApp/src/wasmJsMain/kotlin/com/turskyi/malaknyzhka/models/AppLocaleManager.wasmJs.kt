@@ -8,6 +8,10 @@ import kotlinx.browser.window
 import org.w3c.dom.get
 import org.w3c.dom.set
 
+@OptIn(ExperimentalWasmJsInterop::class)
+@JsFun("(code) => { Object.defineProperty(window.navigator, 'language', { get: function() { return code; }, configurable: true }); Object.defineProperty(window.navigator, 'languages', { get: function() { return [code]; }, configurable: true }); }")
+external fun setNavigatorLanguage(code: String)
+
 private const val PREFERRED_LOCALE_KEY = "app_preferred_locale"
 private const val PREFERRED_WASM_LOCALE_USER_SET_KEY =
     "app_preferred_wasm_locale_user_set"
@@ -45,13 +49,16 @@ class WasmJsAppLocaleManager : AppLocaleManager {
             ?: AppLang.Ukraine.code
     }
 
-    //    FIXME: this does not work.
     override fun setLocale(appLang: AppLang) {
         // 1. Store the preference in localStorage.
         localStorage[PREFERRED_LOCALE_KEY] = appLang.code
         // 2. Mark that language has been explicitly set by the user/app.
         localStorage[PREFERRED_WASM_LOCALE_USER_SET_KEY] = "true"
-        // 3. Optionally, set the 'lang' attribute on the HTML document's root
+
+        // 3. Dynamically override navigator.language so Compose Resource library sees it.
+        setNavigatorLanguage(appLang.code)
+
+        // 4. Optionally, set the 'lang' attribute on the HTML document's root
         // element.
         document.documentElement?.setAttribute(
             "lang",
@@ -66,7 +73,16 @@ class WasmJsAppLocaleManager : AppLocaleManager {
     }
 }
 
+@OptIn(ExperimentalWasmJsInterop::class)
 @Composable
 actual fun rememberAppLocaleManager(): AppLocaleManager {
-    return remember { WasmJsAppLocaleManager() }
+    return remember {
+        val manager = WasmJsAppLocaleManager()
+        // Initialize navigator language from stored preference on startup.
+        val preferred: String? = localStorage[PREFERRED_LOCALE_KEY]
+        if (preferred != null) {
+            setNavigatorLanguage(preferred)
+        }
+        manager
+    }
 }

@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
-import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.cover
@@ -140,11 +139,10 @@ fun DrawerPanel(
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                if (!isOnWeb())
-                    LanguageSwitcher(
-                        currentLanguage = currentLanguage,
-                        onLanguageChange = onLanguageChange
-                    )
+                LanguageSwitcher(
+                    currentLanguage = currentLanguage,
+                    onLanguageChange = onLanguageChange
+                )
             }
         }
     }
