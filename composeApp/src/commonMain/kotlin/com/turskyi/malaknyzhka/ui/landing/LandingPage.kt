@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -42,7 +43,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.URL_TAG
-import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color_Ukranian
+import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
+import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.arrow_forward
@@ -77,10 +79,8 @@ import malaknyzhka.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun LandingPage(
     onNavigateToBook: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
@@ -102,6 +102,13 @@ fun LandingPage(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Box(
+                    modifier = Modifier.widthIn(max = 2000.dp).fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    contentAlignment = Alignment.CenterEnd
+                ) {
+                    AppBarLanguageSwitcher()
+                }
                 Card(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(16.dp),
@@ -116,7 +123,6 @@ fun LandingPage(
                         ),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-//               TODO: implement language switcher.
                         Image(
                             painter = painterResource(
                                 Res.drawable.shevchenko_portrait,
@@ -208,7 +214,7 @@ fun LandingPage(
                         ) {
                             Image(
                                 painter = painterResource(
-                                    Res.drawable.GetItOnGooglePlay_Badge_Web_color_Ukranian,
+                                    Res.drawable.GetItOnGooglePlay_Badge_Web_color,
                                 ),
                                 contentDescription = stringResource(
                                     Res.string.badge_google_play_description,
