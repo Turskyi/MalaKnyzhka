@@ -32,8 +32,6 @@ import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
 import malaknyzhka.composeapp.generated.resources.privacy
 import malaknyzhka.composeapp.generated.resources.privacy_policy
-import malaknyzhka.composeapp.generated.resources.privacy_policy_ukr_eng
-import malaknyzhka.composeapp.generated.resources.privacy_ukr_eng
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -47,10 +45,7 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                 windowInsets = WindowInsets.statusBars,
                 title = {
                     Text(
-                        text = if (isOnWeb())
-                            stringResource(Res.string.privacy_policy_ukr_eng)
-                        else
-                            stringResource(Res.string.privacy_policy),
+                        text = stringResource(Res.string.privacy_policy),
                         modifier = Modifier.padding(horizontal = 8.dp),
                     )
                 },
@@ -97,12 +92,7 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
         ) {
 
             SelectionContainer {
-                Text(
-                    text = if (isOnWeb())
-                        stringResource(Res.string.privacy_ukr_eng)
-                    else
-                        stringResource(Res.string.privacy),
-                )
+                Text(text = stringResource(Res.string.privacy))
             }
         }
     }
