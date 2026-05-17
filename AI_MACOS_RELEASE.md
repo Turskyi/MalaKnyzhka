@@ -31,11 +31,13 @@ Apple strictly rejects packages containing files with the `com.apple.quarantine`
 extended attribute.
 **Action**: Run `xattr -r -d com.apple.quarantine .` before packaging.
 
-### 2. Mandatory Icon Size
+### 2. Mandatory Icon Size (REGENERATION REQUIRED)
 
 The Mac App Store requires a 1024x1024 (512pt @2x) icon in the `.icns` file.
-**Current Fix**: We generated this from the Android `mipmap-xxxhdpi` asset using
-`sips` and `iconutil`.
+The Compose Gradle plugin often fails to include all sizes or correctly map them
+for TestFlight.
+**Action**: Regenerate `icon.icns` from `icon.png` using `sips` and
+`iconutil` before building.
 
 ### 3. arm64 Support & Deployment Target
 
@@ -57,43 +59,65 @@ YOUR_TEAM_ID.com.turskyi.malaknyzhka
 
 (Current Team ID: `26QZ8BPZFL`)
 
-**Manual Submission Fix**: If the profile and App ID mismatch, remove
-`com.apple.application-identifier` from `entitlements.plist` to allow successful
-upload, though this will break TestFlight.
-
 ### 5. Manual Provisioning Profile Embedding
 
 Compose Multiplatform might not always embed the profile correctly for the App
 Store's subcomponent check.
 **Action**: Manually copy the profile to
 `Мала Книжка (Тарас Шевченко).app/Contents/embedded.provisionprofile` and sign
-it before signing
-the main bundle.
+it before signing the main bundle.
+
+### 6. JVM Hardened Runtime (MANDATORY FOR LAUNCH)
+
+**Warning**: If the app installs but **fails to open** (nothing happens when
+clicking "Open" in TestFlight), the JVM is likely being blocked by the Sandbox.
+Compose apps (JVM) **must** have these entitlements enabled in
+`entitlements.plist`:
+
+```xml
+
+<key>com.apple.security.cs.allow-jit</key><true /><key>
+com.apple.security.cs.allow-unsigned-executable-memory
+</key><true /><key>com.apple.security.cs.disable-library-validation
+</key><true /><key>com.apple.security.cs.allow-dyld-environment-variables
+</key><true />
+```
+
+Without these, the OS will kill the app immediately upon launch because it
+attempts to generate/execute code in memory.
 
 ## Step-by-Step Execution Command
 
 ```bash
 # 0. Confirm the version you intend to ship
-# (Source of truth for versionName in this repo)
 grep -n 'versionName' gradle/libs.versions.toml
 
-# 1. Hard-clean build outputs to avoid re-packaging an older .app/.pkg
+# 1. Hard-clean build outputs
 ./gradlew :composeApp:clean
 rm -rf composeApp/build/compose/binaries/main-release
 
-# 2. Clean quarantine (Apple rejects archives with quarantine xattrs)
+# 2. Regenerate the .icns file
+mkdir -p composeApp/src/desktopMain/icons/icon.iconset
+sips -z 16 16     composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_16x16.png
+sips -z 32 32     composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_16x16@2x.png
+sips -z 32 32     composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_32x32.png
+sips -z 64 64     composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_32x32@2x.png
+sips -z 128 128   composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_128x128.png
+sips -z 256 256   composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_128x128@2x.png
+sips -z 256 256   composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_256x256.png
+sips -z 512 512   composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_256x256@2x.png
+sips -z 512 512   composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_512x512.png
+sips -z 1024 1024 composeApp/src/desktopMain/icons/icon.png --out composeApp/src/desktopMain/icons/icon.iconset/icon_512x512@2x.png
+iconutil -c icns composeApp/src/desktopMain/icons/icon.iconset
+rm -rf composeApp/src/desktopMain/icons/icon.iconset
+
+# 3. Clean quarantine
 xattr -r -d com.apple.quarantine .
 
-# 3. Build via Gradle
-# NOTE: This task may fail while trying to codesign the embedded 
-# `app.provisionprofile`.
-# If it fails, you can still use the partially-produced .app bundle in the next 
-# steps.
+# 4. Build base bundle
 ./gradlew :composeApp:packageReleasePkg || true
 
-# 3. Manual Fixes & Signing
-
-# (Extract variables for readability)
+# 5. Manual Fixes & Signing
 APP_NAME="Мала Книжка (Тарас Шевченко)"
 APP_BUNDLE="composeApp/build/compose/binaries/main-release/app/${APP_NAME}.app"
 IDENTITY="3rd Party Mac Developer Application: DMYTRO TURSKYI (26QZ8BPZFL)"
@@ -102,59 +126,45 @@ ENTITLEMENTS="composeApp/src/desktopMain/entitlements/entitlements.plist"
 CHILD_ENTITLEMENTS="composeApp/src/desktopMain/entitlements/child-entitlements.plist"
 PROVISIONING_PROFILE="composeApp/src/desktopMain/entitlements/app.provisionprofile"
 
-# (Preflight: verify you are not about to ship a stale build)
-/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "${APP_BUNDLE}/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "${APP_BUNDLE}/Contents/Info.plist"
-
-# (Preflight: ensure LSApplicationCategoryType is valid; "Unknown" is rejected 
-# by App Store Connect)
-/usr/libexec/PlistBuddy -c "Print :LSApplicationCategoryType" "${APP_BUNDLE}/Contents/Info.plist" || true
-
-# (Remove problematic subcomponent from the Compose build)
-# IMPORTANT: if you re-package without cleaning, you can accidentally upload an 
-# older version.
+# Remove problematic subcomponent
 rm -f "${APP_BUNDLE}/Contents/app.provisionprofile"
 
-# (Align Info.plist)
+# Align Info.plist
 /usr/libexec/PlistBuddy -c "Set :LSMinimumSystemVersion 12.0" "${APP_BUNDLE}/Contents/Info.plist"
-
-# ITSAppUsesNonExemptEncryption should already be set by Gradle, but double 
-# check
 /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" "${APP_BUNDLE}/Contents/Info.plist" || true
 /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" "${APP_BUNDLE}/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :LSApplicationCategoryType public.app-category.books" "${APP_BUNDLE}/Contents/Info.plist"
 
-# (Manual Embed Provisioning Profile)
+# Fix Icon Reference
+/usr/libexec/PlistBuddy -c "Set :CFBundleIconFile icon.icns" "${APP_BUNDLE}/Contents/Info.plist" || /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string icon.icns" "${APP_BUNDLE}/Contents/Info.plist"
+
+# Manual Embed Provisioning Profile
 cp "${PROVISIONING_PROFILE}" "${APP_BUNDLE}/Contents/embedded.provisionprofile"
 
-# (Deep Signing Fix: Sign all `dylibs` and executables manually)
-# 1. Sign app-native libraries (Compose/Skiko lives here)
+# Deep Signing Fix: Sign all `dylibs` manually
 find "${APP_BUNDLE}/Contents/app" -type f \( -name "*.dylib" -o -name "*.so" -o -name "*.jnilib" \) -exec codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --force {} \;
-
-# 2. Sign JRE libraries
 find "${APP_BUNDLE}/Contents/runtime" -type f \( -name "*.dylib" -o -name "*.so" \) -exec codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --force {} \;
 
-# 3. Sign `jspawnhelper` with child entitlements (inheriting sandbox)
+# Sign jspawnhelper with child entitlements
 JSPAWNHELPER="${APP_BUNDLE}/Contents/runtime/Contents/Home/lib/jspawnhelper"
 if [ -f "${JSPAWNHELPER}" ]; then
     codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --entitlements "${CHILD_ENTITLEMENTS}" --force "${JSPAWNHELPER}"
 fi
 
-# 4. Sign the app bundle itself (must be last)
+# SIGN MAIN EXECUTABLE (CRITICAL: MUST INCLUDE ENTITLEMENTS TO WORK IN SANDBOX)
+codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --entitlements "${ENTITLEMENTS}" --force "${APP_BUNDLE}/Contents/MacOS/${APP_NAME}"
+
+# Sign the app bundle itself
 codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --entitlements "${ENTITLEMENTS}" --force "${APP_BUNDLE}"
 
-# (Preflight: ensure App Store signature checks will pass)
+# Preflight Check
 codesign --verify --deep --strict --verbose=4 "${APP_BUNDLE}"
 
-# (Re-package)
+# Re-package
 mkdir -p "composeApp/build/compose/binaries/main-release/pkg"
 OUTPKG="composeApp/build/compose/binaries/main-release/pkg/MalaKnyzhka-$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "${APP_BUNDLE}/Contents/Info.plist")-manual.pkg"
 productbuild --component "${APP_BUNDLE}" /Applications --sign "${IDENTITY_INSTALLER}" "${OUTPKG}"
 
-# (Preflight: verify pkg embeds the expected version before upload)
-tmpdir="$(mktemp -d)"
-pkgutil --expand "${OUTPKG}" "${tmpdir}/pkg"
-sed -n '1,40p' "${tmpdir}/pkg/Distribution"
-
-# 4. Upload
+# 6. Upload
 xcrun altool --upload-app -f "${OUTPKG}" -t macos -u "dmytro.turskyi@gmail.com" -p "bhse-sbex-dofp-aqfy" --provider-public-id "48e54131-a786-4846-a40d-b5dacfbf27b2"
 ```
