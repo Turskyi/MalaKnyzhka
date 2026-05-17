@@ -1,0 +1,55 @@
+package com.turskyi.malaknyzhka.ui.language
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.ui.LocalAppLanguage
+import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
+import com.turskyi.malaknyzhka.util.isOnIos
+import org.jetbrains.compose.resources.stringResource
+
+@Composable
+fun AppBarLanguageSwitcher() {
+    val currentLanguage: AppLang = LocalAppLanguage.current
+    val onLanguageChange: (AppLang) -> Unit = LocalChangeAppLanguage.current
+
+    Row(
+        modifier = Modifier.padding(end = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (isOnIos()) {
+            LanguageChip(
+                label = "A/Я",
+                icon = null,
+                selected = true,
+                onClick = {
+                    if (currentLanguage == AppLang.English) {
+                        onLanguageChange(AppLang.Ukraine)
+                    } else {
+                        onLanguageChange(AppLang.English)
+                    }
+                },
+            )
+        } else {
+            LanguageChip(
+                label = stringResource(AppLang.Ukraine.stringRes),
+                icon = AppLang.Ukraine.imageRes,
+                selected = currentLanguage == AppLang.Ukraine,
+                onClick = { onLanguageChange(AppLang.Ukraine) },
+            )
+            Spacer(Modifier.width(8.dp))
+            LanguageChip(
+                label = stringResource(AppLang.English.stringRes),
+                icon = AppLang.English.imageRes,
+                selected = currentLanguage == AppLang.English,
+                onClick = { onLanguageChange(AppLang.English) },
+            )
+        }
+    }
+}

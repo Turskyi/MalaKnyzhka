@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.arrow_back
@@ -80,7 +81,10 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                             )
                         }
                     }
-                }
+                },
+                actions = {
+                    AppBarLanguageSwitcher()
+                },
             )
         }
     ) { innerPadding: PaddingValues ->

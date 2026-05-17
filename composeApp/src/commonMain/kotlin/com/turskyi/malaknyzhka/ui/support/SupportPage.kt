@@ -39,6 +39,7 @@ import com.turskyi.malaknyzhka.AppConstants.CHAT_CHANNEL
 import com.turskyi.malaknyzhka.CHAT_LINK_TAG
 import com.turskyi.malaknyzhka.EMAIL_LINK_TAG
 import com.turskyi.malaknyzhka.SUPPORT_LINK_TAG
+import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.app_allows
@@ -106,7 +107,10 @@ fun SupportPage(onBack: () -> Unit) {
                             )
                         }
                     }
-                }
+                },
+                actions = {
+                    AppBarLanguageSwitcher()
+                },
             )
         }
     ) { innerPadding: PaddingValues ->

@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
@@ -89,6 +90,9 @@ fun AboutPage(onBack: () -> Unit) {
                             )
                         }
                     }
+                },
+                actions = {
+                    AppBarLanguageSwitcher()
                 },
             )
         }
