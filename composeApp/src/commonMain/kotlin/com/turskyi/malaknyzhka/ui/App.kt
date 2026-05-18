@@ -40,45 +40,28 @@ fun App(
     settings: Settings,
     navController: NavHostController = rememberNavController()
 ) {
-
     val appLocaleManager: AppLocaleManager = rememberAppLocaleManager()
-    // This is the app-wide UI language.
+
+    // This is the app-wide UI language state.
     var appGlobalLanguage: AppLang by remember {
         mutableStateOf(appLocaleManager.getLocale().toApLang())
     }
 
     val changeAppGlobalLanguage: (AppLang) -> Unit = { newLang: AppLang ->
-        // Tells platform to change locale.
+        // 1. Persist the change on the platform (stores in NSUserDefaults on
+        // iOS).
         appLocaleManager.setLocale(newLang)
-        // Updates Compose state for UI recomposition.
+        // 2. Update the state to trigger Compose recomposition.
         appGlobalLanguage = newLang
     }
 
-    // This LaunchedEffect ensures that on the very first launch,
-    // if getLocale() returned the intended default,
-    // we also explicitly call setLocale() to ensure the platform/system
-    // reflects this default and the "user_set" flag is persisted.
-    // This is because getLocale() might just READ the default without APPLYING
-    // it.
     LaunchedEffect(Unit) {
         if (isOnDesktop()) {
-            // JVM doesn't persist Locale.setDefault(),
-            // so we re-apply it at every startup.
             appLocaleManager.setLocale(appGlobalLanguage)
         } else if (isOnAndroid() && !appLocaleManager.hasUserEverSetLanguage()) {
-            // This is the very first session where no language has been
-            // explicitly set.
-            // Even if appGlobalLanguage was initialized to DEFAULT by
-            // getLocale(),
-            // call setLocale to ensure it's applied to the system
-            // (e.g., AppCompatDelegate) and the "user set" flag is stored.
             if (appGlobalLanguage == AppLang.DEFAULT) {
                 appLocaleManager.setLocale(AppLang.DEFAULT)
             } else {
-                // This case implies getLocale() didn't return your intended
-                // default initially,
-                // which means the logic in getLocale() needs review.
-                // However, we can still force the default here.
                 changeAppGlobalLanguage(AppLang.DEFAULT)
             }
         }
@@ -88,11 +71,17 @@ fun App(
         LocalAppLanguage provides appGlobalLanguage,
         LocalChangeAppLanguage provides changeAppGlobalLanguage,
     ) {
+        // The 'key' forces the entire tree to be recreated when the language
+        // changes.
+        // This is essential on iOS for stringResource() to pick up the new
+        // locale.
         key(appGlobalLanguage) {
             AppTheme {
                 BoxWithConstraints(Modifier.fillMaxSize()) {
                     val windowInfo = WindowInfo(screenWidth = maxWidth)
-                    CompositionLocalProvider(LocalWindowInfo provides windowInfo) {
+                    CompositionLocalProvider(
+                        LocalWindowInfo provides windowInfo,
+                    ) {
                         NavHost(
                             navController = navController,
                             startDestination = if (isOnWeb())
@@ -100,7 +89,9 @@ fun App(
                             else
                                 NavigationDestination.Book.name
                         ) {
-                            composable(route = NavigationDestination.Landing.name) {
+                            composable(
+                                route = NavigationDestination.Landing.name,
+                            ) {
                                 LandingPage(
                                     onNavigateToBook = {
                                         navController.navigate(
@@ -132,7 +123,9 @@ fun App(
                                     }
                                 )
                             }
-                            composable(route = NavigationDestination.Book.name) {
+                            composable(
+                                route = NavigationDestination.Book.name,
+                            ) {
                                 Page(
                                     PageSettings(settings),
                                     onNavigateToPrivacyPolicy = {
@@ -169,7 +162,9 @@ fun App(
                                     },
                                 )
                             }
-                            composable(route = NavigationDestination.Support.name) {
+                            composable(
+                                route = NavigationDestination.Support.name,
+                            ) {
                                 SupportPage(
                                     onBack = {
                                         if (navController.previousBackStackEntry != null) {
@@ -178,7 +173,9 @@ fun App(
                                     },
                                 )
                             }
-                            composable(route = NavigationDestination.About.name) {
+                            composable(
+                                route = NavigationDestination.About.name,
+                            ) {
                                 AboutPage(
                                     onBack = {
                                         if (navController.previousBackStackEntry != null) {

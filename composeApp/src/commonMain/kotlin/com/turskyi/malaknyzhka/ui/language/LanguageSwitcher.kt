@@ -18,18 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
-import com.turskyi.malaknyzhka.util.isOnAndroid
-import com.turskyi.malaknyzhka.util.isOnDesktop
-import com.turskyi.malaknyzhka.util.isOnIos
-import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources.change_lang
 import malaknyzhka.composeapp.generated.resources.language
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun LanguageSwitcher(
-    currentLanguage: AppLang, onLanguageChange: (AppLang) -> Unit
+    currentLanguage: AppLang,
+    onLanguageChange: (AppLang) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -43,11 +39,11 @@ fun LanguageSwitcher(
             modifier = Modifier.background(
                 // Semi-transparent black background.
                 color = Color.Black.copy(alpha = 0.6f),
-                shape = RoundedCornerShape(8.dp)
-            ).padding(horizontal = 12.dp, vertical = 4.dp)
+                shape = RoundedCornerShape(8.dp),
+            ).padding(horizontal = 12.dp, vertical = 4.dp),
         )
         Spacer(Modifier.height(8.dp))
-        if (isOnAndroid() || isOnWeb() || isOnDesktop()) Row {
+        Row {
             LanguageChip(
                 label = stringResource(AppLang.Ukraine.stringRes),
                 icon = AppLang.Ukraine.imageRes,
@@ -60,21 +56,6 @@ fun LanguageSwitcher(
                 icon = AppLang.English.imageRes,
                 selected = currentLanguage == AppLang.English,
                 onClick = { onLanguageChange(AppLang.English) },
-            )
-        }
-        else if (isOnIos()) {
-            LanguageChip(
-                label = stringResource(Res.string.change_lang),
-                icon = null,
-                selected = true,
-                onClick = {
-                    if (currentLanguage == AppLang.English) {
-                        onLanguageChange(AppLang.Ukraine)
-                    } else {
-                        onLanguageChange(AppLang.English)
-                    }
-
-                },
             )
         }
     }

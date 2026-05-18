@@ -4,12 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import platform.Foundation.NSBundle
 import platform.Foundation.NSLocale
-import platform.Foundation.NSURL
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.preferredLanguages
 import platform.Foundation.setValue
-import platform.UIKit.UIApplication
-import platform.UIKit.UIApplicationOpenSettingsURLString
 
 // Key for storing the user's preferred language CODE in NSUserDefaults.
 private const val PREFERRED_IOS_LOCALE_CODE_KEY =
@@ -38,13 +35,10 @@ class IosAppLocaleManager : AppLocaleManager {
                 return storedLocale.split("-").firstOrNull()
                     ?: AppLang.DEFAULT.code
             }
-            // If flag is true but code is missing/blank (should be rare if setLocale is correct),
-            // fall through to system/default.
         }
 
         // 3. If no in-app stored preference or user hasn't set one,
-        //    get the app's current effective language based on its Info.plist localizations
-        //    and the system's preferred languages. This is often more reliable than just NSLocale.currentLocale.
+        //    get the app's current effective language.
         val appPreferredLocalization: String? =
             NSBundle.mainBundle.preferredLocalizations.firstOrNull() as? String
         if (appPreferredLocalization != null && appPreferredLocalization != "Base") {
@@ -52,9 +46,6 @@ class IosAppLocaleManager : AppLocaleManager {
                 ?: AppLang.DEFAULT.code
         }
 
-        // 4. Fallback: Get the system's preferred language (e.g. from device
-        // settings) NSLocale.currentLocale.languageCode can sometimes be less
-        // specific than preferredLanguages.
         val systemPreferredLanguage: String? =
             NSLocale.preferredLanguages.firstOrNull() as? String
 
@@ -63,8 +54,6 @@ class IosAppLocaleManager : AppLocaleManager {
                 ?: AppLang.DEFAULT.code
         }
 
-        // 5. Absolute fallback to a hardcoded default (e.g., your primary
-        // development language)
         return AppLang.DEFAULT.code
     }
 
@@ -83,21 +72,17 @@ class IosAppLocaleManager : AppLocaleManager {
             forKey = PREFERRED_IOS_LOCALE_USER_SET_KEY
         )
 
+        // 3. Set AppleLanguages to hint the system/bundles about the
+        // preference.
+        // This is necessary for some resource loading logic on iOS to respect
+        // the change.
+        userDefaults.setObject(
+            listOf(appLang.code),
+            forKey = "AppleLanguages",
+        )
+
         // Ensure it's written to disk immediately.
         userDefaults.synchronize()
-
-        val settingsUrl = NSURL(string = UIApplicationOpenSettingsURLString)
-        settingsUrl.let {
-            if (UIApplication.sharedApplication.canOpenURL(it)) {
-                UIApplication.sharedApplication.openURL(
-                    it,
-                    options = emptyMap<Any?, Any>(),
-                    completionHandler = null,
-                )
-            } else {
-                println("Cannot open app settings URL")
-            }
-        }
     }
 
     override fun hasUserEverSetLanguage(): Boolean {
