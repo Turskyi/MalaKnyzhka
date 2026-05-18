@@ -22,6 +22,9 @@ import com.turskyi.malaknyzhka.util.isOnAndroid
 import com.turskyi.malaknyzhka.util.isOnDesktop
 import com.turskyi.malaknyzhka.util.isOnIos
 import com.turskyi.malaknyzhka.util.isOnWeb
+import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.change_lang
+import malaknyzhka.composeapp.generated.resources.language
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -33,7 +36,7 @@ fun LanguageSwitcher(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Мова / Language",
+            text = stringResource(Res.string.language),
             fontWeight = Bold,
             color = MaterialTheme.colors.surface,
             style = MaterialTheme.typography.h2,
@@ -61,7 +64,7 @@ fun LanguageSwitcher(
         }
         else if (isOnIos()) {
             LanguageChip(
-                label = "\uD83C\uDF0D Змінити мову\nChange Language",
+                label = stringResource(Res.string.change_lang),
                 icon = null,
                 selected = true,
                 onClick = {

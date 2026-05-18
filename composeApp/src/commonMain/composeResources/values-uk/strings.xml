@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Мала Книжка (Тарас Шевченко)</string>
+    <string name="language">Мова</string>
     <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 – 1850 рр.</string>
     <string name="en">Англійська</string>
     <string name="uk">Українська</string>
     <string name="app_language">Мова застосунку: %1$s</string>
-    <string name="change_lang">Change Language</string>
+    <string name="change_lang">Змінити мову</string>
     <string name="logo_description">Мала Книжка</string>
 
     <string name="privacy_policy">Політика конфіденційності</string>
