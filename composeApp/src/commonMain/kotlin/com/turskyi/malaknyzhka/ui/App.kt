@@ -50,7 +50,7 @@ fun App(
     }
 
     // This LaunchedEffect ensures that on the very first launch,
-    // if getLocale() returned the intended default (Ukrainian),
+    // if getLocale() returned the intended default,
     // we also explicitly call setLocale() to ensure the platform/system
     // reflects this default and the "user_set" flag is persisted.
     // This is because getLocale() might just READ the default without APPLYING
@@ -63,18 +63,18 @@ fun App(
         } else if (isOnAndroid() && !appLocaleManager.hasUserEverSetLanguage()) {
             // This is the very first session where no language has been
             // explicitly set.
-            // Even if appGlobalLanguage was initialized to Ukrainian by
+            // Even if appGlobalLanguage was initialized to DEFAULT by
             // getLocale(),
             // call setLocale to ensure it's applied to the system
             // (e.g., AppCompatDelegate) and the "user set" flag is stored.
-            if (appGlobalLanguage == AppLang.Ukraine) {
-                appLocaleManager.setLocale(AppLang.Ukraine)
+            if (appGlobalLanguage == AppLang.DEFAULT) {
+                appLocaleManager.setLocale(AppLang.DEFAULT)
             } else {
                 // This case implies getLocale() didn't return your intended
                 // default initially,
                 // which means the logic in getLocale() needs review.
                 // However, we can still force the default here.
-                changeAppGlobalLanguage(AppLang.Ukraine)
+                changeAppGlobalLanguage(AppLang.DEFAULT)
             }
         }
     }
@@ -184,10 +184,7 @@ fun App(
 }
 
 val LocalAppLanguage: ProvidableCompositionLocal<AppLang> =
-    compositionLocalOf {
-        /* default */
-        AppLang.Ukraine
-    }
+    compositionLocalOf { AppLang.DEFAULT }
 
 
 val LocalChangeAppLanguage: ProvidableCompositionLocal<(AppLang) -> Unit> =

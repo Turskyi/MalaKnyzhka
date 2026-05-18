@@ -36,7 +36,7 @@ class IosAppLocaleManager : AppLocaleManager {
                 )
             if (!storedLocale.isNullOrBlank()) {
                 return storedLocale.split("-").firstOrNull()
-                    ?: AppLang.Ukraine.code
+                    ?: AppLang.DEFAULT.code
             }
             // If flag is true but code is missing/blank (should be rare if setLocale is correct),
             // fall through to system/default.
@@ -49,7 +49,7 @@ class IosAppLocaleManager : AppLocaleManager {
             NSBundle.mainBundle.preferredLocalizations.firstOrNull() as? String
         if (appPreferredLocalization != null && appPreferredLocalization != "Base") {
             return appPreferredLocalization.split("-").firstOrNull()
-                ?: AppLang.Ukraine.code
+                ?: AppLang.DEFAULT.code
         }
 
         // 4. Fallback: Get the system's preferred language (e.g. from device
@@ -60,12 +60,12 @@ class IosAppLocaleManager : AppLocaleManager {
 
         if (!systemPreferredLanguage.isNullOrBlank()) {
             return systemPreferredLanguage.split("-").firstOrNull()
-                ?: AppLang.Ukraine.code
+                ?: AppLang.DEFAULT.code
         }
 
         // 5. Absolute fallback to a hardcoded default (e.g., your primary
         // development language)
-        return AppLang.Ukraine.code
+        return AppLang.DEFAULT.code
     }
 
     override fun setLocale(appLang: AppLang) {

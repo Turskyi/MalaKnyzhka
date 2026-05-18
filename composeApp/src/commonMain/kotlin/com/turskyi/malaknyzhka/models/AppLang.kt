@@ -17,9 +17,11 @@ enum class AppLang(
     Ukraine(code = "uk", Res.string.uk, Res.drawable.ukrainian);
 
     companion object {
+        val DEFAULT: AppLang = Ukraine
+
         fun fromLanguageTag(tag: String?): AppLang {
             val parsedTag: String? = tag?.lowercase()?.split("-")?.firstOrNull()
-            return entries.find { it.code == parsedTag } ?: Ukraine
+            return entries.find { it.code == parsedTag } ?: DEFAULT
         }
     }
 }
