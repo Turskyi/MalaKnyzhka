@@ -95,22 +95,30 @@ fun App(
                     composable(route = NavigationDestination.Landing.name) {
                         LandingPage(
                             onNavigateToBook = {
-                                navController.navigate(NavigationDestination.Book.name)
+                                navController.navigate(NavigationDestination.Book.name) {
+                                    launchSingleTop = true
+                                }
                             },
                             onNavigateToPrivacyPolicy = {
                                 navController.navigate(
                                     NavigationDestination.PrivacyPolicy.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             },
                             onNavigateToSupport = {
                                 navController.navigate(
                                     NavigationDestination.Support.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             },
                             onNavigateToAbout = {
                                 navController.navigate(
                                     NavigationDestination.About.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             }
                         )
                     }
@@ -120,28 +128,54 @@ fun App(
                             onNavigateToPrivacyPolicy = {
                                 navController.navigate(
                                     NavigationDestination.PrivacyPolicy.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             },
                             onNavigateToSupport = {
                                 navController.navigate(
                                     NavigationDestination.Support.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             },
                             onNavigateToAbout = {
                                 navController.navigate(
                                     NavigationDestination.About.name,
-                                )
+                                ) {
+                                    launchSingleTop = true
+                                }
                             }
                         )
                     }
-                    composable(route = NavigationDestination.PrivacyPolicy.name) {
-                        PrivacyPolicyPage(onBack = { navController.popBackStack() })
+                    composable(
+                        route = NavigationDestination.PrivacyPolicy.name,
+                    ) {
+                        PrivacyPolicyPage(
+                            onBack = {
+                                if (navController.previousBackStackEntry != null) {
+                                    navController.popBackStack()
+                                }
+                            },
+                        )
                     }
                     composable(route = NavigationDestination.Support.name) {
-                        SupportPage(onBack = { navController.popBackStack() })
+                        SupportPage(
+                            onBack = {
+                                if (navController.previousBackStackEntry != null) {
+                                    navController.popBackStack()
+                                }
+                            },
+                        )
                     }
                     composable(route = NavigationDestination.About.name) {
-                        AboutPage(onBack = { navController.popBackStack() })
+                        AboutPage(
+                            onBack = {
+                                if (navController.previousBackStackEntry != null) {
+                                    navController.popBackStack()
+                                }
+                            },
+                        )
                     }
                 }
             }
