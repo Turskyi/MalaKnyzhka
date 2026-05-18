@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
@@ -56,7 +57,13 @@ fun AboutPage(onBack: () -> Unit) {
         topBar = {
             TopAppBar(
                 windowInsets = WindowInsets.statusBars,
-                title = { Text(stringResource(Res.string.about_app)) },
+                title = {
+                    Text(
+                        text = stringResource(Res.string.about_app),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
                 navigationIcon = {
                     if (isOnWeb()) {
                         IconButton(

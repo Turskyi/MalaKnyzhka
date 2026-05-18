@@ -27,12 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
-import com.turskyi.malaknyzhka.util.rememberWindowSize
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
 import malaknyzhka.composeapp.generated.resources.search_description
@@ -77,7 +77,7 @@ fun Page(
     }
 
     // Screen width detection.
-    val windowInfo: WindowInfo = rememberWindowSize()
+    val windowInfo: WindowInfo = LocalWindowInfo.current
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         Box(

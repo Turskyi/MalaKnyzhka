@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
@@ -47,6 +48,8 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                     Text(
                         text = stringResource(Res.string.privacy_policy),
                         modifier = Modifier.padding(horizontal = 8.dp),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
                     )
                 },
                 navigationIcon = {

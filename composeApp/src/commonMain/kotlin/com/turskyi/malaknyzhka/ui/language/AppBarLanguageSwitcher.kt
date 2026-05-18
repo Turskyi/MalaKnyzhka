@@ -9,6 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.LocalWindowInfo
+import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.util.isOnIos
@@ -18,23 +20,19 @@ import org.jetbrains.compose.resources.stringResource
 fun AppBarLanguageSwitcher() {
     val currentLanguage: AppLang = LocalAppLanguage.current
     val onLanguageChange: (AppLang) -> Unit = LocalChangeAppLanguage.current
+    val windowInfo: WindowInfo = LocalWindowInfo.current
+    val isNarrow: Boolean = windowInfo.screenWidth < 600.dp
 
     Row(
         modifier = Modifier.padding(end = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (isOnIos()) {
+        if (isOnIos() || isNarrow) {
             LanguageChip(
-                label = "A/Я",
-                icon = null,
+                label = currentLanguage.shortName,
+                icon = currentLanguage.imageRes,
                 selected = true,
-                onClick = {
-                    if (currentLanguage == AppLang.English) {
-                        onLanguageChange(AppLang.Ukraine)
-                    } else {
-                        onLanguageChange(AppLang.English)
-                    }
-                },
+                onClick = { onLanguageChange(currentLanguage.toggle()) },
             )
         } else {
             LanguageChip(

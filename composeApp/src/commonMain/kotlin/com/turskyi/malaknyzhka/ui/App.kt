@@ -1,5 +1,7 @@
 package com.turskyi.malaknyzhka.ui
 
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -10,6 +12,7 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,7 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocaleManager
+import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PageSettings
+import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocaleManager
 import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.ui.about.AboutPage
@@ -85,97 +90,104 @@ fun App(
     ) {
         key(appGlobalLanguage) {
             AppTheme {
-                NavHost(
-                    navController = navController,
-                    startDestination = if (isOnWeb())
-                        NavigationDestination.Landing.name
-                    else
-                        NavigationDestination.Book.name
-                ) {
-                    composable(route = NavigationDestination.Landing.name) {
-                        LandingPage(
-                            onNavigateToBook = {
-                                navController.navigate(NavigationDestination.Book.name) {
-                                    launchSingleTop = true
-                                }
-                            },
-                            onNavigateToPrivacyPolicy = {
-                                navController.navigate(
-                                    NavigationDestination.PrivacyPolicy.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
-                            },
-                            onNavigateToSupport = {
-                                navController.navigate(
-                                    NavigationDestination.Support.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
-                            },
-                            onNavigateToAbout = {
-                                navController.navigate(
-                                    NavigationDestination.About.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
+                BoxWithConstraints(Modifier.fillMaxSize()) {
+                    val windowInfo = WindowInfo(screenWidth = maxWidth)
+                    CompositionLocalProvider(LocalWindowInfo provides windowInfo) {
+                        NavHost(
+                            navController = navController,
+                            startDestination = if (isOnWeb())
+                                NavigationDestination.Landing.name
+                            else
+                                NavigationDestination.Book.name
+                        ) {
+                            composable(route = NavigationDestination.Landing.name) {
+                                LandingPage(
+                                    onNavigateToBook = {
+                                        navController.navigate(
+                                            NavigationDestination.Book.name
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    },
+                                    onNavigateToPrivacyPolicy = {
+                                        navController.navigate(
+                                            NavigationDestination.PrivacyPolicy.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    },
+                                    onNavigateToSupport = {
+                                        navController.navigate(
+                                            NavigationDestination.Support.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    },
+                                    onNavigateToAbout = {
+                                        navController.navigate(
+                                            NavigationDestination.About.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    }
+                                )
                             }
-                        )
-                    }
-                    composable(route = NavigationDestination.Book.name) {
-                        Page(
-                            PageSettings(settings),
-                            onNavigateToPrivacyPolicy = {
-                                navController.navigate(
-                                    NavigationDestination.PrivacyPolicy.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
-                            },
-                            onNavigateToSupport = {
-                                navController.navigate(
-                                    NavigationDestination.Support.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
-                            },
-                            onNavigateToAbout = {
-                                navController.navigate(
-                                    NavigationDestination.About.name,
-                                ) {
-                                    launchSingleTop = true
-                                }
+                            composable(route = NavigationDestination.Book.name) {
+                                Page(
+                                    PageSettings(settings),
+                                    onNavigateToPrivacyPolicy = {
+                                        navController.navigate(
+                                            NavigationDestination.PrivacyPolicy.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    },
+                                    onNavigateToSupport = {
+                                        navController.navigate(
+                                            NavigationDestination.Support.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    },
+                                    onNavigateToAbout = {
+                                        navController.navigate(
+                                            NavigationDestination.About.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
+                                    }
+                                )
                             }
-                        )
-                    }
-                    composable(
-                        route = NavigationDestination.PrivacyPolicy.name,
-                    ) {
-                        PrivacyPolicyPage(
-                            onBack = {
-                                if (navController.previousBackStackEntry != null) {
-                                    navController.popBackStack()
-                                }
-                            },
-                        )
-                    }
-                    composable(route = NavigationDestination.Support.name) {
-                        SupportPage(
-                            onBack = {
-                                if (navController.previousBackStackEntry != null) {
-                                    navController.popBackStack()
-                                }
-                            },
-                        )
-                    }
-                    composable(route = NavigationDestination.About.name) {
-                        AboutPage(
-                            onBack = {
-                                if (navController.previousBackStackEntry != null) {
-                                    navController.popBackStack()
-                                }
-                            },
-                        )
+                            composable(
+                                route = NavigationDestination.PrivacyPolicy.name,
+                            ) {
+                                PrivacyPolicyPage(
+                                    onBack = {
+                                        if (navController.previousBackStackEntry != null) {
+                                            navController.popBackStack()
+                                        }
+                                    },
+                                )
+                            }
+                            composable(route = NavigationDestination.Support.name) {
+                                SupportPage(
+                                    onBack = {
+                                        if (navController.previousBackStackEntry != null) {
+                                            navController.popBackStack()
+                                        }
+                                    },
+                                )
+                            }
+                            composable(route = NavigationDestination.About.name) {
+                                AboutPage(
+                                    onBack = {
+                                        if (navController.previousBackStackEntry != null) {
+                                            navController.popBackStack()
+                                        }
+                                    },
+                                )
+                            }
+                        }
                     }
                 }
             }
