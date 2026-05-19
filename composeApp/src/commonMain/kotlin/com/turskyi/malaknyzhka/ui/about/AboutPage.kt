@@ -49,6 +49,21 @@ import malaknyzhka.composeapp.generated.resources.logo_description
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Displays information about the application.
+ *
+ * Note on iOS UI: The [TopAppBar] may appear significantly taller on iPhone
+ * than on other platforms. This is due to Compose Multiplatform's default
+ * edge-to-edge behavior on iOS.
+ * On modern iPhones, the status bar inset (retrieved via
+ * `WindowInsets.statusBars`) can be up to 54dp, which is added to the standard
+ * Material 2 bar height of 56dp, resulting in a total height of ~110dp.
+ *
+ * In contrast, on Android (without edge-to-edge enabled), Web, and Desktop,
+ * the status bar inset is 0, keeping the bar at its standard 56dp height.
+ *
+ * @param onBack Callback to navigate back to the previous screen.
+ */
 @Composable
 fun AboutPage(onBack: () -> Unit) {
     val scrollState: ScrollState = rememberScrollState()
