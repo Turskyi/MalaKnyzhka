@@ -14,3 +14,7 @@ fun isOnAndroid(): Boolean {
 fun isOnIos(): Boolean {
     return getPlatform().type == PlatformType.IOS
 }
+
+fun isOnDesktop(): Boolean {
+    return getPlatform().type == PlatformType.DESKTOP
+}

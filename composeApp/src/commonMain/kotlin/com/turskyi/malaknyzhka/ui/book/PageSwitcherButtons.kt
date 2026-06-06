@@ -13,10 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun PageSwitcherButtons(
     currentPage: Int,
     onPageChange: (Int) -> Unit

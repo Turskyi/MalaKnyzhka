@@ -15,6 +15,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,20 +27,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
-import com.turskyi.malaknyzhka.util.rememberWindowSize
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
+import malaknyzhka.composeapp.generated.resources.search_description
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun Page(
     pageSettings: PageSettings,
     onNavigateToPrivacyPolicy: () -> Unit,
@@ -52,12 +53,9 @@ fun Page(
         LocalChangeAppLanguage.current
 
     var isDrawerOpen: Boolean by remember { mutableStateOf(false) }
+    var isSearchOpen: Boolean by remember { mutableStateOf(false) }
 
     val initialPositionInTheMiddle = 0.5f
-
-    var currentLanguage: String by remember {
-        mutableStateOf(pageSettings.getCurrentLanguage())
-    }
 
     var dividerPosition: Float by remember {
         mutableStateOf(initialPositionInTheMiddle)
@@ -79,7 +77,7 @@ fun Page(
     }
 
     // Screen width detection.
-    val windowInfo: WindowInfo = rememberWindowSize()
+    val windowInfo: WindowInfo = LocalWindowInfo.current
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         Box(
@@ -96,7 +94,8 @@ fun Page(
                         minBottomFraction,
                     )
                 },
-                screenWidth = windowInfo.screenWidth
+                screenWidth = windowInfo.screenWidth,
+                appLang = appGlobalLanguage
             )
 
             // 📖 Bottom page switcher.
@@ -127,6 +126,25 @@ fun Page(
                 )
             }
 
+            // 🔍 Search button in top-right corner.
+            IconButton(
+                onClick = { isSearchOpen = true },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .padding(4.dp)
+                    .background(
+                        color = Color.White.copy(alpha = 0.4f),
+                        shape = CircleShape
+                    ).size(32.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = stringResource(Res.string.search_description),
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+
             // 🪟 Semi-transparent overlay.
             if (isDrawerOpen) {
                 Box(
@@ -146,10 +164,19 @@ fun Page(
                 currentLanguage = appGlobalLanguage,
                 onLanguageChange = {
                     pageSettings.saveCurrentLanguage(it.code)
-                    currentLanguage = it.code
                     changeAppGlobalLanguage(it)
                 },
             )
+
+            if (isSearchOpen) {
+                SearchPanel(
+                    onClose = { isSearchOpen = false },
+                    onResultClick = { pageIndex ->
+                        isSearchOpen = false
+                        onNewPage(pageIndex)
+                    }
+                )
+            }
         }
     }
 }

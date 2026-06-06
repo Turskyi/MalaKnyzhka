@@ -32,6 +32,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
@@ -39,6 +40,7 @@ import com.turskyi.malaknyzhka.AppConstants.CHAT_CHANNEL
 import com.turskyi.malaknyzhka.CHAT_LINK_TAG
 import com.turskyi.malaknyzhka.EMAIL_LINK_TAG
 import com.turskyi.malaknyzhka.SUPPORT_LINK_TAG
+import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.util.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.app_allows
@@ -65,6 +67,21 @@ import malaknyzhka.composeapp.generated.resources.we_appreciate
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Displays support information and contact options for the application.
+ *
+ * Note on iOS UI: The [TopAppBar] may appear significantly taller on iPhone
+ * than on other platforms. This is due to Compose Multiplatform's default
+ * edge-to-edge behavior on iOS.
+ * On modern iPhones, the status bar inset (retrieved via
+ * `WindowInsets.statusBars`) can be up to 54dp, which is added to the standard
+ * Material 2 bar height of 56dp, resulting in a total height of ~110dp.
+ *
+ * In contrast, on Android (without edge-to-edge enabled), Web, and Desktop,
+ * the status bar inset is 0, keeping the bar at its standard 56dp height.
+ *
+ * @param onBack Callback to navigate back to the previous screen.
+ */
 @Composable
 fun SupportPage(onBack: () -> Unit) {
     val scrollState: ScrollState = rememberScrollState()
@@ -77,6 +94,8 @@ fun SupportPage(onBack: () -> Unit) {
                     Text(
                         text = stringResource(Res.string.support),
                         modifier = Modifier.padding(horizontal = 8.dp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                     )
                 },
                 navigationIcon = {
@@ -106,7 +125,10 @@ fun SupportPage(onBack: () -> Unit) {
                             )
                         }
                     }
-                }
+                },
+                actions = {
+                    AppBarLanguageSwitcher()
+                },
             )
         }
     ) { innerPadding: PaddingValues ->

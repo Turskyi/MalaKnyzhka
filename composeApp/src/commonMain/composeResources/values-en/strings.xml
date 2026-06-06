@@ -1,22 +1,48 @@
 <resources>
     <string name="app_name">Mala Knyzhka (Taras Shevchenko)</string>
+    <string name="language">Language</string>
     <string name="book">"Mala Knyzhka" by T. H. Shevchenko, 1846–1850</string>
     <string name="en">English</string>
     <string name="uk">Ukrainian</string>
     <string name="app_language">App Language: %1$s</string>
     <string name="change_lang">Change Language</string>
     <string name="logo_description">Mala Knyzhka</string>
-    <string name="privacy_policy_ukr_eng">Privacy Policy (Політика конфіденційності)</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="menu">Menu</string>
-    <string name="support_ukr_eng">Support (Підтримка)</string>
-    <string name="about_app_little_book">About App «Mala Knyzhka (Taras Shevchenko)»</string>
 
+    <string name="about_app_little_book">
+About App «Mala Knyzhka (Taras Shevchenko)»
+    </string>
 
-    <string name="about_app_description_part1">This application is more than just an e-book. It allows readers to see the handwritten version of Taras Shevchenko's collection "Mala Knyzhka" alongside the printed text. For the first time, you can explore what the Ukrainian language looked like in its original literary form, preserved by the author himself.</string>
-    <string name="about_app_description_part2">This is the first known attempt to create a tool where Shevchenko's original handwriting is combined with recognized text in a user-friendly format for reading, without the need for a constant internet connection.</string>
-    <string name="about_app_no_alternatives">There are no similar applications - neither online nor offline. Previously, users had to search for each poem separately in different sources. Here, they are collected together, structured, and convenient.</string>
-    <string name="about_app_ai_translation_info">The English translation of the poems was generated using artificial intelligence. This not only conveys the meaning but also preserves the mood of the poetry and its artistic style, making Shevchenko\'s works accessible and emotionally resonant for those who do not speak Ukrainian. This is a new, unique way to immerse oneself in Ukrainian culture.</string>
+    <string name="search_hint">Search in manuscript…</string>
+    <string name="search_results">Search results: %1$d</string>
+    <string name="no_results">Nothing found</string>
+    <string name="page_label">Page %1$s</string>
+    <string name="search_description">Search in manuscript text</string>
+    <string name="clear_search">Clear search</string>
+
+    <string name="about_app_search_title">Interactive Research</string>
+    <string name="about_app_search_description">
+The app features a full-text search system, transforming it into a linguistic and historical research tool. You can explore the evolution of the Ukrainian language through Shevchenko’s original spelling.
+    </string>
+
+    <!-- https://x.com/DmytroTurskyi/status/1363473770653110272 -->
+    <string name="about_app_linguistic_example">
+For example, you can discover variations like «Кіевъ» (13) and «Кыева» (15), reflecting historical spelling evolution preserved in the manuscript.
+    </string>
+
+    <string name="about_app_description_part1">
+This application is more than just an e-book. It allows readers to see the handwritten version of Taras Shevchenko's collection "Mala Knyzhka" alongside the printed text. For the first time, you can explore what the Ukrainian language looked like in its original literary form, preserved by the author himself.
+    </string>
+    <string name="about_app_description_part2">
+This is the first known attempt to create a tool where Shevchenko's original handwriting is combined with recognized text in a user-friendly format for reading, without the need for a constant internet connection.
+    </string>
+    <string name="about_app_no_alternatives">
+There are no similar applications - neither online nor offline. Previously, users had to search for each poem separately in different sources. Here, they are collected together, structured, and convenient.
+    </string>
+    <string name="about_app_ai_translation_info">
+The English translation of the poems was generated using artificial intelligence. This not only conveys the meaning but also preserves the mood of the poetry and its artistic style, making Shevchenko's works accessible and emotionally resonant for those who do not speak Ukrainian. This is a new, unique way to immerse oneself in Ukrainian culture.
+    </string>
 
     <string name="about_app_target_audience">This application is a tool for researchers, students, teachers, and anyone interested in the evolution of the Ukrainian language, the history of literature, and manuscript heritage.</string>
 
@@ -72,7 +98,7 @@
 
     <string name="privacy">
         <![CDATA[
-This privacy policy applies to the Мала Книжка (Тарас Шевченко) app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the "Мала Книжка (Тарас Шевченко)" app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
 
 Information Collection and Use
 
@@ -139,144 +165,11 @@ Contact Us
 If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at dmytro@turskyi.com.
 ]]>
     </string>
-    <string name="privacy_ukr_eng">
-        <![CDATA[
-Privacy Policy (English)
 
-This privacy policy applies to the Мала Книжка (Тарас Шевченко) app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
-
-Information Collection and Use
-
-The Application collects information when you download and use it. This information may include information such as:
-• Your device's Internet Protocol address (e.g. IP address);
-• The pages of the Application that you visit, the time and date of your visit, the time spent on those pages;
-• The time spent on the Application;
-• The operating system you use on your mobile device.
-
-The Application does not gather precise information about the location of your mobile device.
-
-The Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:
-1. Analytics and Improvements: Aggregated and anonymized location data helps the Service Provider to analyze user behavior, identify trends, and improve the overall performance and functionality of the Application.
-2. Third-Party Services: Periodically, the Service Provider may transmit anonymized location data to external services. These services assist them in enhancing the Application and optimizing their offerings.
-
-The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.
-
-For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information. The information that the Service Provider request will be retained by them and used as described in this privacy policy.
-
-Third Party Access
-
-Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.
-
-Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:
-• Google Play Services
-• Google Analytics for Firebase
-• Firebase Crashlytics
-
-The Service Provider may disclose User Provided and Automatically Collected Information:
-• as required by law, such as to comply with a subpoena, or similar legal process;
-• when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;
-• with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
-
-Opt-Out Rights
-
-You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.
-
-Data Retention Policy
-
-The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at dmytro@turskyi.com and they will respond in a reasonable time.
-
-Children
-
-The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 6.
-
-The Application does not address anyone under the age of 6. The Service Provider does not knowingly collect personally identifiable information from children under 6 years of age. In the case the Service Provider discover that a child under 6 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (dmytro@turskyi.com) so that they will be able to take the necessary actions.
-
-Security
-
-The Service Provider is concerned about safeguarding the confidentiality of your information. The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.
-
-Changes
-
-This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.
-
-This privacy policy is effective as of 2025-01-09.
-
-Your Consent
-
-By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.
-
-Contact Us
-
-If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at dmytro@turskyi.com.
-
-Політика конфіденційності (українською мовою)
-
-Ця політика конфіденційності застосовується до додатка “Мала Книжка (Тарас Шевченко)” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
-
-Збір та використання інформації
-
-Додаток збирає інформацію під час завантаження та використання. Ця інформація може включати:
-• IP-адресу вашого пристрою (наприклад, IP-адреса);
-• Сторінки Додатка, які ви відвідуєте, час і дата відвідування, час, проведений на цих сторінках;
-• Час використання Додатка;
-• Операційну систему вашого мобільного пристрою.
-
-Додаток не збирає точну інформацію про місцезнаходження вашого мобільного пристрою.
-
-Додаток може збирати дані про ваше приблизне географічне місцезнаходження, які використовуються в наступних цілях:
-1. Аналітика та поліпшення: Агреговані та анонімні дані використовуються для аналізу поведінки користувачів, визначення тенденцій і покращення роботи Додатка.
-2. Сторонні сервіси: Час від часу анонімні дані можуть передаватися зовнішнім сервісам для покращення функціональності Додатка.
-
-Постачальник послуг може використовувати надану вами інформацію для спілкування з вами, надання важливої інформації, повідомлень та маркетингових пропозицій.
-
-Для кращого досвіду використання Додатка Постачальник послуг може запросити вас надати певну інформацію, яка буде зберігатися відповідно до цієї політики конфіденційності.
-
-Доступ третіх сторін
-
-Агреговані та анонімні дані періодично передаються зовнішнім сервісам для покращення Додатка. Постачальник послуг може ділитися вашою інформацією з третіми сторонами у випадках, зазначених у цій політиці.
-
-Сторонні сервіси, які використовує Додаток:
-• Google Play Services
-• Google Analytics for Firebase
-• Firebase Crashlytics
-
-Постачальник послуг може розкрити зібрану інформацію в таких випадках:
-• Вимога закону, наприклад, судовий запит.
-• Захист прав, безпеки користувачів або інших осіб.
-• Співпраця з надійними постачальниками, які дотримуються цієї політики.
-
-Права відмови
-
-Ви можете припинити збір даних, видаливши Додаток зі свого пристрою. Для цього скористайтеся стандартними методами видалення, доступними у вашому пристрої чи маркетплейсі.
-
-Політика зберігання даних
-
-Постачальник послуг зберігатиме надані дані до моменту використання Додатка або протягом розумного періоду після цього. Якщо ви бажаєте видалити свої дані, надішліть запит на адресу електронної пошти: dmytro@turskyi.com.
-
-Діти
-Додаток не адресований особам молодше 6 років. Постачальник послуг не збирає даних у дітей до 6 років. У разі виявлення таких даних вони будуть негайно видалені. Якщо ви — батько чи опікун і знаєте, що ваша дитина надала особисту інформацію, зв’яжіться з нами.
-
-Безпека
-
-Постачальник послуг вживає фізичних, електронних і процедурних заходів для захисту вашої інформації.
-
-Зміни
-
-Ця політика конфіденційності може оновлюватися час від часу. Постачальник послуг рекомендує регулярно перевіряти цю сторінку на наявність змін.
-
-Згода
-
-Використовуючи Додаток, ви погоджуєтесь із цією Політикою конфіденційності.
-
-Контакти
-
-Якщо у вас виникли питання щодо цієї Політики конфіденційності, зв’яжіться з нами за адресою dmytro@turskyi.com.
-]]>
-    </string>
-    <string name="001">
+    <string name="manuscript_page_001_text">
         1847.
     </string>
-    <string name="002">
+    <string name="manuscript_page_002_text">
 My thoughts, my thoughts,
 You are all I have,
 Do not abandon me
@@ -294,7 +187,7 @@ With your quiet words
 I’ll greet you as my children,
 And weep along with you.
     </string>
-    <string name="003">
+    <string name="manuscript_page_003_text">
 O evening star, my shining one,
 Rise above the hill,
 Let us speak in foreign lands
@@ -318,8 +211,8 @@ An owl foretells our plight.
 How dream-grass by the valley
 Blooms at night in secret flight…
         </string>
-    <string name="004">
-Don’t speak to me about people—
+    <string name="manuscript_page_004_text">
+Don’t speak to me about people -
 I know them all too well.
 But I’ll whisper you a little
 Just before I sleep tonight.
@@ -327,20 +220,20 @@ And you, tomorrow, in the dawn-light,
 Tell it all to God.
 
 A village! And the heart finds rest:
-A village in our Ukraine—
+A village in our Ukraine -
 Like a painted Easter egg it lies,
 Green groves its leafy dress.
 The gardens bloom, the houses white,
-And on the hill, a palace bright—
+And on the hill, a palace bright -
 A marvel, standing proud. Around,
 Tall poplars with their sweeping sound,
 And farther still, a forest grand,
-Then fields, then hills across the land—
+Then fields, then hills across the land -
 The Dnipro shining blue.
 God Himself floats above that view.
 
 The village! Homes with joy alight!
-The palace too—a gleaming sight,
+The palace too - a gleaming sight,
 A merry hilltop edifice…
 May thorn and bramble overrun it,
 So no one finds a trace or sign,
@@ -348,8 +241,8 @@ Nor even thinks to seek or wonder.
 
 In that very same village,
 Yes, that very same land
-Of our proud Ukraine—
-Where did they even come from?—
+Of our proud Ukraine -
+Where did they even come from? -
 A wandering prince once settled.
 There was a princess too.
 They were young,
@@ -368,16 +261,16 @@ In summer’s heat or winter’s cold
 The music played, the wine would pour
 Like rivers for the hungry guests…
     </string>
-    <string name="005">
+    <string name="manuscript_page_005_text">
 And the prince, flushed blue with drink,
 Still poured for the meek and quiet,
 Shouting out a bold “Vivat!”
-He reveled, as did all his guests—
+He reveled, as did all his guests -
 They rolled about the wooden floors…
 
-And the next day, it lived again—
+And the next day, it lived again -
 Drinking, feasting, joy without end.
-Day by day, it never ceased—
+Day by day, it never ceased -
 While peasant souls cried out beneath.
 
 The judges begged for mercy’s grace…
@@ -385,13 +278,13 @@ But drunks just shouted in their place:
 “A patriot! A friend to poor men!
 A philosopher! A second Socrates!”
 Yes, Socrates, poor man’s friend,
-Steals a peasant’s calf and child—
+Steals a peasant’s calf and child -
 And God? Perhaps He sees,
 But only watches silently.
 
 The princess sits alone, locked in.
 Our Socrates won’t let her pass
-Beyond the hallway’s wooden skin—
+Beyond the hallway’s wooden skin -
 His own Xanthippe. What a fate!
 
 She fled at last and took her vow,
@@ -401,26 +294,26 @@ But no—she wed the prince. And now:
 Behold your title, princess fair!
 Behold your uniform to wear!
 
-You’ll perish, dearest, you’ll be lost—
+You’ll perish, dearest, you’ll be lost -
 Like blooming thyme in springtime frost.
 You’ll dry and never even know
 How God is praised, how people glow
 With love while living.
 
 Oh, to live!
-To love—if just for one short hour—
+To love - if just for one short hour -
 To glimpse the world,
 To praise its power…
 But it was not to be.
 
-And yet she had it all—
+And yet she had it all -
 The mother’s aged hands had made
 Her like an icon on the wall.
 One could have prayed before her face
 As if she were a saint in place…
 
 O beauty, youthful, blazing bright!
-My beauty, with your quiet pain—
+My beauty, with your quiet pain -
 You longed to live,
 To bless His name,
 To do some good,
@@ -428,7 +321,7 @@ To bring delight
 With Heaven’s charm
 In mortal sight.
     </string>
-    <string name="006">
+    <string name="manuscript_page_006_text">
 But no.
 Not so that youthful eyes,
 Dark-browed and shining,
@@ -438,34 +331,34 @@ Perhaps this is God’s will?
 
 Oh Lord! You give us mind and soul,
 A heart that’s pure, a form that’s whole,
-But still—You do not give us life.
+But still - You do not give us life.
 You don’t allow our joy to rise,
 To see Your world in gleaming light,
 To worship You, to breathe it in…
 
 It’s bitter, Lord, to walk this earth
 With no one here to share your mirth.
-So it was for her—alone,
-My princess, young and on her own—
+So it was for her - alone,
+My princess, young and on her own -
 Her beauty fading like a bloom,
 Her heart enclosed in silent gloom.
 She wept and prayed in hope to live,
 For now, at last, she had someone to love.
 
-She walked with pride—a mother now—
+She walked with pride - a mother now -
 And God allowed her joy somehow.
 She held her child, her only one,
 And kissed it in the morning sun.
 She heard the first cry echo loud…
 
 Oh children! Children! Heaven’s gift!
-Yet sorrow comes and will not lift—
+Yet sorrow comes and will not lift -
 It robs our peace,
 Our joy turns dim.
 
 The princess was not the same within.
 She smiled again,
-As if reborn—
+As if reborn -
 She laughed and played
 Without the scorn.
 
@@ -477,7 +370,7 @@ For princesses are only taught
 To bring a child forth—
 But love? They’re not.
     </string>
-    <string name="007">
+    <string name="manuscript_page_007_text">
 To nurse and tend with careful hand—
 That’s not what princesses understand.
 And later comes a mournful sigh:
@@ -524,7 +417,7 @@ They’ll cut it anyway…”
 
 And day by day, joy found its way.
     </string>
-    <string name="008">
+    <string name="manuscript_page_008_text">
 To my happy mother.
 Her daughter, lovely,
 Grows like a poplar,
@@ -573,7 +466,7 @@ She washed, and kind folk
 Dressed her and took her
 To Kyiv.
     </string>
-    <string name="009">
+    <string name="manuscript_page_009_text">
 To the institute. What comes next,
 We’ll see. Fiddles played again,
 The prince caroused, the guests rejoiced,
@@ -633,7 +526,7 @@ But she saw her homeland—
 Saw the famine.
 That’s why she does not smile.
     </string>
-    <string name="010">
+    <string name="manuscript_page_010_text">
 She never met her drunken father.
 She flew through the village
 Like a songbird, visited all,
@@ -690,7 +583,7 @@ Look, while it warms you,
 And sleep not—
 Let the stars keep you awake.
     </string>
-    <string name="011">
+    <string name="manuscript_page_011_text">
 Her young head bowed
 Into her hands,
 She stared at the stars
@@ -749,7 +642,7 @@ Calmly, quietly.
 And so shall we leave him.
 And so shall God.
     </string>
-    <string name="012">
+    <string name="manuscript_page_012_text">
 That such vile beasts may never tread Upon our Ukraine’s land.
 And where is she, defiled before? Her footsteps lost in sand.
 
@@ -775,7 +668,7 @@ Where has she fled? To mighty Kyiv— A nun in solemn chain.
 
 So it was, and so shall be— In sin and sorrow we are born.
     </string>
-    <string name="013">
+    <string name="manuscript_page_013_text">
 Tell me, wise and knowing hearts, What praise does God receive
 — From lives where love was meant to bloom, Yet anguish fills the eves?
 
@@ -804,7 +697,7 @@ For how can she, so young and bright, Roam beggars’ roads untold?
 Her beauty faded, sun’s harsh kiss Had burned its tender grace.
 She lay, confessed her every grief, And left for God’s embrace.
     </string>
-    <string name="014">
+    <string name="manuscript_page_014_text">
 In holy cities far and wide, She wandered, seeking light.
 Then pointed to a solemn grave— Here rests her weary might.
 
@@ -822,7 +715,7 @@ And then, among our fellow men, We live as they have been.
 
 But until that moment comes,
     </string>
-    <string name="015">
+    <string name="manuscript_page_015_text">
 Love each other, brothers mine, Let Ukraine fill your soul.
 Pray for her, so sorrowed deep, And ask for God’s control.
 
@@ -841,7 +734,7 @@ They raised me, yet within their walls, No love could bloom within.
 Where are they now, those kindred souls,
 Who once could call me dear? They are gone, I stand alone— And none will reappear.
     </string>
-    <string name="016">
+    <string name="manuscript_page_016_text">
 Beyond the ravine – another,
 Then steppes, and a burial mound.
 From the grave a grey old Cossack
@@ -877,7 +770,7 @@ Or forgets me, it matters not —
 It’s all the same to me.
 I grew in bondage 'midst the foe.
     </string>
-    <string name="017">
+    <string name="manuscript_page_017_text">
 Unwept by kin, in tears I'll go
 To die in slavery and despair,
 And leave behind no memory there—
@@ -902,7 +795,7 @@ The place where once you played is still.
 The house — a window’s shattered out,
 The dog has wandered off at will…
 By day, lambs graze in shadows deep,
-At night, the owls and nightbirds weep
+At night, the owls and night-birds weep
 And let no neighbor sleep nearby.
 Your periwinkle, once so spry,
 Is choked with thistle, waiting still
@@ -915,7 +808,7 @@ The well in the ravine collapsed,
 The willow dried and bent away,
 And where you walked — a thorny path.
     </string>
-    <string name="018">
+    <string name="manuscript_page_018_text">
 Where did you vanish? Where’d you fly?
 To whom did you now give your smile?
 In foreign land, in stranger’s kin,
@@ -951,7 +844,7 @@ We’ll chirp and whisper through the day,
 Fly to the other world and stay —
 Each morning rise and soar away."
     </string>
-    <string name="019">
+    <string name="manuscript_page_019_text">
 The guelder rose took root and grew,
 Spread out its branches, broad and true.
 Three years the girl came to the mound,
@@ -983,7 +876,7 @@ But mother hadn’t slept all night.
 She waited for her child at door,
 And wept in silence, as before.
     </string>
-    <string name="020">
+    <string name="manuscript_page_020_text">
 Three wide roads together met,
 And there the brothers parted—
 Each one to foreign lands had set,
@@ -1005,7 +898,7 @@ The girl, love’s promise granted.
 The ashes withered, would not grow,
 The poplar drooped in dying,
 The maples shriveled long ago,
-The kalyna stopped blooming.
+The guelder rose stopped blooming.
 The brothers never have returned,
 The mother weeps and prays,
 The wife sits cold in rooms unburned
@@ -1026,7 +919,7 @@ New shifts replaced the old,
 And keys turned doors behind the host—
 Barred windows grim and cold.
     </string>
-    <string name="021">
+    <string name="manuscript_page_021_text">
 I’d grown accustomed to the cell,
 To tears of past distress—
 Those bloodied tears that once would well
@@ -1064,7 +957,7 @@ And slumbers with them all.
 The world is still, no sound repeats,
 Save girls—and birdsong beats.
     </string>
-    <string name="022">
+    <string name="manuscript_page_022_text">
 I could not sleep—the night like sea
 (Though not in autumn, still it felt
 That way in prison). Silently
@@ -1075,14 +968,14 @@ Beyond the door two guards went on
 To talk about their soldier’s fate—
 The low and broken, cruel state:
 
-**1**
+1
 “She wasn’t pretty, but she gave
 Herself like one who begged to live.
 The master saw, and off I went—
 They caught me, shaved me, made me slave,
 To Kaluga I was sent.”
 
-**2**
+2
 “And I—God help me when I tell—
 I joined the ranks, I walked away.
 I loved a girl, the village knew,
@@ -1104,11 +997,11 @@ Came home to claim my bride… instead—
 I found her mother dying slow,
 And empty house with roof laid low.”
     </string>
-    <string name="023">
+    <string name="manuscript_page_023_text">
         42
         43
     </string>
-    <string name="024">
+    <string name="manuscript_page_024_text">
 I struck a flame and ran to her—
 She smelled already of the earth.
 She did not know me anymore…
@@ -1136,13 +1029,13 @@ Still shivers take me when I say—
 I thought to burn his house that day,
 Or take my life—yet God forbade.
 
-**1**
+1
 “So now he’s stationed here again?”
 
-**2**
+2
 “Yes, transferred. Army men.”
 
-**1**
+1
 “Well, let it be. God sees our cries.
 Perhaps someday it fades, it dies.”
 They talked for long into the night,
@@ -1155,7 +1048,7 @@ Marched beyond the town anew.
 And a girl behind them came,
 Softly walking, none to blame.
     </string>
-    <string name="025">
+    <string name="manuscript_page_025_text">
 An old mother saw her child
 In the field, and caught her mild—
 She led her back, and wept, and stayed,
@@ -1190,7 +1083,7 @@ An owl looks out, old and solemn.
 
 It’s hard in chains, though freedom’s fate
 Was never mine to contemplate.
-But still, one lived—though far from kind,
+But still, one lived-though far from kind,
 Upon strange fields, with strangers’ minds.
 But now, this bitter fate I meet
 I wait for like I’d wait for God.
@@ -1198,7 +1091,7 @@ I watch, I hope, I curse my thought
 That let me drown my will, my feet
 In muddy dreams of liberty.
     </string>
-    <string name="026">
+    <string name="manuscript_page_026_text">
 My heart turns cold when I recall
 That I’ll not in Ukraine be buried,
 That I won’t live in Ukraine’s hall,
@@ -1213,13 +1106,13 @@ We had to learn to honor her.
 It is the Lord’s will. So, obey!
 Be humble, pray to God, and stay
 In thought of one another, still.
-Love your Ukraine — and love her well,
+Love your Ukraine - and love her well,
 In times of wrath and storm and hell,
 And in your final, painful hour,
 For her to God send up your prayer.
          13.
 Across the fields he goes,
-Not mowing swaths — but hills he mows.
+Not mowing swaths - but hills he mows.
 The earth it groans, the sea it cries,
 The air is moaning, full of sighs.
 Owls meet him through the night,
@@ -1232,11 +1125,11 @@ Whether a town, a field, a land,
 The old man shaves with ruthless hand
 Whatever’s in his way:
 The peasant, tavern-keeper, bard,
-He sings and mows through night so hard —
+He sings and mows through night so hard -
 Even the king won’t stay.
     </string>
-    <string name="027">
-Nor shall I be spared —
+    <string name="manuscript_page_027_text">
+Nor shall I be spared -
 On foreign soil I’ll be struck down,
 Behind the bars I’ll fade and drown,
 No cross shall mark my place of rest,
@@ -1244,21 +1137,21 @@ And none will whisper me a prayer.
 
 The sun sets down, the mountains blacken,
 The birds grow still, the fields fall dumb.
-Men rejoice in rest that’s come —
+Men rejoice in rest that’s come -
 But I look on… my heart takes flight
 To Ukraine’s orchard lost in night.
 I soar again, my thoughts I ponder,
 And feel my heart in stillness wander.
 The field is black, the woods, the hill,
 A star climbs up the heavens still…
-O star, O star — and tears arise.
+O star, O star - and tears arise.
 Have you already graced Ukraine?
 Do dark eyes seek you in the skies?
 Or have they ceased to call your name?
-If they forget — let them not wake,
+If they forget - let them not wake,
 Let none recall my bitter fate.
     </string>
-    <string name="028">
+    <string name="manuscript_page_028_text">
 I pray, again I place my hope,
 Again my tears begin to flow,
 And all my heavy thoughts I pour
@@ -1272,20 +1165,20 @@ Cry out! And maybe, echoing,
 My sleepless grief will start to sing,
 Will smile at us through bitter fate,
 And thank us as it lies in wait,
-Will weep and pray, and fall asleep —
+Will weep and pray, and fall asleep -
 At peace at last, with sorrow deep.
 
 This is my counsel, unknown brother:
 Be meek before your Lord above.
 Seek out a brother in the palace
-Or in the cottage — give him love.
+Or in the cottage - give him love.
 Prepare your grave with quiet hand,
 And seek not fame across the land.
     </string>
-    <string name="029">
+    <string name="manuscript_page_029_text">
 For fame will not extend youth’s days,
 Nor bring our spring back through time’s haze.
-So pray, my friend — seek God, dear brother,
+So pray, my friend - seek God, dear brother,
 And in your prayers, remember me.
 
 Around St. Nicholas in the fall,
@@ -1297,55 +1190,55 @@ They walked and walked, then paused along
 The road, pitched tents beside the track,
 Lit up a fire, poor and slack,
 And sat around it, tired, worn,
-Some with meat, and some — forlorn,
+Some with meat, and some - forlorn,
 Yet free, like Cossacks once had been.
 They sat and dozed in shadows dim.
-Beyond the tent, a voice arose —
+Beyond the tent, a voice arose -
 As if a drunken maiden goes
 Homeward with her dowry chest,
 Singing, spinning, quite possessed:
 “O, in the new house
-All went to bed —
+All went to bed -
 And the young bride dreamed
 Her mother went mad,
 Her father-in-law drowned,
 Her father remarried…”
-And — hush…
+And - hush…
 
 The gypsies laughed to hear the sound:
-— What kind of folks are here around?
-That must be someone from the Dniester —
-This land’s a steppe — a ghost! A specter!
-They cried, they leapt, their sleep undone —
+- What kind of folks are here around?
+That must be someone from the Dniester -
+This land’s a steppe - a ghost! A specter!
+They cried, they leapt, their sleep undone -
 Before them stood the singing one…
-A sight of pity, dread, and fright —
+A sight of pity, dread, and fright -
 In tattered coat she stood upright.
-Her hands and feet were stained with red —
+Her hands and feet were stained with red -
 From cold the blood had outward bled.
 Her long hair tangled, full of burrs…
 She stood a while, then came and stirred
 The fire, warming her hands
 On open flame and glowing brands.
     </string>
-    <string name="030">
+    <string name="manuscript_page_030_text">
 – So then,
 The poor fool took a wife! –
 She whispered, almost to herself,
-And smiled — a terrible, twisted smile.
+And smiled - a terrible, twisted smile.
 Gypsy
 Where are you from, young woman?
 Witch
 Who, me?
-When I was young — they kissed my face.
-Now I’m old — I’d beg for grace
+When I was young - they kissed my face.
+Now I’m old - I’d beg for grace
 Of just one kiss, but none would dare.
 Gypsy
-A voice like that — so rich and rare!
+A voice like that - so rich and rare!
 To have a woman such as you,
 And one with a bear, too!
 Witch
-I sing —
-Whether I sit or roam or spin —
+I sing -
+Whether I sit or roam or spin -
 I always sing, I always sing…
 I’ve even forgotten how to speak.
 But once I spoke so well and clear.
@@ -1356,15 +1249,15 @@ Who, me? Hush… hush…
 The master lies with his own child,
 The fire’s out, the moon climbs wild,
 A werewolf grazes down the hollow…
-I drank too much before my wedding —
+I drank too much before my wedding -
 And no one took me for the bedding.
 It’s all those cursed lords’ misdeeds,
 Who use young girls to sate their needs…
-Another son — he must be wed,
+Another son - he must be wed,
 Without me, they’ll be misled
 And lay him in the grave instead.
 Gypsy
-Don’t go, poor soul — stay here with us.
+Don’t go, poor soul - stay here with us.
 We swear, with us life’s generous.
 Witch
 Do you have children?
@@ -1376,14 +1269,14 @@ Whom do you lay to sleep with care?
 Whom do you rock when dreams are near,
 When you lie down and rise again?
     </string>
-    <string name="031">
-Whom do you pray for? Oh — the children!
+    <string name="manuscript_page_031_text">
+Whom do you pray for? Oh - the children!
 Always children, always children!
-And I have nowhere to escape —
+And I have nowhere to escape -
 Wherever I go, they follow my shape.
 They’ll eat me whole one day, I know.
 Gypsy
-Don’t cry, poor soul, don’t sink so low —
+Don’t cry, poor soul, don’t sink so low -
 We’ve never had a child at all…
 Witch
 Then better to leap from a cliff and fall…
@@ -1391,7 +1284,7 @@ She wept, she wept with bitter wailing.
 
 The gypsies watched her, long amazed,
 Until they slept, where they had stayed.
-But she — she neither wept nor slept.
+But she - she neither wept nor slept.
 She sat, her feet buried deep
 In hot ash by the fire’s glow.
 A crescent moon, chipped and low,
@@ -1399,7 +1292,7 @@ Peeked out beyond a burial mound
 And stared upon the tent around
 Until the clouds had cloaked the sky.
 
-Why can’t the wealthy sleep at night —
+Why can’t the wealthy sleep at night -
 Gray-haired, full-bellied, plush with pride?
 Why can’t the poor old orphan sleep,
 With nothing left in life to keep?
@@ -1407,31 +1300,31 @@ One schemes how best to buy the bell
 To toll his name where sermons dwell.
 Another hopes the time flies faster
 To finish building up his castle.
-“Then I shall rest!” — but in the grave.
-The other — nowhere — finds his end,
+“Then I shall rest!” - but in the grave.
+The other - nowhere - finds his end,
 Forgotten, not a thought to lend.
 Both rest in sleep, so unaware,
 No one remembers the poor man’s care.
 And the rich man they still curse.
 
-The old one cannot sleep in field or home —
+The old one cannot sleep in field or home -
 But still must drag his days alone.
 Beside the fire the old gypsy
 Dozes, pipe between his teeth,
-And stares at the stranger lost —
+And stares at the stranger lost -
 Is he perhaps lost in thought?
 Gypsy
 Why not lie down and get some rest?
-The morning star is rising — look!
+The morning star is rising - look!
 Witch
 I look. You look. That is enough.
     </string>
-    <string name="032">
+    <string name="manuscript_page_032_text">
 Gypsy
 At dawn we’ll move. If you’re not up…
 Witch
 I’ll never sleep again.
-Never again will slumber come —
+Never again will slumber come -
 I’ll die like this, somewhere alone,
 In weeds grown wild…
 O forest deep, O forest dark,
@@ -1440,13 +1333,13 @@ Let me walk your hush awhile,
 And in your waters cleanse my trial.
 In greenest moss I’ll lie,
 And rest a little by and by…
-And maybe birth — though foul — some child,
+And maybe birth - though foul - some child,
 It matters not, so long as wild
 It runs and learns to curse my name.
-There! — there! — do you see, on the grave
-A kitten blinks its wicked eye —
+There! - there! - do you see, on the grave
+A kitten blinks its wicked eye -
 That one is mine… Pussy… come nigh…
-It won’t — the devil’s spawn won’t budge!
+It won’t - the devil’s spawn won’t budge!
 I’d let it drink, I’d let it gorge,
 And by next year it’d know…
 Kutia* waits upon the shelf,
@@ -1457,9 +1350,9 @@ Should I drown them?
 Should I smother them in bed?
 Sell them to a Jew for blood,
 And drink away the price instead?
-How well our kind take after me —
+How well our kind take after me -
 That’s what they say! But don’t you see?
-Come — sit closer by the flame,
+Come - sit closer by the flame,
 I’ll tell you more. You’ve heard my name?
 I too lived in Wallachia!
 I birthed twins in Bendery town,
@@ -1467,17 +1360,17 @@ In white Iasi I rocked them down,
 In Dunavets I gave them baths,
 In Turkey swaddled them in cloths,
 Then carried them back home, to Kiev.
-No incense, no priest’s holy weave —
+No incense, no priest’s holy weave -
 Three coins I tossed for baptism,
 Then drank the rest in drunken rhythm.
 I drank… I drank,
-And still I drink —
+And still I drink -
 And sleep will never find me now.
 For I have even lost the fear of God.
     </string>
-    <string name="033">
+    <string name="manuscript_page_033_text">
 I’m not ashamed before the world.
-If only I could find my children—
+If only I could find my children -
 Do you know, is there a war
 Somewhere in Turkey?
 
@@ -1486,7 +1379,7 @@ There once was. No more.
 The eldest officer has died.
 
 Witch
-I thought it was in Turkey—
+I thought it was in Turkey -
 But no, not even there.
 Now listen, I’ll tell you
 Whom I’m searching for.
@@ -1497,14 +1390,14 @@ That cursed master…
 To strangle him! For he took me
 In my youth,
 Shaved my hair like a boy’s,
-Dragged me everywhere—
+Dragged me everywhere -
 We were in Bender then,
 With the soldiers. The soldiers
 Were fighting the Turk.
 Just before the Savior’s Day,
 I bore twins.
 And he, the damned, left me,
-Didn’t step inside—
+Didn’t step inside -
 Went off with the troops.
 And I, with bastard babes,
 Returned to Ukraine
@@ -1521,13 +1414,13 @@ Then crept to the village,
 Hoping no one would know.
 </string>
 
-    <string name="034">
-I crept up to the cottage—
+    <string name="manuscript_page_034_text">
+I crept up to the cottage -
 No light inside.
 I thought my father slept…
 But no, my father died.
 No one to fold his arms!
-I was struck with terror—
+I was struck with terror -
 The house stank, empty.
 I hid
 My twins inside the granary,
@@ -1535,7 +1428,7 @@ Rushed into the room,
 He was barely breathing.
 I cried, “Father!
 Father, it’s me! I’ve come!”
-I grabbed his hands—
+I grabbed his hands -
 He took mine in his
 And whispered, “I forgive you…
 Forgive you… and…”
@@ -1544,13 +1437,13 @@ I think I fainted.
 If only I had slept
 Forever from that moment!
 
-At midnight I awoke—
+At midnight I awoke -
 Something stirred in the dark…
 Father gripped my hand.
 “Father!” I screamed. “Father!”
-But he was cold as ice—
+But he was cold as ice -
 I barely pulled free.
-So, gypsy—
+So, gypsy -
 If you had such a daughter,
 Would you forgive?
 
@@ -1560,7 +1453,7 @@ I would, by God.
 Witch
 Be quiet, lest I forget.
 I prayed to God…
-No, I didn’t—
+No, I didn’t -
 I fed the children,
 Hid them in the bin,
 I even padded my headdress
@@ -1572,7 +1465,7 @@ They finished, laid him in,
 Carried him off, and buried him…
 </string>
 
-    <string name="035">
+    <string name="manuscript_page_035_text">
 And I alone, like a finger,
 Was left in this world.
 I crossed the ravine,
@@ -1583,13 +1476,13 @@ Married off my son!
 And… Hu…
 
 Gypsy
-Don’t moan—you’ll wake them all!
+Don’t moan - you’ll wake them all!
 
 Witch
 I’m not moaning, devil!
 
 Gypsy
-Fine, fine—what happened next?
+Fine, fin - what happened next?
 Go on, tell the rest.
 
 Witch
@@ -1599,12 +1492,12 @@ I’ll bring corn…
 Wait, let me recall.
 He lay with my daughter!
 Took my son as a lackey…
-They drove me out—
+They drove me out -
 Yes, yes, I remember.
 I teased dogs
 With beggars outside windows,
 Carried my twins
-On my back—to get them used to it.
+On my back - to get them used to it.
 Then the master came.
 That’s when the whole village
 Made a fuss
@@ -1617,27 +1510,27 @@ The twins grew up,
 And I rejoiced.
 And again I loved
 That venomous snake.
-Loved him to ruin—
-My son a lackey—
+Loved him to ruin -
+My son a lackey -
 Destroyed… and with my daughter!
 With his own!
 Tell me, is that not sin?
 Is this how your kind lives too?
 </string>
 
-    <string name="036">
+    <string name="manuscript_page_036_text">
 He gave me a ruble
 And sent me to Kyiv.
-“Go pray to God,” he said—
+“Go pray to God,” he said -
 And so I went,
 And I prayed… No, gypsy,
 I prayed in vain.
 Do you have a God of some sort?
 We do not!
-The lords stole Him—
+The lords stole Him -
 Locked Him in their caskets.
 
-I came home—
+I came home -
 The rooms were shut.
 The lord had gone with my daughter,
 As once he went with me.
@@ -1646,26 +1539,26 @@ God knows what happened.
 I dreamed
 I flew over ravines
 Like an owl, seeking children…
-No, don’t listen—I wasn’t
+No, don’t listen - I wasn’t
 Looking for the children,
 I sought the master.
-But now there’s no need—
+But now there’s no need -
 I’ll join the gypsies.
 I’ve married off my son,
-And my daughter—she’ll manage.
+And my daughter - she’ll manage.
 She’ll crawl by the fences
 Until people trample her down.
 
 Have you seen my son?
-So handsome—
+So handsome -
 Like you. Ooh, it’s cold!
 Lend me some money…
 I’ll buy a fine necklace
 And hang you with it.
 Then I’ll go home…
-Look—see that mouse?
+Look - see that mouse?
 She’s dragging her babies
-To Kyiv. She won’t make it—
+To Kyiv. She won’t make it -
 She’ll drown.
 Or the master will take them!
 Will I ever find my children,
@@ -1677,11 +1570,11 @@ Took down their tent,
 Set out on the road,
 And marched into the steppe.
 </string>
-    <string name="037">
+    <string name="manuscript_page_037_text">
 And the witch stood up,
 And followed after them alone,
 Singing as she roamed:
-“They say a Judgment Day will come —
+“They say a Judgment Day will come -
 But judgment now is done,
 For all the world has judged me here
 Beneath this very sun.”
@@ -1691,7 +1584,7 @@ Through gardens, through the green,
 And oddly, led behind them
 A stray they’d somehow gleaned.
 She sang and danced, yet never ate,
-No drop passed through her lips —
+No drop passed through her lips -
 As though death walked the earth itself
 In Roma caravan's midst.
 
@@ -1703,7 +1596,7 @@ Old Mariula cured her soul
 With herbs from secret troves,
 And taught her every root and leaf
 And what each potion drove.
-How to brew, to heal with hands —
+How to brew, to heal with hands -
 She learned with fervent care,
 And even the stray followed suit
 In prayer and in prayer.
@@ -1716,10 +1609,10 @@ She bowed to Mariula’s feet
 In thanks for all she gave,
 Bid farewell to the Romani,
 To God her prayer she gave,
-And headed home, her native land —
+And headed home, her native land -
 </string>
 
-    <string name="038">
+    <string name="manuscript_page_038_text">
 Joyful, cheerful, light of step,
 Like a little child.
 Where she passed through village paths,
@@ -1730,10 +1623,10 @@ That autumn, home at last she came
 And lit her empty nest.
 She plastered walls and swept the hearth,
 Restored her ruined home,
-And breathed with ease — as though in Heaven,
+And breathed with ease - as though in Heaven,
 No more to drift or roam.
 
-She had forgotten all the pain —
+She had forgotten all the pain -
 The sorrow, grief, and spite.
 She loved all souls, forgave all wrongs,
 Her heart was full of light.
@@ -1745,7 +1638,7 @@ The neighbors no longer shunned her,
 The whole village adored her,
 For day and night she walked the sick,
 Asked nothing for her labor.
-And if she took a coin, at most —
+And if she took a coin, at most -
 She’d give it to the poor,
 Or light a candle on the eve
 To Christ our Savior pure.
@@ -1756,54 +1649,54 @@ Alone, with all bereft.
 
 But girls would come to tend her house,
 To cook and sweep and stay,
-And never asked her spells or charms —
+And never asked her spells or charms -
 They loved her anyway.
-Her little hut was clean and still —
+Her little hut was clean and still -
 </string>
 
-    <string name="039">
+    <string name="manuscript_page_039_text">
 So bright, it felt like Paradise.
-The door would softly squeak —
+The door would softly squeak -
 And never once did folk pass by
 Without a word to speak.
 One would greet her with a smile,
 One ask herbs to borrow,
 One would bring a little loaf,
-Another — cakes tomorrow.
+Another - cakes tomorrow.
 She’d share with all her humble joys,
 With love that had no end.
-Thus she lived — warm, fed, and clothed —
+Thus she lived - warm, fed, and clothed -
 And loved by every friend.
 Respected too, yet all the same,
 They still called her “witch,” in shame.
 
-One spring they brought the master back —
+One spring they brought the master back -
 With gout and cushions thick,
-And German doctors — three or more —
+And German doctors - three or more -
 To cure what made him sick.
 But where were now his children? Lost!
 His daughter for a hound was sold,
 His son was lost in cards, we're told.
-(Such things in life unfold —
+(Such things in life unfold -
 But what are we to do with it?)
 
 They tried to treat him, every way,
 But still his soul would slip away.
-They prayed, they wept, yet he would groan —
+They prayed, they wept, yet he would groan -
 His sin too deep, his time was shown.
-But mercy stirred her once again —
+But mercy stirred her once again -
 She brewed a holy healing tea,
 And kindly walked from town to town
 To offer her old enemy
 A balm to ease his final breath.
 She begged the doctors, pled and swore
-He’d live! But they would not allow —
+He’d live! But they would not allow -
 They cursed her from the door.
 So she turned back with her small jar,
 Recalling children gone afar...
 </string>
 
-    <string name="040">
+    <string name="manuscript_page_040_text">
 She wept… and then she felt a pang
 That she had failed to save him.
 
@@ -1844,7 +1737,7 @@ She whispered, “I forgive you all…
 Long ago I did…”
 </string>
 
-    <string name="041">
+    <string name="manuscript_page_041_text">
 She placed a candle in his hands
 And crossed him as he bid.
 The sinner slept — as quiet, sweet
@@ -1884,7 +1777,7 @@ But she would warn them tenderly:
 For God will judge — and you will roam
 Like I have done — alone.”
 </string>
-    <string name="042">
+    <string name="manuscript_page_042_text">
 You’ll forsake your mother, father—
 As I did, and lost them.
 Your own children, shamed and mocked,
@@ -1925,7 +1818,7 @@ And the girls adorned it
 With garlands of wildflowers.
 </string>
 
-    <string name="043">
+    <string name="manuscript_page_043_text">
 And watered the aspen
 With their tiny tears.
 From the grave a cursed
@@ -1956,7 +1849,7 @@ Head toward the pale
 And drooping face
 </string>
 
-    <string name="044">
+    <string name="manuscript_page_044_text">
 Of Lileya.
 And Lileya wept,
 With tears like dewdrops…
@@ -2000,7 +1893,7 @@ My brief, young life—
 They did not let me live it.
 </string>
 
-    <string name="045">
+    <string name="manuscript_page_045_text">
 People of this world! I died
 One winter, by a fence,
 And bloomed again in spring
@@ -2032,7 +1925,7 @@ Upon her pale
 And drooping face.
 </string>
 
-    <string name="046">
+    <string name="manuscript_page_046_text">
 “My mother gave me birth
 In lofty palace halls—
 And in the dead of night
@@ -2072,7 +1965,7 @@ Like a silver minnow.
 And the willow branch
 Swayed gently in the breeze.
 </string>
-    <string name="047">
+    <string name="manuscript_page_047_text">
     A mother went out for a stroll,
     No sleep in the palace halls for her.
     Master Yan was not at home,
@@ -2116,7 +2009,7 @@ Swayed gently in the breeze.
     It began to burn, it turned red
     And set paradise on fire.
     </string>
-    <string name="048">
+    <string name="manuscript_page_048_text">
     As if I awoke, I look:
     The village has turned black,
     God's blue sky
@@ -2149,7 +2042,7 @@ Swayed gently in the breeze.
     I would not have been a fool in the world.
     I would not have cursed people and ....
     </string>
-    <string name="049">
+    <string name="manuscript_page_049_text">
 The sun won’t warm on foreign ground,
 Yet home’s a blaze too fierce to bear.
 No joy I found, no ease was there,
@@ -2177,7 +2070,7 @@ Dream dreams that never can abide?
 Why trouble God when, by our yoke,
 Things won’t turn out as we decide.
 </string>
-    <string name="050">
+    <string name="manuscript_page_050_text">
 My mountains, lofty, rise in grace,
 Not steep, but fair, serene, and wide,
 So lovely, radiant, soft with pride,
@@ -2200,7 +2093,7 @@ And there, beyond, where hills ascend,
 A tiny church, like chapel’s reign,
 A Cossack shrine in humble state.
 </string>
-    <string name="051">
+    <string name="manuscript_page_051_text">
 A cross leans low, its shadow worn,
 It stands and waits, through time forlorn,
 For Zaporozhets from the plain…
@@ -2250,7 +2143,7 @@ He speaks, his voice a mournful mass—
 O Hetmanshchyna!” His clouded brow
 Falls heavy, darkened now…
 </string>
-    <string name="052">
+    <string name="manuscript_page_052_text">
 Perhaps some heavy, grievous word
 His heart had longed to speak, and stirred.
 Yet silent stayed…
@@ -2298,7 +2191,7 @@ And led me, old, to hills that glow,
 To live my lonely days in praise,
 To sing your glory’s sacred rays,
 </string>
-    <string name="053">
+    <string name="manuscript_page_053_text">
 And with your beauty, Let my heart rejoice…
 And bury the one broken By human sins, Upon these lofty hills,
 To soar above them…
@@ -2326,7 +2219,7 @@ To stand upon those stolen hills, In a humble little house.
 Though my heart is weary, Worn by sorrow,
 Let me bring it and lay it down Upon the hills of the Dnipro.
     </string>
-    <string name="054">
+    <string name="manuscript_page_054_text">
 Once the Swedes made great fame, Fleeing with Mazepa To Bender from Poltava.
 And behind them, Gordienko…
 
@@ -2368,7 +2261,7 @@ Why do her children Remain silent in chains?
 The kobzars told us Of wars and strife, Of bitter hardship,
 Of cruel punishments.
     </string>
-    <string name="055">
+    <string name="manuscript_page_055_text">
 The Poles inflicted suffering— They told us everything.
 And what happened after the Swedes? Even they were afraid!
 
@@ -2404,7 +2297,7 @@ Bringing with them To the Hetmanate That wondrous image Of the Holy One.
 They placed it in Irzhavytsia, Within a stone temple.
 And there she still weeps, For the Cossacks.
     </string>
-    <string name="056">
+    <string name="manuscript_page_056_text">
 O thoughts of mine! O wicked glory!
 For you, I'm tormented in a foreign land,
 Suffering, but not repenting!
@@ -2449,7 +2342,7 @@ Were tortured, crucified...
 Cossack heads bowed,
 Like trampled grass,
     </string>
-    <string name="057">
+    <string name="manuscript_page_057_text">
 Ukraine weeps, groans and weeps!
 Head after head
 Falls to the ground.
@@ -2482,7 +2375,7 @@ And doesn't turn to anyone.
 In Kyiv, on the Podil,
 Cossacks are having fun.
     </string>
-    <string name="058">
+    <string name="manuscript_page_058_text">
 Like water poured from pail to bowl,
 They spill the wine in streams that flow.
 The cellars, taverns, barmaids bright,
@@ -2532,7 +2425,7 @@ The sun climbs high, then sinks to rest,
 A monk in long black robes is dressed,
 He paces slow through cloister’s cell.
 </string>
-    <string name="059">
+    <string name="manuscript_page_059_text">
 The monk to Vyshhorod ascends,
 To gaze on Kyiv’s ancient trends,
 Or sit upon the hill’s high crest,
@@ -2578,7 +2471,7 @@ Donned hood and staff, his heart’s repose,
 He crossed himself, took beads in hand…
 And limped to pray for his dear land.
 </string>
-    <string name="060">
+    <string name="manuscript_page_060_text">
 “Pray, old man, and bow down low,
 While children, small, are driven so
 To tread the swamps in deep despair:
@@ -2620,7 +2513,7 @@ Moscow razed Poltava’s ramparts won,
 Tore down the Sich, the Savior’s gate,
 And o’er your grave, they pound the slate.
 </string>
-    <string name="061">
+    <string name="manuscript_page_061_text">
 We ask each other, lost in thought,
 Why did our mother bring us forth?
 For good? For ill? What fate is wrought?
@@ -2649,7 +2542,7 @@ Could rend them free. Woe to us all!
 To orphans, slaves, in steppes that call
 Beyond the Urals, vast and drear.
 </string>
-    <string name="062">
+    <string name="manuscript_page_062_text">
 O ribbon joined to ribbon fine,
 I weave my lace through three nights’ time,
 I weave, I stitch, with care I blend,
@@ -2681,7 +2574,7 @@ For lads to saddle steeds of steel,
 To sharpen swords and sabers bright…
 And ride to wed with war’s fierce rite.
 </string>
-    <string name="063">
+    <string name="manuscript_page_063_text">
 A kerchief stitched with silken thread,
 To call her to his heart, though fled,
 His own Kateryna, far away.
@@ -2714,7 +2607,7 @@ Each day she waited, undismayed.
 And every Sunday, up she’d climb
 To watch the mound, through endless time.
 </string>
-    <string name="064">
+    <string name="manuscript_page_064_text">
 One summer fades, another dies,
 And on the third, with eager cries,
 The glorious company rides again
@@ -2740,7 +2633,7 @@ Its hooves all shattered, bruised, and torn…
 Upon it lies a saddle small,
 A kerchief spread, to cloak it all.
 </string>
-    <string name="065">
+    <string name="manuscript_page_065_text">
 Long ago it was, in school’s dim shade,
 Beneath the deacon-teacher’s blade,
 I slyly stole a five-kopeck coin—
@@ -2766,7 +2659,7 @@ All for that coin I stole at school,
 That five-kopeck from deacon’s hand—
 Thus God’s own justice makes its stand.
 </string>
-    <string name="066">
+    <string name="manuscript_page_066_text">
 Listen, my dove, my Cossack eagle!
 Hear how I waste in bondage’s vigil,
 How I wander, wretched, through the world.
@@ -2807,7 +2700,7 @@ This wasteland’s grip, to liberty?
 Or will I perish here, God save,
 And find no rest beyond the grave.
 </string>
-    <string name="067">
+    <string name="manuscript_page_067_text">
 The scarlet field grows black with dread…
 —“To barracks! Back to bondage led!”—
 A voice seems shouting o’er my head.
@@ -2846,7 +2739,7 @@ My soul with blows that fools endure.
 Youth’s years are gone, fate’s path is sure,
 Yet hope, in chains, still clings to me,
 </string>
-    <string name="068">
+    <string name="manuscript_page_068_text">
 Once more, misfortune grips my soul,
 It wounds my heart with bitter toll.
 Yet might I see some good again?
@@ -2869,7 +2762,7 @@ To pray to God for death’s release.
 
 To Y. Kukharenko
 —“Not worth, by God, to live this way!”…
-—“Then drown yourself!”—But wife, child, stay?
+—“Then drown yourself!” - But wife, child, stay?
 See, that’s the truth, don’t weave a lie!
 Sit down, my friend, and let us try
 To write this tale… Perhaps you’ll see
@@ -2896,7 +2789,7 @@ Would she let girlhood waste, forsooth,
 Her brows grow dim for naught at all?
 No, this lass was not so small!
 </string>
-    <string name="069">
+    <string name="manuscript_page_069_text">
 And in that village, toiling true
 (For orphans oft are deemed askew),
 An orphan grew in hired hand,
@@ -2972,7 +2865,7 @@ With eyes of brown,
 Why take a wife—
 A stone to drown?
 </string>
-    <string name="070">
+    <string name="manuscript_page_070_text">
 1
 Enough of singing, let it rest.
 2
@@ -3023,7 +2916,7 @@ The poor were glad—now equal, least!
 The rich grew richer, so they smiled,
 The poor, now matched, no longer reviled.
 </string>
-    <string name="071">
+    <string name="manuscript_page_071_text">
 They gathered round to mourn and sigh,
 To heap their grief, to amplify.
 “What pity, pity! Had we known,
@@ -3073,7 +2966,7 @@ Like cabbage sprouting in the field.
 So that’s your view! Enough, let’s yield,
 Let them not live, as you decree…
 </string>
-    <string name="072">
+    <string name="manuscript_page_072_text">
 Yet I’ll speak plain, as you desire.
 You keep them bound, you quench their fire,
 For you live only for your gain,
@@ -3128,7 +3021,7 @@ The widow gone to death’s far land!
 To whom could he now bend his knee?
 Where winter through, where find his plea?
 </string>
-    <string name="073">
+    <string name="manuscript_page_073_text">
 Autumn nears, soon winter’s rage
 Will storm with frost, an icy cage.
 His fate is lost, it fled to fields!
@@ -3171,7 +3064,7 @@ Beside the path, in valley’s keep,
 A well he dug, so clear, so deep!
 That summer, they blessed the spring,
 </string>
-    <string name="074">
+    <string name="manuscript_page_074_text">
 On Maccabeus’ day, they came,
 And planted there an oak to claim
 A mark for travelers passing by.
@@ -3211,11 +3104,11 @@ That you recall no ill of me.
 Though I’ve not wronged you, I was free
 Among you once, and something stays.
 </string>
-    <string name="081">
+    <string name="manuscript_page_081_text">
         158
         154
     </string>
-    <string name="082">
+    <string name="manuscript_page_082_text">
 Let’s weave our verses once again,
 In secret, soft, as whispers blend,
 While new thread spins on olden base,
@@ -3243,7 +3136,7 @@ Shall I not weave once more
 Some quiet word, some gentle light,
 Of goodness born, to soothe the night?
 </string>
-    <string name="083">
+    <string name="manuscript_page_083_text">
 Behind God’s door, an axe lay still.
 (While God with Peter roamed at will,
 Working wonders through the land.)
@@ -3282,7 +3175,7 @@ With thorns and thistles, sparse and dry,
 And here, in gullies, sedge does lie
 Beneath the hills, in shadows cast.
 </string>
-    <string name="084">
+    <string name="manuscript_page_084_text">
 At times a wild Kazakh will ride
 His weary camel to the side
 Of that high hill, in silent tread.
@@ -3318,7 +3211,7 @@ He shared his tale, his truth, his pain:
 All comes from God, man’s work is vain,
 A fool can claim no deed his own.
 </string>
-    <string name="085">
+    <string name="manuscript_page_085_text">
 I, too, have squandered life, I see,
 In vain, in waste, my years set free,
 And blame no other for my fall…
@@ -3355,7 +3248,7 @@ She was a child in those sad days!
 Not ours to judge Your holy ways,
 Great God of ours, we bow to Thee.
 </string>
-    <string name="086">
+    <string name="manuscript_page_086_text">
 I barely gazed upon her face,
 Yet dreamed of marriage, love’s embrace,
 To live, to rejoice, with her by side,
@@ -3397,7 +3290,7 @@ We came, a horde, with vengeance sworn,
 Set white-walled halls to flame and scorn,
 Great lords and small, we cut them down,
 </string>
-    <string name="087">
+    <string name="manuscript_page_087_text">
 The old dame prayed
 For those young lives, her hands upraised
 To God in fervent plea… while we,
@@ -3438,7 +3331,7 @@ Great Kyiv’s holy spires gleam,
 A miracle, they shone divine,
 As if with God they spoke in sign.
 </string>
-    <string name="088">
+    <string name="manuscript_page_088_text">
 I gazed, and trembled, faint with awe,
 As soft bells rang, like heaven’s call,
 In Kyiv’s air, from skies above…
@@ -3466,7 +3359,7 @@ But vain the thought—’twill never be.
 How live in chains, with hope set free?
 Teach me, good folk, or I’ll go mad…
 </string>
-    <string name="089">
+    <string name="manuscript_page_089_text">
 And spare, O Lord, all souls from this,
 My wretched fate, an old man’s bliss
 In exile’s cage, to waste away,
@@ -3492,7 +3385,7 @@ Tire of luckless maids, defiled.
 Of grief and sorrow, I’m beguiled…
 No more, my paper’s pity spent.
 </string>
-    <string name="090">
+    <string name="manuscript_page_090_text">
 What’s worse upon this weary earth
 Than printed boredom’s lifeless birth?
 Of wasted years, of foes with eyes
@@ -3528,7 +3421,7 @@ Vile hag, you filth, is this your aid?
 So much for muses from Parnassus’ glade!
 A plague, a farce, and nothing more!”
 </string>
-    <string name="091">
+    <string name="manuscript_page_091_text">
 No soul is seen in Jerusalem,
 Its gates are barred, as if a plague
 Has seized the city, God’s own gem,
@@ -3563,7 +3456,7 @@ But Bathsheba, a living Eve,
 The wife of Uriah, does weave
 Her spell, a slave to kingly whim,
 </string>
-    <string name="092">
+    <string name="manuscript_page_092_text">
 And bathes in peace, with God her guide,
 Her snow-white breast in water’s glide,
 While fooling her anointed king!
@@ -3594,7 +3487,7 @@ On such dark truths, lest they unfold
 And haunt your days with tales retold!
 . . . . . . . . . . . . . . . . . . .
 </string>
-    <string name="093">
+    <string name="manuscript_page_093_text">
 David, the prophet-king, revered,
 Was far from saintly, as it’s clear.
 His daughter Tamar, son Amnon,
@@ -3635,7 +3528,7 @@ So live the sons of kings, in jest,
 Upon this earth, unchecked, unblessed!
 Behold, dear children, such is their way!
 </string>
-    <string name="094">
+    <string name="manuscript_page_094_text">
 And David lived long years on earth,
 Grew frail, and age dimmed royal mirth.
 They draped him thick in robes to warm,
@@ -3663,7 +3556,7 @@ They marvel that the grizzled cat
 No longer stirred to seize the fat,
 But, poor old wretch, his teeth were gone!
 </string>
-    <string name="095">
+    <string name="manuscript_page_095_text">
 Across the courtyard, soft and slow,
 Old Rognvald strides, with cheerful glow,
 His wife, his youths, his folk around
@@ -3703,7 +3596,7 @@ Then cast her off to bleak despair,
 A princess, wandering, lone, and torn…
 So live the saints, in glory born!
 </string>
-    <string name="096">
+    <string name="manuscript_page_096_text">
 Blest is he who has a home,
 Where sister or mother’s love may roam,
 A kindness true, a heart sincere—
@@ -3740,7 +3633,7 @@ But spare them lessons from your pen;
 You’ll teach no soul, but learn again
 From them, who teach you in their turn.
 </string>
-    <string name="097">
+    <string name="manuscript_page_097_text">
 They’ll call me fool, a witless scribe,
 And toss my book for children’s play,
 No more than that, no praise ascribe…
@@ -3768,7 +3661,7 @@ Old, frail, I sent what strength I had:
 My herd of horses to the band,
 A cannon, hook-guns—two carts clad,
 </string>
-    <string name="098">
+    <string name="manuscript_page_098_text">
 The wheat, the millet, all I’d gained,
 I gave to Ukraine, poor, enchained,
 My every scrap, my heart’s own store…
@@ -3807,7 +3700,7 @@ And set the barn to fiery play…
 They’ll rise no more, those cursed, to slay
 Our Cossack children, come what may!
 </string>
-    <string name="099">
+    <string name="manuscript_page_099_text">
 They burned, each one, to ash and bone!
 And Prysia, my poor child, alone,
 Was lost in flames with those accursed!
@@ -3839,7 +3732,7 @@ Who’ll guard your soul, with wings unfurled?
 Who’ll shield you from the wicked’s spite,
 Or warm your heart with love’s pure light?
 </string>
-    <string name="100">
+    <string name="manuscript_page_100_text">
 An orphan, lone, with none to call,
 Save righteous God, who sees your fall.
 Pray, dear heart, and I’ll pray too.
@@ -3868,7 +3761,7 @@ A prayer for you, your graceful form.
 For you, I whisper, “God, keep warm”—
 Pray too, beneath the holy sky,
 </string>
-    <string name="101">
+    <string name="manuscript_page_101_text">
 No fate, nor fortune, good or ill,
 Has dawned upon you, heart, to fill.
 
@@ -3885,7 +3778,7 @@ Why do I weep? Perhaps I grieve
 That youth, like storm without reprieve,
 Has passed me by, no mark to leave.
 </string>
-    <string name="102">
+    <string name="manuscript_page_102_text">
 Is it misfortune, or the chain
 Of bondage, or the years’ swift wane,
 That broke my soul? Or did I never
@@ -3912,7 +3805,7 @@ Curse fate, curse you, and weep in pain,
 Like you, I shun, in deep disdain,
 My wretched, sinful soul’s remains!
 </string>
-    <string name="103">
+    <string name="manuscript_page_103_text">
 I waste my days, my pen, my page,
 On devil’s work, in futile rage!
 At times, I weep, too much, too sore,
@@ -3934,7 +3827,7 @@ And bears it off to sleep’s soft keep.
 The old man smiles, and murmurs deep,
 Softly to himself: “Where’s the woe?”
 </string>
-    <string name="104">
+    <string name="manuscript_page_104_text">
 God granted me to live and see
 This joy at last. The old man, free,
 Crosses himself, reads “Our Father” low,
@@ -3943,7 +3836,7 @@ Fades quietly. The day is done,
 All rests, and he, the aged one,
 Enters his hut to take his ease.
 </string>
-    <string name="105">
+    <string name="manuscript_page_105_text">
 At times, an old man, unaware,
 Finds joy, though why, he cannot swear,
 As if he’s young again, he sings
@@ -3965,7 +3858,7 @@ The holy sun will cast its wit,
 And in that gloom, as if by chance,
 Green grass will grow, and life advance.
 </string>
-    <string name="106">
+    <string name="manuscript_page_106_text">
 Perhaps I ought to write alone
 A letter to myself, my own,
 And tell it all, the truth entire,
@@ -4008,7 +3901,7 @@ In steppe, awaiting sunset’s close?
 So I endure, and death I chose
 To seek in exile’s barren plain,
 </string>
-    <string name="107">
+    <string name="manuscript_page_107_text">
 And why, by God, I cannot say!
 Yet still I love her, come what may,
 My Ukraine, wide and boundless free,
@@ -4038,7 +3931,7 @@ To toil for hire, and then, in chain,
 They’ll send him off to soldier’s strife,
 To still his tears, his grieving life.
 </string>
-    <string name="108">
+    <string name="manuscript_page_108_text">
 We grew together, side by side,
 As children, love our hearts did guide.
 Our mothers watched, and softly planned
@@ -4088,7 +3981,7 @@ And yet, what beauty did she show!
 A queenly grace, not poor by birth,
 Yet God denied her fortune’s worth!
 </string>
-    <string name="109">
+    <string name="manuscript_page_109_text">
 All’s ready! Sails unfurl to breeze,
 We glide on waves, through reeds with ease,
 In skiff and barge to Syr-Darya’s flow.
@@ -4102,7 +3995,7 @@ Nor blame, for your vast steppe I leave;
 In other lands, perhaps I’ll sing
 Of bygone sorrows’ bitter sting!
 </string>
-    <string name="110">
+    <string name="manuscript_page_110_text">
 In autumn, we, in fleeting grace,
 Resemble God’s own image, trace—
 Not all, of course, but some, a few.
@@ -4130,21 +4023,21 @@ A child, though small, can sense the air
 Of joyful thoughts, and God’s own voice
 Speaks through their lips, a holy choice.
 </string>
-    <string name="111">
+    <string name="manuscript_page_111_text">
 But you, my only friend, alone,
 Luckless, in exile’s barren zone,
 Who’ll speak with you, or soothe your pain?
 </string>
-    <string name="112">
+    <string name="manuscript_page_112_text">
         220
         221
     </string>
-    <string name="113">
+    <string name="manuscript_page_113_text">
         222
         223
         1849
     </string>
-    <string name="114">
+    <string name="manuscript_page_114_text">
 Like chumaks trudging through the steppe
 In autumn, slow, with weary step,
 So pass my years, and I don’t care.
@@ -4158,7 +4051,7 @@ Without my verse, I’d waste away.
 Two years I’ve spun this poet’s thread,
 And now a third, with zeal, I’ll tread.
 </string>
-    <string name="115">
+    <string name="manuscript_page_115_text">
 In Ohlav… Who’d mark this white-roofed place?
 A tale, though brief, to save from jest,
 Lest pity turn to mocking’s trace.
@@ -4191,7 +4084,7 @@ Yet women sniffed it, sharp as hounds,
 And mocked his secret on their rounds.
 . . . . . . . . . . . . . . . . . .
 </string>
-    <string name="116">
+    <string name="manuscript_page_116_text">
 The captain sits by cottage wall,
 His thoughts in silent scheming fall,
 While Nastia, like a bird, does glide
@@ -4233,7 +4126,7 @@ With blue, oh blue, and cross-shaped bloom!”
 [Captain]
 “You’ll not stay maiden long, I’ll vow.”
 </string>
-    <string name="117">
+    <string name="manuscript_page_117_text">
 [Nastia]
 “What, shall I die then?”
 
@@ -4303,7 +4196,7 @@ Meanwhile, as she sings her dream,
 A young man steps through orchard’s gate,
 In straw hat, short coat, youth’s estate,
 </string>
-    <string name="118">
+    <string name="manuscript_page_118_text">
 P[etro]
 Good day, this blessed morn! God’s grace be yours!
 
@@ -4350,7 +4243,7 @@ To cherish children, bask in love,
 Yet no, I’d fool myself, it seems,
 And chase a wretched, selfish dream,
 </string>
-    <string name="119">
+    <string name="manuscript_page_119_text">
 To wed, an old man, such a child!
 Take heed, don’t wed, or you’ll defile
 Her life, and yours, a laughingstock
@@ -4398,7 +4291,7 @@ No matter, let him shun me, I’m not stirred.
 P[etro]
 Not even with me?
 </string>
-    <string name="120">
+    <string name="manuscript_page_120_text">
 N[astia]
 With you? Well… no, let him wed us, I decree!
 
@@ -4454,14 +4347,14 @@ Such fathers live, to their own shame,
 Before God’s eyes, a mockery made.
 Yet “Honor, cherish,” we’re bade,
 </string>
-    <string name="121">
+    <string name="manuscript_page_121_text">
 Respect him, children,
 For he is a gray-haired father!
 A wise father! Blessed are those
 Orphans who have no fathers,
 For they do not sin.
 
-**Настуся**
+Настуся
 (rushes out of the house, crying)
 He won’t even let me eat,
 Drives me to Kyiv.
@@ -4488,45 +4381,45 @@ I’ll be there early! Here, catch!
 (Throws a flower over the fence.)
 Do you hear? Wait for me!
 
-**С[отник]** enters. Настуся sings.
+С[отник] enters. Настуся sings.
 *"Do not come, do not plead, do not woo,
 Do not ask, I will not go, do not hope."*
 
-**С[отник]**
+С[отник]
 She doesn’t care! As if she doesn’t know!
 Like a magpie, she jumps around.
 Настуся! Why don’t you cry?
 Petrus is gone.
 
-**Н[астуся]**
+Н[астуся]
 Look at this sorrow!
 Then cry if you grieve…
 
-**С[отник]**
+С[отник]
 I don’t care.
 
-**Н[астуся]**
+Н[астуся]
 And I care even less,
 He was never mine.
 And I already know
 All the commandments!
 
-**С[отник]**
+С[отник]
 All of them?
 
-**Н[астуся]**
+Н[астуся]
 Let Father Khoma
 Confess me right now!
 </string>
-    <string name="122">
-**С[отник]**
+    <string name="manuscript_page_122_text">
+С[отник]
 Shall we wed on Sunday?
 
-**Н[астуся]**
+Н[астуся]
 Of course! But we haven’t fasted yet;
 Once we do, then we shall.
 
-**С[отник]**
+С[отник]
 (kisses her)
 My dove with gray wings!
 My little berry!..
@@ -4538,11 +4431,11 @@ At night,
 Wandering,
 Lost my necklace."*
 
-**Н[астуся]**
+Н[астуся]
 Enough with that necklace already.
 Go quickly to Father Khoma and seek advice!
 
-**С[отник]**
+С[отник]
 True, true, my little flower!
 I’ll run quickly,
 And you, my love,
@@ -4552,7 +4445,7 @@ But don’t wait for me,
 For I may stay for evening prayers.
 (Kisses her and leaves.)
 
-**Н[астуся]**
+Н[астуся]
 Fine, fine, I won’t wait.
 I won’t wait, I won’t wait,
 I’ll dress in my coat,
@@ -4579,7 +4472,7 @@ Farewell, my tall poplars,
 And my winding periwinkle.
 (Leaves.)
 
-At night, the drunken **С[отник]** returns home,
+At night, the drunken С[отник] returns home,
 Talking to himself cheerfully:
 *"Let people know about us!
 Let them see, gray-haired and hunchbacked,
@@ -4590,13 +4483,13 @@ He lies down quietly to sleep,
 So as not to wake Настуся
 And cause embarrassment.
 </string>
-    <string name="123">
+    <string name="manuscript_page_123_text">
 The bells have rung *"Dostoino"*,
 People are heading home—
 But Настуся does not come,
 She is nowhere to be heard!
 
-They barely wake **С[отник]**,
+They barely wake С[отник],
 And tell him what happened.
 He crosses himself,
 Saddles his finest horse,
@@ -4606,7 +4499,7 @@ In Brovary,
 His young Настуся
 Is already wed and celebrating!
 
-**С[отник]** returns home,
+С[отник] returns home,
 For three days and nights,
 He does not rise,
 He speaks to no one,
@@ -4621,7 +4514,7 @@ That in old age,
 He will lose his mind
 And abandon everything.
 
-So it was with **С[отник]**,
+So it was with С[отник],
 With my foolish one,
 He scattered his children across the world,
 Yet his wealth remained,
@@ -4650,7 +4543,7 @@ And steals the key
 From his belt.
 
 Such was the fate
-Of **С[отник]**.
+Of С[отник].
 
 Less than a year had passed,
 Since Настуся was gone,
@@ -4661,7 +4554,7 @@ Roamed freely…
 And the periwinkle!
 The winding periwinkle!
 </string>
-    <string name="124">
+    <string name="manuscript_page_124_text">
 Trampled down, by the fence,
 It withers, fades away!
 And the sotnyk, in his coat,
@@ -4714,7 +4607,7 @@ Like maidens
 Waiting for their warriors
 To return from the fields.
 </string>
-    <string name="125">
+    <string name="manuscript_page_125_text">
 A cloud drifts after the sun,
 Spreading crimson folds,
 Calling the sun to sleep
@@ -4768,7 +4661,7 @@ Just a little.
 Outside, you see,
 A holiday approaches…
 </string>
-    <string name="126">
+    <string name="manuscript_page_126_text">
 It is hard, my friend,
 To greet the day alone
 In the wilderness.
@@ -4837,7 +4730,7 @@ So that such weeds
 Would never grow
 In our fields.
 </string>
-    <string name="127">
+    <string name="manuscript_page_127_text">
 Cossack fate—
 Why should I take it on?
 The young Cossacks will mock me,
@@ -4888,7 +4781,7 @@ And spread his glory
 Across all Ukraine.
 </string>
 
-    <string name="128">
+    <string name="manuscript_page_128_text">
 Not so much glory,
 Not so much fame,
 As the rumor—
@@ -4931,7 +4824,7 @@ Went on a pilgrimage to Kyiv,
 Took the veil.
 </string>
 
-    <string name="129">
+    <string name="manuscript_page_129_text">
 If you were to rule over us,
 You would know, brother,
 How to name them—
@@ -4957,7 +4850,7 @@ Here is one last tale,
 Listen, gentlemen."
 </string>
 
-    <string name="130">
+    <string name="manuscript_page_130_text">
 The girls raked hay in the meadow,
 The lads stacked the piles,
 Glancing at the sun,
@@ -5026,7 +4919,7 @@ It must be carried far,
 And one must forgive!
 </string>
 
-    <string name="131">
+    <string name="manuscript_page_131_text">
 And meanwhile,
 Three carriages arrived,
 Bells jingling,
@@ -5107,7 +5000,7 @@ While the bride
 Traveled with the convoy,
 To Siberia.
 </string>
-    <string name="132">
+    <string name="manuscript_page_132_text">
 The paths have grown over
 With thorns to that land,
 Perhaps I have left it forever,
@@ -5153,7 +5046,7 @@ Grant me at least a glimpse
 Of that beaten people,
 Of that Ukraine!
 </string>
-    <string name="133">
+    <string name="manuscript_page_133_text">
 In the valley,
 The red viburnum bloomed,
 As if a young girl
@@ -5192,7 +5085,7 @@ It would hinder me,
 And to priests and people,
 It would make no difference.
 </string>
-    <string name="134">
+    <string name="manuscript_page_134_text">
 In our paradise on earth,
 There is nothing more beautiful
 Than a young mother
@@ -5249,7 +5142,7 @@ With you at home.
 No clothes
 To cover your old body.
 </string>
-    <string name="135">
+    <string name="manuscript_page_135_text">
 No firewood
 To warm the house in winter.
 And you are too weak to rise,
@@ -5320,7 +5213,7 @@ Among the dogs,
 Frozen,
 Somewhere beneath a fence.
 </string>
-    <string name="136">
+    <string name="manuscript_page_136_text">
 That is why I pity
 The poor mother,
 Who loves him so,
@@ -5371,7 +5264,7 @@ Hiding her hands in her sleeves.
 "And I dined at the priest’s house,"
 Said the orphan.
 </string>
-    <string name="137">
+    <string name="manuscript_page_137_text">
 Whether I worked,
 Or wandered,
 Or prayed to God,
@@ -5439,7 +5332,7 @@ A cruel thief
 Pushes in,
 And will not relent.
 </string>
-    <string name="138">
+    <string name="manuscript_page_138_text">
 It is no pity for the wicked,
 For fame stands guard beside them.
 But it is sorrowful for the good,
@@ -5494,7 +5387,7 @@ For drunken, crippled Petro.
 But great sorrow for the people,
 For those foolish children!
 </string>
-    <string name="139">
+    <string name="manuscript_page_139_text">
 There is no greater sorrow
 Than recalling freedom
 While in captivity.
@@ -5559,7 +5452,7 @@ And with those eyes,
 So dark—so blue,
 Do you still enchant
 </string>
-    <string name="140">
+    <string name="manuscript_page_140_text">
 Human souls?
 Do they still marvel,
 In vain,
@@ -5623,7 +5516,7 @@ That it was not real,
 But a deceitful dream,
 Dissolved in tears.
 </string>
-    <string name="141">
+    <string name="manuscript_page_141_text">
 Like a nail
 Driven into my heart,
 I carry this Marina.
@@ -5700,7 +5593,7 @@ Or they will say
 That we commit robbery
 Upon the road.
 </string>
-    <string name="142">
+    <string name="manuscript_page_142_text">
 And further still,
 They will drive us away.
 We will perish together…
@@ -5779,7 +5672,7 @@ Like a spell,
 It scattered,
 It dissolved.
 </string>
-    <string name="143">
+    <string name="manuscript_page_143_text">
 And again,
 She must beg for work?
 
@@ -5816,7 +5709,7 @@ Circles around you,
 Like a stallion.
 
 Whether good or wicked,
-You will be of noble kin—
+You will be of noble kin -
 Unless you hang yourself!
 
 Her mother came,
@@ -5865,7 +5758,7 @@ That they may learn
 To walk righteous paths,
 To love the Holy Lord,
 </string>
-    <string name="144">
+    <string name="manuscript_page_144_text">
 And to cherish their brothers…
 
 She barely reached home,
@@ -5952,7 +5845,7 @@ That steward
 Destroyed her,
 Poor soul.
 </string>
-    <string name="145">
+    <string name="manuscript_page_145_text">
 Nothing will change,
 Even if you slay her—
 She was born this way.
@@ -6021,7 +5914,7 @@ And terror—
 A bloodied knife in her hand,
 And she sang…
 </string>
-    <string name="146">
+    <string name="manuscript_page_146_text">
 *"Is this not the gossiping woman,
 Who tucked up her skirts?
 When I was a lady,
@@ -6080,10 +5973,10 @@ Upon the Tatars,
 And the sun upon the Christians,
 Ring, bell, ring!"*
 
-**Mother**
+Mother
 "Marinochka, let’s go to sleep!"
 
-**Marina**
+Marina
 "Let’s go to sleep,
 For tomorrow morning,
 We will go to church.
@@ -6092,14 +5985,14 @@ Look, the wretch
 Creeps to kiss me.
 Here, take this!"
 
-**Mother**
+Mother
 "Let’s go to sleep."
 </string>
-    <string name="147">
+    <string name="manuscript_page_147_text">
 (To the people)
 "Baptized folk, help me!"
 
-**Marina**
+Marina
 "Take me! Take me, bind me,
 Lead me to the lord’s chamber!
 
@@ -6192,7 +6085,7 @@ And leapt across the yard,
 Into the field,
 Howling like a beast.)
 </string>
-    <string name="148">
+    <string name="manuscript_page_148_text">
 The old mother hobbled,
 Chasing after her Marina.
 
@@ -6239,7 +6132,7 @@ And rightly,
 The great Lord,
 As upon wild, savage beasts,
 </string>
-    <string name="149">
+    <string name="manuscript_page_149_text">
 Commanded chains be forged,
 Deep prisons be dug.
 
@@ -6277,7 +6170,7 @@ Came to check his guests…
 
 "Such wretched ones!"
 </string>
-    <string name="150">
+    <string name="manuscript_page_150_text">
 All owls,
 Every one—
 What a feast to cook and bake!
@@ -6325,7 +6218,7 @@ You will ask
 For fortune,
 For fate.
 </string>
-    <string name="151">
+    <string name="manuscript_page_151_text">
 He walked through the dark ravine,
 Singing as he went:
 
@@ -6426,7 +6319,7 @@ He adorned her with necklaces!
 
 But the poor soul weakened…
 </string>
-    <string name="152">
+    <string name="manuscript_page_152_text">
 Sell the house,
 Go into service—
 That cursed lord
@@ -6512,7 +6405,7 @@ How wide!
 
 Like freedom…
 </string>
-    <string name="153">
+    <string name="manuscript_page_153_text">
 He returned home at night.
 
 His mother groaned upon the stove,
@@ -6591,7 +6484,7 @@ To the holy God,
 Wept like a child…
 And forgave the poor woman!
 </string>
-    <string name="154">
+    <string name="manuscript_page_154_text">
 Thus, people,
 Learn to forgive your enemies,
 As this simple man did!
@@ -6626,7 +6519,7 @@ Yellowed grass in the steppe.
 It does not wish to tell the truth,
 And there is no one else to ask.
 </string>
-    <string name="155">
+    <string name="manuscript_page_155_text">
 I grew up in exile,
 And I grow gray in a foreign land.
 
@@ -6698,7 +6591,7 @@ Sell them,
 To their good brothers,
 The Jews…
 </string>
-    <string name="156">
+    <string name="manuscript_page_156_text">
 The last ones sell their trousers…
 . . . . . . . . . . . . . . . . . . . .
 
@@ -6764,7 +6657,7 @@ And sometimes…
 I remember
 My Ukraine.
 </string>
-    <string name="157">
+    <string name="manuscript_page_157_text">
 And I weep…
 Oh, merciful God!
 
@@ -6813,7 +6706,7 @@ All three met.
 "So, you wretch!
 You mock the sisters…"
 </string>
-    <string name="158">
+    <string name="manuscript_page_158_text">
 And they went searching
 For poison-herbs,
 To kill Ivan
@@ -6857,7 +6750,7 @@ By that grove,
 Sway without wind,
 And the wind sways them.
 </string>
-    <string name="159">
+    <string name="manuscript_page_159_text">
 If only I had shoes,
 I would go to the music…
 
@@ -6909,7 +6802,7 @@ That wretched old man,
 My unloved, wealthy one,
 My cruel enemy!
 </string>
-    <string name="160">
+    <string name="manuscript_page_160_text">
 I loved,
 I married
 An unfortunate orphan—
@@ -6952,7 +6845,7 @@ I grow old.
 I do not gaze upon God’s world,
 I do not reach for anyone…
 </string>
-    <string name="161">
+    <string name="manuscript_page_161_text">
 And my old mother…
 Forgive me, my mother!
 I will curse you
@@ -6985,7 +6878,7 @@ Returned home.
 He entered the house,
 Struck the threshold…
 </string>
-    <string name="162">
+    <string name="manuscript_page_162_text">
 The children crawled in the corner,
 Hungry and naked.
 
@@ -7021,7 +6914,7 @@ Nor rob him,
 Nor send the widow’s son
 To the army.
 </string>
-    <string name="163">
+    <string name="manuscript_page_163_text">
 The wind blows through the street,
 Snow drifts along.
 
@@ -7065,7 +6958,7 @@ She coos somewhere
 At her mother-in-law’s,
 Watching for me.
 </string>
-    <string name="164">
+    <string name="manuscript_page_164_text">
 The cuckoo called
 In the green grove,
 The maiden wept—
@@ -7088,7 +6981,7 @@ A maiden,
 Alone,
 Somewhere beneath a fence.
 </string>
-    <string name="165">
+    <string name="manuscript_page_165_text">
 In Perepyat,
 The Haidamakas
 Spent the night in secret.
@@ -7136,7 +7029,7 @@ With Levchenko beside him,
 To trample
 The Jewish and noble corpses.
 </string>
-    <string name="166">
+    <string name="manuscript_page_166_text">
 Oh, the beer and mead
 Are not drunk,
 Nor is the water.
@@ -7181,7 +7074,7 @@ And to the young maiden,
 Tell her
 Not to wait for me.
 </string>
-    <string name="167">
+    <string name="manuscript_page_167_text">
 On the street,
 All is joyless,
 At home,
@@ -7210,7 +7103,7 @@ For if I remain
 With my mother…
 It is better to drown.
 </string>
-    <string name="168">
+    <string name="manuscript_page_168_text">
 The second was impaled
 In Kozlov.
 
@@ -7250,7 +7143,7 @@ And the noble Cossacks
 Became blood brothers
 In the steppe.
 </string>
-    <string name="169">
+    <string name="manuscript_page_169_text">
 Beyond the grove,
 The sun rises,
 Beyond the grove,
@@ -7287,7 +7180,7 @@ And the maiden,
 Branded,
 Is cast into the world.
 </string>
-    <string name="170">
+    <string name="manuscript_page_170_text">
 Oh, I went to the ravine for water,
 And there my beloved
 Rejoiced with another.
@@ -7338,7 +7231,7 @@ Will find you everywhere,
 And even in the next world,
 They will not forget you.
 </string>
-    <string name="171">
+    <string name="manuscript_page_171_text">
 Oh, hush, hush, my child,
 Day and night.
 
@@ -7375,7 +7268,7 @@ And if you see a mother
 With her children,
 Do not look.
 </string>
-    <string name="172">
+    <string name="manuscript_page_172_text">
 Fog, fog through the valley,
 It is good to live with family.
 
@@ -7436,7 +7329,7 @@ Solemnly, quietly,
 In the early hour,
 Upon the high hill…
 </string>
-    <string name="173">
+    <string name="manuscript_page_173_text">
 The colonels gathered,
 And the army, like the sea,
 With banners, with standards,
@@ -7494,7 +7387,7 @@ Too weak to rise,
 I will give him counsel,
 Teach him as a father,
 </string>
-    <string name="174">
+    <string name="manuscript_page_174_text">
 How to stand against the Poles.
 
 Now is a cruel time
@@ -7543,7 +7436,7 @@ For firewood,
 Loved the cooper,
 Dark-browed.
 </string>
-    <string name="175">
+    <string name="manuscript_page_175_text">
 The cooper binds the barrels,
 Holds her close,
 Embraces her,
@@ -7584,7 +7477,7 @@ Chewing their cud,
 But my young trader
 Was not among them.
 </string>
-    <string name="176">
+    <string name="manuscript_page_176_text">
 Oh, they dug for him,
 In the steppe,
 By the roadside,
@@ -7623,7 +7516,7 @@ It is frightening to remain a maiden,
 To live my whole life
 Without love."
 </string>
-    <string name="177">
+    <string name="manuscript_page_177_text">
 I have trodden a path
 Through the ravine,
 Over the hill, my dear,
@@ -7675,7 +7568,7 @@ We merely walk,
 And recall those days,
 When once we lived.
 </string>
-    <string name="178">
+    <string name="manuscript_page_178_text">
 By the ford,
 Near the garden,
 The periwinkle does not bloom.
@@ -7745,7 +7638,7 @@ Oh, my fate!
 Do not let me remain a maiden,
 Braiding and unbraiding my hair,
 </string>
-    <string name="179">
+    <string name="manuscript_page_179_text">
 Wearing away my brows at home,
 Living out my days in solitude.
 
@@ -7781,7 +7674,7 @@ Drink mead and wine."
 The foolish Cossack
 Went seeking glory,
 </string>
-    <string name="180">
+    <string name="manuscript_page_180_text">
 And his old mother
 Was left an orphan.
 
@@ -7824,7 +7717,7 @@ To light the hearth,
 No one to bring water
 To the cripple.
 </string>
-    <string name="181">
+    <string name="manuscript_page_181_text">
 The plague walked with a shovel,
 Dug graves,
 Filled them with corpses,
@@ -7906,7 +7799,7 @@ Poor souls.
 Beneath the houses,
 They rotted.
 </string>
-    <string name="182">
+    <string name="manuscript_page_182_text">
 Like an oasis,
 In the open field,
 The village gleams green.
@@ -7966,7 +7859,7 @@ They perished from cholera,
 Or else they would have sent
 At least a scrap of paper…
 </string>
-    <string name="183">
+    <string name="manuscript_page_183_text">
 Oh, from grief,
 From sorrow,
 So that I do not see
@@ -8020,7 +7913,7 @@ Snow buries
 A body
 Still warm.
 </string>
-    <string name="184">
+    <string name="manuscript_page_184_text">
 Oh, my old father has died,
 And my old mother too,
 And there is no one
@@ -8056,10 +7949,10 @@ It greens in the grove.
 But the orphaned maiden
 Wastes away in servitude.
 </string>
-    <string name="185">
+    <string name="manuscript_page_185_text">
 1850
 </string>
-    <string name="186">
+    <string name="manuscript_page_186_text">
 I count the days and nights
 In captivity,
 And lose count.
@@ -8088,7 +7981,7 @@ And I begin
 The fourth book
 In captivity.
 </string>
-    <string name="187">
+    <string name="manuscript_page_187_text">
 I weave it—
 I weave it
 With blood and tears,
@@ -8158,7 +8051,7 @@ Oh, my merciful God!
 The green fields,
 The sacred mounds!
 </string>
-    <string name="188">
+    <string name="manuscript_page_188_text">
 And if You do not grant it,
 Then carry my tears
 To my land,
@@ -8216,7 +8109,7 @@ Yet still,
 I will weave
 These quiet, white pages.
 </string>
-    <string name="189">
+    <string name="manuscript_page_189_text">
 We sang,
 We parted,
 Without tears,
@@ -8256,8 +8149,8 @@ And that youthful sorrow!
 And that young,
 Sinful paradise!
 </string>
-    <string name="190">
-**The Cottage**
+    <string name="manuscript_page_190_text">
+The Cottage
 
 She did not pray for me,
 She did not bow for me,
@@ -8357,7 +8250,7 @@ That I might at least
 Die by the Dnipro,
 Upon a tiny hill.
 </string>
-    <string name="191">
+    <string name="manuscript_page_191_text">
 There were lords
 Upon the farmstead,
 A lord,
@@ -8461,7 +8354,7 @@ In spring,
 And in the estate,
 The banquets roared.
 </string>
-    <string name="192">
+    <string name="manuscript_page_192_text">
 The general’s wife weeps,
 She weeps,
 But the general does not see.
@@ -8572,7 +8465,7 @@ A holy deed.
 
 They have freed Petrus,
 </string>
-    <string name="193">
+    <string name="manuscript_page_193_text">
 They took the boy to Kyiv,
 And there,
 They sent him to school,
@@ -8667,7 +8560,7 @@ You would gladly die,
 Three times a day,
 Gladly give up
 </string>
-    <string name="194">
+    <string name="manuscript_page_194_text">
 Your youthful paradise!
 
 But you can give
@@ -8783,7 +8676,7 @@ Suffered,
 She did not know
 What to do!
 </string>
-    <string name="195">
+    <string name="manuscript_page_195_text">
 Then she brewed poison,
 And gave it to the general,
 So he would know
@@ -8868,7 +8761,7 @@ Shaved his head for good measure…
 And Petrus dragged his chains
 All the way to Siberia…
 </string>
-    <string name="196">
+    <string name="manuscript_page_196_text">
 It seems to me,
 I do not know,
 But people do not truly die,
@@ -8978,7 +8871,7 @@ Or of blood,
 Spilled in vain
 By great executioners.
 </string>
-    <string name="197">
+    <string name="manuscript_page_197_text">
 You weep bitterly
 Before us,
 And we weep…
@@ -9021,108 +8914,85 @@ I will sing,
 And call God
 By His name.
 </string>
-    <string name="198">
-**6.**
 
-If you knew,
-Young lords,
-Where people weep
-As they live,
+    <!--
+    https://www.t-shevchenko.name/uk/Gallery/Works/1850MalaKn/392-393.html
+    https://www.t-shevchenko.name/files/THSh/autographs/1850MalaKn/198.jpg
+    https://www.t-shevchenko.name/uk/Kobzar/1850/JakbyVyZnalyPanychi.html#Line21
+    -->
+    <string name="manuscript_page_198_text">
+In that little cottage, in that paradise,
+I saw hell itself... There, people lived in bondage,
+Endless labor,
+Never even allowed to pray.
 
-You would not write elegies,
-You would not praise God in vain,
-Laughing at our tears.
-
-Why,
-I do not know,
-Do they call
-A cottage in the grove
-A quiet paradise?
-
-I suffered in that house once,
-My tears were shed there,
-My first tears;
-I do not know,
-If there is
-A cruel evil in God!
-
-What did not live
-In that house?
-
-Yet they call it paradise!
-
-I do not call it paradise,
-That cottage in the grove,
-By the clear pond,
-At the edge of the village.
-
-There,
-My mother swaddled me,
-And, swaddling,
-Sang,
-Poured her sorrow
-Into her child…
-
-In that grove,
-In that cottage,
-In that paradise,
-I saw hell…
-
-There, captivity,
-Heavy labor,
-Never even
-Allowed prayer.
-
-There,
-My good mother,
+There my good mother,
 Still young,
-Was laid in the grave
+Was driven into the grave
 By hardship and toil.
 
-There,
-My father,
-Weeping with his children
-(And we were small,
-And naked),
-Could not endure
-His cruel fate,
-Died in servitude!
+There my father, weeping with his children
+(And we were small and barefoot),
+Could not endure his cruel fate
+And died in serfdom...
 
 And we
-Scattered among people,
-Like mice.
+Scattered among strangers
+Like little mice.
 
-I went to school—
-To carry water
-For the students.
+I was sent to school
+To carry water for the students.
+My brothers worked in forced labor
+Until their heads were shaved.
 
-My brothers
-Went to servitude,
-Until their heads
-Were shaved!
-
-And my sisters!
-My sisters!
-Woe to you,
+And my sisters... my poor sisters...
 My young doves,
-For whom
-Do you live in this world?
+For whom do you live in this world?
 
-You grew up
-In servitude,
-Strangers,
-In servitude,
-Your hair will turn white,
-In servitude,
-Sisters,
-You will die!
+You grew up serving strangers,
+Your hair will turn white in servitude,
+And in servitude, sisters,
+You will die.
 
-It frightens me,
-Even to remember
-That cottage
-At the edge of the village!
+It frightens me even now
+To remember
+That cottage at the edge of the village.
+
+Such deeds, O our God,
+We commit in our own paradise,
+On Your righteous earth!
+
+We turned paradise into hell,
+And still we pray to You for another heaven,
+While living quietly with our brothers,
+Plowing fields together
+And watering them with tears.
+
+Or perhaps... perhaps even this...
+No, I do not know.
+Yet it seems...
+You Yourself -
+(Because without Your will, O God,
+We would not suffer naked in this paradise) -
+Perhaps You too laugh at us in heaven,
+And perhaps You consult with the lords
+On how to rule this world.
+
+For look -
+There the green grove bends gently,
+And beyond it
+A pond appears like smooth linen,
+While the willows above the water
+Quietly bathe
+Their green branches...
+
+Is this not paradise?
+
+But look closer.
+Ask yourself.
 </string>
-    <string name="199">
+
+    <string name="manuscript_page_199_text">
 What happens there,
 In that paradise?
 
@@ -9148,8 +9018,8 @@ That even You,
 Have been cursed
 By mankind!
 </string>
-    <string name="200">
-**7.**
+    <string name="manuscript_page_200_text">
+7.
 
 Sometimes,
 In captivity,
@@ -9255,7 +9125,7 @@ For freedom,
 We all will rise,
 But God alone knows,
 </string>
-    <string name="201">
+    <string name="manuscript_page_201_text">
 When that will be.
 
 Look well, child!
@@ -9294,8 +9164,8 @@ Some phantom?
 That Cossack
 Told me this…
 </string>
-    <string name="202">
-**Tytaryvna**
+    <string name="manuscript_page_202_text">
+Tytaryvna
 
 On Sunday,
 In the village,
@@ -9432,7 +9302,7 @@ Sorrow, grief,
 And shame
 Have surrounded her soul.
 </string>
-    <string name="203">
+    <string name="manuscript_page_203_text">
 And you wept!
 Why?
 
@@ -9520,7 +9390,7 @@ The girls danced,
 Just as finely,
 As the year before.
 </string>
-    <string name="204">
+    <string name="manuscript_page_204_text">
 Bold,
 In a blue cap,
 In a coat,
@@ -9618,7 +9488,7 @@ Not for two,
 Tytaryvna
 Went to the garden,
 </string>
-    <string name="205">
+    <string name="manuscript_page_205_text">
 Not for a day,
 Not for two,
 She served Mykyta,
@@ -9699,7 +9569,7 @@ The people gathered,
 They drained the well,
 They searched for the child.
 </string>
-    <string name="206">
+    <string name="manuscript_page_206_text">
 They found,
 They found your son,
 Tytaryvna,
@@ -9759,7 +9629,7 @@ And deceive you,
 Maidens,
 Forever.
 </string>
-    <string name="207">
+    <string name="manuscript_page_207_text">
 What are words,
 One might say?
 
@@ -9849,7 +9719,7 @@ Old man,
 In this captivity,
 Do you sorrow—
 </string>
-    <string name="208">
+    <string name="manuscript_page_208_text">
 That the world
 Is bound,
 Is closed!
@@ -9872,7 +9742,7 @@ Little swan?!
 
 Indeed…
 </string>
-    <string name="209">
+    <string name="manuscript_page_209_text">
 In Vilnius,
 That famed city,
 This happened
@@ -9913,7 +9783,7 @@ It was well,
 But misfortune
 Befell him!
 </string>
-    <string name="210">
+    <string name="manuscript_page_210_text">
 He fell in love,
 Poor soul,
 He was young,
@@ -10012,7 +9882,7 @@ From the courtyard,
 Like a madman,
 Ran out.
 </string>
-    <string name="211">
+    <string name="manuscript_page_211_text">
 With an axe!
 Woe!
 
@@ -10075,7 +9945,7 @@ And they will not forget
 The widow,
 And they will condemn her too!
 </string>
-    <string name="212">
+    <string name="manuscript_page_212_text">
 A black cloud
 Covered
 The white cloud.
@@ -10153,7 +10023,7 @@ They laid
 Those regalia
 At Popovych’s feet.
 </string>
-    <string name="213">
+    <string name="manuscript_page_213_text">
 Go, Petro,
 To Mezhyhirya,
 To pray to God.
@@ -10223,7 +10093,7 @@ For the hetman,
 A requiem
 For Petro.
 </string>
-    <string name="214">
+    <string name="manuscript_page_214_text">
 And still,
 Every year,
 When that day comes,
@@ -10232,22 +10102,22 @@ A requiem
 For our hetman
 In Yaropolche.
 
-**425**
+425
 
 Oh, though I may winnow,
 I will not cease,
 Yet I will not winnow away
 What God has given.
 
-**__________**
+__________
 
 Ru-dudu, ru-dudu,
 Born into misfortune,
 To heat with straw,
 To carry water in a pot.
 </string>
-    <string name="217">
-**Tytaryvna**
+    <string name="manuscript_page_217_text">
+Tytaryvna
 
 Long ago,
 This happened once,

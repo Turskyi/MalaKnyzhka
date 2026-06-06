@@ -10,16 +10,33 @@ import org.jetbrains.compose.resources.StringResource
 
 enum class AppLang(
     val code: String,
+    val shortName: String,
     val stringRes: StringResource,
-    val imageRes: DrawableResource
+    val imageRes: DrawableResource,
 ) {
-    English(code = "en", Res.string.en, Res.drawable.english),
-    Ukraine(code = "uk", Res.string.uk, Res.drawable.ukrainian);
+    English(
+        code = "en",
+        shortName = "EN",
+        stringRes = Res.string.en,
+        imageRes = Res.drawable.english,
+    ),
+    Ukraine(
+        code = "uk",
+        shortName = "УК",
+        stringRes = Res.string.uk,
+        imageRes = Res.drawable.ukrainian,
+    );
+
+    fun toggle(): AppLang {
+        return if (this == English) Ukraine else English
+    }
 
     companion object {
+        val DEFAULT: AppLang = Ukraine
+
         fun fromLanguageTag(tag: String?): AppLang {
             val parsedTag: String? = tag?.lowercase()?.split("-")?.firstOrNull()
-            return entries.find { it.code == parsedTag } ?: Ukraine
+            return entries.find { it.code == parsedTag } ?: DEFAULT
         }
     }
 }

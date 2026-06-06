@@ -8,6 +8,10 @@ import kotlinx.browser.window
 import org.w3c.dom.get
 import org.w3c.dom.set
 
+@OptIn(ExperimentalWasmJsInterop::class)
+@JsFun("(code) => { Object.defineProperty(window.navigator, 'language', { get: function() { return code; }, configurable: true }); Object.defineProperty(window.navigator, 'languages', { get: function() { return [code]; }, configurable: true }); }")
+external fun setNavigatorLanguage(code: String)
+
 private const val PREFERRED_LOCALE_KEY = "app_preferred_locale"
 private const val PREFERRED_WASM_LOCALE_USER_SET_KEY =
     "app_preferred_wasm_locale_user_set"
@@ -21,37 +25,40 @@ class WasmJsAppLocaleManager : AppLocaleManager {
             localStorage[PREFERRED_WASM_LOCALE_USER_SET_KEY] == "true"
 
         if (!userHasSetLanguage) {
-            // First launch or language never explicitly set by app/user: default to Ukrainian.
+            // First launch or language never explicitly set by app/user: default to DEFAULT.
             // You might also want to consult browser language here as a *first-time default*
-            // before any user interaction, but Ukrainian as a hard default is also valid.
+            // before any user interaction, but DEFAULT as a hard default is also valid.
             // For this example, let's stick to your explicit default for "not user set".
-            return AppLang.Ukraine.code
+            return AppLang.DEFAULT.code
         }
 
         // 2. User has set a language before (or we are programmatically setting it), so try to load it.
         val storedLocale: String? = localStorage[PREFERRED_LOCALE_KEY]
         if (!storedLocale.isNullOrBlank()) {
             return storedLocale.split("-").firstOrNull()
-                ?: AppLang.Ukraine.code
+                ?: AppLang.DEFAULT.code
         }
 
         // 3. Fallback: If flag is true but code is missing (should be rare).
         //    Or, if you decided above that !userHasSetLanguage should still check browser
         //    before falling to hardcoded default.
         //    For now, if userHasSetLanguage is true, we expect a storedLocale.
-        //    If it's missing, falling back to a hardcoded default like Ukraine.code is safest.
+        //    If it's missing, falling back to a hardcoded default like DEFAULT.code is safest.
         val browserLang: String = window.navigator.language
         return browserLang.split("-").firstOrNull()
-            ?: AppLang.Ukraine.code
+            ?: AppLang.DEFAULT.code
     }
 
-    //    FIXME: this does not work.
     override fun setLocale(appLang: AppLang) {
         // 1. Store the preference in localStorage.
         localStorage[PREFERRED_LOCALE_KEY] = appLang.code
         // 2. Mark that language has been explicitly set by the user/app.
         localStorage[PREFERRED_WASM_LOCALE_USER_SET_KEY] = "true"
-        // 3. Optionally, set the 'lang' attribute on the HTML document's root
+
+        // 3. Dynamically override navigator.language so Compose Resource library sees it.
+        setNavigatorLanguage(appLang.code)
+
+        // 4. Optionally, set the 'lang' attribute on the HTML document's root
         // element.
         document.documentElement?.setAttribute(
             "lang",
@@ -66,7 +73,16 @@ class WasmJsAppLocaleManager : AppLocaleManager {
     }
 }
 
+@OptIn(ExperimentalWasmJsInterop::class)
 @Composable
 actual fun rememberAppLocaleManager(): AppLocaleManager {
-    return remember { WasmJsAppLocaleManager() }
+    return remember {
+        val manager = WasmJsAppLocaleManager()
+        // Initialize navigator language from stored preference on startup.
+        val preferred: String? = localStorage[PREFERRED_LOCALE_KEY]
+        if (preferred != null) {
+            setNavigatorLanguage(preferred)
+        }
+        manager
+    }
 }

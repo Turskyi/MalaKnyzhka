@@ -69,7 +69,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget: KotlinNativeTarget ->
@@ -83,7 +82,7 @@ kotlin {
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        outputModuleName = "composeApp"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -113,6 +112,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -212,7 +212,12 @@ compose.desktop {
         mainClass = "com.turskyi.malaknyzhka.MainKt"
 
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(
+                TargetFormat.Dmg,
+                TargetFormat.Msi,
+                TargetFormat.Deb,
+                TargetFormat.Pkg,
+            )
             packageName = libs.versions.dockName.get()
             packageVersion = libs.versions.versionName.get()
 

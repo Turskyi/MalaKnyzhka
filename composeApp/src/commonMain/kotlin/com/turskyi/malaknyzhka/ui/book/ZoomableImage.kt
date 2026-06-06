@@ -20,10 +20,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun ZoomableImage(imageResource: DrawableResource) {
     // State for zoom level and offset.
     val scale: MutableState<Float> = remember { mutableStateOf(1f) }

@@ -33,11 +33,11 @@ class DesktopAppLocaleManager : AppLocaleManager {
             // The second argument to get() is the default value if the key is not found.
             val storedLocale: String? = prefs.get(
                 PREFERRED_DESKTOP_LOCALE_CODE_KEY,
-                AppLang.Ukraine.code,
+                AppLang.DEFAULT.code,
             )
             if (!storedLocale.isNullOrBlank()) {
                 return storedLocale.split("-").firstOrNull()
-                    ?: AppLang.Ukraine.code
+                    ?: AppLang.DEFAULT.code
             }
             // If flag is true but code is missing/blank (should be rare if setLocale is correct),
             // fall through to JVM default.
@@ -45,15 +45,27 @@ class DesktopAppLocaleManager : AppLocaleManager {
 
         // Get the JVM's default locale's language tag.
         return Locale.getDefault().language.split("-").firstOrNull()
-            ?: AppLang.Ukraine.code
+            ?: AppLang.DEFAULT.code
     }
 
     override fun setLocale(appLang: AppLang) {
         // 1. Store the user's chosen language code.
-        prefs.put(PREFERRED_DESKTOP_LOCALE_CODE_KEY, appLang.code)
+        val currentSavedCode: String? = prefs.get(
+            PREFERRED_DESKTOP_LOCALE_CODE_KEY,
+            null
+        )
+        if (currentSavedCode != appLang.code) {
+            prefs.put(PREFERRED_DESKTOP_LOCALE_CODE_KEY, appLang.code)
+        }
 
         // 2. Store the flag indicating the user has explicitly made a choice.
-        prefs.putBoolean(PREFERRED_DESKTOP_LOCALE_USER_SET_KEY, true)
+        val alreadySet: Boolean = prefs.getBoolean(
+            PREFERRED_DESKTOP_LOCALE_USER_SET_KEY,
+            false
+        )
+        if (!alreadySet) {
+            prefs.putBoolean(PREFERRED_DESKTOP_LOCALE_USER_SET_KEY, true)
+        }
 
         // Set the JVM's default locale.
         // This affects new Locale.getDefault() calls within the current application instance.
@@ -65,7 +77,7 @@ class DesktopAppLocaleManager : AppLocaleManager {
         } else {
             // Fallback or log if the language code couldn't be resolved to a
             // Locale.
-            Locale.setDefault(Locale.forLanguageTag(AppLang.Ukraine.code))
+            Locale.setDefault(Locale.forLanguageTag(AppLang.DEFAULT.code))
         }
     }
 

@@ -36,15 +36,15 @@ class AndroidAppLocaleManager(
 
         if (!userHasSetLanguage) {
             // First launch or language never explicitly set by app/user:
-            // default to Ukrainian.
-            return AppLang.Ukraine.code
+            // default to DEFAULT.
+            return AppLang.DEFAULT.code
         }
 
         // User has set a language before, or we are setting it, so try to
         // load it.
         val savedLangCode: String? = sharedPreferences.getString(
             PREF_APP_LANGUAGE_CODE,
-            AppLang.Ukraine.code,
+            AppLang.DEFAULT.code,
         )
         if (savedLangCode != null) {
             // Use app's saved preference.
@@ -57,15 +57,15 @@ class AndroidAppLocaleManager(
             val localeManager: LocaleManager? =
                 context.getSystemService<LocaleManager>()
             val locales: LocaleList? = localeManager?.applicationLocales
-            if (locales == null || locales.isEmpty) AppLang.Ukraine.code
+            if (locales == null || locales.isEmpty) AppLang.DEFAULT.code
             else
                 locales[0]?.toLanguageTag()?.split("-")?.firstOrNull()
-                    ?: AppLang.Ukraine.code
+                    ?: AppLang.DEFAULT.code
         } else {
             AppCompatDelegate.getApplicationLocales()
                 .toLanguageTags().split(",")
                 .firstOrNull()?.split("-")?.firstOrNull()
-                ?: AppLang.Ukraine.code
+                ?: AppLang.DEFAULT.code
         }
     }
 

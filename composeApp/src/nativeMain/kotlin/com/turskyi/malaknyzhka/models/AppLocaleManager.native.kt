@@ -24,7 +24,7 @@ class NativeAppLocaleManager : AppLocaleManager {
             PREFERRED_LOCALE_KEY,
         )
         if (!storedLocale.isNullOrBlank()) {
-            return storedLocale.split("-").firstOrNull() ?: AppLang.Ukraine.code
+            return storedLocale.split("-").firstOrNull() ?: AppLang.DEFAULT.code
         }
 
         // 2. Get the app's current effective language based on its Info.plist localizations
@@ -35,7 +35,7 @@ class NativeAppLocaleManager : AppLocaleManager {
             NSBundle.mainBundle.preferredLocalizations.firstOrNull() as? String
         if (appPreferredLocalization != null && appPreferredLocalization != "Base") {
             return appPreferredLocalization.split("-").firstOrNull()
-                ?: AppLang.Ukraine.code
+                ?: AppLang.DEFAULT.code
         }
 
         // 3. Fallback: Get the system's preferred language
@@ -44,7 +44,7 @@ class NativeAppLocaleManager : AppLocaleManager {
             NSLocale.preferredLanguages.firstOrNull() as? String
         return systemPreferredLanguage?.split("-")?.firstOrNull()
         // Default.
-            ?: AppLang.Ukraine.code
+            ?: AppLang.DEFAULT.code
     }
 
     override fun setLocale(appLang: AppLang) {
