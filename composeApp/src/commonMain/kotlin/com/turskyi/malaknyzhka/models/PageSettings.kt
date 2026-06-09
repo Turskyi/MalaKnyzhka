@@ -3,7 +3,7 @@ package com.turskyi.malaknyzhka.models
 import com.russhwolf.settings.Settings
 
 // A helper class for settings interactions.
-class PageSettings(private val settings: Settings) {
+class BookSettingsRepository(private val settings: Settings) {
     /**
      * Intentionally start at index 1 to skip the title/cover page and
      * provide content immediately on the first run.

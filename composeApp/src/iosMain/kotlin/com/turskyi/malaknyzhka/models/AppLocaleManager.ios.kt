@@ -16,7 +16,7 @@ private const val PREFERRED_IOS_LOCALE_CODE_KEY =
 private const val PREFERRED_IOS_LOCALE_USER_SET_KEY =
     "app_preferred_ios_locale_user_set"
 
-class IosAppLocaleManager : AppLocaleManager {
+class IosAppLocale : AppLocale {
 
     override fun getLocale(): String {
         // 1. Check if user has ever set a language within the app
@@ -93,6 +93,6 @@ class IosAppLocaleManager : AppLocaleManager {
 }
 
 @Composable
-actual fun rememberAppLocaleManager(): AppLocaleManager {
-    return remember { IosAppLocaleManager() }
+actual fun rememberAppLocale(): AppLocale {
+    return remember { IosAppLocale() }
 }

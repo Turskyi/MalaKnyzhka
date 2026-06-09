@@ -14,8 +14,8 @@ private const val PREFERRED_NATIVE_LOCALE_USER_SET_KEY =
     "app_preferred_native_locale_user_set"
 
 
-// Actual implementation of AppLocaleManager for native (iOS, macOS, etc.).
-class NativeAppLocaleManager : AppLocaleManager {
+// Actual implementation of AppLocale for native (iOS, macOS, etc.).
+class NativeAppLocale : AppLocale {
 
     override fun getLocale(): String {
         // 1. Check NSUserDefaults for a user-set preference within the app.

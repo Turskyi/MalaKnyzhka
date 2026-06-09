@@ -18,9 +18,9 @@ import java.util.Locale
 private const val PREF_APP_LANGUAGE_CODE = "app_language_code"
 private const val PREF_APP_LANGUAGE_USER_SET = "app_language_user_set"
 
-class AndroidAppLocaleManager(
+class AndroidAppLocale(
     private val context: Context,
-) : AppLocaleManager {
+) : AppLocale {
     // Use default SharedPreferences for these app-wide flags.
     private val sharedPreferences: SharedPreferences =
         PreferenceManager.getDefaultSharedPreferences(
@@ -101,7 +101,7 @@ class AndroidAppLocaleManager(
 }
 
 @Composable
-actual fun rememberAppLocaleManager(): AppLocaleManager {
+actual fun rememberAppLocale(): AppLocale {
     val context: Context = LocalContext.current
-    return remember { AndroidAppLocaleManager(context) }
+    return remember { AndroidAppLocale(context) }
 }

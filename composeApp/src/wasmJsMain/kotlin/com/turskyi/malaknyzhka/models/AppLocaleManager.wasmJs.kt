@@ -16,8 +16,8 @@ private const val PREFERRED_LOCALE_KEY = "app_preferred_locale"
 private const val PREFERRED_WASM_LOCALE_USER_SET_KEY =
     "app_preferred_wasm_locale_user_set"
 
-// Actual implementation of AppLocaleManager for wasmJs.
-class WasmJsAppLocaleManager : AppLocaleManager {
+// Actual implementation of AppLocale for wasmJs.
+class WasmJsAppLocale : AppLocale {
 
     override fun getLocale(): String {
         // 1. Check if user has ever set a language for this app
@@ -75,14 +75,14 @@ class WasmJsAppLocaleManager : AppLocaleManager {
 
 @OptIn(ExperimentalWasmJsInterop::class)
 @Composable
-actual fun rememberAppLocaleManager(): AppLocaleManager {
+actual fun rememberAppLocale(): AppLocale {
     return remember {
-        val manager = WasmJsAppLocaleManager()
+        val locale = WasmJsAppLocale()
         // Initialize navigator language from stored preference on startup.
         val preferred: String? = localStorage[PREFERRED_LOCALE_KEY]
         if (preferred != null) {
             setNavigatorLanguage(preferred)
         }
-        manager
+        locale
     }
 }
