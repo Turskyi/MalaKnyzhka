@@ -4,6 +4,7 @@ import com.turskyi.malaknyzhka.models.PlatformType
 
 class IOSPlatform: Platform {
     override val type: PlatformType = PlatformType.IOS
+    override val initialRoute: String? = null
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()

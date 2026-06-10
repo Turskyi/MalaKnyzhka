@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -16,9 +17,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
+import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.models.SettingsBookRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocale
@@ -28,7 +31,6 @@ import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
-import com.turskyi.malaknyzhka.util.isOnWeb
 
 @Composable
 fun App(
@@ -43,6 +45,44 @@ fun App(
 
     val changeAppGlobalLanguage: (AppLang) -> Unit = { newLang: AppLang ->
         viewModel.changeAppGlobalLanguage(newLang)
+    }
+
+    val platform = remember { getPlatform() }
+    val startDestination: String = remember(platform) {
+        val initial = platform.initialRoute?.removePrefix("/")
+        val matchedDestination = NavigationDestination.entries.firstOrNull {
+            it.name.equals(initial, ignoreCase = true)
+        }
+
+        if (platform.type == PlatformType.WEB && matchedDestination != null) {
+            matchedDestination.name
+        } else if (platform.type == PlatformType.WEB) {
+            NavigationDestination.Landing.name
+        } else {
+            NavigationDestination.Book.name
+        }
+    }
+
+    val onBack: () -> Unit = remember(navController, platform) {
+        {
+            if (navController.previousBackStackEntry != null) {
+                navController.popBackStack()
+            } else {
+                val home = if (platform.type == PlatformType.WEB) {
+                    NavigationDestination.Landing.name
+                } else {
+                    NavigationDestination.Book.name
+                }
+                // Avoid navigating to the same destination we are already on
+                if (navController.currentBackStackEntry?.destination?.route != home) {
+                    navController.navigate(home) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                    }
+                }
+            }
+        }
     }
 
     CompositionLocalProvider(
@@ -62,10 +102,7 @@ fun App(
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = if (isOnWeb())
-                                NavigationDestination.Landing.name
-                            else
-                                NavigationDestination.Book.name
+                            startDestination = startDestination
                         ) {
                             composable(
                                 route = NavigationDestination.Landing.name,
@@ -130,31 +167,13 @@ fun App(
                                 )
                             }
                             composable(route = NavigationDestination.PrivacyPolicy.name) {
-                                PrivacyPolicyPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
-                                        }
-                                    },
-                                )
+                                PrivacyPolicyPage(onBack = onBack)
                             }
                             composable(route = NavigationDestination.Support.name) {
-                                SupportPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
-                                        }
-                                    },
-                                )
+                                SupportPage(onBack = onBack)
                             }
                             composable(route = NavigationDestination.About.name) {
-                                AboutPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
-                                        }
-                                    },
-                                )
+                                AboutPage(onBack = onBack)
                             }
                         }
                     }
