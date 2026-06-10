@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.turskyi.malaknyzhka.models.AppLang
-import com.turskyi.malaknyzhka.models.BookSettingsRepository
+import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
@@ -40,12 +40,12 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Page(
-    bookSettings: BookSettingsRepository,
+    bookRepository: BookRepository,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
-    val viewModel: BookViewModel = viewModel { BookViewModel(bookSettings) }
+    val viewModel: BookViewModel = viewModel { BookViewModel(bookRepository) }
 
     // Get the global app language and the function to change it.
     val appGlobalLanguage: AppLang = LocalAppLanguage.current
@@ -68,6 +68,7 @@ fun Page(
             )
         ) {
             BookSpreads(
+                bookSpreads = viewModel.bookSpreads,
                 dividerPosition = dividerPosition,
                 currentPage = currentPage,
                 onDividerPositionChange = viewModel::onDividerPositionChange,

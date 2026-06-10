@@ -1,16 +1,20 @@
 package com.turskyi.malaknyzhka.ui.book
 
 import androidx.lifecycle.ViewModel
-import com.turskyi.malaknyzhka.models.BookSettingsRepository
+import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
+import com.turskyi.malaknyzhka.models.BookRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.jetbrains.compose.resources.DrawableResource
 
-class BookViewModel(private val bookSettings: BookSettingsRepository) :
+class BookViewModel(private val bookRepository: BookRepository) :
     ViewModel() {
     private val _currentPage: MutableStateFlow<Int> =
-        MutableStateFlow(bookSettings.getCurrentPage())
+        MutableStateFlow(bookRepository.getCurrentPage())
     val currentPage: StateFlow<Int> = _currentPage.asStateFlow()
+
+    val bookSpreads: List<DrawableResource> = BookSpreadsRegistry.allBookSpreads
 
     private val _isDrawerOpen: MutableStateFlow<Boolean> =
         MutableStateFlow(false)
@@ -29,7 +33,7 @@ class BookViewModel(private val bookSettings: BookSettingsRepository) :
     private val minBottomFraction = 0.94f
 
     fun onNewPage(newPage: Int) {
-        bookSettings.saveCurrentPage(newPage)
+        bookRepository.saveCurrentPage(newPage)
         _currentPage.value = newPage
     }
 
@@ -49,6 +53,6 @@ class BookViewModel(private val bookSettings: BookSettingsRepository) :
     }
 
     fun onLanguageChange(langCode: String) {
-        bookSettings.saveCurrentLanguage(langCode)
+        bookRepository.saveCurrentLanguage(langCode)
     }
 }

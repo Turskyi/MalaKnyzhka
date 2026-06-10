@@ -2,8 +2,16 @@ package com.turskyi.malaknyzhka.models
 
 import com.russhwolf.settings.Settings
 
-// A helper class for settings interactions.
-class BookSettingsRepository(private val settings: Settings) {
+// An interface for book settings interactions (Dependency Inversion Principle).
+interface BookRepository {
+    fun getCurrentPage(): Int
+    fun saveCurrentPage(page: Int)
+    fun getCurrentLanguage(): String
+    fun saveCurrentLanguage(lang: String)
+}
+
+// A concrete implementation using Settings.
+class SettingsBookRepository(private val settings: Settings) : BookRepository {
     /**
      * Intentionally start at index 1 to skip the title/cover page and
      * provide content immediately on the first run.
@@ -11,24 +19,23 @@ class BookSettingsRepository(private val settings: Settings) {
     private val firstPage = 1
     private val defaultLanguage = "uk"
 
-    fun getCurrentPage(): Int = settings.getInt(
+    override fun getCurrentPage(): Int = settings.getInt(
         SettingsKeys.CURRENT_PAGE,
         firstPage,
     )
 
-    fun saveCurrentPage(page: Int) {
+    override fun saveCurrentPage(page: Int) {
         settings.putInt(SettingsKeys.CURRENT_PAGE, page)
     }
 
-    @Suppress("unused")
-    fun getCurrentLanguage(): String {
+    override fun getCurrentLanguage(): String {
         return settings.getString(
             SettingsKeys.CURRENT_LANGUAGE,
             defaultLanguage,
         )
     }
 
-    fun saveCurrentLanguage(lang: String) {
+    override fun saveCurrentLanguage(lang: String) {
         settings.putString(SettingsKeys.CURRENT_LANGUAGE, lang)
     }
 }

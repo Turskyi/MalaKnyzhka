@@ -18,8 +18,8 @@ import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
-import com.turskyi.malaknyzhka.models.BookSettingsRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
+import com.turskyi.malaknyzhka.models.SettingsBookRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
@@ -105,7 +105,7 @@ fun App(
                                 route = NavigationDestination.Book.name,
                             ) {
                                 Page(
-                                    BookSettingsRepository(settings),
+                                    SettingsBookRepository(settings),
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
