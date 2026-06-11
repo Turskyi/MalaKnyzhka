@@ -20,13 +20,16 @@ import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
+import com.turskyi.malaknyzhka.models.BookmarkRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.models.SettingsBookRepository
+import com.turskyi.malaknyzhka.models.SettingsBookmarkRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.ui.about.AboutPage
+import com.turskyi.malaknyzhka.ui.book.BookmarksPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
@@ -39,6 +42,10 @@ fun App(
 ) {
     val appLocale: AppLocale = rememberAppLocale()
     val viewModel: AppViewModel = viewModel { AppViewModel(appLocale) }
+
+    val bookmarkRepository: BookmarkRepository = remember(settings) {
+        SettingsBookmarkRepository(settings)
+    }
 
     // This is the app-wide UI language state.
     val appGlobalLanguage: AppLang by viewModel.appGlobalLanguage.collectAsState()
@@ -143,6 +150,7 @@ fun App(
                             ) {
                                 Page(
                                     SettingsBookRepository(settings),
+                                    bookmarkRepository,
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
@@ -163,7 +171,33 @@ fun App(
                                         ) {
                                             launchSingleTop = true
                                         }
+                                    },
+                                    onNavigateToBookmarks = {
+                                        navController.navigate(
+                                            NavigationDestination.Bookmarks.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
                                     }
+                                )
+                            }
+                            composable(route = NavigationDestination.Bookmarks.name) {
+                                BookmarksPage(
+                                    bookmarkRepository = bookmarkRepository,
+                                    onBookmarkClick = { pageNumber: Int ->
+                                        SettingsBookRepository(settings)
+                                            .saveCurrentPage(pageNumber)
+                                        navController.navigate(
+                                            NavigationDestination.Book.name
+                                        ) {
+                                            popUpTo(
+                                                NavigationDestination.Book.name
+                                            ) {
+                                                inclusive = true
+                                            }
+                                        }
+                                    },
+                                    onBack = onBack
                                 )
                             }
                             composable(route = NavigationDestination.PrivacyPolicy.name) {

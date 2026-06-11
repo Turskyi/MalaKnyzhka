@@ -29,6 +29,7 @@ import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
+import malaknyzhka.composeapp.generated.resources.bookmarks
 import malaknyzhka.composeapp.generated.resources.cover
 import malaknyzhka.composeapp.generated.resources.cover_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
@@ -43,6 +44,7 @@ fun DrawerPanel(
     onNavigateToAbout: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
+    onNavigateToBookmarks: () -> Unit,
     currentLanguage: AppLang,
     onLanguageChange: (AppLang) -> Unit,
 ) {
@@ -109,6 +111,15 @@ fun DrawerPanel(
                     .padding(16.dp)
             ) {
                 Spacer(Modifier.height(24.dp))
+
+                // 🔖 Bookmarks.
+                DrawerButton(
+                    text = stringResource(Res.string.bookmarks),
+                    onClick = {
+                        onClose()
+                        onNavigateToBookmarks()
+                    },
+                )
 
                 // ℹ️ About app.
                 DrawerButton(

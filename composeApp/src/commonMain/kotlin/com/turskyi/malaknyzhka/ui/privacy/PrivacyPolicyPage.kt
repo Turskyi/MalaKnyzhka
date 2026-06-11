@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
-import com.turskyi.malaknyzhka.util.isOnWeb
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.arrow_back
 import malaknyzhka.composeapp.generated.resources.back_button_description

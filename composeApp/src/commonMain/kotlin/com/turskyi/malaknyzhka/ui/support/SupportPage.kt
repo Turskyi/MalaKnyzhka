@@ -41,7 +41,7 @@ import com.turskyi.malaknyzhka.CHAT_LINK_TAG
 import com.turskyi.malaknyzhka.EMAIL_LINK_TAG
 import com.turskyi.malaknyzhka.SUPPORT_LINK_TAG
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
-import com.turskyi.malaknyzhka.util.isOnWeb
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.app_allows
 import malaknyzhka.composeapp.generated.resources.app_overview
@@ -49,6 +49,7 @@ import malaknyzhka.composeapp.generated.resources.arrow_back
 import malaknyzhka.composeapp.generated.resources.back_button_description
 import malaknyzhka.composeapp.generated.resources.can_change_font_size
 import malaknyzhka.composeapp.generated.resources.chat_option
+import malaknyzhka.composeapp.generated.resources.data_storage_info
 import malaknyzhka.composeapp.generated.resources.developer_support_page
 import malaknyzhka.composeapp.generated.resources.email_option
 import malaknyzhka.composeapp.generated.resources.faq
@@ -171,6 +172,7 @@ fun SupportPage(onBack: () -> Unit) {
 
             Text(stringResource(Res.string.can_change_font_size))
             Text(stringResource(Res.string.has_bookmarks))
+            Text(stringResource(Res.string.data_storage_info))
             Text(stringResource(Res.string.is_maintained))
 
             Spacer(modifier = Modifier.height(16.dp))

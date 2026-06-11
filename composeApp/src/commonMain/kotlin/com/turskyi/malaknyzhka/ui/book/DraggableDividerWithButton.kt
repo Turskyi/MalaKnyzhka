@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.usecases.toUserPageNumber
 
 @Composable
 fun DraggableDividerWithButton(
@@ -64,7 +65,7 @@ fun DraggableDividerWithButton(
      * The internal page index is 0-based, but for the UI we display it as
      * 1-based to match the user's expectation of book page numbering.
      */
-    val pageLabel = "${currentPage + 1} / $totalPages"
+    val pageLabel = "${currentPage.toUserPageNumber()} / $totalPages"
 
     Box(
         modifier = modifier

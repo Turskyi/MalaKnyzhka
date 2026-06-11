@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
-import com.turskyi.malaknyzhka.util.isOnAndroid
-import com.turskyi.malaknyzhka.util.isOnDesktop
-import com.turskyi.malaknyzhka.util.toApLang
+import com.turskyi.malaknyzhka.usecases.isOnAndroid
+import com.turskyi.malaknyzhka.usecases.isOnDesktop
+import com.turskyi.malaknyzhka.usecases.toApLang
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

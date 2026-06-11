@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
-import com.turskyi.malaknyzhka.util.isOnWeb
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.about_app_ai_translation_info
@@ -44,6 +44,7 @@ import malaknyzhka.composeapp.generated.resources.about_app_target_audience
 import malaknyzhka.composeapp.generated.resources.about_app_thank_you_message
 import malaknyzhka.composeapp.generated.resources.arrow_back
 import malaknyzhka.composeapp.generated.resources.back_button_description
+import malaknyzhka.composeapp.generated.resources.data_storage_info
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
 import org.jetbrains.compose.resources.painterResource
@@ -204,6 +205,14 @@ fun AboutPage(onBack: () -> Unit) {
                     ),
                     style = MaterialTheme.typography.body2,
                     color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = stringResource(Res.string.data_storage_info),
+                    style = MaterialTheme.typography.caption,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))

@@ -96,6 +96,18 @@ Project-specific patterns & gotchas
   module dir so source maps can be traced in the browser - check
   `composeApp/build.gradle.kts` lines that add `rootDir` and `projectDir` to
   `devServer.static`.
+- **Large strings file (token-sensitive):**
+  `composeApp/src/commonMain/composeResources/values-en/strings.xml` is 10,000+
+  lines. Do NOT read the entire file to save tokens. Use `grep` to check if a
+  value exists, then prepend or append new entries instead of searching/reading
+  the full file.
+- **Page Numbering Nuance:** The app uses **0-based indexing** internally for
+  pages (e.g., in `BookViewModel`, `BookRepository`, and `Bookmark`).
+  However, in the UI, pages must be displayed as **1-based** (index + 1) to
+  match user expectations (e.g., index 0 is shown as "Page 1"). Always use
+  utilities from `com.turskyi.malaknyzhka.usecases.PageNumbering` to handle
+  these conversions. Always increment by 1 when displaying to the user and
+  decrement when handling user input.
 
 Where to make safe changes
 
@@ -135,4 +147,3 @@ If you need more: run these file reads first
   `composeApp/src/desktopMain/kotlin/.../main.kt` (entrypoints)
 
 # This is an end of AGENTS.md and this line should never be below line number 200. If we need to add something to this file, we simply have to remove something less critical.
-

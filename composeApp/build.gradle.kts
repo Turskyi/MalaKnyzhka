@@ -130,6 +130,12 @@ kotlin {
         wasmJsMain.dependencies {
 
         }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }
 

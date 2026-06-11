@@ -16,7 +16,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
+import com.turskyi.malaknyzhka.models.BookmarkRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
@@ -41,11 +44,15 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun Page(
     bookRepository: BookRepository,
+    bookmarkRepository: BookmarkRepository,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
+    onNavigateToBookmarks: () -> Unit,
 ) {
-    val viewModel: BookViewModel = viewModel { BookViewModel(bookRepository) }
+    val viewModel: BookViewModel = viewModel {
+        BookViewModel(bookRepository, bookmarkRepository)
+    }
 
     // Get the global app language and the function to change it.
     val appGlobalLanguage: AppLang = LocalAppLanguage.current
@@ -57,6 +64,7 @@ fun Page(
     val isSearchOpen: Boolean by viewModel.isSearchOpen.collectAsState()
     val dividerPosition: Float by viewModel.dividerPosition.collectAsState()
     val currentPage: Int by viewModel.currentPage.collectAsState()
+    val isBookmarked: Boolean by viewModel.isBookmarked.collectAsState()
 
     // Screen width detection.
     val windowInfo: WindowInfo = LocalWindowInfo.current
@@ -104,6 +112,29 @@ fun Page(
                 )
             }
 
+            // 🔖 Bookmark button in top-right corner (left of search).
+            IconButton(
+                onClick = { viewModel.toggleBookmark() },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .padding(top = 4.dp, end = 40.dp)
+                    .background(
+                        color = Color.White.copy(alpha = 0.4f),
+                        shape = CircleShape
+                    ).size(32.dp)
+            ) {
+                Icon(
+                    imageVector = if (isBookmarked) {
+                        Icons.Filled.Bookmark
+                    } else {
+                        Icons.Outlined.BookmarkBorder
+                    },
+                    contentDescription = null,
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+
             // 🔍 Search button in top-right corner.
             IconButton(
                 onClick = { viewModel.setSearchOpen(true) },
@@ -139,6 +170,7 @@ fun Page(
                 onNavigateToAbout = onNavigateToAbout,
                 onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
                 onNavigateToSupport = onNavigateToSupport,
+                onNavigateToBookmarks = onNavigateToBookmarks,
                 currentLanguage = appGlobalLanguage,
                 onLanguageChange = {
                     viewModel.onLanguageChange(it.code)
