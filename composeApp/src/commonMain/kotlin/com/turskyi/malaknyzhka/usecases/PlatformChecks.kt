@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka.util
+package com.turskyi.malaknyzhka.usecases
 
 import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.PlatformType

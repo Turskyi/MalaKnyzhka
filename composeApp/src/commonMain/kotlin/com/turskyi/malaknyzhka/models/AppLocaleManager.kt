@@ -2,7 +2,7 @@ package com.turskyi.malaknyzhka.models
 
 import androidx.compose.runtime.Composable
 
-interface AppLocaleManager {
+interface AppLocale {
     // Returns current lang tag e.g. "en", "uk".
     fun getLocale(): String
 
@@ -12,8 +12,8 @@ interface AppLocaleManager {
 }
 
 /**
- * Provides an instance of the platform-specific AppLocaleManager.
+ * Provides an instance of the platform-specific AppLocale.
  * This manager is used to get the initial locale and to set new locales.
  */
 @Composable
-expect fun rememberAppLocaleManager(): AppLocaleManager
+expect fun rememberAppLocale(): AppLocale

@@ -23,10 +23,9 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -37,7 +36,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.turskyi.malaknyzhka.infrastructure.SearchIndex
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.turskyi.malaknyzhka.models.SearchResult
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.clear_search
@@ -55,20 +54,13 @@ import org.jetbrains.compose.resources.stringResource
 fun SearchPanel(
     onClose: () -> Unit,
     onResultClick: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: SearchViewModel = viewModel { SearchViewModel() }
 ) {
-    val searchIndex = remember { SearchIndex() }
-    var query by remember { mutableStateOf("") }
-    var results by remember {
-        mutableStateOf<List<SearchResult>>(
-            emptyList()
-        )
-    }
-    val focusRequester = remember { FocusRequester() }
+    val query: String by viewModel.query.collectAsState()
+    val results: List<SearchResult> by viewModel.results.collectAsState()
 
-    LaunchedEffect(query) {
-        results = searchIndex.search(query)
-    }
+    val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
@@ -115,7 +107,7 @@ fun SearchPanel(
                     }
                     BasicTextField(
                         value = query,
-                        onValueChange = { query = it },
+                        onValueChange = viewModel::onQueryChange,
                         modifier = Modifier
                             .fillMaxWidth()
                             .focusRequester(focusRequester),
@@ -135,7 +127,7 @@ fun SearchPanel(
 
                 if (query.isNotEmpty()) {
                     IconButton(
-                        onClick = { query = "" },
+                        onClick = viewModel::clearQuery,
                         modifier = Modifier.size(24.dp)
                     ) {
                         Icon(

@@ -6,6 +6,7 @@ package com.turskyi.malaknyzhka.router
 enum class NavigationDestination {
     Landing,
     Book,
+    Bookmarks,
     PrivacyPolicy,
     Support,
     About,

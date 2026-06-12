@@ -60,6 +60,12 @@ The English translation of the poems was generated using artificial intelligence
     <string name="turn_pages">- Turning pages using the "&lt;" and "&gt;" buttons.</string>
 
     <string name="back_button_description">Back</string>
+
+    <string name="bookmarks">Bookmarks</string>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="remove_bookmark">Remove Bookmark</string>
+    <string name="no_bookmarks">You have no bookmarks yet</string>
+
     <string name="size_changing">- Changing page size is available only for handwritten pages.</string>
 
     <string name="page_saving">- The application automatically saves the last viewed page.</string>
@@ -68,7 +74,8 @@ The English translation of the poems was generated using artificial intelligence
     <string name="faq">FAQ</string>
     <string name="can_change_font_size">- Can change font size? No, it is fixed.</string>
     <string name="app_allows">- The application "Mala Knyzhka (Taras Shevchenko)" allows you to view the digitized version of the manuscript and its printed text.</string>
-    <string name="has_bookmarks">- Can add bookmarks? The application automatically saves the last viewed page.</string>
+    <string name="has_bookmarks">- Can add bookmarks? Yes, using the bookmark button. They are stored locally on your device.</string>
+    <string name="data_storage_info">- Where is my data stored? All settings and bookmarks are stored locally only. They will be erased if you delete the app or clear its cache.</string>
     <string name="is_maintained">- Is it maintained? Yes, we are constantly improving the functionality.</string>
     <string name="thanks_for_using">Thank you for using the "Mala Knyzhka (Taras Shevchenko)" application!</string>
     <string name="if_you_have_questions">If you have any questions, suggestions, or issues, please contact the following channels:</string>

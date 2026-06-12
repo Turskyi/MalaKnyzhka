@@ -15,8 +15,8 @@ googleFirebaseCrashlytics = "3.0.7"
 android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
-versionName = "1.0.9"
-versionCode = "9"
+versionName = "1.1.0"
+versionCode = "10"
 applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка (Тарас Шевченко)"
 appcompat = "1.7.1"
@@ -24,6 +24,7 @@ appcompat = "1.7.1"
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodelCompose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }

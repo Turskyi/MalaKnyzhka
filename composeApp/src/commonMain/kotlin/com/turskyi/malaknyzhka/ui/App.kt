@@ -4,65 +4,90 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
-import com.turskyi.malaknyzhka.models.AppLocaleManager
+import com.turskyi.malaknyzhka.models.AppLocale
+import com.turskyi.malaknyzhka.models.BookmarkRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
-import com.turskyi.malaknyzhka.models.PageSettings
+import com.turskyi.malaknyzhka.models.PlatformType
+import com.turskyi.malaknyzhka.models.SettingsBookRepository
+import com.turskyi.malaknyzhka.models.SettingsBookmarkRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
-import com.turskyi.malaknyzhka.models.rememberAppLocaleManager
+import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.ui.about.AboutPage
+import com.turskyi.malaknyzhka.ui.book.BookmarksPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
-import com.turskyi.malaknyzhka.util.isOnAndroid
-import com.turskyi.malaknyzhka.util.isOnDesktop
-import com.turskyi.malaknyzhka.util.isOnWeb
-import com.turskyi.malaknyzhka.util.toApLang
 
 @Composable
 fun App(
     settings: Settings,
     navController: NavHostController = rememberNavController()
 ) {
-    val appLocaleManager: AppLocaleManager = rememberAppLocaleManager()
+    val appLocale: AppLocale = rememberAppLocale()
+    val viewModel: AppViewModel = viewModel { AppViewModel(appLocale) }
+
+    val bookmarkRepository: BookmarkRepository = remember(settings) {
+        SettingsBookmarkRepository(settings)
+    }
 
     // This is the app-wide UI language state.
-    var appGlobalLanguage: AppLang by remember {
-        mutableStateOf(appLocaleManager.getLocale().toApLang())
-    }
+    val appGlobalLanguage: AppLang by viewModel.appGlobalLanguage.collectAsState()
 
     val changeAppGlobalLanguage: (AppLang) -> Unit = { newLang: AppLang ->
-        // 1. Persist the change on the platform (stores in NSUserDefaults on
-        // iOS).
-        appLocaleManager.setLocale(newLang)
-        // 2. Update the state to trigger Compose recomposition.
-        appGlobalLanguage = newLang
+        viewModel.changeAppGlobalLanguage(newLang)
     }
 
-    LaunchedEffect(Unit) {
-        if (isOnDesktop()) {
-            appLocaleManager.setLocale(appGlobalLanguage)
-        } else if (isOnAndroid() && !appLocaleManager.hasUserEverSetLanguage()) {
-            if (appGlobalLanguage == AppLang.DEFAULT) {
-                appLocaleManager.setLocale(AppLang.DEFAULT)
+    val platform = remember { getPlatform() }
+    val startDestination: String = remember(platform) {
+        val initial = platform.initialRoute?.removePrefix("/")
+        val matchedDestination = NavigationDestination.entries.firstOrNull {
+            it.name.equals(initial, ignoreCase = true)
+        }
+
+        if (platform.type == PlatformType.WEB && matchedDestination != null) {
+            matchedDestination.name
+        } else if (platform.type == PlatformType.WEB) {
+            NavigationDestination.Landing.name
+        } else {
+            NavigationDestination.Book.name
+        }
+    }
+
+    val onBack: () -> Unit = remember(navController, platform) {
+        {
+            if (navController.previousBackStackEntry != null) {
+                navController.popBackStack()
             } else {
-                changeAppGlobalLanguage(AppLang.DEFAULT)
+                val home = if (platform.type == PlatformType.WEB) {
+                    NavigationDestination.Landing.name
+                } else {
+                    NavigationDestination.Book.name
+                }
+                // Avoid navigating to the same destination we are already on
+                if (navController.currentBackStackEntry?.destination?.route != home) {
+                    navController.navigate(home) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                    }
+                }
             }
         }
     }
@@ -84,10 +109,7 @@ fun App(
                     ) {
                         NavHost(
                             navController = navController,
-                            startDestination = if (isOnWeb())
-                                NavigationDestination.Landing.name
-                            else
-                                NavigationDestination.Book.name
+                            startDestination = startDestination
                         ) {
                             composable(
                                 route = NavigationDestination.Landing.name,
@@ -127,7 +149,8 @@ fun App(
                                 route = NavigationDestination.Book.name,
                             ) {
                                 Page(
-                                    PageSettings(settings),
+                                    SettingsBookRepository(settings),
+                                    bookmarkRepository,
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
@@ -148,41 +171,43 @@ fun App(
                                         ) {
                                             launchSingleTop = true
                                         }
+                                    },
+                                    onNavigateToBookmarks = {
+                                        navController.navigate(
+                                            NavigationDestination.Bookmarks.name,
+                                        ) {
+                                            launchSingleTop = true
+                                        }
                                     }
                                 )
                             }
-                            composable(
-                                route = NavigationDestination.PrivacyPolicy.name,
-                            ) {
-                                PrivacyPolicyPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
+                            composable(route = NavigationDestination.Bookmarks.name) {
+                                BookmarksPage(
+                                    bookmarkRepository = bookmarkRepository,
+                                    onBookmarkClick = { pageNumber: Int ->
+                                        SettingsBookRepository(settings)
+                                            .saveCurrentPage(pageNumber)
+                                        navController.navigate(
+                                            NavigationDestination.Book.name
+                                        ) {
+                                            popUpTo(
+                                                NavigationDestination.Book.name
+                                            ) {
+                                                inclusive = true
+                                            }
                                         }
                                     },
+                                    onBack = onBack
                                 )
                             }
-                            composable(
-                                route = NavigationDestination.Support.name,
-                            ) {
-                                SupportPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
-                                        }
-                                    },
-                                )
+                            composable(route = NavigationDestination.PrivacyPolicy.name) {
+                                PrivacyPolicyPage(onBack = onBack)
                             }
-                            composable(
-                                route = NavigationDestination.About.name,
-                            ) {
-                                AboutPage(
-                                    onBack = {
-                                        if (navController.previousBackStackEntry != null) {
-                                            navController.popBackStack()
-                                        }
-                                    },
-                                )
+                            composable(route = NavigationDestination.Support.name) {
+                                SupportPage(onBack = onBack)
+                            }
+                            composable(route = NavigationDestination.About.name) {
+                                AboutPage(onBack = onBack)
                             }
                         }
                     }

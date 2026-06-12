@@ -14,12 +14,12 @@ private const val PREFERRED_DESKTOP_LOCALE_CODE_KEY =
 private const val PREFERRED_DESKTOP_LOCALE_USER_SET_KEY =
     "app_preferred_desktop_locale_user_set"
 
-// Actual implementation of the AppLocaleManager for Desktop.
-class DesktopAppLocaleManager : AppLocaleManager {
+// Actual implementation of the AppLocale for Desktop.
+class DesktopAppLocale : AppLocale {
     // Get a Preferences node unique to this application class (or a specific path).
     // This helps avoid collisions with other applications.
     private val prefs: Preferences =
-        Preferences.userNodeForPackage(DesktopAppLocaleManager::class.java)
+        Preferences.userNodeForPackage(DesktopAppLocale::class.java)
 
     override fun getLocale(): String {
         // 1. Check if user has ever set a language within the app
@@ -90,6 +90,6 @@ class DesktopAppLocaleManager : AppLocaleManager {
 }
 
 @Composable
-actual fun rememberAppLocaleManager(): AppLocaleManager {
-    return remember { DesktopAppLocaleManager() }
+actual fun rememberAppLocale(): AppLocale {
+    return remember { DesktopAppLocale() }
 }

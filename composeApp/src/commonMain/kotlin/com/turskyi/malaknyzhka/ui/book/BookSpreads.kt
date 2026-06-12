@@ -15,20 +15,18 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
 import com.turskyi.malaknyzhka.models.AppLang
 import org.jetbrains.compose.resources.DrawableResource
 
 @Composable
 fun BookSpreads(
+    bookSpreads: List<DrawableResource>,
     dividerPosition: Float,
     currentPage: Int,
     onDividerPositionChange: (Float) -> Unit,
     screenWidth: Dp,
     appLang: AppLang
 ) {
-    val bookSpreads: List<DrawableResource> = BookSpreadsRegistry.allBookSpreads
-
     val isWideScreen: Boolean = screenWidth > 600.dp
 
     BoxWithConstraints(Modifier.fillMaxSize()) {

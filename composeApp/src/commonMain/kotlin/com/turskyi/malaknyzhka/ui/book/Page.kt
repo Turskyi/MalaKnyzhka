@@ -16,19 +16,21 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.BookRepository
+import com.turskyi.malaknyzhka.models.BookmarkRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
-import com.turskyi.malaknyzhka.models.PageSettings
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
@@ -41,40 +43,28 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Page(
-    pageSettings: PageSettings,
+    bookRepository: BookRepository,
+    bookmarkRepository: BookmarkRepository,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
+    onNavigateToBookmarks: () -> Unit,
 ) {
-    // Get the global app language and the function to change i.t.
+    val viewModel: BookViewModel = viewModel {
+        BookViewModel(bookRepository, bookmarkRepository)
+    }
+
+    // Get the global app language and the function to change it.
     val appGlobalLanguage: AppLang = LocalAppLanguage.current
 
     val changeAppGlobalLanguage: (AppLang) -> Unit =
         LocalChangeAppLanguage.current
 
-    var isDrawerOpen: Boolean by remember { mutableStateOf(false) }
-    var isSearchOpen: Boolean by remember { mutableStateOf(false) }
-
-    val initialPositionInTheMiddle = 0.5f
-
-    var dividerPosition: Float by remember {
-        mutableStateOf(initialPositionInTheMiddle)
-    }
-
-    // Constants for divider limits.
-    val maxTopFraction = 0.025f
-    val minBottomFraction = 0.94f
-
-    // State for current page initialized with value from settings.
-    var currentPage: Int by remember {
-        mutableStateOf(pageSettings.getCurrentPage())
-    }
-
-    // Function to handle page changes.
-    fun onNewPage(newPage: Int) {
-        pageSettings.saveCurrentPage(newPage)
-        currentPage = newPage
-    }
+    val isDrawerOpen: Boolean by viewModel.isDrawerOpen.collectAsState()
+    val isSearchOpen: Boolean by viewModel.isSearchOpen.collectAsState()
+    val dividerPosition: Float by viewModel.dividerPosition.collectAsState()
+    val currentPage: Int by viewModel.currentPage.collectAsState()
+    val isBookmarked: Boolean by viewModel.isBookmarked.collectAsState()
 
     // Screen width detection.
     val windowInfo: WindowInfo = LocalWindowInfo.current
@@ -86,14 +76,10 @@ fun Page(
             )
         ) {
             BookSpreads(
+                bookSpreads = viewModel.bookSpreads,
                 dividerPosition = dividerPosition,
                 currentPage = currentPage,
-                onDividerPositionChange = { newPosition: Float ->
-                    dividerPosition = newPosition.coerceIn(
-                        maxTopFraction,
-                        minBottomFraction,
-                    )
-                },
+                onDividerPositionChange = viewModel::onDividerPositionChange,
                 screenWidth = windowInfo.screenWidth,
                 appLang = appGlobalLanguage
             )
@@ -104,13 +90,13 @@ fun Page(
             ) {
                 PageSwitcherButtons(
                     currentPage = currentPage,
-                    onPageChange = ::onNewPage,
+                    onPageChange = viewModel::onNewPage,
                 )
             }
 
             // 🍔 Burger button in top-left corner.
             IconButton(
-                onClick = { isDrawerOpen = true },
+                onClick = { viewModel.setDrawerOpen(true) },
                 modifier = Modifier
                     .padding(WindowInsets.statusBars.asPaddingValues())
                     .padding(4.dp)
@@ -126,9 +112,32 @@ fun Page(
                 )
             }
 
+            // 🔖 Bookmark button in top-right corner (left of search).
+            IconButton(
+                onClick = { viewModel.toggleBookmark() },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .padding(top = 4.dp, end = 40.dp)
+                    .background(
+                        color = Color.White.copy(alpha = 0.4f),
+                        shape = CircleShape
+                    ).size(32.dp)
+            ) {
+                Icon(
+                    imageVector = if (isBookmarked) {
+                        Icons.Filled.Bookmark
+                    } else {
+                        Icons.Outlined.BookmarkBorder
+                    },
+                    contentDescription = null,
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+
             // 🔍 Search button in top-right corner.
             IconButton(
-                onClick = { isSearchOpen = true },
+                onClick = { viewModel.setSearchOpen(true) },
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(WindowInsets.statusBars.asPaddingValues())
@@ -151,29 +160,30 @@ fun Page(
                     Modifier
                         .fillMaxSize()
                         .background(Color.Black.copy(alpha = 0.3f))
-                        .clickable { isDrawerOpen = false }
+                        .clickable { viewModel.setDrawerOpen(false) }
                 )
             }
 
             DrawerPanel(
                 visible = isDrawerOpen,
-                onClose = { isDrawerOpen = false },
+                onClose = { viewModel.setDrawerOpen(false) },
                 onNavigateToAbout = onNavigateToAbout,
                 onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
                 onNavigateToSupport = onNavigateToSupport,
+                onNavigateToBookmarks = onNavigateToBookmarks,
                 currentLanguage = appGlobalLanguage,
                 onLanguageChange = {
-                    pageSettings.saveCurrentLanguage(it.code)
+                    viewModel.onLanguageChange(it.code)
                     changeAppGlobalLanguage(it)
                 },
             )
 
             if (isSearchOpen) {
                 SearchPanel(
-                    onClose = { isSearchOpen = false },
+                    onClose = { viewModel.setSearchOpen(false) },
                     onResultClick = { pageIndex ->
-                        isSearchOpen = false
-                        onNewPage(pageIndex)
+                        viewModel.setSearchOpen(false)
+                        viewModel.onNewPage(pageIndex)
                     }
                 )
             }

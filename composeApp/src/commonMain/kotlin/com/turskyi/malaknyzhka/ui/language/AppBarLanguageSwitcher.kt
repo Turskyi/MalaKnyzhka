@@ -13,7 +13,7 @@ import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
-import com.turskyi.malaknyzhka.util.isOnIos
+import com.turskyi.malaknyzhka.usecases.isOnIos
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
