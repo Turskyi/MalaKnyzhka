@@ -17,6 +17,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Write google-services.json file
+        run: |
+          cd composeApp
+          echo $GOOGLE_SERVICES | base64 -d > google-services.json
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+
+      - name: Write key.properties file
+        run: |
+          echo $KEY_PROPERTIES | base64 -d > composeApp/src/androidMain/key.properties
+        shell: bash
+        env:
+          KEY_PROPERTIES: ${{ secrets.KEY_PROPERTIES }}
+
+      - name: Create keystore folder
+        run: mkdir -p composeApp/src/androidMain/keystore
+
+      - name: Write malaknyzhka_release.keystore file
+        env:
+          RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
+        run: |
+          echo $RELEASE_KEYSTORE | base64 --decode > composeApp/src/androidMain/keystore/malaknyzhka_release.keystore
+
+      - name: Write malaknyzhka_debug.keystore file
+        run: |
+          echo $DEBUG_KEYSTORE | base64 -d > composeApp/src/androidMain/keystore/malaknyzhka_debug.keystore
+        shell: bash
+        env:
+          DEBUG_KEYSTORE: ${{ secrets.DEBUG_KEYSTORE }}
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
