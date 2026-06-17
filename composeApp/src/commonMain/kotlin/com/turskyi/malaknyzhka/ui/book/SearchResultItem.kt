@@ -44,19 +44,25 @@ fun SearchResultItem(
         )
 
         Text(
-            text = buildHighlightedSnippet(result.snippet, result.matchedRange),
+            text = buildHighlightedSnippet(
+                snippet = result.snippet,
+                range = result.matchedRange,
+                highlightColor = MaterialTheme.colors.primary.copy(alpha = 0.3f)
+            ),
             style = MaterialTheme.typography.body2,
             modifier = Modifier.padding(top = 4.dp),
-            lineHeight = 20.sp
+            lineHeight = 20.sp,
+            color = MaterialTheme.colors.onSurface
         )
     }
-    Divider(color = Color.LightGray.copy(alpha = 0.5f))
+    Divider(color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f))
 }
 
 @Composable
 private fun buildHighlightedSnippet(
     snippet: String,
-    range: IntRange
+    range: IntRange,
+    highlightColor: Color
 ): AnnotatedString {
     return buildAnnotatedString {
         if (range.isEmpty() || range.first >= snippet.length || range.last < 0) {
@@ -77,7 +83,7 @@ private fun buildHighlightedSnippet(
 
         withStyle(
             style = SpanStyle(
-                background = Color.Yellow.copy(alpha = 0.5f),
+                background = highlightColor,
                 fontWeight = FontWeight.Bold
             )
         ) {

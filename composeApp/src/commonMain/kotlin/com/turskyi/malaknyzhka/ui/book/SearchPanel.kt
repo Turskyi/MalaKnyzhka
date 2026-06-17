@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -78,7 +77,7 @@ fun SearchPanel(
                     .fillMaxWidth()
                     .padding(16.dp)
                     .background(
-                        color = Color.LightGray.copy(alpha = 0.2f),
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.08f),
                         shape = RoundedCornerShape(24.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -89,7 +88,7 @@ fun SearchPanel(
                     contentDescription = stringResource(
                         Res.string.search_description,
                     ),
-                    tint = Color.Gray,
+                    tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
                     modifier = Modifier.size(20.dp)
                 )
 
@@ -101,7 +100,7 @@ fun SearchPanel(
                     if (query.isEmpty()) {
                         Text(
                             text = stringResource(Res.string.search_hint),
-                            color = Color.Gray,
+                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
                             fontSize = 16.sp
                         )
                     }
@@ -135,7 +134,7 @@ fun SearchPanel(
                             contentDescription = stringResource(
                                 Res.string.clear_search,
                             ),
-                            tint = Color.Gray
+                            tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
                         )
                     }
                 }
@@ -152,7 +151,9 @@ fun SearchPanel(
                             Text(
                                 text = stringResource(Res.string.no_results),
                                 style = MaterialTheme.typography.body1,
-                                color = Color.Gray
+                                color = MaterialTheme.colors.onSurface.copy(
+                                    alpha = 0.6f
+                                )
                             )
                         }
                     } else {
@@ -168,7 +169,9 @@ fun SearchPanel(
                                         horizontal = 16.dp,
                                         vertical = 8.dp
                                     ),
-                                    color = Color.Gray
+                                    color = MaterialTheme.colors.onSurface.copy(
+                                        alpha = 0.6f
+                                    )
                                 )
                             }
                             items(results) { result ->

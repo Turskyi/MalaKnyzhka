@@ -8,7 +8,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -22,6 +21,6 @@ fun DrawerButton(text: String, onClick: () -> Unit) {
             backgroundColor = MaterialTheme.colors.primary,
         )
     ) {
-        Text(text = text, color = Color.White)
+        Text(text = text, color = MaterialTheme.colors.onPrimary)
     }
 }

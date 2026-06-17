@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -26,7 +28,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
+import com.turskyi.malaknyzhka.ui.theme.ThemeSwitcher
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.bookmarks
@@ -47,6 +51,8 @@ fun DrawerPanel(
     onNavigateToBookmarks: () -> Unit,
     currentLanguage: AppLang,
     onLanguageChange: (AppLang) -> Unit,
+    currentThemeMode: ThemeMode,
+    onThemeChange: (ThemeMode) -> Unit,
 ) {
     // Desired duration. 700 milliseconds.
     val customAnimationDurationMillis = 700
@@ -108,6 +114,7 @@ fun DrawerPanel(
                     .fillMaxHeight()
                     .background(Color.Black.copy(alpha = 0.4f))
                     .shadow(1.dp)
+                    .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
                 Spacer(Modifier.height(24.dp))
@@ -153,6 +160,13 @@ fun DrawerPanel(
                 LanguageSwitcher(
                     currentLanguage = currentLanguage,
                     onLanguageChange = onLanguageChange
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                ThemeSwitcher(
+                    currentThemeMode = currentThemeMode,
+                    onThemeChange = onThemeChange
                 )
             }
         }

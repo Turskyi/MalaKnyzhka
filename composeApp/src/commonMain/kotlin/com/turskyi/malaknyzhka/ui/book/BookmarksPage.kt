@@ -33,7 +33,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -64,7 +63,7 @@ fun BookmarksPage(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colors.background)
             .padding(WindowInsets.statusBars.asPaddingValues())
     ) {
         Row(
@@ -83,7 +82,8 @@ fun BookmarksPage(
             Text(
                 text = stringResource(Res.string.bookmarks),
                 style = MaterialTheme.typography.h6,
-                modifier = Modifier.padding(start = 8.dp)
+                modifier = Modifier.padding(start = 8.dp),
+                color = MaterialTheme.colors.onBackground
             )
         }
 
@@ -95,7 +95,7 @@ fun BookmarksPage(
                 Text(
                     text = stringResource(Res.string.no_bookmarks),
                     style = MaterialTheme.typography.body1,
-                    color = Color.Gray
+                    color = MaterialTheme.colors.onBackground.copy(alpha = 0.6f)
                 )
             }
         } else {
@@ -122,7 +122,10 @@ fun BookmarksPage(
                             bookmarks = bookmarkRepository.getBookmarks()
                         }
                     )
-                    Divider(modifier = Modifier.padding(horizontal = 16.dp))
+                    Divider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
+                    )
                 }
             }
         }
@@ -168,13 +171,14 @@ private fun BookmarkItem(
                     userPageNumber.toString(),
                 ),
                 style = MaterialTheme.typography.subtitle1,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colors.onSurface
             )
             if (previewText.isNotEmpty()) {
                 Text(
                     text = previewText,
                     style = MaterialTheme.typography.body2,
-                    color = Color.DarkGray,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.8f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -182,14 +186,14 @@ private fun BookmarkItem(
             Text(
                 text = formatTimestamp(bookmark.timestamp),
                 style = MaterialTheme.typography.caption,
-                color = Color.Gray
+                color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
             )
         }
         IconButton(onClick = onDelete) {
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = stringResource(Res.string.remove_bookmark),
-                tint = Color.Gray
+                tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
             )
         }
     }

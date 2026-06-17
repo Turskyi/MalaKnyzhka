@@ -12,12 +12,12 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
@@ -37,7 +37,7 @@ fun TextPages(currentPage: Int, appLang: AppLang) {
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(scrollState)
-                .background(Color.White)
+                .background(MaterialTheme.colors.surface)
                 .windowInsetsPadding(WindowInsets.navigationBars)
                 .padding(start = 4.dp, top = 8.dp, end = 4.dp, bottom = 32.dp),
             contentAlignment = Alignment.Center
@@ -45,7 +45,8 @@ fun TextPages(currentPage: Int, appLang: AppLang) {
             SelectionContainer {
                 Text(
                     text = stringResource(poemPages[currentPage]),
-                    textAlign = TextAlign.Justify
+                    textAlign = TextAlign.Justify,
+                    color = MaterialTheme.colors.onSurface
                 )
             }
         }

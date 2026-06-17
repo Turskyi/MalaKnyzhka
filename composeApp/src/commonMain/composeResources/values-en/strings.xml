@@ -10146,4 +10146,7 @@ On Sunday,
 In the village…
 </string>
 
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
 </resources>

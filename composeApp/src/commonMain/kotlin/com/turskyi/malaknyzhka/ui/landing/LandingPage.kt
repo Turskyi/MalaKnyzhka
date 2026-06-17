@@ -292,7 +292,9 @@ fun LandingPage(
                             SelectionContainer {
                                 @Suppress("DEPRECATION") ClickableText(
                                     text = annotatedLinkString,
-                                    style = MaterialTheme.typography.caption,
+                                    style = MaterialTheme.typography.caption.copy(
+                                        color = MaterialTheme.colors.onSurface
+                                    ),
                                     onClick = { offset: Int ->
                                         annotatedLinkString.getStringAnnotations(
                                             tag = URL_TAG,
