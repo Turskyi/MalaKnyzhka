@@ -8339,4 +8339,6 @@
     <string name="theme_system">Системна</string>
     <string name="theme_light">Світла</string>
     <string name="theme_dark">Темна</string>
+    <string name="tts_play">Слухати</string>
+    <string name="tts_stop">Зупинити</string>
 </resources>

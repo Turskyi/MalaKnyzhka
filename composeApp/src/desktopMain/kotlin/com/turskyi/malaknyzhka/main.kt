@@ -1,7 +1,9 @@
 package com.turskyi.malaknyzhka
 
+import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.turskyi.malaknyzhka.infrastructure.DesktopTextToSpeech
 import com.turskyi.malaknyzhka.ui.App
 
 fun main() {
@@ -11,7 +13,8 @@ fun main() {
             title = "Мала Книжка (Тарас Шевченко)",
         ) {
             App(
-                settings = createSettings()
+                settings = remember { createSettings() },
+                textToSpeech = remember { DesktopTextToSpeech() }
             )
         }
     }
