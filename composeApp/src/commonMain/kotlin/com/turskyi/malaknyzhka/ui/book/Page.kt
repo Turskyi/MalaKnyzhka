@@ -31,9 +31,12 @@ import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.BookmarkRepository
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
+import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
+import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
+import com.turskyi.malaknyzhka.ui.LocalThemeMode
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
@@ -60,6 +63,9 @@ fun Page(
     val changeAppGlobalLanguage: (AppLang) -> Unit =
         LocalChangeAppLanguage.current
 
+    val currentThemeMode: ThemeMode = LocalThemeMode.current
+    val onThemeChange: (ThemeMode) -> Unit = LocalChangeThemeMode.current
+
     val isDrawerOpen: Boolean by viewModel.isDrawerOpen.collectAsState()
     val isSearchOpen: Boolean by viewModel.isSearchOpen.collectAsState()
     val dividerPosition: Float by viewModel.dividerPosition.collectAsState()
@@ -72,7 +78,7 @@ fun Page(
     BoxWithConstraints(Modifier.fillMaxSize()) {
         Box(
             Modifier.fillMaxSize().background(
-                Color.White,
+                MaterialTheme.colors.background,
             )
         ) {
             BookSpreads(
@@ -101,7 +107,7 @@ fun Page(
                     .padding(WindowInsets.statusBars.asPaddingValues())
                     .padding(4.dp)
                     .background(
-                        color = Color.White.copy(alpha = 0.4f),
+                        color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
                         shape = CircleShape
                     ).size(32.dp)
             ) {
@@ -120,7 +126,7 @@ fun Page(
                     .padding(WindowInsets.statusBars.asPaddingValues())
                     .padding(top = 4.dp, end = 40.dp)
                     .background(
-                        color = Color.White.copy(alpha = 0.4f),
+                        color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
                         shape = CircleShape
                     ).size(32.dp)
             ) {
@@ -143,7 +149,7 @@ fun Page(
                     .padding(WindowInsets.statusBars.asPaddingValues())
                     .padding(4.dp)
                     .background(
-                        color = Color.White.copy(alpha = 0.4f),
+                        color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
                         shape = CircleShape
                     ).size(32.dp)
             ) {
@@ -176,6 +182,8 @@ fun Page(
                     viewModel.onLanguageChange(it.code)
                     changeAppGlobalLanguage(it)
                 },
+                currentThemeMode = currentThemeMode,
+                onThemeChange = onThemeChange,
             )
 
             if (isSearchOpen) {

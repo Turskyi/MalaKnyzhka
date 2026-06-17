@@ -25,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -121,7 +120,7 @@ fun DraggableDividerWithButton(
                 Text(
                     text = pageLabel,
                     style = MaterialTheme.typography.button,
-                    color = Color.White,
+                    color = MaterialTheme.colors.onPrimary,
                     softWrap = false,
                 )
             }
@@ -146,13 +145,13 @@ fun DraggableDividerWithButton(
                 Icon(
                     imageVector = Icons.Default.DragHandle,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = MaterialTheme.colors.onPrimary,
                 )
             } else {
                 Text(
                     text = pageLabel,
                     style = MaterialTheme.typography.button,
-                    color = Color.White,
+                    color = MaterialTheme.colors.onPrimary,
                 )
             }
         }

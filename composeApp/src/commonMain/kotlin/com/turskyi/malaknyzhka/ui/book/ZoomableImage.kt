@@ -1,7 +1,6 @@
 package com.turskyi.malaknyzhka.ui.book
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.TransformableState
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.rememberTransformableState
@@ -15,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import org.jetbrains.compose.resources.DrawableResource
@@ -50,7 +48,6 @@ fun ZoomableImage(imageResource: DrawableResource) {
     Box(
         Modifier
             .fillMaxSize()
-            .background(Color(0xFFf0e7d8))
             // Handles zoom and pan gestures.
             .transformable(state = transformableState)
             .pointerInput(Unit) {

@@ -8336,4 +8336,7 @@
 Давно се діялось колись.
 У неділю на селі,
     </string>
+    <string name="theme_system">Системна</string>
+    <string name="theme_light">Світла</string>
+    <string name="theme_dark">Темна</string>
 </resources>

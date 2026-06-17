@@ -17,13 +17,13 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
@@ -121,7 +121,9 @@ fun SupportPage(onBack: () -> Unit) {
                             Image(
                                 painter = painterResource(Res.drawable.arrow_back),
                                 contentDescription = stringResource(Res.string.back_button_description),
-                                colorFilter = ColorFilter.tint(Color.White),
+                                colorFilter = ColorFilter.tint(
+                                    MaterialTheme.colors.onPrimary,
+                                ),
                                 modifier = Modifier.size(24.dp),
                             )
                         }
@@ -196,7 +198,7 @@ fun SupportPage(onBack: () -> Unit) {
                             )
                             withStyle(
                                 style = SpanStyle(
-                                    color = androidx.compose.material.MaterialTheme.colors.primary,
+                                    color = MaterialTheme.colors.primary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
@@ -207,6 +209,9 @@ fun SupportPage(onBack: () -> Unit) {
                     @Suppress("DEPRECATION")
                     ClickableText(
                         text = annotatedEmailString,
+                        style = MaterialTheme.typography.body1.copy(
+                            color = MaterialTheme.colors.onBackground,
+                        ),
                         onClick = { offset: Int ->
                             annotatedEmailString.getStringAnnotations(
                                 tag = EMAIL_LINK_TAG,
@@ -228,7 +233,7 @@ fun SupportPage(onBack: () -> Unit) {
                             )
                             withStyle(
                                 style = SpanStyle(
-                                    color = androidx.compose.material.MaterialTheme.colors.primary,
+                                    color = MaterialTheme.colors.primary,
                                     textDecoration = TextDecoration.Underline,
                                 )
                             ) {
@@ -239,6 +244,9 @@ fun SupportPage(onBack: () -> Unit) {
                     @Suppress("DEPRECATION")
                     ClickableText(
                         text = annotatedString,
+                        style = MaterialTheme.typography.body1.copy(
+                            color = MaterialTheme.colors.onBackground,
+                        ),
                         onClick = { offset: Int ->
                             annotatedString.getStringAnnotations(
                                 tag = CHAT_LINK_TAG,
@@ -260,7 +268,7 @@ fun SupportPage(onBack: () -> Unit) {
                             )
                             withStyle(
                                 style = SpanStyle(
-                                    color = androidx.compose.material.MaterialTheme.colors.primary,
+                                    color = MaterialTheme.colors.primary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
@@ -271,6 +279,9 @@ fun SupportPage(onBack: () -> Unit) {
                     @Suppress("DEPRECATION")
                     ClickableText(
                         text = annotatedSupportString,
+                        style = MaterialTheme.typography.body1.copy(
+                            color = MaterialTheme.colors.onBackground,
+                        ),
                         onClick = { offset: Int ->
                             annotatedSupportString.getStringAnnotations(
                                 tag = SUPPORT_LINK_TAG,

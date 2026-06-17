@@ -1,10 +1,12 @@
 package com.turskyi.malaknyzhka.ui
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
+import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -12,12 +14,20 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.turskyi.malaknyzhka.models.ThemeMode
 
 @Composable
-@Preview
-fun AppTheme(content: @Composable () -> Unit) {
-    val customColors: Colors = lightColors(
+fun AppTheme(
+    themeMode: ThemeMode = ThemeMode.SYSTEM,
+    content: @Composable () -> Unit,
+) {
+    val isDark: Boolean = when (themeMode) {
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+    }
+
+    val lightColors: Colors = lightColors(
         primary = Color(0xFFFF6F00), // Amber
         primaryVariant = Color(0xFFEF5100), // Deep orange
         secondary = Color(0xFFFF7043), // Soft Coral
@@ -31,6 +41,22 @@ fun AppTheme(content: @Composable () -> Unit) {
         onSurface = Color(0xFF5D4037), // Dark brown text
         onError = Color.White // White text on errors
     )
+
+    val darkColors: Colors = darkColors(
+        primary = Color(0xFFFFB300), // Lighter Amber
+        primaryVariant = Color(0xFFFF6F00), // Amber
+        secondary = Color(0xFFFF8A65), // Lighter Coral
+        background = Color(0xFF212121), // Dark grey
+        surface = Color(0xFF333333), // Slightly lighter grey
+        error = Color(0xFFCF6679), // Standard dark error color
+        onPrimary = Color.Black,
+        onSecondary = Color.Black,
+        onBackground = Color(0xFFE0E0E0), // Light grey text
+        onSurface = Color(0xFFE0E0E0), // Light grey text
+        onError = Color.Black
+    )
+
+    val customColors: Colors = if (isDark) darkColors else lightColors
 
     val customTypography = Typography(
         h1 = TextStyle(fontWeight = FontWeight.Bold, fontSize = 30.sp),
@@ -51,4 +77,12 @@ fun AppTheme(content: @Composable () -> Unit) {
         shapes = customShapes,
         content = content
     )
+}
+
+@Composable
+@androidx.compose.ui.tooling.preview.Preview
+fun AppThemePreview() {
+    AppTheme {
+        // Preview content
+    }
 }

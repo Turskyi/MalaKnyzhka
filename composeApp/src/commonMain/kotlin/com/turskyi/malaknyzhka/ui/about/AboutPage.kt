@@ -23,7 +23,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -108,7 +107,9 @@ fun AboutPage(onBack: () -> Unit) {
                                 contentDescription = stringResource(
                                     Res.string.back_button_description,
                                 ),
-                                colorFilter = ColorFilter.tint(Color.White),
+                                colorFilter = ColorFilter.tint(
+                                    MaterialTheme.colors.onPrimary,
+                                ),
                                 modifier = Modifier.size(24.dp),
                             )
                         }

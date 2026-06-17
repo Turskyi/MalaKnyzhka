@@ -34,11 +34,11 @@ fun LanguageSwitcher(
         Text(
             text = stringResource(Res.string.language),
             fontWeight = Bold,
-            color = MaterialTheme.colors.surface,
+            color = Color.White,
             style = MaterialTheme.typography.h2,
             modifier = Modifier.background(
                 // Semi-transparent black background.
-                color = Color.Black.copy(alpha = 0.6f),
+                color = Color.Black.copy(alpha = 0.4f),
                 shape = RoundedCornerShape(8.dp),
             ).padding(horizontal = 12.dp, vertical = 4.dp),
         )

@@ -25,6 +25,9 @@ import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.models.SettingsBookRepository
 import com.turskyi.malaknyzhka.models.SettingsBookmarkRepository
+import com.turskyi.malaknyzhka.models.SettingsUserSettingsRepository
+import com.turskyi.malaknyzhka.models.ThemeMode
+import com.turskyi.malaknyzhka.models.UserSettingsRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
@@ -41,7 +44,12 @@ fun App(
     navController: NavHostController = rememberNavController()
 ) {
     val appLocale: AppLocale = rememberAppLocale()
-    val viewModel: AppViewModel = viewModel { AppViewModel(appLocale) }
+    val userSettingsRepository: UserSettingsRepository = remember(settings) {
+        SettingsUserSettingsRepository(settings)
+    }
+    val viewModel: AppViewModel = viewModel {
+        AppViewModel(appLocale, userSettingsRepository)
+    }
 
     val bookmarkRepository: BookmarkRepository = remember(settings) {
         SettingsBookmarkRepository(settings)
@@ -52,6 +60,12 @@ fun App(
 
     val changeAppGlobalLanguage: (AppLang) -> Unit = { newLang: AppLang ->
         viewModel.changeAppGlobalLanguage(newLang)
+    }
+
+    val themeMode: ThemeMode by viewModel.themeMode.collectAsState()
+
+    val changeThemeMode: (ThemeMode) -> Unit = { newMode: ThemeMode ->
+        viewModel.changeThemeMode(newMode)
     }
 
     val platform = remember { getPlatform() }
@@ -95,13 +109,15 @@ fun App(
     CompositionLocalProvider(
         LocalAppLanguage provides appGlobalLanguage,
         LocalChangeAppLanguage provides changeAppGlobalLanguage,
+        LocalThemeMode provides themeMode,
+        LocalChangeThemeMode provides changeThemeMode,
     ) {
         // The 'key' forces the entire tree to be recreated when the language
         // changes.
         // This is essential on iOS for stringResource() to pick up the new
         // locale.
         key(appGlobalLanguage) {
-            AppTheme {
+            AppTheme(themeMode = themeMode) {
                 BoxWithConstraints(Modifier.fillMaxSize()) {
                     val windowInfo = WindowInfo(screenWidth = maxWidth)
                     CompositionLocalProvider(
@@ -223,3 +239,9 @@ val LocalAppLanguage: ProvidableCompositionLocal<AppLang> =
 
 val LocalChangeAppLanguage: ProvidableCompositionLocal<(AppLang) -> Unit> =
     compositionLocalOf { error("ChangeAppLanguage not provided") }
+
+val LocalThemeMode: ProvidableCompositionLocal<ThemeMode> =
+    compositionLocalOf { ThemeMode.SYSTEM }
+
+val LocalChangeThemeMode: ProvidableCompositionLocal<(ThemeMode) -> Unit> =
+    compositionLocalOf { error("ChangeThemeMode not provided") }
