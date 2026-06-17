@@ -4,6 +4,7 @@
 [![Deploy to Firebase Hosting on merge](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/Turskyi/MalaKnyzhka/actions/workflows/firebase-hosting-merge.yml)
 [![Codemagic build status](https://api.codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/status_badge.svg)](https://codemagic.io/apps/678d89827cdba5cbbb772f7a/android-compose-multiplatform-workflow/latest_build)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Turskyi/MalaKnyzhka)
+[![wakatime](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599.svg)](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
 # Мала Книжка (Тарас Шевченко)
