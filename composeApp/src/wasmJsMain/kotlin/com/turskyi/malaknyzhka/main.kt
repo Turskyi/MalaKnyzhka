@@ -8,6 +8,7 @@ import androidx.navigation.ExperimentalBrowserHistoryApi
 import androidx.navigation.NavHostController
 import androidx.navigation.bindToNavigation
 import androidx.navigation.compose.rememberNavController
+import com.turskyi.malaknyzhka.infrastructure.WasmTextToSpeech
 import com.turskyi.malaknyzhka.ui.App
 import kotlinx.browser.document
 import kotlinx.browser.window
@@ -22,6 +23,7 @@ fun main() {
             settings = remember {
                 createSettings()
             },
+            textToSpeech = remember { WasmTextToSpeech() },
             navController = navController,
         )
         LaunchedEffect(Unit) {

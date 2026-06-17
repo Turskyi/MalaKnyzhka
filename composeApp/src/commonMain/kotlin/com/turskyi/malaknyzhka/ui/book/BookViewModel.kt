@@ -3,6 +3,7 @@ package com.turskyi.malaknyzhka.ui.book
 import androidx.lifecycle.ViewModel
 import com.turskyi.malaknyzhka.getCurrentTimeMillis
 import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
+import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.Bookmark
 import com.turskyi.malaknyzhka.models.BookmarkRepository
@@ -14,6 +15,7 @@ import org.jetbrains.compose.resources.DrawableResource
 class BookViewModel(
     private val bookRepository: BookRepository,
     private val bookmarkRepository: BookmarkRepository,
+    private val textToSpeech: TextToSpeech,
 ) : ViewModel() {
     private val _currentPage: MutableStateFlow<Int> =
         MutableStateFlow(bookRepository.getCurrentPage())
@@ -37,11 +39,14 @@ class BookViewModel(
         MutableStateFlow(bookmarkRepository.isBookmarked(_currentPage.value))
     val isBookmarked: StateFlow<Boolean> = _isBookmarked.asStateFlow()
 
+    val isSpeaking: StateFlow<Boolean> = textToSpeech.isSpeaking
+
     // Constants for divider limits.
     private val maxTopFraction = 0.025f
     private val minBottomFraction = 0.94f
 
     fun onNewPage(newPage: Int) {
+        textToSpeech.stop()
         bookRepository.saveCurrentPage(newPage)
         _currentPage.value = newPage
         _isBookmarked.value = bookmarkRepository.isBookmarked(newPage)
@@ -70,6 +75,22 @@ class BookViewModel(
         _isBookmarked.value = bookmarkRepository.isBookmarked(page)
     }
 
+    fun toggleSpeech(text: String) {
+        if (isSpeaking.value) {
+            textToSpeech.stop()
+        } else {
+            textToSpeech.speak(text)
+        }
+    }
+
+    fun stopSpeech() {
+        textToSpeech.stop()
+    }
+
+    fun isTtsAvailable(): Boolean {
+        return textToSpeech.isLanguageAvailable()
+    }
+
     fun onDividerPositionChange(newPosition: Float) {
         _dividerPosition.value = newPosition.coerceIn(
             maxTopFraction,
@@ -79,5 +100,10 @@ class BookViewModel(
 
     fun onLanguageChange(langCode: String) {
         bookRepository.saveCurrentLanguage(langCode)
+    }
+
+    override fun onCleared() {
+        textToSpeech.stop()
+        super.onCleared()
     }
 }

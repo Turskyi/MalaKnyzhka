@@ -17,9 +17,12 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -27,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
+import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.BookmarkRepository
@@ -41,6 +46,8 @@ import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
 import malaknyzhka.composeapp.generated.resources.search_description
+import malaknyzhka.composeapp.generated.resources.tts_play
+import malaknyzhka.composeapp.generated.resources.tts_stop
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -48,13 +55,21 @@ import org.jetbrains.compose.resources.stringResource
 fun Page(
     bookRepository: BookRepository,
     bookmarkRepository: BookmarkRepository,
+    textToSpeech: TextToSpeech,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
     onNavigateToBookmarks: () -> Unit,
 ) {
     val viewModel: BookViewModel = viewModel {
-        BookViewModel(bookRepository, bookmarkRepository)
+        BookViewModel(bookRepository, bookmarkRepository, textToSpeech)
+    }
+
+    // Stop speech when navigating away from the reading screen.
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.stopSpeech()
+        }
     }
 
     // Get the global app language and the function to change it.
@@ -71,6 +86,11 @@ fun Page(
     val dividerPosition: Float by viewModel.dividerPosition.collectAsState()
     val currentPage: Int by viewModel.currentPage.collectAsState()
     val isBookmarked: Boolean by viewModel.isBookmarked.collectAsState()
+    val isSpeaking: Boolean by viewModel.isSpeaking.collectAsState()
+
+    val currentPoemText: String = stringResource(
+        BookContentRegistry.allPoemPages[currentPage],
+    )
 
     // Screen width detection.
     val windowInfo: WindowInfo = LocalWindowInfo.current
@@ -118,13 +138,13 @@ fun Page(
                 )
             }
 
-            // 🔖 Bookmark button in top-right corner (left of search).
+            // 🔖 Bookmark button in top-right corner.
             IconButton(
                 onClick = { viewModel.toggleBookmark() },
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(WindowInsets.statusBars.asPaddingValues())
-                    .padding(top = 4.dp, end = 40.dp)
+                    .padding(top = 4.dp, end = 76.dp)
                     .background(
                         color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
                         shape = CircleShape
@@ -139,6 +159,35 @@ fun Page(
                     contentDescription = null,
                     tint = MaterialTheme.colors.primary
                 )
+            }
+
+            // 🔊 Text-to-Speech button in top-right corner.
+            if (viewModel.isTtsAvailable()) {
+                IconButton(
+                    onClick = { viewModel.toggleSpeech(currentPoemText) },
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(WindowInsets.statusBars.asPaddingValues())
+                        .padding(top = 4.dp, end = 40.dp)
+                        .background(
+                            color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
+                            shape = CircleShape
+                        ).size(32.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isSpeaking) {
+                            Icons.Default.Stop
+                        } else {
+                            Icons.Default.PlayArrow
+                        },
+                        contentDescription = if (isSpeaking) {
+                            stringResource(Res.string.tts_stop)
+                        } else {
+                            stringResource(Res.string.tts_play)
+                        },
+                        tint = MaterialTheme.colors.primary
+                    )
+                }
             }
 
             // 🔍 Search button in top-right corner.

@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
 import com.turskyi.malaknyzhka.getPlatform
+import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
 import com.turskyi.malaknyzhka.models.BookmarkRepository
@@ -41,6 +42,7 @@ import com.turskyi.malaknyzhka.ui.support.SupportPage
 @Composable
 fun App(
     settings: Settings,
+    textToSpeech: TextToSpeech,
     navController: NavHostController = rememberNavController()
 ) {
     val appLocale: AppLocale = rememberAppLocale()
@@ -165,8 +167,11 @@ fun App(
                                 route = NavigationDestination.Book.name,
                             ) {
                                 Page(
-                                    SettingsBookRepository(settings),
-                                    bookmarkRepository,
+                                    bookRepository = SettingsBookRepository(
+                                        settings
+                                    ),
+                                    bookmarkRepository = bookmarkRepository,
+                                    textToSpeech = textToSpeech,
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
