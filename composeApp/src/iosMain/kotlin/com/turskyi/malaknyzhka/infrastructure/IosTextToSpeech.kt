@@ -1,13 +1,14 @@
 package com.turskyi.malaknyzhka.infrastructure
 
+import kotlinx.cinterop.ObjCSignatureOverride
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import platform.AVFoundation.AVSpeechBoundary
-import platform.AVFoundation.AVSpeechSynthesisVoice
-import platform.AVFoundation.AVSpeechSynthesizer
-import platform.AVFoundation.AVSpeechSynthesizerDelegateProtocol
-import platform.AVFoundation.AVSpeechUtterance
+import platform.AVFAudio.AVSpeechBoundary
+import platform.AVFAudio.AVSpeechSynthesisVoice
+import platform.AVFAudio.AVSpeechSynthesizer
+import platform.AVFAudio.AVSpeechSynthesizerDelegateProtocol
+import platform.AVFAudio.AVSpeechUtterance
 import platform.darwin.NSObject
 
 class IosTextToSpeech : TextToSpeech {
@@ -45,6 +46,7 @@ class IosTextToSpeech : TextToSpeech {
 
     private class TTSDelegate(val onSpeakingChange: (Boolean) -> Unit) :
         NSObject(), AVSpeechSynthesizerDelegateProtocol {
+        @ObjCSignatureOverride
         override fun speechSynthesizer(
             synthesizer: AVSpeechSynthesizer,
             didStartSpeechUtterance: AVSpeechUtterance
@@ -52,6 +54,7 @@ class IosTextToSpeech : TextToSpeech {
             onSpeakingChange(true)
         }
 
+        @ObjCSignatureOverride
         override fun speechSynthesizer(
             synthesizer: AVSpeechSynthesizer,
             didFinishSpeechUtterance: AVSpeechUtterance
@@ -59,6 +62,7 @@ class IosTextToSpeech : TextToSpeech {
             onSpeakingChange(false)
         }
 
+        @ObjCSignatureOverride
         override fun speechSynthesizer(
             synthesizer: AVSpeechSynthesizer,
             didCancelSpeechUtterance: AVSpeechUtterance
