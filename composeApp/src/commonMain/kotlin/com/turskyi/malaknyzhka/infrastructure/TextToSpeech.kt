@@ -12,10 +12,10 @@ interface TextToSpeech {
     val isSpeaking: StateFlow<Boolean>
 
     /**
-     * Starts speaking the given [text] in Ukrainian.
+     * Starts speaking the given [text] in the specified [languageCode].
      * If already speaking, it should stop the previous session first.
      */
-    fun speak(text: String)
+    fun speak(text: String, languageCode: String)
 
     /**
      * Stops the current speech playback.

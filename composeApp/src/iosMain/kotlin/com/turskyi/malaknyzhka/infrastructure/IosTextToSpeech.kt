@@ -22,11 +22,15 @@ class IosTextToSpeech : TextToSpeech {
         synthesizer.delegate = delegate
     }
 
-    override fun speak(text: String) {
+    override fun speak(text: String, languageCode: String) {
         stop()
         val utterance = AVSpeechUtterance(string = text)
-        // Ukrainian voice
-        utterance.voice = AVSpeechSynthesisVoice.voiceWithLanguage("uk-UA")
+        val languageTag = when (languageCode) {
+            "uk" -> "uk-UA"
+            "en" -> "en-US"
+            else -> languageCode
+        }
+        utterance.voice = AVSpeechSynthesisVoice.voiceWithLanguage(languageTag)
         if (utterance.voice != null) {
             synthesizer.speakUtterance(utterance)
             _isSpeaking.value = true

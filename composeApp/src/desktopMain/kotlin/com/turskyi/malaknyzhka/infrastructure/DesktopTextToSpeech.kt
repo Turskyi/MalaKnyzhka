@@ -10,16 +10,20 @@ class DesktopTextToSpeech : TextToSpeech {
     override val isSpeaking: StateFlow<Boolean> = _isSpeaking.asStateFlow()
     private var process: Process? = null
 
-    override fun speak(text: String) {
+    override fun speak(text: String, languageCode: String) {
         stop()
         val os = System.getProperty("os.name").lowercase(Locale.getDefault())
         if (os.contains("mac")) {
             _isSpeaking.value = true
             val thread = Thread {
                 try {
-                    // Lesya is the name of the Ukrainian voice on macOS.
-                    // We also try to use the language code.
-                    process = ProcessBuilder("say", "-v", "Lesya", text).start()
+                    val voice = if (languageCode == "uk") "Lesya" else null
+                    val command = if (voice != null) {
+                        listOf("say", "-v", voice, text)
+                    } else {
+                        listOf("say", text)
+                    }
+                    process = ProcessBuilder(command).start()
                     process?.waitFor()
                 } catch (e: Exception) {
                     e.printStackTrace()

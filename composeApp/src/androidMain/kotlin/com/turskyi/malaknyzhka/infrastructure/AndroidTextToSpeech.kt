@@ -18,32 +18,40 @@ class AndroidTextToSpeech(context: Context) : TextToSpeech,
 
     override fun onInit(status: Int) {
         if (status == AndroidTTS.SUCCESS) {
-            val result = tts?.setLanguage(Locale("uk", "UA"))
-            if (result != AndroidTTS.LANG_MISSING_DATA && result != AndroidTTS.LANG_NOT_SUPPORTED) {
-                isInitialized = true
-                tts?.setOnUtteranceProgressListener(object :
-                    UtteranceProgressListener() {
-                    override fun onStart(utteranceId: String?) {
-                        _isSpeaking.value = true
-                    }
+            isInitialized = true
+            tts?.setOnUtteranceProgressListener(object :
+                UtteranceProgressListener() {
+                override fun onStart(utteranceId: String?) {
+                    _isSpeaking.value = true
+                }
 
-                    override fun onDone(utteranceId: String?) {
-                        _isSpeaking.value = false
-                    }
+                override fun onDone(utteranceId: String?) {
+                    _isSpeaking.value = false
+                }
 
-                    @Deprecated("Deprecated in Java")
-                    override fun onError(utteranceId: String?) {
-                        _isSpeaking.value = false
-                    }
-                })
-            }
+                @Deprecated("Deprecated in Java")
+                override fun onError(utteranceId: String?) {
+                    _isSpeaking.value = false
+                }
+            })
         }
     }
 
-    override fun speak(text: String) {
+    override fun speak(text: String, languageCode: String) {
         if (isInitialized) {
+            val locale = if (languageCode == "uk") {
+                Locale.forLanguageTag("uk-UA")
+            } else {
+                Locale.forLanguageTag(languageCode)
+            }
+            tts?.language = locale
             // Using QUEUE_FLUSH to stop any previous playback session.
-            tts?.speak(text, AndroidTTS.QUEUE_FLUSH, null, "MalaKnyzhkaTTS")
+            tts?.speak(
+                text,
+                AndroidTTS.QUEUE_FLUSH,
+                null,
+                "MalaKnyzhkaTTS",
+            )
             _isSpeaking.value = true
         }
     }

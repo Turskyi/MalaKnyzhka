@@ -8,10 +8,12 @@ class WasmTextToSpeech : TextToSpeech {
     private val _isSpeaking = MutableStateFlow(false)
     override val isSpeaking: StateFlow<Boolean> = _isSpeaking.asStateFlow()
 
-    override fun speak(text: String) {
+    override fun speak(text: String, languageCode: String) {
         stop()
+        val lang = if (languageCode == "uk") "uk-UA" else "en-US"
         jsSpeak(
             text,
+            lang,
             { _isSpeaking.value = true },
             { _isSpeaking.value = false })
     }
@@ -26,10 +28,10 @@ class WasmTextToSpeech : TextToSpeech {
 
 @OptIn(ExperimentalWasmJsInterop::class)
 @JsFun(
-    "(text, onStart, onEnd) => { " +
+    "(text, lang, onStart, onEnd) => { " +
             "window.speechSynthesis.cancel(); " +
             "const utterance = new SpeechSynthesisUtterance(text); " +
-            "utterance.lang = 'uk-UA'; " +
+            "utterance.lang = lang; " +
             "utterance.onstart = onStart; " +
             "utterance.onend = onEnd; " +
             "utterance.onerror = onEnd; " +
@@ -38,6 +40,7 @@ class WasmTextToSpeech : TextToSpeech {
 )
 private external fun jsSpeak(
     text: String,
+    lang: String,
     onStart: () -> Unit,
     onEnd: () -> Unit
 )

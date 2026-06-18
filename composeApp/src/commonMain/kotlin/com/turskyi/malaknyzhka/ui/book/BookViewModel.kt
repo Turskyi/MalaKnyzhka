@@ -49,7 +49,9 @@ class BookViewModel(
         textToSpeech.stop()
         bookRepository.saveCurrentPage(newPage)
         _currentPage.value = newPage
-        _isBookmarked.value = bookmarkRepository.isBookmarked(newPage)
+        _isBookmarked.value = bookmarkRepository.isBookmarked(
+            pageNumber = newPage,
+        )
     }
 
     fun setDrawerOpen(isOpen: Boolean) {
@@ -75,11 +77,11 @@ class BookViewModel(
         _isBookmarked.value = bookmarkRepository.isBookmarked(page)
     }
 
-    fun toggleSpeech(text: String) {
+    fun toggleSpeech(text: String, languageCode: String) {
         if (isSpeaking.value) {
             textToSpeech.stop()
         } else {
-            textToSpeech.speak(text)
+            textToSpeech.speak(text, languageCode)
         }
     }
 

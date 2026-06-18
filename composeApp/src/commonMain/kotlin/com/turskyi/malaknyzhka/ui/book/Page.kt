@@ -164,7 +164,12 @@ fun Page(
             // 🔊 Text-to-Speech button in top-right corner.
             if (viewModel.isTtsAvailable()) {
                 IconButton(
-                    onClick = { viewModel.toggleSpeech(currentPoemText) },
+                    onClick = {
+                        viewModel.toggleSpeech(
+                            text = currentPoemText,
+                            languageCode = appGlobalLanguage.code,
+                        )
+                    },
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(WindowInsets.statusBars.asPaddingValues())
