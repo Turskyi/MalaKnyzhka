@@ -103,6 +103,7 @@ target platform. For detailed guidelines, refer to the following:
 
 ### Building and Running the Project
 
+#### Web Application
 Build and run the web application using this Gradle task:
 
 ```bash
@@ -113,6 +114,56 @@ Build and run the web application using this Gradle task:
 within Google Chrome. While other browsers may technically load the
 application, they may not display it correctly or support all features. For
 the best experience, use Google Chrome.
+
+#### Backend AI Server
+
+To run the AI backend server locally:
+
+1. **Configure Environment Variables**:
+   Create a `server/.env` file in the project root and add your API keys:
+   ```env
+   GROQ_API_KEY=your_key
+   MISTRAL_API_KEY=your_key
+   GEMINI_API_KEY=your_key
+   ```
+
+2. **Run the Server**:
+   ```bash
+   ./gradlew :server:run
+   ```
+
+3. **Run Tests**:
+   To run the backend unit tests (fallback logic, API structure, etc.):
+   ```bash
+   ./gradlew :server:test
+   ```
+
+4. **Stop the Server**:
+    - In the terminal: Press `Control + C`.
+    - In Android Studio: Click the **Red Square (Stop)** button in the Run tool
+      window.
+    - If the process is stuck: `kill -9 $(lsof -t -i:8080)` (assuming default
+      port 8080).
+
+4. **Test the API**:
+   You can test the chat endpoint using `curl`:
+   ```bash
+   curl -X POST http://localhost:8080/chat \
+   -H "Content-Type: application/json" \
+   -d '{
+     "message": "Привіт, Тарасе! Яку пораду ти даси молоді?",
+     "pageNumber": 10,
+     "pageText": "Учітесь, читайте, і чужому научайтесь, й свого не цурайтесь."
+   }'
+   ```
+
+   **Example Response**:
+   ```json
+   {
+       "answer": "Добрий день, молодій людино! Як ти бачиш на сторінці 10 моєї \"Малої Книжки\"...",
+       "providerUsed": "groq"
+   }
+   ```
 
 ## How to Contribute
 
