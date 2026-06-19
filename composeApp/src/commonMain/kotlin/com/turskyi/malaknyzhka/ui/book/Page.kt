@@ -16,6 +16,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
@@ -60,6 +61,7 @@ fun Page(
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
     onNavigateToBookmarks: () -> Unit,
+    onNavigateToChat: (pageNumber: Int, pageText: String) -> Unit,
 ) {
     val viewModel: BookViewModel = viewModel {
         BookViewModel(bookRepository, bookmarkRepository, textToSpeech)
@@ -210,6 +212,27 @@ fun Page(
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = stringResource(Res.string.search_description),
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+
+            // 🤖 AI Chat button in top-right corner.
+            IconButton(
+                onClick = {
+                    onNavigateToChat(currentPage, currentPoemText)
+                },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .padding(top = 40.dp, end = 4.dp)
+                    .background(
+                        color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
+                        shape = CircleShape
+                    ).size(32.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.Chat,
+                    contentDescription = "AI Chat",
                     tint = MaterialTheme.colors.primary
                 )
             }

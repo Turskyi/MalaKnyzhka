@@ -1,5 +1,6 @@
 package com.turskyi.malaknyzhka.ai
 
+import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.ChatResponse
 import org.slf4j.LoggerFactory
 
@@ -10,6 +11,7 @@ class AiService(
 
     suspend fun chat(
         message: String,
+        history: List<ChatMessage>?,
         pageNumber: Int?,
         pageText: String?
     ): ChatResponse {
@@ -22,6 +24,7 @@ class AiService(
                 val answer = provider.generateResponse(
                     prompt,
                     message,
+                    history,
                     pageNumber,
                     pageText
                 )

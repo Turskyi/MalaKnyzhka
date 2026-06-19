@@ -154,7 +154,11 @@ To run the AI backend server locally:
    curl -X POST http://localhost:8080/chat \
    -H "Content-Type: application/json" \
    -d '{
-     "message": "Привіт, Тарасе! Яку пораду ти даси молоді?",
+     "message": "Що ви щойно сказали?",
+     "history": [
+       {"role": "user", "content": "Привіт, Тарасе!"},
+       {"role": "assistant", "content": "Добрий день! Я — Тарас..."}
+     ],
      "pageNumber": 10,
      "pageText": "Учітесь, читайте, і чужому научайтесь, й свого не цурайтесь."
    }'
@@ -192,7 +196,11 @@ To test the AI backend in Postman:
 4. **Body**: In the **Body** tab, select **raw** -> **JSON** and use:
    ```json
    {
-     "message": "Привіт, Тарасе!",
+     "message": "Що ви щойно сказали?",
+     "history": [
+       {"role": "user", "content": "Привіт, Тарасе!"},
+       {"role": "assistant", "content": "Добрий день! Я — Тарас..."}
+     ],
      "pageNumber": 1,
      "pageText": "Думи мої..."
    }

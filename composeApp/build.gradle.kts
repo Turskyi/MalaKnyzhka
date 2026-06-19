@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.googleGmsGoogleServices)
     alias(libs.plugins.googleFirebaseCrashlytics)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 val keyPropertiesFile: File = rootProject.file(
@@ -129,6 +130,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
+            implementation(libs.ktorClientCore)
+            implementation(libs.ktorClientCio)
+            implementation(libs.ktorClientContentNegotiation)
+            implementation(libs.ktorSerializationKotlinxJson)
             api(libs.multiplatform.settings)
         }
         desktopMain.dependencies {

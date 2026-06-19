@@ -20,7 +20,11 @@ private val logger = LoggerFactory.getLogger("ChatRoutes")
  * **Request Body:**
  * ```json
  * {
- *   "message": "Привіт, Тарасе! Яку пораду ти даси молоді?",
+ *   "message": "Що ви щойно сказали?",
+ *   "history": [
+ *     {"role": "user", "content": "Привіт, Тарасе! Яку пораду ти даси молоді?"},
+ *     {"role": "assistant", "content": "Добрий день! Учітесь, читайте, і чужому научайтесь..."}
+ *   ],
  *   "pageNumber": 10,
  *   "pageText": "Учітесь, читайте, і чужому научайтесь, й свого не цурайтесь."
  * }
@@ -49,6 +53,7 @@ fun Route.chatRoutes(aiService: AiService) {
                 }
                 val response = aiService.chat(
                     message = request.message,
+                    history = request.history,
                     pageNumber = request.pageNumber,
                     pageText = request.pageText
                 )

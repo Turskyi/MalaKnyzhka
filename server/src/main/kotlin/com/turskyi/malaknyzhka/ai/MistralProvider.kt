@@ -40,9 +40,19 @@ class MistralProvider(
     override suspend fun generateResponse(
         prompt: String,
         message: String,
+        history: List<com.turskyi.malaknyzhka.ai.models.ChatMessage>?,
         pageNumber: Int?,
         pageText: String?
     ): String {
+        val messages = mutableListOf<MistralMessage>()
+        messages.add(MistralMessage(role = "system", content = prompt))
+
+        history?.forEach { msg ->
+            messages.add(MistralMessage(role = msg.role, content = msg.content))
+        }
+
+        messages.add(MistralMessage(role = "user", content = message))
+
         val response: MistralResponse =
             client.post("https://api.mistral.ai/v1/chat/completions") {
                 header("Authorization", "Bearer $apiKey")
@@ -50,10 +60,7 @@ class MistralProvider(
                 setBody(
                     MistralRequest(
                         model = "mistral-large-latest",
-                        messages = listOf(
-                            MistralMessage(role = "system", content = prompt),
-                            MistralMessage(role = "user", content = message)
-                        )
+                        messages = messages
                     )
                 )
             }.body()

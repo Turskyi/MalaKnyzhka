@@ -40,9 +40,19 @@ class GroqProvider(
     override suspend fun generateResponse(
         prompt: String,
         message: String,
+        history: List<com.turskyi.malaknyzhka.ai.models.ChatMessage>?,
         pageNumber: Int?,
         pageText: String?
     ): String {
+        val messages = mutableListOf<GroqMessage>()
+        messages.add(GroqMessage(role = "system", content = prompt))
+
+        history?.forEach { msg ->
+            messages.add(GroqMessage(role = msg.role, content = msg.content))
+        }
+
+        messages.add(GroqMessage(role = "user", content = message))
+
         val response: GroqResponse =
             client.post("https://api.groq.com/openai/v1/chat/completions") {
                 header("Authorization", "Bearer $apiKey")
@@ -50,10 +60,7 @@ class GroqProvider(
                 setBody(
                     GroqRequest(
                         model = "llama-3.3-70b-versatile",
-                        messages = listOf(
-                            GroqMessage(role = "system", content = prompt),
-                            GroqMessage(role = "user", content = message)
-                        )
+                        messages = messages
                     )
                 )
             }.body()

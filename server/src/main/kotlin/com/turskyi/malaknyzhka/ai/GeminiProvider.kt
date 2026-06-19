@@ -44,22 +44,36 @@ class GeminiProvider(
     override suspend fun generateResponse(
         prompt: String,
         message: String,
+        history: List<com.turskyi.malaknyzhka.ai.models.ChatMessage>?,
         pageNumber: Int?,
         pageText: String?
     ): String {
         val url =
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey"
+
+        val contents = mutableListOf<Content>()
+        history?.forEach { msg ->
+            val role = if (msg.role == "user") "user" else "model"
+            contents.add(
+                Content(
+                    role = role,
+                    parts = listOf(Part(text = msg.content))
+                )
+            )
+        }
+        contents.add(
+            Content(
+                role = "user",
+                parts = listOf(Part(text = message))
+            )
+        )
+
         val response: GeminiResponse = client.post(url) {
             contentType(ContentType.Application.Json)
             setBody(
                 GeminiRequest(
                     systemInstruction = Content(parts = listOf(Part(text = prompt))),
-                    contents = listOf(
-                        Content(
-                            role = "user",
-                            parts = listOf(Part(text = message))
-                        )
-                    )
+                    contents = contents
                 )
             )
         }.body()

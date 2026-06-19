@@ -10,4 +10,5 @@ enum class NavigationDestination {
     PrivacyPolicy,
     Support,
     About,
+    Chat,
 }
