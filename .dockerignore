@@ -1,0 +1,13 @@
+.git
+.gradle
+.idea
+build
+composeApp
+iosApp
+screenshots
+.firebase
+.artifacts
+.fleet
+.vscode
+kotlin-js-store
+*.log

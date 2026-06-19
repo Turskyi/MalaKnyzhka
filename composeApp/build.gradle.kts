@@ -24,41 +24,49 @@ val keyProperties: Properties = Properties()
 if (keyPropertiesFile.exists()) {
     keyProperties.load(keyPropertiesFile.inputStream())
 } else {
-    throw IllegalStateException("key.properties file is missing")
+    logger.warn("key.properties file is missing. Android signing will not work.")
 }
 
 // Debug environment variables.
 val signingKeyDebugPath: String = keyProperties.getProperty(
     "dev.SIGNING_KEY_DEBUG_PATH",
+    "",
 )
 
 val signingKeyDebugPassword: String = keyProperties.getProperty(
     "dev.SIGNING_KEY_DEBUG_PASSWORD",
+    "",
 )
 
 val signingKeyDebugKey: String = keyProperties.getProperty(
     "dev.SIGNING_KEY_DEBUG_KEY",
+    "",
 )
 
 val signingKeyDebugKeyPassword: String = keyProperties.getProperty(
     "dev.SIGNING_KEY_DEBUG_KEY_PASSWORD",
+    "",
 )
 
 // Release environment variables.
 val signingKeyReleasePath: String = keyProperties.getProperty(
     "production.SIGNING_KEY_RELEASE_PATH",
+    "",
 )
 
 val signingKeyReleasePassword: String = keyProperties.getProperty(
     "production.SIGNING_KEY_RELEASE_PASSWORD",
+    "",
 )
 
 val signingKeyReleaseKey: String = keyProperties.getProperty(
     "production.SIGNING_KEY_RELEASE_KEY",
+    "",
 )
 
 val signingKeyReleaseKeyPassword: String = keyProperties.getProperty(
     "production.SIGNING_KEY_RELEASE_KEY_PASSWORD",
+    "",
 )
 
 kotlin {
