@@ -7,9 +7,9 @@
 [![wakatime](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599.svg)](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
-# Мала Книжка (Тарас Шевченко)
+# Мала Книжка ✦ Тарас Шевченко
 
-Welcome to "Мала Книжка (Тарас Шевченко)", a Compose Multiplatform project
+Welcome to "Мала Книжка ✦ Тарас Шевченко", a Compose Multiplatform project
 designed to deliver a cohesive reading experience across Android, iOS, Web, and
 Desktop. This project aims to celebrate the lyrical beauty of Taras Shevchenko's
 poetry.
@@ -62,7 +62,7 @@ developer reading the code can easily understand their function.
 
 ### Overview
 
-"Мала Книжка (Тарас Шевченко)" is a digital collection of Taras Shevchenko's
+"Мала Книжка ✦ Тарас Шевченко" is a digital collection of Taras Shevchenko's
 works, offering a seamless reading experience with draggable dividers and
 elegant page transitions. It supports multiple platforms through Compose
 Multiplatform, sharing a unified codebase.

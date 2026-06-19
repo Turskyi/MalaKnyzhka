@@ -10,7 +10,7 @@ fun main() {
     application {
         Window(
             onCloseRequest = ::exitApplication,
-            title = "Мала Книжка (Тарас Шевченко)",
+            title = "Мала Книжка ✦ Тарас Шевченко",
         ) {
             App(
                 settings = remember { createSettings() },

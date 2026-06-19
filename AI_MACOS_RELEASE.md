@@ -64,7 +64,7 @@ YOUR_TEAM_ID.com.turskyi.malaknyzhka
 Compose Multiplatform might not always embed the profile correctly for the App
 Store's subcomponent check.
 **Action**: Manually copy the profile to
-`Мала Книжка (Тарас Шевченко).app/Contents/embedded.provisionprofile` and sign
+`Мала Книжка ✦ Тарас Шевченко.app/Contents/embedded.provisionprofile` and sign
 it before signing the main bundle.
 
 ### 6. JVM Hardened Runtime (MANDATORY FOR LAUNCH)
@@ -118,7 +118,7 @@ xattr -r -d com.apple.quarantine .
 ./gradlew :composeApp:packageReleasePkg || true
 
 # 5. Manual Fixes & Signing
-APP_NAME="Мала Книжка (Тарас Шевченко)"
+APP_NAME="Мала Книжка ✦ Тарас Шевченко"
 APP_BUNDLE="composeApp/build/compose/binaries/main-release/app/${APP_NAME}.app"
 IDENTITY="3rd Party Mac Developer Application: DMYTRO TURSKYI (26QZ8BPZFL)"
 IDENTITY_INSTALLER="3rd Party Mac Developer Installer: DMYTRO TURSKYI (26QZ8BPZFL)"
