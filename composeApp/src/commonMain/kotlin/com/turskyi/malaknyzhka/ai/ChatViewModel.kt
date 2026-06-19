@@ -20,6 +20,17 @@ class ChatViewModel(private val repository: ChatRepository) : ViewModel() {
     var currentPageNumber: Int? = null
     var currentPageText: String? = null
 
+    private val _isExpanded: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isExpanded: StateFlow<Boolean> = _isExpanded.asStateFlow()
+
+    fun toggleExpanded() {
+        _isExpanded.value = !_isExpanded.value
+    }
+
+    fun setExpanded(expanded: Boolean) {
+        _isExpanded.value = expanded
+    }
+
     fun sendMessage(
         text: String,
         pageNumber: Int?,

@@ -1,6 +1,8 @@
 package com.turskyi.malaknyzhka.ai
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -20,6 +22,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -32,7 +35,11 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Fullscreen
+import androidx.compose.material.icons.filled.FullscreenExit
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -57,14 +64,9 @@ fun ChatScreen(
     viewModel: ChatViewModel,
     onBack: () -> Unit,
 ) {
-    val messages by viewModel.messages.collectAsState()
-    val isLoading by viewModel.isLoading.collectAsState()
-    var inputText by remember { mutableStateOf("") }
-    val listState = rememberLazyListState()
-
-    LaunchedEffect(messages.size) {
-        if (messages.isNotEmpty()) {
-            listState.animateScrollToItem(messages.size - 1)
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.setExpanded(false)
         }
     }
 
@@ -82,85 +84,111 @@ fun ChatScreen(
                         )
                     }
                 },
+                actions = {
+                    IconButton(onClick = { viewModel.toggleExpanded() }) {
+                        Icon(
+                            imageVector = Icons.Default.FullscreenExit,
+                            contentDescription = "Minimize"
+                        )
+                    }
+                },
                 backgroundColor = MaterialTheme.colors.surface,
                 contentColor = MaterialTheme.colors.primary,
                 elevation = 4.dp
             )
-        },
-        bottomBar = {
-            Surface(elevation = 8.dp) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                        .padding(
-                            bottom = WindowInsets.ime.asPaddingValues()
-                                .calculateBottomPadding()
-                        ),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TextField(
-                        value = inputText,
-                        onValueChange = { inputText = it },
-                        modifier = Modifier.weight(1f),
-                        placeholder = { Text("Запитайте щось у Кобзаря…") },
-                        enabled = !isLoading,
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        )
-                    )
-                    IconButton(
-                        onClick = {
-                            viewModel.sendMessage(
-                                text = inputText,
-                                pageNumber = viewModel.currentPageNumber,
-                                pageText = viewModel.currentPageText,
-                            )
-                            inputText = ""
-                        },
-                        enabled = !isLoading && inputText.isNotBlank()
-                    ) {
-                        if (isLoading) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
-                                strokeWidth = 2.dp
-                            )
-                        } else {
+        }
+    ) { paddingValues ->
+        Box(modifier = Modifier.padding(paddingValues)) {
+            ChatView(viewModel = viewModel)
+        }
+    }
+
+    val isExpanded by viewModel.isExpanded.collectAsState()
+    LaunchedEffect(isExpanded) {
+        if (!isExpanded) {
+            onBack()
+        }
+    }
+}
+
+@Composable
+fun ChatView(
+    viewModel: ChatViewModel,
+    onClose: (() -> Unit)? = null,
+    onToggleFullScreen: (() -> Unit)? = null,
+    isFullScreen: Boolean = true,
+) {
+    val messages by viewModel.messages.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    var inputText by remember { mutableStateOf("") }
+    val listState = rememberLazyListState()
+
+    LaunchedEffect(messages.size) {
+        if (messages.isNotEmpty()) {
+            listState.animateScrollToItem(messages.size - 1)
+        }
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .background(MaterialTheme.colors.background)
+    ) {
+        // Header for overlay mode
+        if (!isFullScreen) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    "Чат з Тарасом Шевченком",
+                    style = MaterialTheme.typography.subtitle1,
+                    color = MaterialTheme.colors.primary,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+                Row {
+                    if (onToggleFullScreen != null) {
+                        IconButton(onClick = onToggleFullScreen) {
                             Icon(
-                                imageVector = Icons.AutoMirrored.Filled.Send,
-                                contentDescription = "Надіслати",
-                                tint = if (inputText.isNotBlank()) {
-                                    MaterialTheme.colors.primary
-                                } else {
-                                    Color.Gray
-                                }
+                                Icons.Default.Fullscreen,
+                                contentDescription = "Full Screen"
+                            )
+                        }
+                    }
+                    if (onClose != null) {
+                        IconButton(onClick = onClose) {
+                            Icon(
+                                Icons.Default.Close,
+                                contentDescription = "Close"
                             )
                         }
                     }
                 }
             }
+            Divider()
         }
-    ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
-            if (viewModel.currentPageNumber != null) {
-                Surface(
-                    color = MaterialTheme.colors.primary.copy(alpha = 0.05f),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = "Ви обговорюєте сторінку ${viewModel.currentPageNumber!! + 1}",
-                        style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(
-                            horizontal = 16.dp,
-                            vertical = 4.dp
-                        ),
-                        color = MaterialTheme.colors.primary
-                    )
-                }
-            }
 
+        if (viewModel.currentPageNumber != null) {
+            Surface(
+                color = MaterialTheme.colors.primary.copy(alpha = 0.05f),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "Ви обговорюєте сторінку ${viewModel.currentPageNumber!! + 1}",
+                    style = MaterialTheme.typography.caption,
+                    modifier = Modifier.padding(
+                        horizontal = 16.dp,
+                        vertical = 4.dp
+                    ),
+                    color = MaterialTheme.colors.primary
+                )
+            }
+        }
+
+        Box(modifier = Modifier.weight(1f)) {
             SelectionContainer {
                 LazyColumn(
                     state = listState,
@@ -172,6 +200,58 @@ fun ChatScreen(
                 ) {
                     items(messages) { message ->
                         MessageBubble(message)
+                    }
+                }
+            }
+        }
+
+        Divider()
+
+        Surface(elevation = 8.dp) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .padding(
+                        bottom = if (isFullScreen) WindowInsets.ime.asPaddingValues()
+                            .calculateBottomPadding() else 0.dp
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextField(
+                    value = inputText,
+                    onValueChange = { inputText = it },
+                    modifier = Modifier.weight(1f),
+                    placeholder = { Text("Запитайте...") },
+                    enabled = !isLoading,
+                    colors = TextFieldDefaults.textFieldColors(
+                        backgroundColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
+                    )
+                )
+                IconButton(
+                    onClick = {
+                        viewModel.sendMessage(
+                            text = inputText,
+                            pageNumber = viewModel.currentPageNumber,
+                            pageText = viewModel.currentPageText,
+                        )
+                        inputText = ""
+                    },
+                    enabled = !isLoading && inputText.isNotBlank()
+                ) {
+                    if (isLoading) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            strokeWidth = 2.dp
+                        )
+                    } else {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Send,
+                            contentDescription = "Send",
+                            tint = if (inputText.isNotBlank()) MaterialTheme.colors.primary else Color.Gray
+                        )
                     }
                 }
             }
@@ -202,7 +282,7 @@ fun MessageBubble(message: ChatMessage) {
         Surface(
             modifier = Modifier
                 .clip(bubbleShape)
-                .widthIn(max = 300.dp),
+                .widthIn(max = 280.dp),
             color = backgroundColor,
             elevation = if (isUser) 0.dp else 2.dp,
             shape = bubbleShape,
@@ -216,18 +296,15 @@ fun MessageBubble(message: ChatMessage) {
                     text = if (isUser) "Ви" else "Тарас Шевченко",
                     style = MaterialTheme.typography.caption.copy(
                         fontWeight = FontWeight.Bold,
-                        color = if (isUser) {
-                            MaterialTheme.colors.primary
-                        } else {
-                            MaterialTheme.colors.secondary
-                        }
+                        color = if (isUser) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = message.text,
                     style = MaterialTheme.typography.body1.copy(
-                        lineHeight = 20.sp
+                        fontSize = 14.sp,
+                        lineHeight = 18.sp
                     )
                 )
             }

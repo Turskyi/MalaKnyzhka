@@ -180,6 +180,7 @@ fun App(
                                     ),
                                     bookmarkRepository = bookmarkRepository,
                                     textToSpeech = textToSpeech,
+                                    chatViewModel = chatViewModel,
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
@@ -212,6 +213,7 @@ fun App(
                                         chatViewModel.currentPageNumber =
                                             pageNumber
                                         chatViewModel.currentPageText = pageText
+                                        chatViewModel.setExpanded(true)
                                         navController.navigate(
                                             NavigationDestination.Chat.name
                                         ) {

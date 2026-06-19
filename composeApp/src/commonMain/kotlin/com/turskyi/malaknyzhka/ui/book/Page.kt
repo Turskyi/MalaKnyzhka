@@ -6,15 +6,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.filled.Bookmark
@@ -26,11 +30,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.turskyi.malaknyzhka.ai.ChatView
+import com.turskyi.malaknyzhka.ai.ChatViewModel
 import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
 import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
@@ -57,6 +66,7 @@ fun Page(
     bookRepository: BookRepository,
     bookmarkRepository: BookmarkRepository,
     textToSpeech: TextToSpeech,
+    chatViewModel: ChatViewModel,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
@@ -89,6 +99,8 @@ fun Page(
     val currentPage: Int by viewModel.currentPage.collectAsState()
     val isBookmarked: Boolean by viewModel.isBookmarked.collectAsState()
     val isSpeaking: Boolean by viewModel.isSpeaking.collectAsState()
+
+    var isChatOverlayOpen: Boolean by remember { mutableStateOf(false) }
 
     val currentPoemText: String = stringResource(
         BookContentRegistry.allPoemPages[currentPage],
@@ -219,7 +231,13 @@ fun Page(
             // 🤖 AI Chat button in top-right corner.
             IconButton(
                 onClick = {
-                    onNavigateToChat(currentPage, currentPoemText)
+                    chatViewModel.currentPageNumber = currentPage
+                    chatViewModel.currentPageText = currentPoemText
+                    if (windowInfo.screenWidth > 720.dp) {
+                        isChatOverlayOpen = true
+                    } else {
+                        onNavigateToChat(currentPage, currentPoemText)
+                    }
                 },
                 modifier = Modifier
                     .align(Alignment.TopEnd)
@@ -235,6 +253,33 @@ fun Page(
                     contentDescription = "AI Chat",
                     tint = MaterialTheme.colors.primary
                 )
+            }
+
+            // 🤖 AI Chat Overlay for wide screens.
+            if (isChatOverlayOpen && windowInfo.screenWidth > 720.dp) {
+                Surface(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(top = 80.dp, end = 16.dp, bottom = 16.dp)
+                        .width(400.dp)
+                        .fillMaxHeight(),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = 16.dp,
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        MaterialTheme.colors.primary.copy(alpha = 0.2f)
+                    )
+                ) {
+                    ChatView(
+                        viewModel = chatViewModel,
+                        onClose = { isChatOverlayOpen = false },
+                        onToggleFullScreen = {
+                            isChatOverlayOpen = false
+                            onNavigateToChat(currentPage, currentPoemText)
+                        },
+                        isFullScreen = false
+                    )
+                }
             }
 
             // 🪟 Semi-transparent overlay.
