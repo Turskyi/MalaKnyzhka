@@ -14,7 +14,7 @@ class AiService(
         pageText: String?
     ): ChatResponse {
         val prompt = buildPrompt(pageNumber, pageText)
-        var lastError: Exception? = null
+        val errors = mutableListOf<String>()
 
         for (provider in providers) {
             try {
@@ -27,13 +27,14 @@ class AiService(
                 )
                 return ChatResponse(answer, provider.name)
             } catch (e: Exception) {
-                logger.warn("AI provider ${provider.name} failed: ${e.message}")
-                lastError = e
+                val errorMessage = "${provider.name}: ${e.message}"
+                logger.warn("AI provider failed: $errorMessage")
+                errors.add(errorMessage)
             }
         }
 
-        logger.error("All AI providers failed!")
-        throw lastError ?: Exception("Unknown error in AiService")
+        logger.error("All AI providers failed: ${errors.joinToString("; ")}")
+        throw Exception("All providers failed: ${errors.joinToString("; ")}")
     }
 
     private fun buildPrompt(pageNumber: Int?, pageText: String?): String {

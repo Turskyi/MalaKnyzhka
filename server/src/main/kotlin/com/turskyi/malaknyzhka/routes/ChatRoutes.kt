@@ -56,7 +56,10 @@ fun Route.chatRoutes(aiService: AiService) {
             } catch (e: Exception) {
                 call.respond(
                     HttpStatusCode.InternalServerError,
-                    mapOf("error" to (e.message ?: "Unknown error"))
+                    mapOf(
+                        "error" to (e.message ?: "Unknown error"),
+                        "providerUsed" to "all_failed"
+                    )
                 )
             }
         }

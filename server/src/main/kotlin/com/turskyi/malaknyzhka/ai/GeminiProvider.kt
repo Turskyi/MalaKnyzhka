@@ -33,7 +33,7 @@ class GeminiProvider(
 
     @Serializable
     private data class GeminiResponse(
-        val candidates: List<Candidate>
+        val candidates: List<Candidate>? = null
     )
 
     @Serializable
@@ -64,7 +64,7 @@ class GeminiProvider(
             )
         }.body()
 
-        return response.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text
+        return response.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text
             ?: throw Exception("Empty response from Gemini")
     }
 }

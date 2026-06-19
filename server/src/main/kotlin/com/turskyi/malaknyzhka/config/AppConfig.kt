@@ -19,8 +19,8 @@ class AppConfig {
     private fun getEnv(key: String): String {
         val value = dotenv?.get(key) ?: System.getenv(key)
         if (value.isNullOrBlank()) {
-            logger.error("Environment variable $key is missing!")
-            throw IllegalStateException("Environment variable $key is missing!")
+            logger.warn("Environment variable $key is missing! AI features using this provider will fail.")
+            return ""
         }
         return value
     }

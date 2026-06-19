@@ -49,10 +49,10 @@ developer reading the code can easily understand their function.
 - **`/composeApp`**: Contains shared code for the Compose Multiplatform
   applications.
 
-  - **`commonMain`**: Houses the common code for all targets.
-  - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
-    contain code for specific platforms like CoreCrypto for iOS in the
-    `iosMain` folder.
+    - **`commonMain`**: Houses the common code for all targets.
+    - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
+      contain code for specific platforms like CoreCrypto for iOS in the
+      `iosMain` folder.
 
 - **`/iosApp`**: Contains the iOS applications. Despite sharing UI code, this
   serves as the entry point for the iOS app and can include Swift/SwiftUI code
@@ -104,6 +104,7 @@ target platform. For detailed guidelines, refer to the following:
 ### Building and Running the Project
 
 #### Web Application
+
 Build and run the web application using this Gradle task:
 
 ```bash
@@ -145,8 +146,10 @@ To run the AI backend server locally:
     - If the process is stuck: `kill -9 $(lsof -t -i:8080)` (assuming default
       port 8080).
 
-4. **Test the API**:
+5. **Test the API**:
    You can test the chat endpoint using `curl`:
+
+   **Local:**
    ```bash
    curl -X POST http://localhost:8080/chat \
    -H "Content-Type: application/json" \
@@ -157,12 +160,76 @@ To run the AI backend server locally:
    }'
    ```
 
+   **Production:**
+   ```bash
+   curl -X POST https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app/chat \
+   -H "Content-Type: application/json" \
+   -d '{
+     "message": "Привіт, Тарасе!",
+     "pageNumber": 1,
+     "pageText": "Думи мої..."
+   }'
+   ```
+
    **Example Response**:
    ```json
    {
        "answer": "Добрий день, молодій людино! Як ти бачиш на сторінці 10 моєї \"Малої Книжки\"...",
        "providerUsed": "groq"
    }
+   ```
+
+#### Postman Testing
+
+To test the AI backend in Postman:
+
+1. **Create Request**: Click **New** -> **HTTP Request**. Set method to **POST
+   **.
+2. **Enter URL**:
+   `https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app/chat`
+3. **Headers**: In the **Headers** tab, ensure `Content-Type` is set to
+   `application/json`.
+4. **Body**: In the **Body** tab, select **raw** -> **JSON** and use:
+   ```json
+   {
+     "message": "Привіт, Тарасе!",
+     "pageNumber": 1,
+     "pageText": "Думи мої..."
+   }
+   ```
+5. **Send**: Click the blue **Send** button and verify the response.
+
+#### Cloud Run Deployment
+
+To deploy the backend to Google Cloud Run:
+
+1. **Build and Push Image**:
+   Use Google Cloud Build to create and push the Docker image to Artifact
+   Registry:
+   ```bash
+   gcloud builds submit --tag gcr.io/mala-knyzhka/mala-knyzhka-server
+   ```
+
+2. **Deploy to Cloud Run**:
+   ```bash
+   gcloud run deploy mala-knyzhka-server \
+     --image gcr.io/mala-knyzhka/mala-knyzhka-server \
+     --platform managed \
+     --region northamerica-northeast1 \
+     --allow-unauthenticated
+   ```
+
+3. **Update Environment Variables**:
+   Ensure the following environment variables are set in the Cloud Run service
+   configuration:
+    - `GROQ_API_KEY`
+    - `MISTRAL_API_KEY`
+    - `GEMINI_API_KEY`
+
+   You can update them via the Google Cloud Console or using:
+   ```bash
+   gcloud run services update mala-knyzhka-server \
+     --set-env-vars GROQ_API_KEY=your_key,MISTRAL_API_KEY=your_key,GEMINI_API_KEY=your_key
    ```
 
 ## How to Contribute
