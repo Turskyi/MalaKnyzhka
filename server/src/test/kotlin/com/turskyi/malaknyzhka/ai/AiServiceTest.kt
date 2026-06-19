@@ -1,5 +1,6 @@
 package com.turskyi.malaknyzhka.ai
 
+import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -15,6 +16,7 @@ class AiServiceTest {
         override suspend fun generateResponse(
             prompt: String,
             message: String,
+            history: List<ChatMessage>?,
             pageNumber: Int?,
             pageText: String?
         ): String {
@@ -31,7 +33,7 @@ class AiServiceTest {
         )
         val service = AiService(providers)
 
-        val result = service.chat("hello", null, null)
+        val result = service.chat("hello", null, null, null)
 
         assertEquals("groq", result.providerUsed)
         assertEquals("Groq response", result.answer)
@@ -45,7 +47,7 @@ class AiServiceTest {
         )
         val service = AiService(providers)
 
-        val result = service.chat("hello", null, null)
+        val result = service.chat("hello", null, null, null)
 
         assertEquals("mistral", result.providerUsed)
         assertEquals("Mistral response", result.answer)
@@ -62,7 +64,7 @@ class AiServiceTest {
             val service = AiService(providers)
 
             assertFailsWith<Exception> {
-                service.chat("hello", null, null)
+                service.chat("hello", null, null, null)
             }
         }
     }
