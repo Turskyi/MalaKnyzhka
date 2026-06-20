@@ -16,6 +16,7 @@ dependencies {
     implementation(libs.ktorServerCore)
     implementation(libs.ktorServerNetty)
     implementation(libs.ktorServerContentNegotiation)
+    implementation(libs.ktorServerCors)
     implementation(libs.ktorClientCore)
     implementation(libs.ktorClientCio)
     implementation(libs.ktorClientContentNegotiation)
