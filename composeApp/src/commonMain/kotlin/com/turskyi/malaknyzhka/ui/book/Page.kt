@@ -24,6 +24,7 @@ import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.runtime.Composable
@@ -53,14 +54,22 @@ import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
+import com.turskyi.malaknyzhka.ui.LocalShareManager
 import com.turskyi.malaknyzhka.ui.LocalThemeMode
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import kotlinx.coroutines.launch
 import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.app_name
+import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
+import malaknyzhka.composeapp.generated.resources.english_label
 import malaknyzhka.composeapp.generated.resources.menu
 import malaknyzhka.composeapp.generated.resources.search_description
+import malaknyzhka.composeapp.generated.resources.share_description
+import malaknyzhka.composeapp.generated.resources.share_from
+import malaknyzhka.composeapp.generated.resources.share_page
 import malaknyzhka.composeapp.generated.resources.tts_play
 import malaknyzhka.composeapp.generated.resources.tts_stop
+import malaknyzhka.composeapp.generated.resources.ukrainian_label
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -95,6 +104,7 @@ fun Page(
 
     val currentThemeMode: ThemeMode = LocalThemeMode.current
     val onThemeChange: (ThemeMode) -> Unit = LocalChangeThemeMode.current
+    val shareManager = LocalShareManager.current
 
     val isDrawerOpen: Boolean by viewModel.isDrawerOpen.collectAsState()
     val isSearchOpen: Boolean by viewModel.isSearchOpen.collectAsState()
@@ -109,6 +119,12 @@ fun Page(
     val currentPoemText: String = stringResource(
         BookContentRegistry.allPoemPages[currentPage],
     )
+    val appName = stringResource(Res.string.app_name)
+    val pageLabel = stringResource(Res.string.share_page, currentPage + 1)
+    val fromLabel = stringResource(Res.string.share_from)
+    val ukrainianLabel = stringResource(Res.string.ukrainian_label)
+    val englishLabel = stringResource(Res.string.english_label)
+    val copiedLabel = stringResource(Res.string.copied_to_clipboard)
 
     // Screen width detection.
     val windowInfo: WindowInfo = LocalWindowInfo.current
@@ -152,6 +168,38 @@ fun Page(
                 Icon(
                     painter = painterResource(Res.drawable.menu),
                     contentDescription = stringResource(Res.string.menu),
+                    tint = MaterialTheme.colors.primary
+                )
+            }
+
+            // 📤 Share button in top-right corner.
+            IconButton(
+                onClick = {
+                    viewModel.shareTranscription(
+                        shareManager = shareManager,
+                        pageNumber = currentPage,
+                        transcription = currentPoemText,
+                        appLang = appGlobalLanguage,
+                        title = appName,
+                        pageLabel = pageLabel,
+                        fromLabel = fromLabel,
+                        ukrainianLabel = ukrainianLabel,
+                        englishLabel = englishLabel,
+                        copiedLabel = copiedLabel
+                    )
+                },
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(WindowInsets.statusBars.asPaddingValues())
+                    .padding(top = 4.dp, end = 112.dp)
+                    .background(
+                        color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
+                        shape = CircleShape
+                    ).size(32.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Share,
+                    contentDescription = stringResource(Res.string.share_description),
                     tint = MaterialTheme.colors.primary
                 )
             }

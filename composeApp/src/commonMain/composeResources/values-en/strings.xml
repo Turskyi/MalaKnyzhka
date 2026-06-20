@@ -10161,4 +10161,12 @@ In the village…
     <string name="send_description">Send</string>
     <string name="user_name">You</string>
     <string name="taras_shevchenko_name">Taras Shevchenko</string>
+    <string name="share_description">Share</string>
+    <string name="copy_description">Copy to clipboard</string>
+    <string name="share_page">Page %1$d</string>
+    <string name="share_from">Shared from Mala Knyzhka.</string>
+    <string name="share_ai_title">Conversation with Taras Shevchenko</string>
+    <string name="ukrainian_label">Ukrainian:</string>
+    <string name="english_label">English:</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
 </resources>

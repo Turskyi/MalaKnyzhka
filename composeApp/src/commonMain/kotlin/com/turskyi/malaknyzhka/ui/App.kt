@@ -2,8 +2,12 @@ package com.turskyi.malaknyzhka.ui
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
@@ -36,17 +40,20 @@ import com.turskyi.malaknyzhka.models.UserSettingsRepository
 import com.turskyi.malaknyzhka.models.WindowInfo
 import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
+import com.turskyi.malaknyzhka.share.ShareManager
 import com.turskyi.malaknyzhka.ui.about.AboutPage
 import com.turskyi.malaknyzhka.ui.book.BookmarksPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun App(
     settings: Settings,
     textToSpeech: TextToSpeech,
+    shareManager: ShareManager,
     navController: NavHostController = rememberNavController()
 ) {
     val appLocale: AppLocale = rememberAppLocale()
@@ -116,11 +123,19 @@ fun App(
         }
     }
 
+    val snackbarHostState = remember { SnackbarHostState() }
+    LaunchedEffect(shareManager) {
+        shareManager.toastMessages.collectLatest { message ->
+            snackbarHostState.showSnackbar(message)
+        }
+    }
+
     CompositionLocalProvider(
         LocalAppLanguage provides appGlobalLanguage,
         LocalChangeAppLanguage provides changeAppGlobalLanguage,
         LocalThemeMode provides themeMode,
         LocalChangeThemeMode provides changeThemeMode,
+        LocalShareManager provides shareManager,
     ) {
         // The 'key' forces the entire tree to be recreated when the language
         // changes.
@@ -128,133 +143,138 @@ fun App(
         // locale.
         key(appGlobalLanguage) {
             AppTheme(themeMode = themeMode) {
-                BoxWithConstraints(Modifier.fillMaxSize()) {
-                    val windowInfo = WindowInfo(screenWidth = maxWidth)
-                    CompositionLocalProvider(
-                        LocalWindowInfo provides windowInfo,
-                    ) {
-                        NavHost(
-                            navController = navController,
-                            startDestination = startDestination
+                Scaffold(
+                    snackbarHost = { SnackbarHost(snackbarHostState) }
+                ) {
+                    BoxWithConstraints(Modifier.fillMaxSize()) {
+                        val windowInfo = WindowInfo(screenWidth = maxWidth)
+                        CompositionLocalProvider(
+                            LocalWindowInfo provides windowInfo,
                         ) {
-                            composable(
-                                route = NavigationDestination.Landing.name,
+                            NavHost(
+                                navController = navController,
+                                startDestination = startDestination
                             ) {
-                                LandingPage(
-                                    onNavigateToBook = {
-                                        navController.navigate(
-                                            NavigationDestination.Book.name
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToPrivacyPolicy = {
-                                        navController.navigate(
-                                            NavigationDestination.PrivacyPolicy.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToSupport = {
-                                        navController.navigate(
-                                            NavigationDestination.Support.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToAbout = {
-                                        navController.navigate(
-                                            NavigationDestination.About.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    }
-                                )
-                            }
-                            composable(
-                                route = NavigationDestination.Book.name,
-                            ) {
-                                Page(
-                                    bookRepository = SettingsBookRepository(
-                                        settings
-                                    ),
-                                    bookmarkRepository = bookmarkRepository,
-                                    textToSpeech = textToSpeech,
-                                    chatViewModel = chatViewModel,
-                                    onNavigateToPrivacyPolicy = {
-                                        navController.navigate(
-                                            NavigationDestination.PrivacyPolicy.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToSupport = {
-                                        navController.navigate(
-                                            NavigationDestination.Support.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToAbout = {
-                                        navController.navigate(
-                                            NavigationDestination.About.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToBookmarks = {
-                                        navController.navigate(
-                                            NavigationDestination.Bookmarks.name,
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    },
-                                    onNavigateToChat = { pageNumber, pageText ->
-                                        chatViewModel.currentPageNumber =
-                                            pageNumber
-                                        chatViewModel.currentPageText = pageText
-                                        chatViewModel.setExpanded(true)
-                                        navController.navigate(
-                                            NavigationDestination.Chat.name
-                                        ) {
-                                            launchSingleTop = true
-                                        }
-                                    }
-                                )
-                            }
-                            composable(route = NavigationDestination.Chat.name) {
-                                ChatScreen(
-                                    viewModel = chatViewModel,
-                                    onBack = onBack
-                                )
-                            }
-                            composable(route = NavigationDestination.Bookmarks.name) {
-                                BookmarksPage(
-                                    bookmarkRepository = bookmarkRepository,
-                                    onBookmarkClick = { pageNumber: Int ->
-                                        SettingsBookRepository(settings)
-                                            .saveCurrentPage(pageNumber)
-                                        navController.navigate(
-                                            NavigationDestination.Book.name
-                                        ) {
-                                            popUpTo(
+                                composable(
+                                    route = NavigationDestination.Landing.name,
+                                ) {
+                                    LandingPage(
+                                        onNavigateToBook = {
+                                            navController.navigate(
                                                 NavigationDestination.Book.name
                                             ) {
-                                                inclusive = true
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToPrivacyPolicy = {
+                                            navController.navigate(
+                                                NavigationDestination.PrivacyPolicy.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToSupport = {
+                                            navController.navigate(
+                                                NavigationDestination.Support.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToAbout = {
+                                            navController.navigate(
+                                                NavigationDestination.About.name,
+                                            ) {
+                                                launchSingleTop = true
                                             }
                                         }
-                                    },
-                                    onBack = onBack
-                                )
-                            }
-                            composable(route = NavigationDestination.PrivacyPolicy.name) {
-                                PrivacyPolicyPage(onBack = onBack)
-                            }
-                            composable(route = NavigationDestination.Support.name) {
-                                SupportPage(onBack = onBack)
-                            }
-                            composable(route = NavigationDestination.About.name) {
-                                AboutPage(onBack = onBack)
+                                    )
+                                }
+                                composable(
+                                    route = NavigationDestination.Book.name,
+                                ) {
+                                    Page(
+                                        bookRepository = SettingsBookRepository(
+                                            settings
+                                        ),
+                                        bookmarkRepository = bookmarkRepository,
+                                        textToSpeech = textToSpeech,
+                                        chatViewModel = chatViewModel,
+                                        onNavigateToPrivacyPolicy = {
+                                            navController.navigate(
+                                                NavigationDestination.PrivacyPolicy.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToSupport = {
+                                            navController.navigate(
+                                                NavigationDestination.Support.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToAbout = {
+                                            navController.navigate(
+                                                NavigationDestination.About.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToBookmarks = {
+                                            navController.navigate(
+                                                NavigationDestination.Bookmarks.name,
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToChat = { pageNumber, pageText ->
+                                            chatViewModel.currentPageNumber =
+                                                pageNumber
+                                            chatViewModel.currentPageText =
+                                                pageText
+                                            chatViewModel.setExpanded(true)
+                                            navController.navigate(
+                                                NavigationDestination.Chat.name
+                                            ) {
+                                                launchSingleTop = true
+                                            }
+                                        }
+                                    )
+                                }
+                                composable(route = NavigationDestination.Chat.name) {
+                                    ChatScreen(
+                                        viewModel = chatViewModel,
+                                        onBack = onBack
+                                    )
+                                }
+                                composable(route = NavigationDestination.Bookmarks.name) {
+                                    BookmarksPage(
+                                        bookmarkRepository = bookmarkRepository,
+                                        onBookmarkClick = { pageNumber: Int ->
+                                            SettingsBookRepository(settings)
+                                                .saveCurrentPage(pageNumber)
+                                            navController.navigate(
+                                                NavigationDestination.Book.name
+                                            ) {
+                                                popUpTo(
+                                                    NavigationDestination.Book.name
+                                                ) {
+                                                    inclusive = true
+                                                }
+                                            }
+                                        },
+                                        onBack = onBack
+                                    )
+                                }
+                                composable(route = NavigationDestination.PrivacyPolicy.name) {
+                                    PrivacyPolicyPage(onBack = onBack)
+                                }
+                                composable(route = NavigationDestination.Support.name) {
+                                    SupportPage(onBack = onBack)
+                                }
+                                composable(route = NavigationDestination.About.name) {
+                                    AboutPage(onBack = onBack)
+                                }
                             }
                         }
                     }
@@ -276,3 +296,6 @@ val LocalThemeMode: ProvidableCompositionLocal<ThemeMode> =
 
 val LocalChangeThemeMode: ProvidableCompositionLocal<(ThemeMode) -> Unit> =
     compositionLocalOf { error("ChangeThemeMode not provided") }
+
+val LocalShareManager: ProvidableCompositionLocal<ShareManager> =
+    compositionLocalOf { error("ShareManager not provided") }

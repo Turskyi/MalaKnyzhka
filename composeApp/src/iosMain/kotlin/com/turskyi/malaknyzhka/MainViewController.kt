@@ -3,6 +3,7 @@ package com.turskyi.malaknyzhka
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import com.turskyi.malaknyzhka.infrastructure.IosTextToSpeech
+import com.turskyi.malaknyzhka.share.IosShareManager
 import com.turskyi.malaknyzhka.ui.App
 
 // This function is the entry point for the iOS application.
@@ -14,6 +15,7 @@ fun MainViewController() = ComposeUIViewController {
         settings = remember {
             createDataStore()
         },
-        textToSpeech = remember { IosTextToSpeech() }
+        textToSpeech = remember { IosTextToSpeech() },
+        shareManager = remember { IosShareManager() }
     )
 }

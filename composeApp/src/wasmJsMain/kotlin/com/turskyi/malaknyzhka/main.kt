@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.bindToNavigation
 import androidx.navigation.compose.rememberNavController
 import com.turskyi.malaknyzhka.infrastructure.WasmTextToSpeech
+import com.turskyi.malaknyzhka.share.WasmShareManager
 import com.turskyi.malaknyzhka.ui.App
 import kotlinx.browser.document
 import kotlinx.browser.window
@@ -24,6 +25,7 @@ fun main() {
                 createSettings()
             },
             textToSpeech = remember { WasmTextToSpeech() },
+            shareManager = remember { WasmShareManager() },
             navController = navController,
         )
         LaunchedEffect(Unit) {

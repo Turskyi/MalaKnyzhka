@@ -41,8 +41,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.FullscreenExit
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -60,15 +62,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.ui.LocalShareManager
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
 import malaknyzhka.composeapp.generated.resources.chat_with_taras
 import malaknyzhka.composeapp.generated.resources.close_description
+import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
+import malaknyzhka.composeapp.generated.resources.copy_description
 import malaknyzhka.composeapp.generated.resources.discussing_page
 import malaknyzhka.composeapp.generated.resources.full_screen_description
 import malaknyzhka.composeapp.generated.resources.minimize_description
 import malaknyzhka.composeapp.generated.resources.send_description
+import malaknyzhka.composeapp.generated.resources.share_ai_title
+import malaknyzhka.composeapp.generated.resources.share_description
+import malaknyzhka.composeapp.generated.resources.share_from
 import malaknyzhka.composeapp.generated.resources.taras_shevchenko_name
 import malaknyzhka.composeapp.generated.resources.user_name
 import org.jetbrains.compose.resources.stringResource
@@ -83,6 +91,13 @@ fun ChatScreen(
             viewModel.setExpanded(false)
         }
     }
+
+    val chatTitle = stringResource(Res.string.share_ai_title)
+    val userName = stringResource(Res.string.user_name)
+    val tarasName = stringResource(Res.string.taras_shevchenko_name)
+    val fromLabel = stringResource(Res.string.share_from)
+    val copiedLabel = stringResource(Res.string.copied_to_clipboard)
+    val shareManager = LocalShareManager.current
 
     Scaffold(
         topBar = {
@@ -106,6 +121,35 @@ fun ChatScreen(
                         }
                     },
                     actions = {
+                        IconButton(onClick = {
+                            viewModel.shareConversation(
+                                shareManager = shareManager,
+                                title = chatTitle,
+                                userName = userName,
+                                tarasName = tarasName,
+                                fromLabel = fromLabel
+                            )
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Share,
+                                contentDescription = stringResource(Res.string.share_description)
+                            )
+                        }
+                        IconButton(onClick = {
+                            viewModel.copyConversation(
+                                shareManager = shareManager,
+                                title = chatTitle,
+                                userName = userName,
+                                tarasName = tarasName,
+                                fromLabel = fromLabel,
+                                toastMessage = copiedLabel
+                            )
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ContentCopy,
+                                contentDescription = stringResource(Res.string.copy_description)
+                            )
+                        }
                         IconButton(onClick = { viewModel.toggleExpanded() }) {
                             Icon(
                                 imageVector = Icons.Default.FullscreenExit,
@@ -146,6 +190,13 @@ fun ChatView(
     var inputText by remember { mutableStateOf("") }
     val listState = rememberLazyListState()
 
+    val chatTitle = stringResource(Res.string.share_ai_title)
+    val userName = stringResource(Res.string.user_name)
+    val tarasName = stringResource(Res.string.taras_shevchenko_name)
+    val fromLabel = stringResource(Res.string.share_from)
+    val copiedLabel = stringResource(Res.string.copied_to_clipboard)
+    val shareManager = LocalShareManager.current
+
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             listState.animateScrollToItem(messages.size - 1)
@@ -173,6 +224,35 @@ fun ChatView(
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 Row {
+                    IconButton(onClick = {
+                        viewModel.shareConversation(
+                            shareManager = shareManager,
+                            title = chatTitle,
+                            userName = userName,
+                            tarasName = tarasName,
+                            fromLabel = fromLabel
+                        )
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Share,
+                            contentDescription = stringResource(Res.string.share_description)
+                        )
+                    }
+                    IconButton(onClick = {
+                        viewModel.copyConversation(
+                            shareManager = shareManager,
+                            title = chatTitle,
+                            userName = userName,
+                            tarasName = tarasName,
+                            fromLabel = fromLabel,
+                            toastMessage = copiedLabel
+                        )
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.ContentCopy,
+                            contentDescription = stringResource(Res.string.copy_description)
+                        )
+                    }
                     if (onToggleFullScreen != null) {
                         IconButton(onClick = onToggleFullScreen) {
                             Icon(
