@@ -131,18 +131,26 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
             implementation(libs.ktorClientCore)
-            implementation(libs.ktorClientCio)
             implementation(libs.ktorClientContentNegotiation)
             implementation(libs.ktorSerializationKotlinxJson)
             api(libs.multiplatform.settings)
         }
+        androidMain.dependencies {
+            implementation(compose.preview)
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.ktorClientCio)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktorClientDarwin)
+        }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.ktorClientCio)
         }
 
         wasmJsMain.dependencies {
-
+            implementation(libs.ktorClientJs)
         }
 
         val commonTest by getting {
