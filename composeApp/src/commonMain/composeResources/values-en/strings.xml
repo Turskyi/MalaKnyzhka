@@ -10151,4 +10151,14 @@ In the village…
     <string name="theme_dark">Dark</string>
     <string name="tts_play">Listen</string>
     <string name="tts_stop">Stop</string>
+
+    <string name="chat_with_taras">Chat with Taras Shevchenko</string>
+    <string name="minimize_description">Minimize</string>
+    <string name="full_screen_description">Full screen</string>
+    <string name="close_description">Close</string>
+    <string name="discussing_page">You are discussing page %1$d</string>
+    <string name="ask_placeholder">Ask a question…</string>
+    <string name="send_description">Send</string>
+    <string name="user_name">You</string>
+    <string name="taras_shevchenko_name">Taras Shevchenko</string>
 </resources>

@@ -8341,4 +8341,14 @@
     <string name="theme_dark">Темна</string>
     <string name="tts_play">Слухати</string>
     <string name="tts_stop">Зупинити</string>
+
+    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
+    <string name="minimize_description">Згорнути</string>
+    <string name="full_screen_description">На весь екран</string>
+    <string name="close_description">Закрити</string>
+    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
+    <string name="ask_placeholder">Запитайте…</string>
+    <string name="send_description">Надіслати</string>
+    <string name="user_name">Ви</string>
+    <string name="taras_shevchenko_name">Тарас Шевченко</string>
 </resources>
