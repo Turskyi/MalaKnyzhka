@@ -86,7 +86,8 @@ fun ChatScreen(
     viewModel: ChatViewModel,
     onBack: () -> Unit,
 ) {
-    DisposableEffect(Unit) {
+    DisposableEffect(viewModel) {
+        viewModel.setExpanded(true)
         onDispose {
             viewModel.setExpanded(false)
         }
@@ -150,7 +151,7 @@ fun ChatScreen(
                                 contentDescription = stringResource(Res.string.copy_description)
                             )
                         }
-                        IconButton(onClick = { viewModel.toggleExpanded() }) {
+                        IconButton(onClick = onBack) {
                             Icon(
                                 imageVector = Icons.Default.FullscreenExit,
                                 contentDescription = stringResource(Res.string.minimize_description)
@@ -167,13 +168,6 @@ fun ChatScreen(
     { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             ChatView(viewModel = viewModel)
-        }
-    }
-
-    val isExpanded by viewModel.isExpanded.collectAsState()
-    LaunchedEffect(isExpanded) {
-        if (!isExpanded) {
-            onBack()
         }
     }
 }
