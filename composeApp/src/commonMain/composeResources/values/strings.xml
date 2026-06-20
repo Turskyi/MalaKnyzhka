@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Мала Книжка (Тарас Шевченко)</string>
+    <string name="app_name">Мала Книжка ✦ Тарас Шевченко</string>
     <string name="language">Мова</string>
     <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 – 1850 рр.</string>
     <string name="en">Англійська</string>
@@ -13,7 +13,7 @@
     <string name="support">Підтримка</string>
     <string name="about_app">Про застосунок</string>
     <string name="about_app_little_book">
-Про застосунок «Мала Книжка (Тарас Шевченко)»
+Про застосунок «Мала Книжка ✦ Тарас Шевченко»
     </string>
 
     <string name="search_hint">Пошук у рукописі…</string>
@@ -66,7 +66,7 @@
     <string name="size_changing">- Зміна розміру доступна лише для рукописних сторінок.</string>
     <string name="page_saving">- Додаток автоматично запам’ятовує останню переглянуту сторінку.</string>
     <string name="is_maintained">- Чи будуть оновлення? Так, плануються покращення функціоналу.</string>
-    <string name="thanks_for_using">Дякуємо, що використовуєте додаток "Мала Книжка (Тарас Шевченко)"!</string>
+    <string name="thanks_for_using">Дякуємо, що використовуєте додаток "Мала Книжка ✦ Тарас Шевченко"!</string>
     <string name="email_option">• Електронна адреса: </string>
     <string name="chat_option">• Чат для питань та пропозицій в телеграм: </string>
     <string name="developer_support_page">• Форма підтримки від розробника: </string>
@@ -90,9 +90,9 @@
     <string name="badge_macos_description">Значок MacOS</string>
     <string name="badge_test_flight_description">Значок TestFlight</string>
 
-    <string name="app_allows">Додаток "Мала Книжка (Тарас Шевченко)" дозволяє переглядати оцифровану версію рукопису та його друкований текст.</string>
+    <string name="app_allows">Додаток "Мала Книжка ✦ Тарас Шевченко" дозволяє переглядати оцифровану версію рукопису та його друкований текст.</string>
     <string name="privacy"><![CDATA[
-Ця політика конфіденційності застосовується до додатка “Мала Книжка (Тарас Шевченко)” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
+Ця політика конфіденційності застосовується до додатка “Мала Книжка ✦ Тарас Шевченко” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
 
 Збір та використання інформації
 
@@ -8341,4 +8341,14 @@
     <string name="theme_dark">Темна</string>
     <string name="tts_play">Слухати</string>
     <string name="tts_stop">Зупинити</string>
+
+    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
+    <string name="minimize_description">Згорнути</string>
+    <string name="full_screen_description">На весь екран</string>
+    <string name="close_description">Закрити</string>
+    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
+    <string name="ask_placeholder">Запитайте…</string>
+    <string name="send_description">Надіслати</string>
+    <string name="user_name">Ви</string>
+    <string name="taras_shevchenko_name">Тарас Шевченко</string>
 </resources>

@@ -15,4 +15,7 @@ object AppConstants {
 
     const val SOURCE_URL: String =
         "https://www.t-shevchenko.name/uk/Gallery/Works/1850MalaKn.html"
+
+    const val AI_CHAT_BASE_URL: String =
+        "https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app"
 }

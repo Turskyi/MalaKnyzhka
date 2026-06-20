@@ -57,5 +57,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run unit tests
+      - name: Run app unit tests
         run: ./gradlew :composeApp:testDebugUnitTest
+
+      - name: Run server unit tests
+        run: ./gradlew :server:test
+        env:
+          GROQ_API_KEY: dummy_key
+          MISTRAL_API_KEY: dummy_key
+          GEMINI_API_KEY: dummy_key

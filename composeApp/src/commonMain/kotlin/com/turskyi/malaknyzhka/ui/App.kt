@@ -17,6 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
+import com.turskyi.malaknyzhka.ai.ChatApi
+import com.turskyi.malaknyzhka.ai.ChatRepository
+import com.turskyi.malaknyzhka.ai.ChatScreen
+import com.turskyi.malaknyzhka.ai.ChatViewModel
 import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
@@ -51,6 +55,10 @@ fun App(
     }
     val viewModel: AppViewModel = viewModel {
         AppViewModel(appLocale, userSettingsRepository)
+    }
+
+    val chatViewModel: ChatViewModel = viewModel {
+        ChatViewModel(ChatRepository(ChatApi()))
     }
 
     val bookmarkRepository: BookmarkRepository = remember(settings) {
@@ -172,6 +180,7 @@ fun App(
                                     ),
                                     bookmarkRepository = bookmarkRepository,
                                     textToSpeech = textToSpeech,
+                                    chatViewModel = chatViewModel,
                                     onNavigateToPrivacyPolicy = {
                                         navController.navigate(
                                             NavigationDestination.PrivacyPolicy.name,
@@ -199,7 +208,24 @@ fun App(
                                         ) {
                                             launchSingleTop = true
                                         }
+                                    },
+                                    onNavigateToChat = { pageNumber, pageText ->
+                                        chatViewModel.currentPageNumber =
+                                            pageNumber
+                                        chatViewModel.currentPageText = pageText
+                                        chatViewModel.setExpanded(true)
+                                        navController.navigate(
+                                            NavigationDestination.Chat.name
+                                        ) {
+                                            launchSingleTop = true
+                                        }
                                     }
+                                )
+                            }
+                            composable(route = NavigationDestination.Chat.name) {
+                                ChatScreen(
+                                    viewModel = chatViewModel,
+                                    onBack = onBack
                                 )
                             }
                             composable(route = NavigationDestination.Bookmarks.name) {

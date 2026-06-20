@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mala Knyzhka (Taras Shevchenko)</string>
+    <string name="app_name">Mala Knyzhka ✦ Taras Shevchenko</string>
     <string name="language">Language</string>
     <string name="book">"Mala Knyzhka" by T. H. Shevchenko, 1846–1850</string>
     <string name="en">English</string>
@@ -11,7 +11,7 @@
     <string name="menu">Menu</string>
 
     <string name="about_app_little_book">
-About App «Mala Knyzhka (Taras Shevchenko)»
+About App «Mala Knyzhka ✦ Taras Shevchenko»
     </string>
 
     <string name="search_hint">Search in manuscript…</string>
@@ -73,11 +73,11 @@ The English translation of the poems was generated using artificial intelligence
 
     <string name="faq">FAQ</string>
     <string name="can_change_font_size">- Can change font size? No, it is fixed.</string>
-    <string name="app_allows">- The application "Mala Knyzhka (Taras Shevchenko)" allows you to view the digitized version of the manuscript and its printed text.</string>
+    <string name="app_allows">- The application "Mala Knyzhka ✦ Taras Shevchenko" allows you to view the digitized version of the manuscript and its printed text.</string>
     <string name="has_bookmarks">- Can add bookmarks? Yes, using the bookmark button. They are stored locally on your device.</string>
     <string name="data_storage_info">- Where is my data stored? All settings and bookmarks are stored locally only. They will be erased if you delete the app or clear its cache.</string>
     <string name="is_maintained">- Is it maintained? Yes, we are constantly improving the functionality.</string>
-    <string name="thanks_for_using">Thank you for using the "Mala Knyzhka (Taras Shevchenko)" application!</string>
+    <string name="thanks_for_using">Thank you for using the "Mala Knyzhka ✦ Taras Shevchenko" application!</string>
     <string name="if_you_have_questions">If you have any questions, suggestions, or issues, please contact the following channels:</string>
     <string name="portrait_description">Portrait of Taras Shevchenko</string>
     <string name="email_option">• Email Address: </string>
@@ -105,7 +105,7 @@ The English translation of the poems was generated using artificial intelligence
 
     <string name="privacy">
         <![CDATA[
-This privacy policy applies to the "Мала Книжка (Тарас Шевченко)" app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the "Мала Книжка ✦ Тарас Шевченко" app (hereby referred to as "Application") for mobile devices that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
 
 Information Collection and Use
 
@@ -10151,4 +10151,14 @@ In the village…
     <string name="theme_dark">Dark</string>
     <string name="tts_play">Listen</string>
     <string name="tts_stop">Stop</string>
+
+    <string name="chat_with_taras">Chat with Taras Shevchenko</string>
+    <string name="minimize_description">Minimize</string>
+    <string name="full_screen_description">Full screen</string>
+    <string name="close_description">Close</string>
+    <string name="discussing_page">You are discussing page %1$d</string>
+    <string name="ask_placeholder">Ask a question…</string>
+    <string name="send_description">Send</string>
+    <string name="user_name">You</string>
+    <string name="taras_shevchenko_name">Taras Shevchenko</string>
 </resources>

@@ -7,9 +7,9 @@
 [![wakatime](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599.svg)](https://wakatime.com/badge/user/f9df5074-b4ea-4c17-b001-fff428ab82aa/project/87bd0f70-41ef-4cf6-86db-4239d2a23599)
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Turskyi/MalaKnyzhka">
 
-# Мала Книжка (Тарас Шевченко)
+# Мала Книжка ✦ Тарас Шевченко
 
-Welcome to "Мала Книжка (Тарас Шевченко)", a Compose Multiplatform project
+Welcome to "Мала Книжка ✦ Тарас Шевченко", a Compose Multiplatform project
 designed to deliver a cohesive reading experience across Android, iOS, Web, and
 Desktop. This project aims to celebrate the lyrical beauty of Taras Shevchenko's
 poetry.
@@ -49,10 +49,10 @@ developer reading the code can easily understand their function.
 - **`/composeApp`**: Contains shared code for the Compose Multiplatform
   applications.
 
-  - **`commonMain`**: Houses the common code for all targets.
-  - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
-    contain code for specific platforms like CoreCrypto for iOS in the
-    `iosMain` folder.
+    - **`commonMain`**: Houses the common code for all targets.
+    - **Platform-specific folders** (e.g., `iosMain`, `androidMain`): These
+      contain code for specific platforms like CoreCrypto for iOS in the
+      `iosMain` folder.
 
 - **`/iosApp`**: Contains the iOS applications. Despite sharing UI code, this
   serves as the entry point for the iOS app and can include Swift/SwiftUI code
@@ -62,7 +62,7 @@ developer reading the code can easily understand their function.
 
 ### Overview
 
-"Мала Книжка (Тарас Шевченко)" is a digital collection of Taras Shevchenko's
+"Мала Книжка ✦ Тарас Шевченко" is a digital collection of Taras Shevchenko's
 works, offering a seamless reading experience with draggable dividers and
 elegant page transitions. It supports multiple platforms through Compose
 Multiplatform, sharing a unified codebase.
@@ -103,6 +103,8 @@ target platform. For detailed guidelines, refer to the following:
 
 ### Building and Running the Project
 
+#### Web Application
+
 Build and run the web application using this Gradle task:
 
 ```bash
@@ -113,6 +115,130 @@ Build and run the web application using this Gradle task:
 within Google Chrome. While other browsers may technically load the
 application, they may not display it correctly or support all features. For
 the best experience, use Google Chrome.
+
+#### Backend AI Server
+
+To run the AI backend server locally:
+
+1. **Configure Environment Variables**:
+   Create a `server/.env` file in the project root and add your API keys:
+   ```env
+   GROQ_API_KEY=your_key
+   MISTRAL_API_KEY=your_key
+   GEMINI_API_KEY=your_key
+   ```
+
+2. **Run the Server**:
+   ```bash
+   ./gradlew :server:run
+   ```
+
+3. **Run Tests**:
+   To run the backend unit tests (fallback logic, API structure, etc.):
+   ```bash
+   ./gradlew :server:test
+   ```
+
+4. **Stop the Server**:
+    - In the terminal: Press `Control + C`.
+    - In Android Studio: Click the **Red Square (Stop)** button in the Run tool
+      window.
+    - If the process is stuck: `kill -9 $(lsof -t -i:8080)` (assuming default
+      port 8080).
+
+5. **Test the API**:
+   You can test the chat endpoint using `curl`:
+
+   **Local:**
+   ```bash
+   curl -X POST http://localhost:8080/chat \
+   -H "Content-Type: application/json" \
+   -d '{
+     "message": "Що ви щойно сказали?",
+     "history": [
+       {"role": "user", "content": "Привіт, Тарасе!"},
+       {"role": "assistant", "content": "Добрий день! Я — Тарас..."}
+     ],
+     "pageNumber": 10,
+     "pageText": "Учітесь, читайте, і чужому научайтесь, й свого не цурайтесь."
+   }'
+   ```
+
+   **Production:**
+   ```bash
+   curl -X POST https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app/chat \
+   -H "Content-Type: application/json" \
+   -d '{
+     "message": "Привіт, Тарасе!",
+     "pageNumber": 1,
+     "pageText": "Думи мої..."
+   }'
+   ```
+
+   **Example Response**:
+   ```json
+   {
+       "answer": "Добрий день, молодій людино! Як ти бачиш на сторінці 10 моєї \"Малої Книжки\"...",
+       "providerUsed": "groq"
+   }
+   ```
+
+#### Postman Testing
+
+To test the AI backend in Postman:
+
+1. **Create Request**: Click **New** -> **HTTP Request**. Set method to **POST
+   **.
+2. **Enter URL**:
+   `https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app/chat`
+3. **Headers**: In the **Headers** tab, ensure `Content-Type` is set to
+   `application/json`.
+4. **Body**: In the **Body** tab, select **raw** -> **JSON** and use:
+   ```json
+   {
+     "message": "Що ви щойно сказали?",
+     "history": [
+       {"role": "user", "content": "Привіт, Тарасе!"},
+       {"role": "assistant", "content": "Добрий день! Я — Тарас..."}
+     ],
+     "pageNumber": 1,
+     "pageText": "Думи мої..."
+   }
+   ```
+5. **Send**: Click the blue **Send** button and verify the response.
+
+#### Cloud Run Deployment
+
+To deploy the backend to Google Cloud Run:
+
+1. **Build and Push Image**:
+   Use Google Cloud Build to create and push the Docker image to Artifact
+   Registry:
+   ```bash
+   gcloud builds submit --tag gcr.io/mala-knyzhka/mala-knyzhka-server
+   ```
+
+2. **Deploy to Cloud Run**:
+   ```bash
+   gcloud run deploy mala-knyzhka-server \
+     --image gcr.io/mala-knyzhka/mala-knyzhka-server \
+     --platform managed \
+     --region northamerica-northeast1 \
+     --allow-unauthenticated
+   ```
+
+3. **Update Environment Variables**:
+   Ensure the following environment variables are set in the Cloud Run service
+   configuration:
+    - `GROQ_API_KEY`
+    - `MISTRAL_API_KEY`
+    - `GEMINI_API_KEY`
+
+   You can update them via the Google Cloud Console or using:
+   ```bash
+   gcloud run services update mala-knyzhka-server \
+     --set-env-vars GROQ_API_KEY=your_key,MISTRAL_API_KEY=your_key,GEMINI_API_KEY=your_key
+   ```
 
 ## How to Contribute
 

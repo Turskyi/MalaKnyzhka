@@ -7,7 +7,7 @@ kotlin = "2.4.0"
 kotlinx-coroutines = "1.11.0"
 multiplatformSettings = "1.3.0"
 navigationComposeVersion = "2.9.2"
-uiAndroid = "1.11.2"
+uiAndroid = "1.11.3"
 googleGmsGoogleServices = "4.5.0"
 firebaseAnalytics = "23.2.0"
 firebaseCrashlytics = "20.0.6"
@@ -15,11 +15,15 @@ googleFirebaseCrashlytics = "3.0.7"
 android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
-versionName = "1.1.2"
-versionCode = "12"
+versionName = "1.1.3"
+versionCode = "13"
 applicationId = "com.turskyi.malaknyzhka"
-dockName = "Мала Книжка (Тарас Шевченко)"
+dockName = "Мала Книжка ✦ Тарас Шевченко"
 appcompat = "1.7.1"
+kotlinx-serialization = "1.11.0"
+ktor = "3.5.0"
+logback = "1.5.34"
+dotenv = "6.5.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -34,6 +38,19 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+
+ktorServerCore = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
+ktorServerNetty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
+ktorServerContentNegotiation = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktor" }
+ktorClientCore = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktorClientCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktorClientContentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktorSerializationKotlinxJson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kotlinxSerializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+dotenvKotlin = { module = "io.github.cdimascio:dotenv-kotlin", version.ref = "dotenv" }
+ktorServerTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
+kotlinTestJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -43,3 +60,6 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 googleFirebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
