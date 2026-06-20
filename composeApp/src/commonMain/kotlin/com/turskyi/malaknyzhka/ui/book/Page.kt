@@ -32,6 +32,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,6 +42,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.turskyi.malaknyzhka.ai.ChatView
 import com.turskyi.malaknyzhka.ai.ChatViewModel
 import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
+import com.turskyi.malaknyzhka.infrastructure.StringResourceResolver
 import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
@@ -53,6 +55,7 @@ import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
 import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
 import com.turskyi.malaknyzhka.ui.LocalThemeMode
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
+import kotlinx.coroutines.launch
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.menu
 import malaknyzhka.composeapp.generated.resources.search_description
@@ -100,6 +103,7 @@ fun Page(
     val isBookmarked: Boolean by viewModel.isBookmarked.collectAsState()
     val isSpeaking: Boolean by viewModel.isSpeaking.collectAsState()
 
+    val scope = rememberCoroutineScope()
     var isChatOverlayOpen: Boolean by remember { mutableStateOf(false) }
 
     val currentPoemText: String = stringResource(
@@ -231,12 +235,18 @@ fun Page(
             // 🤖 AI Chat button in top-right corner.
             IconButton(
                 onClick = {
-                    chatViewModel.currentPageNumber = currentPage
-                    chatViewModel.currentPageText = currentPoemText
-                    if (windowInfo.screenWidth > 720.dp) {
-                        isChatOverlayOpen = true
-                    } else {
-                        onNavigateToChat(currentPage, currentPoemText)
+                    scope.launch {
+                        val ukrainianText =
+                            StringResourceResolver.getStringInUkrainian(
+                                BookContentRegistry.allPoemPages[currentPage]
+                            )
+                        chatViewModel.currentPageNumber = currentPage
+                        chatViewModel.currentPageText = ukrainianText
+                        if (windowInfo.screenWidth > 720.dp) {
+                            isChatOverlayOpen = true
+                        } else {
+                            onNavigateToChat(currentPage, ukrainianText)
+                        }
                     }
                 },
                 modifier = Modifier
@@ -274,8 +284,14 @@ fun Page(
                         viewModel = chatViewModel,
                         onClose = { isChatOverlayOpen = false },
                         onToggleFullScreen = {
-                            isChatOverlayOpen = false
-                            onNavigateToChat(currentPage, currentPoemText)
+                            scope.launch {
+                                val ukrainianText =
+                                    StringResourceResolver.getStringInUkrainian(
+                                        BookContentRegistry.allPoemPages[currentPage]
+                                    )
+                                isChatOverlayOpen = false
+                                onNavigateToChat(currentPage, ukrainianText)
+                            }
                         },
                         isFullScreen = false
                     )
