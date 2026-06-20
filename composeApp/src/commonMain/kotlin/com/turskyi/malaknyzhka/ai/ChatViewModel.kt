@@ -41,9 +41,16 @@ class ChatViewModel(private val repository: ChatRepository) : ViewModel() {
         if (text.isBlank()) return
 
         viewModelScope.launch {
-            _isLoading.value = true
-            repository.sendMessage(text, pageNumber, pageText)
-            _isLoading.value = false
+            try {
+                _isLoading.value = true
+                repository.sendMessage(text, pageNumber, pageText)
+            } catch (e: Exception) {
+                // If the repository's internal catch failed for some reason, 
+                // we catch it here to ensure the UI doesn't hang.
+                println("ViewModel caught error: ${e.message}")
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 
