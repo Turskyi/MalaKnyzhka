@@ -1,5 +1,6 @@
 package com.turskyi.malaknyzhka.ai
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -63,6 +64,7 @@ import androidx.compose.ui.unit.sp
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
 import com.turskyi.malaknyzhka.ui.LocalShareManager
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
@@ -72,6 +74,8 @@ import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
 import malaknyzhka.composeapp.generated.resources.copy_description
 import malaknyzhka.composeapp.generated.resources.discussing_page
 import malaknyzhka.composeapp.generated.resources.full_screen_description
+import malaknyzhka.composeapp.generated.resources.logo
+import malaknyzhka.composeapp.generated.resources.logo_description
 import malaknyzhka.composeapp.generated.resources.minimize_description
 import malaknyzhka.composeapp.generated.resources.send_description
 import malaknyzhka.composeapp.generated.resources.share_ai_title
@@ -79,6 +83,7 @@ import malaknyzhka.composeapp.generated.resources.share_description
 import malaknyzhka.composeapp.generated.resources.share_from
 import malaknyzhka.composeapp.generated.resources.taras_shevchenko_name
 import malaknyzhka.composeapp.generated.resources.user_name
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -109,16 +114,42 @@ fun ChatScreen(
                 TopAppBar(
                     title = { Text(stringResource(Res.string.chat_with_taras)) },
                     modifier = Modifier.windowInsetsPadding(
-                        WindowInsets.statusBars.only(WindowInsetsSides.Top)
+                        WindowInsets.statusBars.only(
+                            WindowInsetsSides.Top,
+                        )
                     ),
                     navigationIcon = {
-                        IconButton(onClick = onBack) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = stringResource(
-                                    Res.string.back_button_description,
+                        if (isOnWeb()) {
+                            IconButton(
+                                modifier = Modifier.padding(
+                                    horizontal = 12.dp,
+                                    vertical = 2.dp,
+                                ),
+                                onClick = onBack
+                            ) {
+                                Image(
+                                    painter = painterResource(
+                                        Res.drawable.logo,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.logo_description,
+                                    ),
+                                    modifier = Modifier.clip(
+                                        RoundedCornerShape(
+                                            10.dp,
+                                        ),
+                                    )
                                 )
-                            )
+                            }
+                        } else {
+                            IconButton(onClick = onBack) {
+                                Icon(
+                                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                    contentDescription = stringResource(
+                                        Res.string.back_button_description,
+                                    )
+                                )
+                            }
                         }
                     },
                     actions = {
@@ -133,7 +164,9 @@ fun ChatScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Default.Share,
-                                contentDescription = stringResource(Res.string.share_description)
+                                contentDescription = stringResource(
+                                    Res.string.share_description,
+                                )
                             )
                         }
                         IconButton(onClick = {
@@ -148,19 +181,25 @@ fun ChatScreen(
                         }) {
                             Icon(
                                 imageVector = Icons.Default.ContentCopy,
-                                contentDescription = stringResource(Res.string.copy_description)
+                                contentDescription = stringResource(
+                                    Res.string.copy_description,
+                                )
                             )
                         }
                         IconButton(onClick = onBack) {
                             Icon(
                                 imageVector = Icons.Default.FullscreenExit,
-                                contentDescription = stringResource(Res.string.minimize_description)
+                                contentDescription = stringResource(
+                                    Res.string.minimize_description,
+                                )
                             )
                         }
                     },
-                    backgroundColor = Color.Transparent, // Color handled by Surface
+                    // Colour handled by `Surface`
+                    backgroundColor = Color.Transparent,
                     contentColor = MaterialTheme.colors.primary,
-                    elevation = 0.dp // Elevation handled by Surface
+                    // Elevation handled by `Surface`
+                    elevation = 0.dp
                 )
             }
         }
@@ -313,7 +352,9 @@ fun ChatView(
                     .fillMaxWidth()
                     .padding(8.dp)
                     .windowInsetsPadding(
-                        if (isFullScreen) WindowInsets.ime.union(WindowInsets.navigationBars)
+                        if (isFullScreen) WindowInsets.ime.union(
+                            WindowInsets.navigationBars,
+                        )
                         else WindowInsets(0, 0, 0, 0)
                     ),
                 verticalAlignment = Alignment.CenterVertically
@@ -322,7 +363,9 @@ fun ChatView(
                     value = inputText,
                     onValueChange = { inputText = it },
                     modifier = Modifier.weight(1f),
-                    placeholder = { Text(stringResource(Res.string.ask_placeholder)) },
+                    placeholder = {
+                        Text(stringResource(Res.string.ask_placeholder))
+                    },
                     enabled = !isLoading,
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.Transparent,
@@ -349,8 +392,12 @@ fun ChatView(
                     } else {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.Send,
-                            contentDescription = stringResource(Res.string.send_description),
-                            tint = if (inputText.isNotBlank()) MaterialTheme.colors.primary else Color.Gray
+                            contentDescription = stringResource(
+                                Res.string.send_description,
+                            ),
+                            tint = if (inputText.isNotBlank())
+                                MaterialTheme.colors.primary
+                            else Color.Gray
                         )
                     }
                 }
@@ -386,19 +433,22 @@ fun MessageBubble(message: ChatMessage) {
             color = backgroundColor,
             elevation = if (isUser) 0.dp else 2.dp,
             shape = bubbleShape,
-            border = if (isUser) null else androidx.compose.foundation.BorderStroke(
+            border = if (isUser) null
+            else androidx.compose.foundation.BorderStroke(
                 1.dp,
                 Color.LightGray.copy(alpha = 0.5f)
             )
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
-                    text = if (isUser) stringResource(Res.string.user_name) else stringResource(
+                    text = if (isUser) stringResource(Res.string.user_name)
+                    else stringResource(
                         Res.string.taras_shevchenko_name
                     ),
                     style = MaterialTheme.typography.caption.copy(
                         fontWeight = FontWeight.Bold,
-                        color = if (isUser) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
+                        color = if (isUser) MaterialTheme.colors.primary
+                        else MaterialTheme.colors.secondary
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))
