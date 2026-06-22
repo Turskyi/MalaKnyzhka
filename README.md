@@ -187,13 +187,13 @@ To run the AI backend server locally:
 
 To test the AI backend in Postman:
 
-1. **Create Request**: Click **New** -> **HTTP Request**. Set method to **POST
+1. **Create Request**: Click **New** → **HTTP Request**. Set method to **POST
    **.
 2. **Enter URL**:
    `https://mala-knyzhka-server-593576053721.northamerica-northeast1.run.app/chat`
 3. **Headers**: In the **Headers** tab, ensure `Content-Type` is set to
    `application/json`.
-4. **Body**: In the **Body** tab, select **raw** -> **JSON** and use:
+4. **Body**: In the **Body** tab, select **raw** → **JSON** and use:
    ```json
    {
      "message": "Що ви щойно сказали?",

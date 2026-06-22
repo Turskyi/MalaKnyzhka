@@ -8,12 +8,15 @@ import com.turskyi.malaknyzhka.config.AppConfig
 import com.turskyi.malaknyzhka.routes.chatRoutes
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -51,6 +54,16 @@ fun Application.module() {
     )
 
     val aiService = AiService(providers)
+
+    install(CORS) {
+        allowHost("mala-knyzhka.web.app", schemes = listOf("https"))
+        allowHost("localhost:8081") // Web dev server default port
+        allowHost("localhost:8080")
+        allowHeader(HttpHeaders.ContentType)
+        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Post)
+        allowMethod(HttpMethod.Get)
+    }
 
     install(ContentNegotiation) {
         json(Json {

@@ -1,5 +1,6 @@
 package com.turskyi.malaknyzhka.ai
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,8 +42,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Fullscreen
 import androidx.compose.material.icons.filled.FullscreenExit
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -60,17 +63,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.ui.LocalShareManager
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
 import malaknyzhka.composeapp.generated.resources.chat_with_taras
 import malaknyzhka.composeapp.generated.resources.close_description
+import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
+import malaknyzhka.composeapp.generated.resources.copy_description
 import malaknyzhka.composeapp.generated.resources.discussing_page
 import malaknyzhka.composeapp.generated.resources.full_screen_description
+import malaknyzhka.composeapp.generated.resources.logo
+import malaknyzhka.composeapp.generated.resources.logo_description
 import malaknyzhka.composeapp.generated.resources.minimize_description
 import malaknyzhka.composeapp.generated.resources.send_description
+import malaknyzhka.composeapp.generated.resources.share_ai_title
+import malaknyzhka.composeapp.generated.resources.share_description
+import malaknyzhka.composeapp.generated.resources.share_from
 import malaknyzhka.composeapp.generated.resources.taras_shevchenko_name
 import malaknyzhka.composeapp.generated.resources.user_name
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -78,11 +91,19 @@ fun ChatScreen(
     viewModel: ChatViewModel,
     onBack: () -> Unit,
 ) {
-    DisposableEffect(Unit) {
+    DisposableEffect(viewModel) {
+        viewModel.setExpanded(true)
         onDispose {
             viewModel.setExpanded(false)
         }
     }
+
+    val chatTitle = stringResource(Res.string.share_ai_title)
+    val userName = stringResource(Res.string.user_name)
+    val tarasName = stringResource(Res.string.taras_shevchenko_name)
+    val fromLabel = stringResource(Res.string.share_from)
+    val copiedLabel = stringResource(Res.string.copied_to_clipboard)
+    val shareManager = LocalShareManager.current
 
     Scaffold(
         topBar = {
@@ -93,29 +114,92 @@ fun ChatScreen(
                 TopAppBar(
                     title = { Text(stringResource(Res.string.chat_with_taras)) },
                     modifier = Modifier.windowInsetsPadding(
-                        WindowInsets.statusBars.only(WindowInsetsSides.Top)
+                        WindowInsets.statusBars.only(
+                            WindowInsetsSides.Top,
+                        )
                     ),
                     navigationIcon = {
+                        if (isOnWeb()) {
+                            IconButton(
+                                modifier = Modifier.padding(
+                                    horizontal = 12.dp,
+                                    vertical = 2.dp,
+                                ),
+                                onClick = onBack
+                            ) {
+                                Image(
+                                    painter = painterResource(
+                                        Res.drawable.logo,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.logo_description,
+                                    ),
+                                    modifier = Modifier.clip(
+                                        RoundedCornerShape(
+                                            10.dp,
+                                        ),
+                                    )
+                                )
+                            }
+                        } else {
+                            IconButton(onClick = onBack) {
+                                Icon(
+                                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                    contentDescription = stringResource(
+                                        Res.string.back_button_description,
+                                    )
+                                )
+                            }
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = {
+                            viewModel.shareConversation(
+                                shareManager = shareManager,
+                                title = chatTitle,
+                                userName = userName,
+                                tarasName = tarasName,
+                                fromLabel = fromLabel
+                            )
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Share,
+                                contentDescription = stringResource(
+                                    Res.string.share_description,
+                                )
+                            )
+                        }
+                        IconButton(onClick = {
+                            viewModel.copyConversation(
+                                shareManager = shareManager,
+                                title = chatTitle,
+                                userName = userName,
+                                tarasName = tarasName,
+                                fromLabel = fromLabel,
+                                toastMessage = copiedLabel
+                            )
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ContentCopy,
+                                contentDescription = stringResource(
+                                    Res.string.copy_description,
+                                )
+                            )
+                        }
                         IconButton(onClick = onBack) {
                             Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                imageVector = Icons.Default.FullscreenExit,
                                 contentDescription = stringResource(
-                                    Res.string.back_button_description,
+                                    Res.string.minimize_description,
                                 )
                             )
                         }
                     },
-                    actions = {
-                        IconButton(onClick = { viewModel.toggleExpanded() }) {
-                            Icon(
-                                imageVector = Icons.Default.FullscreenExit,
-                                contentDescription = stringResource(Res.string.minimize_description)
-                            )
-                        }
-                    },
-                    backgroundColor = Color.Transparent, // Color handled by Surface
+                    // Colour handled by `Surface`
+                    backgroundColor = Color.Transparent,
                     contentColor = MaterialTheme.colors.primary,
-                    elevation = 0.dp // Elevation handled by Surface
+                    // Elevation handled by `Surface`
+                    elevation = 0.dp
                 )
             }
         }
@@ -123,13 +207,6 @@ fun ChatScreen(
     { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             ChatView(viewModel = viewModel)
-        }
-    }
-
-    val isExpanded by viewModel.isExpanded.collectAsState()
-    LaunchedEffect(isExpanded) {
-        if (!isExpanded) {
-            onBack()
         }
     }
 }
@@ -145,6 +222,13 @@ fun ChatView(
     val isLoading by viewModel.isLoading.collectAsState()
     var inputText by remember { mutableStateOf("") }
     val listState = rememberLazyListState()
+
+    val chatTitle = stringResource(Res.string.share_ai_title)
+    val userName = stringResource(Res.string.user_name)
+    val tarasName = stringResource(Res.string.taras_shevchenko_name)
+    val fromLabel = stringResource(Res.string.share_from)
+    val copiedLabel = stringResource(Res.string.copied_to_clipboard)
+    val shareManager = LocalShareManager.current
 
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
@@ -173,6 +257,35 @@ fun ChatView(
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 Row {
+                    IconButton(onClick = {
+                        viewModel.shareConversation(
+                            shareManager = shareManager,
+                            title = chatTitle,
+                            userName = userName,
+                            tarasName = tarasName,
+                            fromLabel = fromLabel
+                        )
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Share,
+                            contentDescription = stringResource(Res.string.share_description)
+                        )
+                    }
+                    IconButton(onClick = {
+                        viewModel.copyConversation(
+                            shareManager = shareManager,
+                            title = chatTitle,
+                            userName = userName,
+                            tarasName = tarasName,
+                            fromLabel = fromLabel,
+                            toastMessage = copiedLabel
+                        )
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.ContentCopy,
+                            contentDescription = stringResource(Res.string.copy_description)
+                        )
+                    }
                     if (onToggleFullScreen != null) {
                         IconButton(onClick = onToggleFullScreen) {
                             Icon(
@@ -239,7 +352,9 @@ fun ChatView(
                     .fillMaxWidth()
                     .padding(8.dp)
                     .windowInsetsPadding(
-                        if (isFullScreen) WindowInsets.ime.union(WindowInsets.navigationBars)
+                        if (isFullScreen) WindowInsets.ime.union(
+                            WindowInsets.navigationBars,
+                        )
                         else WindowInsets(0, 0, 0, 0)
                     ),
                 verticalAlignment = Alignment.CenterVertically
@@ -248,7 +363,9 @@ fun ChatView(
                     value = inputText,
                     onValueChange = { inputText = it },
                     modifier = Modifier.weight(1f),
-                    placeholder = { Text(stringResource(Res.string.ask_placeholder)) },
+                    placeholder = {
+                        Text(stringResource(Res.string.ask_placeholder))
+                    },
                     enabled = !isLoading,
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.Transparent,
@@ -275,8 +392,12 @@ fun ChatView(
                     } else {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.Send,
-                            contentDescription = stringResource(Res.string.send_description),
-                            tint = if (inputText.isNotBlank()) MaterialTheme.colors.primary else Color.Gray
+                            contentDescription = stringResource(
+                                Res.string.send_description,
+                            ),
+                            tint = if (inputText.isNotBlank())
+                                MaterialTheme.colors.primary
+                            else Color.Gray
                         )
                     }
                 }
@@ -312,19 +433,22 @@ fun MessageBubble(message: ChatMessage) {
             color = backgroundColor,
             elevation = if (isUser) 0.dp else 2.dp,
             shape = bubbleShape,
-            border = if (isUser) null else androidx.compose.foundation.BorderStroke(
+            border = if (isUser) null
+            else androidx.compose.foundation.BorderStroke(
                 1.dp,
                 Color.LightGray.copy(alpha = 0.5f)
             )
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Text(
-                    text = if (isUser) stringResource(Res.string.user_name) else stringResource(
+                    text = if (isUser) stringResource(Res.string.user_name)
+                    else stringResource(
                         Res.string.taras_shevchenko_name
                     ),
                     style = MaterialTheme.typography.caption.copy(
                         fontWeight = FontWeight.Bold,
-                        color = if (isUser) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
+                        color = if (isUser) MaterialTheme.colors.primary
+                        else MaterialTheme.colors.secondary
                     )
                 )
                 Spacer(modifier = Modifier.height(4.dp))

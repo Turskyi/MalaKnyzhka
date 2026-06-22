@@ -8357,4 +8357,12 @@
     <string name="send_description">Надіслати</string>
     <string name="user_name">Ви</string>
     <string name="taras_shevchenko_name">Тарас Шевченко</string>
+    <string name="share_description">Поділитися</string>
+    <string name="copy_description">Копіювати в буфер</string>
+    <string name="share_page">Сторінка %1$d</string>
+    <string name="share_from">Надіслано з Малої Книжки.</string>
+    <string name="share_ai_title">Розмова з Тарасом Шевченком</string>
+    <string name="ukrainian_label">Українська:</string>
+    <string name="english_label">Англійська:</string>
+    <string name="copied_to_clipboard">Скопійовано в буфер</string>
 </resources>

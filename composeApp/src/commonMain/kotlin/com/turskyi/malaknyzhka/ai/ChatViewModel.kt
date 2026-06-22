@@ -3,6 +3,8 @@ package com.turskyi.malaknyzhka.ai
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
+import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.share.ShareManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -39,9 +41,68 @@ class ChatViewModel(private val repository: ChatRepository) : ViewModel() {
         if (text.isBlank()) return
 
         viewModelScope.launch {
-            _isLoading.value = true
-            repository.sendMessage(text, pageNumber, pageText)
-            _isLoading.value = false
+            try {
+                _isLoading.value = true
+                repository.sendMessage(text, pageNumber, pageText)
+            } catch (e: Exception) {
+                // If the repository's internal catch failed for some reason, 
+                // we catch it here to ensure the UI doesn't hang.
+                println("ViewModel caught error: ${e.message}")
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun shareConversation(
+        shareManager: ShareManager,
+        title: String,
+        userName: String,
+        tarasName: String,
+        fromLabel: String
+    ) {
+        val formattedText =
+            formatConversation(title, userName, tarasName, fromLabel)
+        if (formattedText.isNotEmpty()) {
+            shareManager.shareText(formattedText, title)
+        }
+    }
+
+    fun copyConversation(
+        shareManager: ShareManager,
+        title: String,
+        userName: String,
+        tarasName: String,
+        fromLabel: String,
+        toastMessage: String
+    ) {
+        val formattedText =
+            formatConversation(title, userName, tarasName, fromLabel)
+        if (formattedText.isNotEmpty()) {
+            shareManager.copyToClipboard(formattedText, toastMessage)
+        }
+    }
+
+    private fun formatConversation(
+        title: String,
+        userName: String,
+        tarasName: String,
+        fromLabel: String
+    ): String {
+        val history = messages.value
+        if (history.isEmpty()) return ""
+
+        return buildString {
+            appendLine(title)
+            appendLine()
+            history.forEach { msg ->
+                val roleName =
+                    if (msg.role == MessageRole.USER) userName else tarasName
+                appendLine(roleName)
+                appendLine(msg.text)
+                appendLine()
+            }
+            appendLine(fromLabel)
         }
     }
 }

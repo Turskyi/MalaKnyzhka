@@ -54,7 +54,7 @@ import org.jetbrains.compose.resources.stringResource
  *
  * Note on iOS UI: The [TopAppBar] may appear significantly taller on iPhone
  * than on other platforms. This is due to Compose Multiplatform's default
- * edge-to-edge behavior on iOS.
+ * edge-to-edge behaviour on iOS.
  * On modern iPhones, the status bar inset (retrieved via
  * `WindowInsets.statusBars`) can be up to 54dp, which is added to the standard
  * Material 2 bar height of 56dp, resulting in a total height of ~110dp.

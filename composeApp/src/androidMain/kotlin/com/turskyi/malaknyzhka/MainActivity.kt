@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
 import com.turskyi.malaknyzhka.infrastructure.AndroidTextToSpeech
+import com.turskyi.malaknyzhka.share.AndroidShareManager
 import com.turskyi.malaknyzhka.ui.App
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
                 settings = remember {
                     createSettings(applicationContext)
                 },
-                textToSpeech = tts
+                textToSpeech = tts,
+                shareManager = remember { AndroidShareManager(applicationContext) }
             )
         }
     }

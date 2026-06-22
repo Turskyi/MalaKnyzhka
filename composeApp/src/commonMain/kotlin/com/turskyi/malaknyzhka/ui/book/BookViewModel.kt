@@ -1,15 +1,21 @@
 package com.turskyi.malaknyzhka.ui.book
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.turskyi.malaknyzhka.getCurrentTimeMillis
+import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
 import com.turskyi.malaknyzhka.infrastructure.BookSpreadsRegistry
+import com.turskyi.malaknyzhka.infrastructure.StringResourceResolver
 import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
+import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.Bookmark
 import com.turskyi.malaknyzhka.models.BookmarkRepository
+import com.turskyi.malaknyzhka.share.ShareManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.DrawableResource
 
 class BookViewModel(
@@ -102,6 +108,53 @@ class BookViewModel(
 
     fun onLanguageChange(langCode: String) {
         bookRepository.saveCurrentLanguage(langCode)
+    }
+
+    fun shareTranscription(
+        shareManager: ShareManager,
+        pageNumber: Int,
+        transcription: String,
+        appLang: AppLang,
+        title: String,
+        pageLabel: String,
+        fromLabel: String,
+        ukrainianLabel: String,
+        englishLabel: String,
+        copiedLabel: String,
+    ) {
+        viewModelScope.launch {
+            val formattedText = if (appLang == AppLang.English) {
+                // If English, include both Ukrainian and English
+                val ukrainianText = StringResourceResolver.getStringInUkrainian(
+                    BookContentRegistry.allPoemPages[pageNumber]
+                )
+                buildString {
+                    appendLine(title)
+                    appendLine()
+                    appendLine(pageLabel)
+                    appendLine()
+                    appendLine(ukrainianLabel)
+                    appendLine("“$ukrainianText”")
+                    appendLine()
+                    appendLine(englishLabel)
+                    appendLine("“$transcription”")
+                    appendLine()
+                    appendLine(fromLabel)
+                }
+            } else {
+                buildString {
+                    appendLine(title)
+                    appendLine()
+                    appendLine(pageLabel)
+                    appendLine()
+                    appendLine("“$transcription”")
+                    appendLine()
+                    appendLine(fromLabel)
+                }
+            }
+            // For desktop/wasm fallback, passing the toast message
+            shareManager.shareText(formattedText, title, copiedLabel)
+        }
     }
 
     override fun onCleared() {
