@@ -139,6 +139,8 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktorClientCio)
+            implementation(libs.androidx.glance.appwidget)
+            implementation(libs.androidx.glance.material3)
         }
         iosMain.dependencies {
             implementation(libs.ktorClientDarwin)

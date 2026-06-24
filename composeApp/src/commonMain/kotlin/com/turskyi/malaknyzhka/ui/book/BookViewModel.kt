@@ -58,6 +58,7 @@ class BookViewModel(
         _isBookmarked.value = bookmarkRepository.isBookmarked(
             pageNumber = newPage,
         )
+        com.turskyi.malaknyzhka.infrastructure.updateWidgets()
     }
 
     fun setDrawerOpen(isOpen: Boolean) {
