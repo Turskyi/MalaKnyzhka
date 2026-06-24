@@ -6,9 +6,8 @@ import platform.Foundation.NSDateFormatter
 import platform.Foundation.dateWithTimeIntervalSince1970
 import platform.Foundation.timeIntervalSince1970
 
-class IOSPlatform: Platform {
+class IOSPlatform(override val initialRoute: String? = null) : Platform {
     override val type: PlatformType = PlatformType.IOS
-    override val initialRoute: String? = null
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()

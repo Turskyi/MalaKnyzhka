@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.russhwolf.settings.Settings
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.ai.ChatApi
 import com.turskyi.malaknyzhka.ai.ChatRepository
 import com.turskyi.malaknyzhka.ai.ChatScreen
@@ -47,6 +48,7 @@ import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
 import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
+import com.turskyi.malaknyzhka.usecases.toInternalPageIndex
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -54,7 +56,8 @@ fun App(
     settings: Settings,
     textToSpeech: TextToSpeech,
     shareManager: ShareManager,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    platform: Platform = remember { getPlatform() }
 ) {
     val appLocale: AppLocale = rememberAppLocale()
     val userSettingsRepository: UserSettingsRepository = remember(settings) {
@@ -85,19 +88,37 @@ fun App(
         viewModel.changeThemeMode(newMode)
     }
 
-    val platform = remember { getPlatform() }
     val startDestination: String = remember(platform) {
         val initial = platform.initialRoute?.removePrefix("/")
         val matchedDestination = NavigationDestination.entries.firstOrNull {
-            it.name.equals(initial, ignoreCase = true)
+            it.name.equals(
+                initial?.split("/")?.firstOrNull(),
+                ignoreCase = true
+            )
         }
 
         if (platform.type == PlatformType.WEB && matchedDestination != null) {
             matchedDestination.name
+        } else if (initial?.startsWith("book/") == true) {
+            // Special handling for book deep links
+            NavigationDestination.Book.name
         } else if (platform.type == PlatformType.WEB) {
             NavigationDestination.Landing.name
         } else {
             NavigationDestination.Book.name
+        }
+    }
+
+    // Effect to handle deep links if they contain a page number
+    LaunchedEffect(platform.initialRoute) {
+        val initial = platform.initialRoute?.removePrefix("/")
+        if (initial?.startsWith("book/") == true) {
+            val userPageNumber = initial.substringAfter("book/").toIntOrNull()
+            if (userPageNumber != null) {
+                val bookRepository = SettingsBookRepository(settings)
+                val internalIndex = userPageNumber.toInternalPageIndex()
+                bookRepository.saveCurrentPage(internalIndex)
+            }
         }
     }
 

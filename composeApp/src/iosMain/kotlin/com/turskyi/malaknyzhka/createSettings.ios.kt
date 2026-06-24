@@ -5,6 +5,8 @@ import com.russhwolf.settings.Settings
 import platform.Foundation.NSUserDefaults
 
 fun createDataStore(): Settings {
-    val userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults
+    val userDefaults: NSUserDefaults =
+        NSUserDefaults(suiteName = "group.dmytrowidget")
+            ?: NSUserDefaults.standardUserDefaults
     return NSUserDefaultsSettings(userDefaults)
 }
