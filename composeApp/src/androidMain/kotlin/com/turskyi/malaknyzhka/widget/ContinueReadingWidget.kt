@@ -7,9 +7,11 @@ import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
+import androidx.glance.LocalSize
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.layout.Alignment
@@ -33,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ContinueReadingWidget : GlanceAppWidget() {
+    override val sizeMode: SizeMode = SizeMode.Exact
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val settings = createSettings(context)
@@ -50,6 +53,13 @@ class ContinueReadingWidget : GlanceAppWidget() {
 
     @Composable
     private fun WidgetContent(context: Context, data: WidgetData?) {
+        val size = LocalSize.current
+        // Header height estimation: 
+        // Padding(12+12) + AppName(~20) + Spacer(8) + Page(~18) + Spacer(4) = 62dp
+        val availableHeight = size.height.value - 62
+        // Line height for 13sp is approx 18dp
+        val dynamicMaxLines = maxOf(1, (availableHeight / 18).toInt())
+
         Column(
             modifier = GlanceModifier
                 .fillMaxSize()
@@ -97,7 +107,7 @@ class ContinueReadingWidget : GlanceAppWidget() {
                         fontSize = 13.sp,
                         color = GlanceTheme.colors.onSurfaceVariant
                     ),
-                    maxLines = 3
+                    maxLines = dynamicMaxLines
                 )
             } else {
                 Text(

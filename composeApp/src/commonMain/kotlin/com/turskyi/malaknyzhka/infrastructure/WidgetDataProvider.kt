@@ -15,8 +15,9 @@ object WidgetDataProvider {
         val fullText: String =
             StringResourceResolver.getStringInUkrainian(textResource)
 
-        // Truncate to a reasonable excerpt length for the widget
-        val excerpt: String = fullText.take(150).trim()
+        // Truncate to a reasonable excerpt length for the widget.
+        // Increased to 1000 characters to support larger resizable widgets on Android.
+        val excerpt: String = fullText.take(1000).trim()
             .let { if (it.length < fullText.length) "$it…" else it }
 
         return WidgetData(
