@@ -22,8 +22,8 @@ applicationId = "com.turskyi.malaknyzhka"
 dockName = "Мала Книжка ✦ Тарас Шевченко"
 appcompat = "1.7.1"
 kotlinx-serialization = "1.11.0"
-ktor = "3.5.0"
-logback = "1.5.34"
+ktor = "3.5.1"
+logback = "1.5.36"
 dotenv = "6.5.1"
 
 [libraries]
