@@ -75,21 +75,37 @@
     <string name="has_bookmarks">- Чи можна додавати власні закладки? Так, за допомогою кнопки закладок. Вони зберігаються локально на вашому пристрої.</string>
     <string name="data_storage_info">- Де зберігаються мої дані? Усі налаштування та закладки зберігаються лише локально. Вони будуть видалені, якщо ви видалите додаток або очистите його кеш.</string>
     <string name="faq">Часті запитання</string>
-
     <string name="cover_description">Фонова обкладинка меню</string>
-
     <string name="main_features">Основні можливості</string>
-
     <string name="available_on_platforms">Доступно для Android, iOS та macOS!</string>
-
     <string name="feature_manuscript_with_printed">• Читайте рукопис разом із друкованим текстом.</string>
     <string name="feature_compare_original_modern">• Порівнюйте оригінал із сучасним написанням.</string>
     <string name="feature_autosave_last_page">• Автоматичне збереження останньої прочитаної сторінки.</string>
-
     <string name="badge_google_play_description">Значок Google Play</string>
     <string name="badge_macos_description">Значок MacOS</string>
     <string name="badge_test_flight_description">Значок TestFlight</string>
-
+    <string name="theme_system">Системна</string>
+    <string name="theme_light">Світла</string>
+    <string name="theme_dark">Темна</string>
+    <string name="tts_play">Слухати</string>
+    <string name="tts_stop">Зупинити</string>
+    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
+    <string name="minimize_description">Згорнути</string>
+    <string name="full_screen_description">На весь екран</string>
+    <string name="close_description">Закрити</string>
+    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
+    <string name="ask_placeholder">Запитайте…</string>
+    <string name="send_description">Надіслати</string>
+    <string name="user_name">Ви</string>
+    <string name="taras_shevchenko_name">Тарас Шевченко</string>
+    <string name="share_description">Поділитися</string>
+    <string name="copy_description">Копіювати в буфер</string>
+    <string name="share_page">Сторінка %1$d</string>
+    <string name="share_from">Надіслано з Малої Книжки.</string>
+    <string name="share_ai_title">Розмова з Тарасом Шевченком</string>
+    <string name="ukrainian_label">Українська:</string>
+    <string name="english_label">Англійська:</string>
+    <string name="copied_to_clipboard">Скопійовано в буфер</string>
     <string name="app_allows">Додаток "Мала Книжка ✦ Тарас Шевченко" дозволяє переглядати оцифровану версію рукопису та його друкований текст.</string>
     <string name="privacy"><![CDATA[
 Ця політика конфіденційності застосовується до додатка “Мала Книжка ✦ Тарас Шевченко” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
@@ -8336,19 +8352,4 @@
 Давно се діялось колись.
 У неділю на селі,
     </string>
-    <string name="theme_system">Системна</string>
-    <string name="theme_light">Світла</string>
-    <string name="theme_dark">Темна</string>
-    <string name="tts_play">Слухати</string>
-    <string name="tts_stop">Зупинити</string>
-
-    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
-    <string name="minimize_description">Згорнути</string>
-    <string name="full_screen_description">На весь екран</string>
-    <string name="close_description">Закрити</string>
-    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
-    <string name="ask_placeholder">Запитайте…</string>
-    <string name="send_description">Надіслати</string>
-    <string name="user_name">Ви</string>
-    <string name="taras_shevchenko_name">Тарас Шевченко</string>
 </resources>
