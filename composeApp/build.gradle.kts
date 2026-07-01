@@ -104,6 +104,11 @@ kotlin {
                             add(rootDirPath)
                             add(projectDirPath)
                         }
+                        open = mapOf(
+                            "app" to mapOf(
+                                "name" to "google chrome",
+                            ),
+                        )
                     }
             }
         }
