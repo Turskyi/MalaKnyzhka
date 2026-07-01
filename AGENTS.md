@@ -121,6 +121,8 @@ Quick troubleshooting checklist for an agent making a code change
 
 - Before pushing, run the target builds locally that your change affects (e.g.,
   wasm dev run for web UI changes; `:composeApp:assembleDebug` for Android).
+- If wasm build fails with `kotlinWasmStoreYarnLock` error, run
+  `./gradlew kotlinWasmUpgradeYarnLock`.
 - If CI fails with signing or missing files, check whether
   `composeApp/src/androidMain/key.properties` and
   `composeApp/google-services.json` are present. CI may expect base64-encoded
