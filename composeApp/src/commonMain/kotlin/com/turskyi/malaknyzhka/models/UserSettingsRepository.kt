@@ -5,6 +5,8 @@ import com.russhwolf.settings.Settings
 interface UserSettingsRepository {
     fun getThemeMode(): ThemeMode
     fun saveThemeMode(mode: ThemeMode)
+    fun isOnboardingComplete(): Boolean
+    fun saveOnboardingComplete(isComplete: Boolean)
 }
 
 class SettingsUserSettingsRepository(private val settings: Settings) :
@@ -24,5 +26,13 @@ class SettingsUserSettingsRepository(private val settings: Settings) :
 
     override fun saveThemeMode(mode: ThemeMode) {
         settings.putString(SettingsKeys.THEME_MODE, mode.name)
+    }
+
+    override fun isOnboardingComplete(): Boolean {
+        return settings.getBoolean(SettingsKeys.IS_ONBOARDING_COMPLETE, false)
+    }
+
+    override fun saveOnboardingComplete(isComplete: Boolean) {
+        settings.putBoolean(SettingsKeys.IS_ONBOARDING_COMPLETE, isComplete)
     }
 }

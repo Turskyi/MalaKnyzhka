@@ -15,6 +15,18 @@ class ChatRepository(private val api: ChatApi) {
         MutableStateFlow(emptyList())
     val messages: StateFlow<List<ChatMessage>> = _messages.asStateFlow()
 
+    fun setInitialMessage(text: String) {
+        if (_messages.value.isEmpty()) {
+            _messages.value = listOf(
+                ChatMessage(
+                    role = MessageRole.SHEVCHENKO,
+                    text = text,
+                    timestamp = getCurrentTimeMillis(),
+                )
+            )
+        }
+    }
+
     suspend fun sendMessage(
         text: String,
         pageNumber: Int?,

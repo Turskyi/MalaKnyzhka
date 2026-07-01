@@ -50,6 +50,9 @@
     <string name="portrait_description">Портрет Тараса Шевченка</string>
     <string name="title">Мала Книжка</string>
     <string name="subtitle">Оригінал рукопису Тараса Шевченка</string>
+    <string name="landing_invitation">Вітаю, друже! Я - Тарас Шевченко, і завдяки силі штучного інтелекту я ожив у цій цифровій «Малій книжці». Тут мої оригінальні рукописи зустрічаються з сучасним словом. Запрошую тебе дослідити мої твори або почати зі мною розмову.</string>
+    <string name="chat_button_label">Спілкуватися</string>
+    <string name="read_button_label">Читати</string>
     <string name="read_now">Почати читати зараз</string>
     <string name="menu">Меню</string>
     <string name="how_to_use">Як користуватися</string>

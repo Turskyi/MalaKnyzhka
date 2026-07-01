@@ -42,7 +42,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.URL_TAG
+import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color
 import malaknyzhka.composeapp.generated.resources.Res
@@ -52,15 +54,17 @@ import malaknyzhka.composeapp.generated.resources.available_on_platforms
 import malaknyzhka.composeapp.generated.resources.badge_google_play_description
 import malaknyzhka.composeapp.generated.resources.badge_macos_description
 import malaknyzhka.composeapp.generated.resources.badge_test_flight_description
+import malaknyzhka.composeapp.generated.resources.chat_button_label
 import malaknyzhka.composeapp.generated.resources.feature_autosave_last_page
 import malaknyzhka.composeapp.generated.resources.feature_compare_original_modern
 import malaknyzhka.composeapp.generated.resources.feature_manuscript_with_printed
+import malaknyzhka.composeapp.generated.resources.landing_invitation
 import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.main_features
 import malaknyzhka.composeapp.generated.resources.open_in_new_window_description
 import malaknyzhka.composeapp.generated.resources.portrait_description
 import malaknyzhka.composeapp.generated.resources.privacy_policy
-import malaknyzhka.composeapp.generated.resources.read_now
+import malaknyzhka.composeapp.generated.resources.read_button_label
 import malaknyzhka.composeapp.generated.resources.screenshot_1
 import malaknyzhka.composeapp.generated.resources.screenshot_2
 import malaknyzhka.composeapp.generated.resources.screenshot_3
@@ -82,12 +86,15 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun LandingPage(
+    platform: Platform,
     onNavigateToBook: () -> Unit,
+    onNavigateToChat: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
 ) {
 
+    val isWeb = platform.type == PlatformType.WEB
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
     Surface(
@@ -152,176 +159,225 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = stringResource(Res.string.main_features),
-                            style = MaterialTheme.typography.h6,
-                            color = MaterialTheme.colors.primary
+                            text = stringResource(Res.string.landing_invitation),
+                            style = MaterialTheme.typography.body1,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(horizontal = 32.dp)
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Column(
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                            horizontalAlignment = Alignment.Start,
-                        ) {
-                            listOf(
-                                stringResource(
-                                    Res.string.feature_manuscript_with_printed,
-                                ),
-                                stringResource(
-                                    Res.string.feature_compare_original_modern,
-                                ),
-                                stringResource(
-                                    Res.string.feature_autosave_last_page,
-                                ),
-                            ).forEach { feature: String ->
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Row {
+                            Button(
+                                onClick = onNavigateToChat,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
                                 Text(
-                                    text = feature,
-                                    style = MaterialTheme.typography.body2,
-                                    color = MaterialTheme.colors.onSurface.copy(
-                                        alpha = 0.8f,
+                                    text = "💬 " + stringResource(
+                                        Res.string.chat_button_label,
+                                    )
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Button(
+                                onClick = onNavigateToBook,
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                Text(
+                                    text = "📖 " + stringResource(
+                                        Res.string.read_button_label,
                                     )
                                 )
                             }
                         }
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Button(
-                            onClick = onNavigateToBook,
-                            shape = RoundedCornerShape(8.dp)
-                        ) {
-                            Text(text = stringResource(Res.string.read_now))
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        // Reserve space for iPhone ScreenshotCarousel.
-                        Spacer(modifier = Modifier.height(480.dp))
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        // Reserve space for iPad ScreenshotCarousel.
-                        Spacer(modifier = Modifier.height(240.dp))
-
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text(
-                            text = stringResource(
-                                Res.string.available_on_platforms,
-                            ),
-                            style = MaterialTheme.typography.subtitle1,
-                            color = MaterialTheme.colors.primaryVariant
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        // 🏪 Google Play, TestFlight and MacOS Badges.
-                        val badgeSpacing: Dp = 12.dp
-                        Row(
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                        ) {
-                            Image(
-                                painter = painterResource(
-                                    Res.drawable.GetItOnGooglePlay_Badge_Web_color,
-                                ),
-                                contentDescription = stringResource(
-                                    Res.string.badge_google_play_description,
-                                ),
-                                modifier = Modifier.clickable {
-                                    uriHandler.openUri(
-                                        uri = AppConstants.ANDROID_URI,
-                                    )
-                                }.weight(1f, fill = false).height(64.dp)
-                                    .width(216.dp),
-                                contentScale = ContentScale.Fit,
-                            )
-                            Spacer(modifier = Modifier.width(badgeSpacing))
-                            Image(
-                                painter = painterResource(
-                                    Res.drawable.test_flight_badge,
-                                ),
-                                contentDescription = stringResource(
-                                    Res.string.badge_test_flight_description,
-                                ),
-                                modifier = Modifier.clickable {
-                                    uriHandler.openUri(
-                                        uri = AppConstants.TEST_FLIGHT_URI,
-                                    )
-                                }.weight(1f, fill = false).height(64.dp),
-                                contentScale = ContentScale.Fit,
-                            )
-                            Spacer(modifier = Modifier.width(badgeSpacing))
-                            Image(
-                                painter = painterResource(
-                                    Res.drawable.macos_badge,
-                                ),
-                                contentDescription = stringResource(
-                                    Res.string.badge_macos_description,
-                                ),
-                                modifier = Modifier.clickable {
-                                    uriHandler.openUri(
-                                        uri = AppConstants.MACOS_URI,
-                                    )
-                                }.weight(1f, fill = false).height(64.dp),
-                                contentScale = ContentScale.Fit,
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Row(
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        if (isWeb) {
+                            Spacer(modifier = Modifier.height(24.dp))
                             Text(
-                                text = stringResource(Res.string.sources_label),
-                                style = MaterialTheme.typography.caption,
-                                color = MaterialTheme.colors.onSurface.copy(
-                                    alpha = 0.6f
-                                )
+                                text = stringResource(Res.string.main_features),
+                                style = MaterialTheme.typography.h6,
+                                color = MaterialTheme.colors.primary
                             )
-                            Spacer(Modifier.width(4.dp))
-                            val url: String = AppConstants.SOURCE_URL
-                            val annotatedLinkString: AnnotatedString =
-                                buildAnnotatedString {
-                                    pushStringAnnotation(
-                                        tag = URL_TAG, annotation = url,
-                                    )
-                                    withStyle(
-                                        style = SpanStyle(
-                                            color = MaterialTheme.colors.primary,
-                                            textDecoration = TextDecoration.Underline
-                                        )
-                                    ) {
-                                        append(url)
-                                    }
-                                    pop()
-                                }
-                            SelectionContainer {
-                                @Suppress("DEPRECATION") ClickableText(
-                                    text = annotatedLinkString,
-                                    style = MaterialTheme.typography.caption.copy(
-                                        color = MaterialTheme.colors.onSurface
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Column(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                                horizontalAlignment = Alignment.Start,
+                            ) {
+                                listOf(
+                                    stringResource(
+                                        Res.string.feature_manuscript_with_printed,
                                     ),
-                                    onClick = { offset: Int ->
-                                        annotatedLinkString.getStringAnnotations(
-                                            tag = URL_TAG,
-                                            start = offset,
-                                            end = offset
-                                        ).firstOrNull()
-                                            ?.let { annotation: AnnotatedString.Range<String> ->
-                                                uriHandler.openUri(
-                                                    annotation.item,
-                                                )
-                                            }
-                                    },
+                                    stringResource(
+                                        Res.string.feature_compare_original_modern,
+                                    ),
+                                    stringResource(
+                                        Res.string.feature_autosave_last_page,
+                                    ),
+                                ).forEach { feature: String ->
+                                    Text(
+                                        text = feature,
+                                        style = MaterialTheme.typography.body2,
+                                        color = MaterialTheme.colors.onSurface.copy(
+                                            alpha = 0.8f,
+                                        )
+                                    )
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(16.dp))
+
+                            val iPhoneScreenshots: List<DrawableResource> =
+                                listOf(
+                                    Res.drawable.screenshot_1,
+                                    Res.drawable.screenshot_2,
+                                    Res.drawable.screenshot_3,
+                                    Res.drawable.screenshot_4,
+                                )
+
+                            ScreenshotCarousel(
+                                screenshots = iPhoneScreenshots,
+                                ratio = 9f / 19.5f,
+                                height = 480.dp,
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            val iPadScreenshots: List<DrawableResource> =
+                                listOf(
+                                    Res.drawable.screenshot_5,
+                                    Res.drawable.screenshot_6,
+                                    Res.drawable.screenshot_7,
+                                    Res.drawable.screenshot_8,
+                                    Res.drawable.screenshot_9,
+                                )
+                            ScreenshotCarousel(
+                                screenshots = iPadScreenshots,
+                                ratio = 9f / 12,
+                                height = 240.dp,
+                            )
+
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Text(
+                                text = stringResource(
+                                    Res.string.available_on_platforms,
+                                ),
+                                style = MaterialTheme.typography.subtitle1,
+                                color = MaterialTheme.colors.primaryVariant
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            // 🏪 Google Play, TestFlight and MacOS Badges.
+                            val badgeSpacing: Dp = 12.dp
+                            Row(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                            ) {
+                                Image(
+                                    painter = painterResource(
+                                        Res.drawable.GetItOnGooglePlay_Badge_Web_color,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.badge_google_play_description,
+                                    ),
+                                    modifier = Modifier.clickable {
+                                        uriHandler.openUri(
+                                            uri = AppConstants.ANDROID_URI,
+                                        )
+                                    }.weight(1f, fill = false).height(64.dp)
+                                        .width(216.dp),
+                                    contentScale = ContentScale.Fit,
+                                )
+                                Spacer(modifier = Modifier.width(badgeSpacing))
+                                Image(
+                                    painter = painterResource(
+                                        Res.drawable.test_flight_badge,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.badge_test_flight_description,
+                                    ),
+                                    modifier = Modifier.clickable {
+                                        uriHandler.openUri(
+                                            uri = AppConstants.TEST_FLIGHT_URI,
+                                        )
+                                    }.weight(1f, fill = false).height(64.dp),
+                                    contentScale = ContentScale.Fit,
+                                )
+                                Spacer(modifier = Modifier.width(badgeSpacing))
+                                Image(
+                                    painter = painterResource(
+                                        Res.drawable.macos_badge,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.badge_macos_description,
+                                    ),
+                                    modifier = Modifier.clickable {
+                                        uriHandler.openUri(
+                                            uri = AppConstants.MACOS_URI,
+                                        )
+                                    }.weight(1f, fill = false).height(64.dp),
+                                    contentScale = ContentScale.Fit,
                                 )
                             }
-                            Icon(
-                                painter = painterResource(
-                                    Res.drawable.arrow_forward,
-                                ),
-                                contentDescription = stringResource(
-                                    Res.string.open_in_new_window_description,
-                                ),
-                                tint = MaterialTheme.colors.primary,
-                                modifier = Modifier.size(16.dp).padding(
-                                    start = 4.dp,
-                                )
-                            )
                         }
+
+                        Spacer(modifier = Modifier.height(24.dp))
+                        if (isWeb)
+                            Row(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = stringResource(Res.string.sources_label),
+                                    style = MaterialTheme.typography.caption,
+                                    color = MaterialTheme.colors.onSurface.copy(
+                                        alpha = 0.6f
+                                    )
+                                )
+                                Spacer(Modifier.width(4.dp))
+                                val url: String = AppConstants.SOURCE_URL
+                                val annotatedLinkString: AnnotatedString =
+                                    buildAnnotatedString {
+                                        pushStringAnnotation(
+                                            tag = URL_TAG, annotation = url,
+                                        )
+                                        withStyle(
+                                            style = SpanStyle(
+                                                color = MaterialTheme.colors.primary,
+                                                textDecoration = TextDecoration.Underline
+                                            )
+                                        ) {
+                                            append(url)
+                                        }
+                                        pop()
+                                    }
+                                SelectionContainer {
+                                    @Suppress("DEPRECATION") ClickableText(
+                                        text = annotatedLinkString,
+                                        style = MaterialTheme.typography.caption.copy(
+                                            color = MaterialTheme.colors.onSurface
+                                        ),
+                                        onClick = { offset: Int ->
+                                            annotatedLinkString.getStringAnnotations(
+                                                tag = URL_TAG,
+                                                start = offset,
+                                                end = offset
+                                            ).firstOrNull()
+                                                ?.let { annotation: AnnotatedString.Range<String> ->
+                                                    uriHandler.openUri(
+                                                        annotation.item,
+                                                    )
+                                                }
+                                        },
+                                    )
+                                }
+                                Icon(
+                                    painter = painterResource(
+                                        Res.drawable.arrow_forward,
+                                    ),
+                                    contentDescription = stringResource(
+                                        Res.string.open_in_new_window_description,
+                                    ),
+                                    tint = MaterialTheme.colors.primary,
+                                    modifier = Modifier.size(16.dp).padding(
+                                        start = 4.dp,
+                                    )
+                                )
+                            }
                     }
                 }
 
@@ -360,38 +416,6 @@ fun LandingPage(
                         }.padding(12.dp)
                     )
                 }
-            }
-
-            Column(
-                modifier = Modifier.padding(top = 220.dp),
-            ) {
-                val iPhoneScreenshots: List<DrawableResource> = listOf(
-                    Res.drawable.screenshot_1,
-                    Res.drawable.screenshot_2,
-                    Res.drawable.screenshot_3,
-                    Res.drawable.screenshot_4,
-                )
-
-                ScreenshotCarousel(
-                    screenshots = iPhoneScreenshots,
-                    ratio = 9f / 19.5f,
-                    height = 480.dp,
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                val iPadScreenshots: List<DrawableResource> = listOf(
-                    Res.drawable.screenshot_5,
-                    Res.drawable.screenshot_6,
-                    Res.drawable.screenshot_7,
-                    Res.drawable.screenshot_8,
-                    Res.drawable.screenshot_9,
-                )
-                ScreenshotCarousel(
-                    screenshots = iPadScreenshots,
-                    ratio = 9f / 12,
-                    height = 240.dp,
-                )
             }
         }
     }

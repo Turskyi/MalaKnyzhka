@@ -14,23 +14,30 @@ import kotlinx.coroutines.launch
 
 class ChatViewModel(private val repository: ChatRepository) : ViewModel() {
     val messages: StateFlow<List<ChatMessage>> = repository.messages
-        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            emptyList(),
+        )
 
-    private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(
+        false,
+    )
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     var currentPageNumber: Int? = null
     var currentPageText: String? = null
 
-    private val _isExpanded: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isExpanded: StateFlow<Boolean> = _isExpanded.asStateFlow()
-
-    fun toggleExpanded() {
-        _isExpanded.value = !_isExpanded.value
-    }
+    private val _isExpanded: MutableStateFlow<Boolean> = MutableStateFlow(
+        false,
+    )
 
     fun setExpanded(expanded: Boolean) {
         _isExpanded.value = expanded
+    }
+
+    fun setInitialMessage(text: String) {
+        repository.setInitialMessage(text)
     }
 
     fun sendMessage(
