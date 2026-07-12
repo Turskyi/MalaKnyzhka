@@ -269,18 +269,10 @@ compose.desktop {
                 )
                 bundleID = libs.versions.applicationId.get()
                 dockName = libs.versions.dockName.get()
+                appStore = false
                 signing {
-                    sign.set(true)
+                    sign.set(false)
                 }
-                entitlementsFile.set(
-                    project.file("src/desktopMain/entitlements/entitlements.plist"),
-                )
-                runtimeEntitlementsFile.set(
-                    project.file("src/desktopMain/entitlements/runtime-entitlements.plist"),
-                )
-                provisioningProfile.set(
-                    project.file("src/desktopMain/entitlements/app.provisionprofile"),
-                )
                 infoPlist {
                     extraKeysRawXml =
                         "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
