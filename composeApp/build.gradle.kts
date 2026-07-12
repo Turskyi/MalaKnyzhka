@@ -260,11 +260,25 @@ compose.desktop {
             macOS {
                 iconFile.set(
                     project.file(
-                        "../composeApp/src/desktopMain/icons/icon.icns",
+                        "src/desktopMain/icons/icon.icns",
                     )
                 )
                 bundleID = libs.versions.applicationId.get()
                 dockName = libs.versions.dockName.get()
+                entitlementsFile.set(
+                    project.file("src/desktopMain/entitlements/entitlements.plist"),
+                )
+                runtimeEntitlementsFile.set(
+                    project.file("src/desktopMain/entitlements/runtime-entitlements.plist"),
+                )
+                provisioningProfile.set(
+                    project.file("src/desktopMain/entitlements/app.provisionprofile"),
+                )
+                infoPlist {
+                    extraKeysRawXml =
+                        "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
+                                "<key>LSApplicationCategoryType</key><string>public.app-category.books</string>"
+                }
             }
             windows {
                 iconFile.set(
