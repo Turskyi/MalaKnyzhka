@@ -118,13 +118,6 @@ kotlin {
     sourceSets {
         val desktopMain: KotlinSourceSet by getting
 
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
-            implementation(libs.ktorClientCio)
-            implementation(libs.androidx.glance.appwidget)
-            implementation(libs.androidx.glance.material3)
-        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -144,10 +137,15 @@ kotlin {
             api(libs.multiplatform.settings)
         }
         androidMain.dependencies {
+            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktorClientCio)
+            implementation(libs.ktorClientAndroid)
             implementation(libs.androidx.glance.appwidget)
             implementation(libs.androidx.glance.material3)
+            implementation(libs.androidx.ui.android)
+            implementation(libs.firebase.analytics)
+            implementation(libs.firebase.crashlytics)
+            implementation(libs.androidx.appcompat)
         }
         iosMain.dependencies {
             implementation(libs.ktorClientDarwin)
@@ -238,10 +236,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.ui.android)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.androidx.appcompat)
     debugImplementation(compose.uiTooling)
 }
 
@@ -276,7 +270,7 @@ compose.desktop {
                 bundleID = libs.versions.applicationId.get()
                 dockName = libs.versions.dockName.get()
                 signing {
-                    sign.set(false)
+                    sign.set(true)
                 }
                 entitlementsFile.set(
                     project.file("src/desktopMain/entitlements/entitlements.plist"),
