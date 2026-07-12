@@ -121,6 +121,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktorClientCio)
+            implementation(libs.androidx.glance.appwidget)
+            implementation(libs.androidx.glance.material3)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -141,7 +144,6 @@ kotlin {
             api(libs.multiplatform.settings)
         }
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktorClientCio)
             implementation(libs.androidx.glance.appwidget)
@@ -247,6 +249,14 @@ compose.desktop {
     application {
         mainClass = "com.turskyi.malaknyzhka.MainKt"
 
+        buildTypes {
+            release {
+                proguard {
+                    configurationFiles.from(project.file("proguard-desktop-rules.pro"))
+                }
+            }
+        }
+
         nativeDistributions {
             targetFormats(
                 TargetFormat.Dmg,
@@ -265,6 +275,9 @@ compose.desktop {
                 )
                 bundleID = libs.versions.applicationId.get()
                 dockName = libs.versions.dockName.get()
+                signing {
+                    sign.set(false)
+                }
                 entitlementsFile.set(
                     project.file("src/desktopMain/entitlements/entitlements.plist"),
                 )
