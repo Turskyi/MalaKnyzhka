@@ -48,14 +48,14 @@ fun DraggableDividerWithButton(
         IntOffset(
             0, (dividerPosition * screenHeightOrWidthPx).coerceIn(
                 0f,
-                screenHeightOrWidthPx - dividerSizePx
+                maxOf(0f, screenHeightOrWidthPx - dividerSizePx)
             ).toInt() - (dividerSizePx / 2).toInt()
         )
     } else {
         IntOffset(
             (dividerPosition * screenHeightOrWidthPx).coerceIn(
                 0f,
-                screenHeightOrWidthPx - dividerSizePx
+                maxOf(0f, screenHeightOrWidthPx - dividerSizePx)
             ).toInt() - (dividerSizePx / 2).toInt(), 0
         )
     }
@@ -80,13 +80,15 @@ fun DraggableDividerWithButton(
             .draggable(
                 orientation = dragOrientation,
                 state = rememberDraggableState { delta: Float ->
-                    val newPosition: Float =
-                        (dividerPosition + delta / screenHeightOrWidthPx)
-                            .coerceIn(
-                                0f,
-                                1f,
-                            )
-                    onPositionChange(newPosition)
+                    if (screenHeightOrWidthPx > 0f) {
+                        val newPosition: Float =
+                            (dividerPosition + delta / screenHeightOrWidthPx)
+                                .coerceIn(
+                                    0f,
+                                    1f,
+                                )
+                        onPositionChange(newPosition)
+                    }
                 }
             ),
         contentAlignment = Alignment.Center

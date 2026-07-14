@@ -429,7 +429,8 @@ fun MessageBubble(message: ChatMessage) {
         Surface(
             modifier = Modifier
                 .clip(bubbleShape)
-                .widthIn(max = 280.dp),
+                .widthIn(max = 600.dp) // Max width for very wide screens
+                .fillMaxWidth(0.85f), // Take up to 85% of screen width on mobile
             color = backgroundColor,
             elevation = if (isUser) 0.dp else 2.dp,
             shape = bubbleShape,
@@ -455,8 +456,8 @@ fun MessageBubble(message: ChatMessage) {
                 Text(
                     text = message.text,
                     style = MaterialTheme.typography.body1.copy(
-                        fontSize = 14.sp,
-                        lineHeight = 18.sp
+                        fontSize = 16.sp,
+                        lineHeight = 22.sp
                     )
                 )
             }

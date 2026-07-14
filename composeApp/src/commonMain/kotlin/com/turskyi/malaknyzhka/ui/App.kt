@@ -50,6 +50,9 @@ import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
 import com.turskyi.malaknyzhka.usecases.toInternalPageIndex
 import kotlinx.coroutines.flow.collectLatest
+import malaknyzhka.composeapp.generated.resources.Res
+import malaknyzhka.composeapp.generated.resources.landing_invitation
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun App(
@@ -104,8 +107,10 @@ fun App(
             NavigationDestination.Book.name
         } else if (platform.type == PlatformType.WEB) {
             NavigationDestination.Landing.name
-        } else {
+        } else if (userSettingsRepository.isOnboardingComplete()) {
             NavigationDestination.Book.name
+        } else {
+            NavigationDestination.Landing.name
         }
     }
 
@@ -179,11 +184,32 @@ fun App(
                                 composable(
                                     route = NavigationDestination.Landing.name,
                                 ) {
+                                    val landingInvitation: String =
+                                        stringResource(Res.string.landing_invitation)
                                     LandingPage(
+                                        platform = platform,
                                         onNavigateToBook = {
+                                            viewModel.completeOnboarding()
                                             navController.navigate(
                                                 NavigationDestination.Book.name
                                             ) {
+                                                popUpTo(NavigationDestination.Landing.name) {
+                                                    inclusive = true
+                                                }
+                                                launchSingleTop = true
+                                            }
+                                        },
+                                        onNavigateToChat = {
+                                            viewModel.completeOnboarding()
+                                            chatViewModel.setInitialMessage(
+                                                landingInvitation
+                                            )
+                                            navController.navigate(
+                                                NavigationDestination.Chat.name
+                                            ) {
+                                                popUpTo(NavigationDestination.Landing.name) {
+                                                    inclusive = true
+                                                }
                                                 launchSingleTop = true
                                             }
                                         },

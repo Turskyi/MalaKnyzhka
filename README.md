@@ -110,6 +110,14 @@ Build and run the web application using this Gradle task:
 ./gradlew :composeApp:wasmJsBrowserDevelopmentRun
 ```
 
+**Troubleshooting:** If the build fails with an error like
+`Lock file was changed. Run the 'kotlinWasmUpgradeYarnLock' task to actualize lock file`,
+execute:
+
+```bash
+./gradlew kotlinWasmUpgradeYarnLock
+```
+
 **Browser Compatibility:** The web application is specifically designed to run
 within Google Chrome. While other browsers may technically load the
 application, they may not display it correctly or support all features. For

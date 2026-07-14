@@ -14,7 +14,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 class ChatApi {
-    private val client: HttpClient = HttpClient {
+    private val client: HttpClient = createHttpClient {
         install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true

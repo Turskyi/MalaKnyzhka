@@ -104,6 +104,11 @@ kotlin {
                             add(rootDirPath)
                             add(projectDirPath)
                         }
+                        open = mapOf(
+                            "app" to mapOf(
+                                "name" to "google chrome",
+                            ),
+                        )
                     }
             }
         }
@@ -113,10 +118,6 @@ kotlin {
     sourceSets {
         val desktopMain: KotlinSourceSet by getting
 
-        androidMain.dependencies {
-            implementation(compose.preview)
-            implementation(libs.androidx.activity.compose)
-        }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -138,9 +139,13 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktorClientCio)
+            implementation(libs.ktorClientAndroid)
             implementation(libs.androidx.glance.appwidget)
             implementation(libs.androidx.glance.material3)
+            implementation(libs.androidx.ui.android)
+            implementation(libs.firebase.analytics)
+            implementation(libs.firebase.crashlytics)
+            implementation(libs.androidx.appcompat)
         }
         iosMain.dependencies {
             implementation(libs.ktorClientDarwin)
@@ -231,16 +236,20 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.ui.android)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.androidx.appcompat)
     debugImplementation(compose.uiTooling)
 }
 
 compose.desktop {
     application {
         mainClass = "com.turskyi.malaknyzhka.MainKt"
+
+        buildTypes {
+            release {
+                proguard {
+                    configurationFiles.from(project.file("proguard-desktop-rules.pro"))
+                }
+            }
+        }
 
         nativeDistributions {
             targetFormats(
@@ -255,11 +264,20 @@ compose.desktop {
             macOS {
                 iconFile.set(
                     project.file(
-                        "../composeApp/src/desktopMain/icons/icon.icns",
+                        "src/desktopMain/icons/icon.icns",
                     )
                 )
                 bundleID = libs.versions.applicationId.get()
                 dockName = libs.versions.dockName.get()
+                appStore = false
+                signing {
+                    sign.set(false)
+                }
+                infoPlist {
+                    extraKeysRawXml =
+                        "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
+                                "<key>LSApplicationCategoryType</key><string>public.app-category.books</string>"
+                }
             }
             windows {
                 iconFile.set(

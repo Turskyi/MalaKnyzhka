@@ -91,6 +91,9 @@ The English translation of the poems was generated using artificial intelligence
     <string name="feature_compare_original_modern">• Compare the original with modern spelling.</string>
     <string name="feature_autosave_last_page">• Automatic saving of the last read page.</string>
 
+    <string name="landing_invitation">Greeting, friend! I am Taras Shevchenko, and through the power of Artificial Intelligence, I have been brought back to life in this digital "Little Book". Here, my original manuscripts meet the modern word. I invite you to explore my works or start a conversation with me.</string>
+    <string name="chat_button_label">Chat</string>
+    <string name="read_button_label">Read</string>
     <string name="read_now">Start Reading Now</string>
 
     <string name="main_features">Main Features</string>

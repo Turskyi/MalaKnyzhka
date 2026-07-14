@@ -135,11 +135,17 @@ rm -f "${APP_BUNDLE}/Contents/app.provisionprofile"
 /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" "${APP_BUNDLE}/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :LSApplicationCategoryType public.app-category.books" "${APP_BUNDLE}/Contents/Info.plist"
 
-# Fix Icon Reference
-/usr/libexec/PlistBuddy -c "Set :CFBundleIconFile icon.icns" "${APP_BUNDLE}/Contents/Info.plist" || /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string icon.icns" "${APP_BUNDLE}/Contents/Info.plist"
-
 # Manual Embed Provisioning Profile
 cp "${PROVISIONING_PROFILE}" "${APP_BUNDLE}/Contents/embedded.provisionprofile"
+
+# VERIFY ICON AND PLIST (CRITICAL)
+echo "Verifying icon existence in bundle..."
+if [ ! -f "${APP_BUNDLE}/Contents/Resources/icon.icns" ]; then
+    echo "ERROR: icon.icns missing from Resources! Checking for alternatives..."
+    ls "${APP_BUNDLE}/Contents/Resources/"
+fi
+echo "Verifying CFBundleIconFile in Info.plist..."
+/usr/libexec/PlistBuddy -c "Print :CFBundleIconFile" "${APP_BUNDLE}/Contents/Info.plist"
 
 # Deep Signing Fix: Sign all `dylibs` manually
 find "${APP_BUNDLE}/Contents/app" -type f \( -name "*.dylib" -o -name "*.so" -o -name "*.jnilib" \) -exec codesign -s "${IDENTITY}" -vvvv --timestamp --options runtime --force {} \;

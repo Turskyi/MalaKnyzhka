@@ -26,6 +26,9 @@ class AppViewModel(
         MutableStateFlow(userSettingsRepository.getThemeMode())
     val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
 
+    private val _isOnboardingComplete: MutableStateFlow<Boolean> =
+        MutableStateFlow(userSettingsRepository.isOnboardingComplete())
+
     init {
         viewModelScope.launch {
             if (isOnDesktop()) {
@@ -48,5 +51,10 @@ class AppViewModel(
     fun changeThemeMode(newMode: ThemeMode) {
         userSettingsRepository.saveThemeMode(newMode)
         _themeMode.value = newMode
+    }
+
+    fun completeOnboarding() {
+        userSettingsRepository.saveOnboardingComplete(true)
+        _isOnboardingComplete.value = true
     }
 }
