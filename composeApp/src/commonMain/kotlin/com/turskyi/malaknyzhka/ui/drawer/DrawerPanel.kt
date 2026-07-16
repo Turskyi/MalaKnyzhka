@@ -28,14 +28,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
 import com.turskyi.malaknyzhka.ui.theme.ThemeSwitcher
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
 import malaknyzhka.composeapp.generated.resources.bookmarks
+import malaknyzhka.composeapp.generated.resources.chat_with_taras
 import malaknyzhka.composeapp.generated.resources.cover
 import malaknyzhka.composeapp.generated.resources.cover_description
+import malaknyzhka.composeapp.generated.resources.manuscripts
 import malaknyzhka.composeapp.generated.resources.privacy_policy
 import malaknyzhka.composeapp.generated.resources.support
 import org.jetbrains.compose.resources.painterResource
@@ -49,6 +52,11 @@ fun DrawerPanel(
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToBookmarks: () -> Unit,
+    onNavigateToBook: () -> Unit,
+    onNavigateToChat: () -> Unit,
+    currentExperience: Experience,
+    onExperienceChange: (Experience) -> Unit,
+    showExperienceSwitcher: Boolean,
     currentLanguage: AppLang,
     onLanguageChange: (AppLang) -> Unit,
     currentThemeMode: ThemeMode,
@@ -119,14 +127,34 @@ fun DrawerPanel(
             ) {
                 Spacer(Modifier.height(24.dp))
 
-                // 🔖 Bookmarks.
+                // 🤖 Chat with Taras.
                 DrawerButton(
-                    text = stringResource(Res.string.bookmarks),
+                    text = stringResource(Res.string.chat_with_taras),
                     onClick = {
                         onClose()
-                        onNavigateToBookmarks()
+                        onNavigateToChat()
                     },
                 )
+
+                if (currentExperience == Experience.TARAS) {
+                    // 📖 Manuscripts.
+                    DrawerButton(
+                        text = stringResource(Res.string.manuscripts),
+                        onClick = {
+                            onClose()
+                            onNavigateToBook()
+                        },
+                    )
+                } else {
+                    // 🔖 Bookmarks.
+                    DrawerButton(
+                        text = stringResource(Res.string.bookmarks),
+                        onClick = {
+                            onClose()
+                            onNavigateToBookmarks()
+                        },
+                    )
+                }
 
                 // ℹ️ About app.
                 DrawerButton(
@@ -168,6 +196,14 @@ fun DrawerPanel(
                     currentThemeMode = currentThemeMode,
                     onThemeChange = onThemeChange
                 )
+
+                if (showExperienceSwitcher) {
+                    Spacer(modifier = Modifier.height(32.dp))
+                    ExperienceSwitcher(
+                        currentExperience = currentExperience,
+                        onExperienceChange = onExperienceChange
+                    )
+                }
             }
         }
     }

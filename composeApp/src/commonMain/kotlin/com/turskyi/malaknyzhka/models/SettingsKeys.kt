@@ -6,4 +6,5 @@ object SettingsKeys {
     const val BOOKMARKS = "bookmarks"
     const val THEME_MODE = "themeMode"
     const val IS_ONBOARDING_COMPLETE = "isOnboardingComplete"
+    const val EXPERIENCE = "experience"
 }

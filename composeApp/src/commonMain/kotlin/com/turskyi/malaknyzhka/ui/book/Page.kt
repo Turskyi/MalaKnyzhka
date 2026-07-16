@@ -21,6 +21,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Chat
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
@@ -48,6 +49,7 @@ import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.BookRepository
 import com.turskyi.malaknyzhka.models.BookmarkRepository
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.models.WindowInfo
@@ -60,6 +62,7 @@ import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import kotlinx.coroutines.launch
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.app_name
+import malaknyzhka.composeapp.generated.resources.bookmarks
 import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
 import malaknyzhka.composeapp.generated.resources.english_label
 import malaknyzhka.composeapp.generated.resources.menu
@@ -79,11 +82,15 @@ fun Page(
     bookmarkRepository: BookmarkRepository,
     textToSpeech: TextToSpeech,
     chatViewModel: ChatViewModel,
+    currentExperience: Experience,
+    onExperienceChange: (Experience) -> Unit,
+    showExperienceSwitcher: Boolean,
     onNavigateToPrivacyPolicy: () -> Unit,
     onNavigateToSupport: () -> Unit,
     onNavigateToAbout: () -> Unit,
     onNavigateToBookmarks: () -> Unit,
-    onNavigateToChat: (pageNumber: Int, pageText: String) -> Unit,
+    onNavigateToChat: () -> Unit,
+    onNavigateToChatWithContext: (pageNumber: Int, pageText: String) -> Unit,
 ) {
     val viewModel: BookViewModel = viewModel {
         BookViewModel(bookRepository, bookmarkRepository, textToSpeech)
@@ -227,6 +234,27 @@ fun Page(
                 )
             }
 
+            // 🔖 Bookmarks list button (only in Taras Experience).
+            if (currentExperience == Experience.TARAS) {
+                IconButton(
+                    onClick = onNavigateToBookmarks,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(WindowInsets.statusBars.asPaddingValues())
+                        .padding(top = 40.dp, end = 76.dp)
+                        .background(
+                            color = MaterialTheme.colors.surface.copy(alpha = 0.4f),
+                            shape = CircleShape
+                        ).size(32.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.List,
+                        contentDescription = stringResource(Res.string.bookmarks),
+                        tint = MaterialTheme.colors.primary,
+                    )
+                }
+            }
+
             // 🔊 Text-to-Speech button in top-right corner.
             if (viewModel.isTtsAvailable()) {
                 IconButton(
@@ -293,7 +321,7 @@ fun Page(
                         if (windowInfo.screenWidth > 720.dp) {
                             isChatOverlayOpen = true
                         } else {
-                            onNavigateToChat(currentPage, ukrainianText)
+                            onNavigateToChatWithContext(currentPage, ukrainianText)
                         }
                     }
                 },
@@ -338,7 +366,7 @@ fun Page(
                                         BookContentRegistry.allPoemPages[currentPage]
                                     )
                                 isChatOverlayOpen = false
-                                onNavigateToChat(currentPage, ukrainianText)
+                                onNavigateToChatWithContext(currentPage, ukrainianText)
                             }
                         },
                         isFullScreen = false
@@ -363,6 +391,11 @@ fun Page(
                 onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
                 onNavigateToSupport = onNavigateToSupport,
                 onNavigateToBookmarks = onNavigateToBookmarks,
+                onNavigateToBook = { /* We are already here */ },
+                onNavigateToChat = onNavigateToChat,
+                currentExperience = currentExperience,
+                onExperienceChange = onExperienceChange,
+                showExperienceSwitcher = showExperienceSwitcher,
                 currentLanguage = appGlobalLanguage,
                 onLanguageChange = {
                     viewModel.onLanguageChange(it.code)

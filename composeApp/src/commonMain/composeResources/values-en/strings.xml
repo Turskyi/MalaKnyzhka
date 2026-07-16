@@ -62,6 +62,10 @@ The English translation of the poems was generated using artificial intelligence
     <string name="back_button_description">Back</string>
 
     <string name="bookmarks">Bookmarks</string>
+    <string name="manuscripts">Manuscripts</string>
+    <string name="experience_book">Book Experience</string>
+    <string name="experience_taras">Taras Shevchenko Experience</string>
+    <string name="switch_experience">Switch Experience</string>
     <string name="add_bookmark">Add Bookmark</string>
     <string name="remove_bookmark">Remove Bookmark</string>
     <string name="no_bookmarks">You have no bookmarks yet</string>

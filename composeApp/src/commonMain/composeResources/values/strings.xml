@@ -60,6 +60,10 @@
     <string name="back_button_description">Назад</string>
 
     <string name="bookmarks">Закладки</string>
+    <string name="manuscripts">Манускрипти</string>
+    <string name="experience_book">Книжковий режим</string>
+    <string name="experience_taras">Режим Тараса Шевченка</string>
+    <string name="switch_experience">Змінити режим</string>
     <string name="add_bookmark">Додати закладку</string>
     <string name="remove_bookmark">Видалити закладку</string>
     <string name="no_bookmarks">У вас ще немає закладок</string>
