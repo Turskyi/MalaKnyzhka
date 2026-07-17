@@ -276,7 +276,7 @@ compose.desktop {
                 infoPlist {
                     extraKeysRawXml =
                         "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
-                                "<key>LSApplicationCategoryType</key><string>public.app-category.books</string>"
+                                "<key>LSApplicationCategoryType</key><string>public.app-category.education</string>"
                 }
             }
             windows {
