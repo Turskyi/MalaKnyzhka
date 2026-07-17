@@ -63,6 +63,7 @@ The English translation of the poems was generated using artificial intelligence
 
     <string name="bookmarks">Bookmarks</string>
     <string name="manuscripts">Manuscripts</string>
+    <string name="mala_knyzhka">Mala Knyzhka</string>
     <string name="experience_book">Book Experience</string>
     <string name="experience_taras">Taras Shevchenko Experience</string>
     <string name="switch_experience">Switch Experience</string>
@@ -86,7 +87,7 @@ The English translation of the poems was generated using artificial intelligence
     <string name="portrait_description">Portrait of Taras Shevchenko</string>
     <string name="email_option">• Email Address: </string>
     <string name="chat_option">• For questions and suggestions, please use our Telegram chat: </string>
-    <string name="title">Mala Knyzhka (Little Book)</string>
+    <string name="title">Taras Shevchenko ✦</string>
     <string name="subtitle">Original Manuscript by Taras Shevchenko</string>
 
     <string name="available_on_platforms">Available for Android, iOS, and macOS!</string>
@@ -10171,9 +10172,29 @@ In the village…
     <string name="share_description">Share</string>
     <string name="copy_description">Copy to clipboard</string>
     <string name="share_page">Page %1$d</string>
-    <string name="share_from">Shared from Mala Knyzhka.</string>
+    <string name="share_from">Shared from Taras Shevchenko ✦.</string>
     <string name="share_ai_title">Conversation with Taras Shevchenko</string>
     <string name="ukrainian_label">Ukrainian:</string>
     <string name="english_label">English:</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="about_taras_title">About “Taras Shevchenko ✦”</string>
+    <string name="about_taras_intro_part1">"Taras Shevchenko ✦" is an interactive educational experience that lets you explore the life, ideas, poetry, and historical context of one of Ukraine’s most influential cultural figures through conversation.</string>
+    <string name="about_taras_intro_part2">Using artificial intelligence, the application recreates a respectful conversational experience inspired by Taras Shevchenko’s writings, letters, biography, and the historical period in which he lived. It is intended for learning, exploration, and cultural discovery - not as a replacement for historical scholarship.</string>
+    <string name="about_taras_ask_title">Ask questions naturally</string>
+    <string name="about_taras_ask_desc">Instead of searching through books and articles, you can simply ask questions.</string>
+    <string name="about_taras_ask_examples_title">Examples include:</string>
+    <string name="about_taras_ask_example1">• What inspired this poem?</string>
+    <string name="about_taras_ask_example2">• What was your life like in exile?</string>
+    <string name="about_taras_ask_example3">• Why did you write about freedom so often?</string>
+    <string name="about_taras_ask_example4">• What would you recommend young people read today?</string>
+    <string name="about_taras_ask_footer">The AI answers in the style of Taras Shevchenko while remaining grounded in his known works and historical context whenever possible.</string>
+    <string name="about_taras_manuscripts_title">Discover the manuscripts</string>
+    <string name="about_taras_manuscripts_desc1">The application also includes the complete digital edition of Mala Knyzhka, allowing you to explore original manuscript pages alongside synchronized transcriptions.</string>
+    <string name="about_taras_manuscripts_desc2">When reading a manuscript page, you can immediately continue the conversation with Taras Shevchenko about the poem you are viewing. The current page and its text are automatically provided as context for the discussion.</string>
+    <string name="about_taras_education_title">Built for education</string>
+    <string name="about_taras_education_desc1">This application is intended for students, teachers, researchers, and anyone interested in Ukrainian literature, history, language, and culture.</string>
+    <string name="about_taras_education_desc2">Artificial intelligence does not replace historical sources, but provides a new and engaging way to explore them.</string>
+    <string name="about_taras_privacy_title">Privacy</string>
+    <string name="about_taras_privacy_desc1">Your conversations are processed securely through AI services.</string>
+    <string name="about_taras_privacy_desc2">Bookmarks and application settings are stored locally on your device.</string>
 </resources>

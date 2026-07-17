@@ -48,6 +48,7 @@ import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.share.ShareManager
 import com.turskyi.malaknyzhka.ui.about.AboutPage
+import com.turskyi.malaknyzhka.ui.about.AboutTarasPage
 import com.turskyi.malaknyzhka.ui.book.BookmarksPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
@@ -396,7 +397,75 @@ fun App(
                                         SupportPage(onBack = onBack)
                                     }
                                     composable(route = NavigationDestination.About.name) {
-                                        AboutPage(onBack = onBack)
+                                        if (experience == Experience.TARAS) {
+                                            AboutTarasPage(
+                                                onBack = onBack,
+                                                currentExperience = experience,
+                                                onExperienceChange = viewModel::changeExperience,
+                                                showExperienceSwitcher = showExperienceSwitcher,
+                                                onNavigateToBook = {
+                                                    navController.navigate(NavigationDestination.Book.name) {
+                                                        popUpTo(navController.graph.startDestinationId)
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToBookmarks = {
+                                                    navController.navigate(NavigationDestination.Bookmarks.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToAbout = {
+                                                    navController.navigate(NavigationDestination.About.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToPrivacyPolicy = {
+                                                    navController.navigate(NavigationDestination.PrivacyPolicy.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToSupport = {
+                                                    navController.navigate(NavigationDestination.Support.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToChat = navigateToChat
+                                            )
+                                        } else {
+                                            AboutPage(
+                                                onBack = onBack,
+                                                currentExperience = experience,
+                                                onExperienceChange = viewModel::changeExperience,
+                                                showExperienceSwitcher = showExperienceSwitcher,
+                                                onNavigateToBook = {
+                                                    navController.navigate(NavigationDestination.Book.name) {
+                                                        popUpTo(navController.graph.startDestinationId)
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToBookmarks = {
+                                                    navController.navigate(NavigationDestination.Bookmarks.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToAbout = {
+                                                    navController.navigate(NavigationDestination.About.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToPrivacyPolicy = {
+                                                    navController.navigate(NavigationDestination.PrivacyPolicy.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToSupport = {
+                                                    navController.navigate(NavigationDestination.Support.name) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToChat = navigateToChat
+                                            )
+                                        }
                                     }
                                 }
                             }

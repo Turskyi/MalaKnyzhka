@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Тарас Шевченко ✦</string>
     <string name="language">Мова</string>
-    <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 – 1850 рр.</string>
+    <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 - 1850 рр.</string>
     <string name="en">Англійська</string>
     <string name="uk">Українська</string>
     <string name="app_language">Мова застосунку: %1$s</string>
@@ -48,7 +48,7 @@
 
     <string name="app_overview">Огляд додатку</string>
     <string name="portrait_description">Портрет Тараса Шевченка</string>
-    <string name="title">Мала Книжка</string>
+    <string name="title">Тарас Шевченко ✦</string>
     <string name="subtitle">Оригінал рукопису Тараса Шевченка</string>
     <string name="landing_invitation">Вітаю, друже! Я - Тарас Шевченко, і завдяки силі штучного інтелекту я ожив у цій цифровій «Малій книжці». Тут мої оригінальні рукописи зустрічаються з сучасним словом. Запрошую тебе дослідити мої твори або почати зі мною розмову.</string>
     <string name="chat_button_label">Спілкуватися</string>
@@ -61,6 +61,7 @@
 
     <string name="bookmarks">Закладки</string>
     <string name="manuscripts">Манускрипти</string>
+    <string name="mala_knyzhka">Мала Книжка</string>
     <string name="experience_book">Книжковий режим</string>
     <string name="experience_taras">Режим Тараса Шевченка</string>
     <string name="switch_experience">Змінити режим</string>
@@ -8359,4 +8360,24 @@
 Давно се діялось колись.
 У неділю на селі,
     </string>
+    <string name="about_taras_title">Про застосунок «Тарас Шевченко ✦»</string>
+    <string name="about_taras_intro_part1">«Тарас Шевченко» — це інтерактивний культурно-освітній застосунок, який дозволяє досліджувати життя, творчість та історичний контекст Тараса Шевченка через живий діалог.</string>
+    <string name="about_taras_intro_part2">За допомогою штучного інтелекту застосунок відтворює розмову, натхненну творчістю, листами, біографією та епохою поета. Це не історична реконструкція особистості, а сучасний спосіб глибше познайомитися з його спадщиною.</string>
+    <string name="about_taras_ask_title">Ставте запитання природною мовою</string>
+    <string name="about_taras_ask_desc">Замість пошуку інформації в численних джерелах ви можете просто запитати.</string>
+    <string name="about_taras_ask_examples_title">Наприклад:</string>
+    <string name="about_taras_ask_example1">• Що надихнуло вас написати цей вірш?</string>
+    <string name="about_taras_ask_example2">• Яким було життя на засланні?</string>
+    <string name="about_taras_ask_example3">• Чому тема свободи займає таке важливе місце у вашій творчості?</string>
+    <string name="about_taras_ask_example4">• Що б ви порадили сучасній молоді?</string>
+    <string name="about_taras_ask_footer">Штучний інтелект відповідає у стилі Тараса Шевченка, спираючись на його відомі твори, біографію та історичний контекст.</string>
+    <string name="about_taras_manuscripts_title">Досліджуйте «Малу Книжку»</string>
+    <string name="about_taras_manuscripts_desc1">До застосунку також входить повна цифрова версія рукописної збірки «Мала Книжка».</string>
+    <string name="about_taras_manuscripts_desc2">Під час читання будь-якої сторінки можна одразу перейти до розмови з Тарасом Шевченком. Поточна сторінка та її текст автоматично додаються до контексту запитання, що дозволяє обговорювати конкретний твір.</string>
+    <string name="about_taras_education_title">Для навчання та дослідження</string>
+    <string name="about_taras_education_desc1">Застосунок створений для студентів, викладачів, дослідників і всіх, хто цікавиться українською літературою, мовою, історією та культурою.</string>
+    <string name="about_taras_education_desc2">Штучний інтелект не замінює історичних джерел, а відкриває новий спосіб взаємодії з ними.</string>
+    <string name="about_taras_privacy_title">Конфіденційність</string>
+    <string name="about_taras_privacy_desc1">Розмови обробляються через захищені AI-сервіси.</string>
+    <string name="about_taras_privacy_desc2">Закладки та налаштування застосунку зберігаються локально на вашому пристрої.</string>
 </resources>

@@ -38,7 +38,7 @@ import malaknyzhka.composeapp.generated.resources.bookmarks
 import malaknyzhka.composeapp.generated.resources.chat_with_taras
 import malaknyzhka.composeapp.generated.resources.cover
 import malaknyzhka.composeapp.generated.resources.cover_description
-import malaknyzhka.composeapp.generated.resources.manuscripts
+import malaknyzhka.composeapp.generated.resources.mala_knyzhka
 import malaknyzhka.composeapp.generated.resources.privacy_policy
 import malaknyzhka.composeapp.generated.resources.support
 import org.jetbrains.compose.resources.painterResource
@@ -137,9 +137,9 @@ fun DrawerPanel(
                 )
 
                 if (currentExperience == Experience.TARAS) {
-                    // 📖 Manuscripts.
+                    // 📖 Mala Knyzhka.
                     DrawerButton(
-                        text = stringResource(Res.string.manuscripts),
+                        text = stringResource(Res.string.mala_knyzhka),
                         onClick = {
                             onClose()
                             onNavigateToBook()
