@@ -196,14 +196,15 @@ fun ChatScreen(
                                 )
                             )
                         }
-                        IconButton(onClick = onBack) {
-                            Icon(
-                                imageVector = Icons.Default.FullscreenExit,
-                                contentDescription = stringResource(
-                                    Res.string.minimize_description,
+                        if (currentExperience == Experience.BOOK)
+                            IconButton(onClick = onBack) {
+                                Icon(
+                                    imageVector = Icons.Default.FullscreenExit,
+                                    contentDescription = stringResource(
+                                        Res.string.minimize_description,
+                                    )
                                 )
-                            )
-                        }
+                            }
                     },
                     // Colour handled by `Surface`
                     backgroundColor = Color.Transparent,
