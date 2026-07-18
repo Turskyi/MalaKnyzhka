@@ -53,7 +53,7 @@
 
     <string name="app_overview">Огляд додатку</string>
     <string name="portrait_description">Портрет Тараса Шевченка</string>
-    <string name="title">Мала Книжка</string>
+    <string name="title">Тарас Шевченко ✦</string>
     <string name="search_placeholder">Пошук…</string>
     <string name="no_results">Нічого не знайдено</string>
     <string name="search_description">Пошук</string>
@@ -8389,4 +8389,11 @@
     <string name="about_taras_privacy_title">Конфіденційність</string>
     <string name="about_taras_privacy_desc1">Розмови обробляються через захищені AI-сервіси.</string>
     <string name="about_taras_privacy_desc2">Закладки та налаштування застосунку зберігаються локально на вашому пристрої.</string>
+    <string name="taras_landing_subtitle">Діалог із Шевченком</string>
+    <string name="taras_landing_invitation">Вітаю тебе, друже.\n\nЯ - Тарас Шевченко, відтворений у цьому застонку за допомогою штучного інтелекту.\n\nМоя творчість, листи, картини та історія життя стали основою цієї розмови, щоб ми могли зустрітися крізь століття.\n\nЗапитуй мене про мої твори, Україну, історію, заслання або просто розпочни бесіду.\n\nЯкщо захочеш дослідити мою рукописну збірку «Мала Книжка», вона завжди доступна з меню застонку.</string>
+    <string name="taras_feature_1">Спілкуйся з Тарасом Шевченком за допомогою ШІ.</string>
+    <string name="taras_feature_2">Обговорюй вірші, історію та українську культуру.</string>
+    <string name="taras_feature_3">Продовжуй розмови з будь-якої сторінки рукопису.</string>
+    <string name="taras_feature_4">Досліджуй повну збірку рукописів «Мала книжка».</string>
+    <string name="taras_feature_5">Доступно офлайн, крім розмов з ШІ.</string>
 </resources>

@@ -10,6 +10,7 @@ import com.turskyi.malaknyzhka.models.UserSettingsRepository
 import com.turskyi.malaknyzhka.usecases.isOnAndroid
 import com.turskyi.malaknyzhka.usecases.isOnDesktop
 import com.turskyi.malaknyzhka.usecases.isOnIos
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import com.turskyi.malaknyzhka.usecases.toApLang
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,7 +29,7 @@ class AppViewModel(
         MutableStateFlow(userSettingsRepository.getThemeMode())
     val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
 
-    private val defaultExperience: Experience = if (isOnIos() || isOnDesktop()) {
+    private val defaultExperience: Experience = if (isOnIos() || isOnDesktop() || isOnWeb()) {
         Experience.TARAS
     } else {
         Experience.BOOK

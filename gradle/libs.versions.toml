@@ -1,4 +1,7 @@
 [versions]
+dockName = "Тарас Шевченко ✦"
+versionName = "1.1.9"
+versionCode = "19"
 agp = "9.3.0"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
@@ -17,14 +20,11 @@ android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
 applicationId = "com.turskyi.malaknyzhka"
-dockName = "Тарас Шевченко ✦"
 appcompat = "1.7.1"
 kotlinx-serialization = "1.11.0"
 ktor = "3.5.1"
 logback = "1.5.38"
 dotenv = "6.5.1"
-versionName = "1.1.9"
-versionCode = "19"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }

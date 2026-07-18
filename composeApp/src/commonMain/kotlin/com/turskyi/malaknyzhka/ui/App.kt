@@ -58,6 +58,7 @@ import com.turskyi.malaknyzhka.usecases.toInternalPageIndex
 import kotlinx.coroutines.flow.collectLatest
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.landing_invitation
+import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -222,20 +223,33 @@ fun App(
                                         route = NavigationDestination.Landing.name,
                                     ) {
                                         val landingInvitation: String =
-                                            stringResource(Res.string.landing_invitation)
+                                            stringResource(
+                                                if (currentExperience == Experience.TARAS) {
+                                                    Res.string.taras_landing_invitation
+                                                } else {
+                                                    Res.string.landing_invitation
+                                                }
+                                            )
                                         LandingPage(
                                             platform = platform,
+                                            currentExperience = currentExperience,
                                             onNavigateToBook = {
                                                 viewModel.completeOnboarding()
                                                 if (showExperienceSwitcher) {
-                                                    viewModel.changeExperience(Experience.BOOK)
+                                                    viewModel.changeExperience(
+                                                        Experience.BOOK
+                                                    )
                                                 } else {
-                                                    viewModel.changeExperience(Experience.TARAS)
+                                                    viewModel.changeExperience(
+                                                        Experience.TARAS
+                                                    )
                                                 }
                                                 navController.navigate(
                                                     NavigationDestination.Book.name
                                                 ) {
-                                                    popUpTo(NavigationDestination.Landing.name) {
+                                                    popUpTo(
+                                                        NavigationDestination.Landing.name
+                                                    ) {
                                                         inclusive = true
                                                     }
                                                     launchSingleTop = true
@@ -243,14 +257,18 @@ fun App(
                                             },
                                             onNavigateToChat = {
                                                 viewModel.completeOnboarding()
-                                                viewModel.changeExperience(Experience.TARAS)
+                                                viewModel.changeExperience(
+                                                    Experience.TARAS
+                                                )
                                                 chatViewModel.setInitialMessage(
                                                     landingInvitation
                                                 )
                                                 navController.navigate(
                                                     NavigationDestination.Chat.name
                                                 ) {
-                                                    popUpTo(NavigationDestination.Landing.name) {
+                                                    popUpTo(
+                                                        NavigationDestination.Landing.name
+                                                    ) {
                                                         inclusive = true
                                                     }
                                                     launchSingleTop = true
@@ -343,28 +361,38 @@ fun App(
                                             onExperienceChange = viewModel::changeExperience,
                                             showExperienceSwitcher = showExperienceSwitcher,
                                             onNavigateToBook = {
-                                                navController.navigate(NavigationDestination.Book.name) {
+                                                navController.navigate(
+                                                    NavigationDestination.Book.name
+                                                ) {
                                                     popUpTo(navController.graph.startDestinationId)
                                                     launchSingleTop = true
                                                 }
                                             },
                                             onNavigateToBookmarks = {
-                                                navController.navigate(NavigationDestination.Bookmarks.name) {
+                                                navController.navigate(
+                                                    NavigationDestination.Bookmarks.name
+                                                ) {
                                                     launchSingleTop = true
                                                 }
                                             },
                                             onNavigateToAbout = {
-                                                navController.navigate(NavigationDestination.About.name) {
+                                                navController.navigate(
+                                                    NavigationDestination.About.name
+                                                ) {
                                                     launchSingleTop = true
                                                 }
                                             },
                                             onNavigateToPrivacyPolicy = {
-                                                navController.navigate(NavigationDestination.PrivacyPolicy.name) {
+                                                navController.navigate(
+                                                    NavigationDestination.PrivacyPolicy.name
+                                                ) {
                                                     launchSingleTop = true
                                                 }
                                             },
                                             onNavigateToSupport = {
-                                                navController.navigate(NavigationDestination.Support.name) {
+                                                navController.navigate(
+                                                    NavigationDestination.Support.name
+                                                ) {
                                                     launchSingleTop = true
                                                 }
                                             },
@@ -404,28 +432,38 @@ fun App(
                                                 onExperienceChange = viewModel::changeExperience,
                                                 showExperienceSwitcher = showExperienceSwitcher,
                                                 onNavigateToBook = {
-                                                    navController.navigate(NavigationDestination.Book.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Book.name
+                                                    ) {
                                                         popUpTo(navController.graph.startDestinationId)
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToBookmarks = {
-                                                    navController.navigate(NavigationDestination.Bookmarks.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Bookmarks.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToAbout = {
-                                                    navController.navigate(NavigationDestination.About.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.About.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToPrivacyPolicy = {
-                                                    navController.navigate(NavigationDestination.PrivacyPolicy.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.PrivacyPolicy.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToSupport = {
-                                                    navController.navigate(NavigationDestination.Support.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Support.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
@@ -438,28 +476,38 @@ fun App(
                                                 onExperienceChange = viewModel::changeExperience,
                                                 showExperienceSwitcher = showExperienceSwitcher,
                                                 onNavigateToBook = {
-                                                    navController.navigate(NavigationDestination.Book.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Book.name
+                                                    ) {
                                                         popUpTo(navController.graph.startDestinationId)
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToBookmarks = {
-                                                    navController.navigate(NavigationDestination.Bookmarks.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Bookmarks.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToAbout = {
-                                                    navController.navigate(NavigationDestination.About.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.About.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToPrivacyPolicy = {
-                                                    navController.navigate(NavigationDestination.PrivacyPolicy.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.PrivacyPolicy.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },
                                                 onNavigateToSupport = {
-                                                    navController.navigate(NavigationDestination.Support.name) {
+                                                    navController.navigate(
+                                                        NavigationDestination.Support.name
+                                                    ) {
                                                         launchSingleTop = true
                                                     }
                                                 },

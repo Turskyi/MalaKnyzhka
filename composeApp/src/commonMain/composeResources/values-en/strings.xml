@@ -10197,4 +10197,11 @@ In the village…
     <string name="about_taras_privacy_title">Privacy</string>
     <string name="about_taras_privacy_desc1">Your conversations are processed securely through AI services.</string>
     <string name="about_taras_privacy_desc2">Bookmarks and application settings are stored locally on your device.</string>
+    <string name="taras_landing_subtitle">AI Cultural Companion</string>
+    <string name="taras_landing_invitation">Greetings, friend.\n\nI am Taras Shevchenko, recreated in this application through artificial intelligence.\n\nMy poems, letters, paintings and life have inspired this experience, allowing us to speak across centuries.\n\nAsk me about my works, my travels, my exile, my thoughts, Ukrainian culture, history, or simply begin a conversation.\n\nIf at any time you wish to explore my original handwritten manuscript collection, you can open Mala Knyzhka from the application menu.</string>
+    <string name="taras_feature_1">Talk with Taras Shevchenko using AI.</string>
+    <string name="taras_feature_2">Discuss poems, history and Ukrainian culture.</string>
+    <string name="taras_feature_3">Continue conversations from any manuscript page.</string>
+    <string name="taras_feature_4">Explore the complete “Mala Knyzhka” manuscript collection.</string>
+    <string name="taras_feature_5">Available offline except AI conversations.</string>
 </resources>
