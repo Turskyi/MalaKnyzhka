@@ -47,23 +47,28 @@ import malaknyzhka.composeapp.generated.resources.app_allows
 import malaknyzhka.composeapp.generated.resources.app_overview
 import malaknyzhka.composeapp.generated.resources.arrow_back
 import malaknyzhka.composeapp.generated.resources.back_button_description
-import malaknyzhka.composeapp.generated.resources.can_change_font_size
 import malaknyzhka.composeapp.generated.resources.chat_option
-import malaknyzhka.composeapp.generated.resources.data_storage_info
 import malaknyzhka.composeapp.generated.resources.developer_support_page
 import malaknyzhka.composeapp.generated.resources.email_option
 import malaknyzhka.composeapp.generated.resources.faq
-import malaknyzhka.composeapp.generated.resources.has_bookmarks
+import malaknyzhka.composeapp.generated.resources.faq_conversation_storage_a
+import malaknyzhka.composeapp.generated.resources.faq_conversation_storage_q
+import malaknyzhka.composeapp.generated.resources.faq_customization_a
+import malaknyzhka.composeapp.generated.resources.faq_customization_q
+import malaknyzhka.composeapp.generated.resources.faq_data_storage_a
+import malaknyzhka.composeapp.generated.resources.faq_data_storage_q
+import malaknyzhka.composeapp.generated.resources.faq_internet_a
+import malaknyzhka.composeapp.generated.resources.faq_internet_q
 import malaknyzhka.composeapp.generated.resources.how_to_use
+import malaknyzhka.composeapp.generated.resources.how_to_use_ai_chat
+import malaknyzhka.composeapp.generated.resources.how_to_use_manuscripts
+import malaknyzhka.composeapp.generated.resources.how_to_use_page_saving
+import malaknyzhka.composeapp.generated.resources.how_to_use_share_copy
 import malaknyzhka.composeapp.generated.resources.if_you_have_questions
-import malaknyzhka.composeapp.generated.resources.is_maintained
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
-import malaknyzhka.composeapp.generated.resources.page_saving
-import malaknyzhka.composeapp.generated.resources.size_changing
 import malaknyzhka.composeapp.generated.resources.support
 import malaknyzhka.composeapp.generated.resources.thanks_for_using
-import malaknyzhka.composeapp.generated.resources.turn_pages
 import malaknyzhka.composeapp.generated.resources.we_appreciate
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -160,9 +165,10 @@ fun SupportPage(onBack: () -> Unit) {
                 modifier = Modifier.padding(bottom = 4.dp)
             )
 
-            Text(stringResource(Res.string.turn_pages))
-            Text(stringResource(Res.string.size_changing))
-            Text(stringResource(Res.string.page_saving))
+            Text(stringResource(Res.string.how_to_use_ai_chat))
+            Text(stringResource(Res.string.how_to_use_manuscripts))
+            Text(stringResource(Res.string.how_to_use_page_saving))
+            Text(stringResource(Res.string.how_to_use_share_copy))
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -172,10 +178,33 @@ fun SupportPage(onBack: () -> Unit) {
                 modifier = Modifier.padding(bottom = 4.dp)
             )
 
-            Text(stringResource(Res.string.can_change_font_size))
-            Text(stringResource(Res.string.has_bookmarks))
-            Text(stringResource(Res.string.data_storage_info))
-            Text(stringResource(Res.string.is_maintained))
+            Text(
+                text = stringResource(Res.string.faq_conversation_storage_q),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Text(stringResource(Res.string.faq_conversation_storage_a))
+
+            Text(
+                text = stringResource(Res.string.faq_data_storage_q),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Text(stringResource(Res.string.faq_data_storage_a))
+
+            Text(
+                text = stringResource(Res.string.faq_customization_q),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Text(stringResource(Res.string.faq_customization_a))
+
+            Text(
+                text = stringResource(Res.string.faq_internet_q),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Text(stringResource(Res.string.faq_internet_a))
 
             Spacer(modifier = Modifier.height(16.dp))
 
