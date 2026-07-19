@@ -48,6 +48,7 @@ fun LanguageSwitcher(
                 label = stringResource(AppLang.Ukraine.stringRes),
                 icon = AppLang.Ukraine.imageRes,
                 selected = currentLanguage == AppLang.Ukraine,
+                unselectedContentColor = Color.White,
                 onClick = { onLanguageChange(AppLang.Ukraine) },
             )
             Spacer(Modifier.width(8.dp))
@@ -55,6 +56,7 @@ fun LanguageSwitcher(
                 label = stringResource(AppLang.English.stringRes),
                 icon = AppLang.English.imageRes,
                 selected = currentLanguage == AppLang.English,
+                unselectedContentColor = Color.White,
                 onClick = { onLanguageChange(AppLang.English) },
             )
         }

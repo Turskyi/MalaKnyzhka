@@ -7,21 +7,19 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
@@ -86,13 +84,9 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                         }
                     } else {
                         IconButton(onClick = onBack) {
-                            Image(
+                            Icon(
                                 painter = painterResource(Res.drawable.arrow_back),
                                 contentDescription = stringResource(Res.string.back_button_description),
-                                colorFilter = ColorFilter.tint(
-                                    MaterialTheme.colors.onPrimary,
-                                ),
-                                modifier = Modifier.size(24.dp),
                             )
                         }
                     }

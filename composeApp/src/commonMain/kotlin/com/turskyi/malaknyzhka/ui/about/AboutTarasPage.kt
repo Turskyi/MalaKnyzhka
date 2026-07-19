@@ -130,7 +130,6 @@ fun AboutTarasPage(
                             Icon(
                                 painter = painterResource(Res.drawable.menu),
                                 contentDescription = stringResource(Res.string.menu),
-                                tint = MaterialTheme.colors.onPrimary
                             )
                         }
                     }
