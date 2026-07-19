@@ -127,31 +127,42 @@ fun DrawerPanel(
             ) {
                 Spacer(Modifier.height(24.dp))
 
-                // 🤖 Chat with Taras.
+                if (currentExperience == Experience.TARAS) {
+                    // 🤖 Chat with Taras.
+                    DrawerButton(
+                        text = stringResource(Res.string.chat_with_taras),
+                        onClick = {
+                            onClose()
+                            onNavigateToChat()
+                        },
+                    )
+                }
+
+                // 📖 Mala Knyzhka.
                 DrawerButton(
-                    text = stringResource(Res.string.chat_with_taras),
+                    text = stringResource(Res.string.mala_knyzhka),
                     onClick = {
                         onClose()
-                        onNavigateToChat()
+                        onNavigateToBook()
                     },
                 )
 
-                if (currentExperience == Experience.TARAS) {
-                    // 📖 Mala Knyzhka.
-                    DrawerButton(
-                        text = stringResource(Res.string.mala_knyzhka),
-                        onClick = {
-                            onClose()
-                            onNavigateToBook()
-                        },
-                    )
-                } else {
+                if (currentExperience == Experience.BOOK) {
                     // 🔖 Bookmarks.
                     DrawerButton(
                         text = stringResource(Res.string.bookmarks),
                         onClick = {
                             onClose()
                             onNavigateToBookmarks()
+                        },
+                    )
+
+                    // 🤖 Chat with Taras.
+                    DrawerButton(
+                        text = stringResource(Res.string.chat_with_taras),
+                        onClick = {
+                            onClose()
+                            onNavigateToChat()
                         },
                     )
                 }

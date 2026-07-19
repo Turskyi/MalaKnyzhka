@@ -32,7 +32,7 @@ fun ThemeSwitcher(
     Column(
         modifier = Modifier.background(
             // Semi-transparent black background.
-            color = Color.Black.copy(alpha = 0.6f),
+            color = Color.Black.copy(alpha = 0.8f),
             shape = RoundedCornerShape(16.dp),
         ).padding(horizontal = 12.dp, vertical = 4.dp),
     ) {

@@ -102,7 +102,7 @@ fun AboutTarasPage(
                 title = {
                     Text(
                         text = stringResource(Res.string.about_taras_title),
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                     )
                 },

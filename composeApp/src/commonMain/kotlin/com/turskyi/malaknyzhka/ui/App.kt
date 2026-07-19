@@ -100,11 +100,13 @@ fun App(
 
     val currentExperience: Experience by viewModel.experience.collectAsState()
 
+    val isOnboardingComplete: Boolean by viewModel.isOnboardingComplete.collectAsState()
+
     val showExperienceSwitcher: Boolean = remember(platform) {
         platform.type == PlatformType.ANDROID || platform.type == PlatformType.WEB
     }
 
-    val startDestination: String = remember(platform, currentExperience) {
+    val startDestination: String = remember(platform, currentExperience, isOnboardingComplete) {
         val initial = platform.initialRoute?.removePrefix("/")
         val matchedDestination = NavigationDestination.entries.firstOrNull {
             it.name.equals(
@@ -118,9 +120,7 @@ fun App(
         } else if (initial?.startsWith("book/") == true) {
             // Special handling for book deep links
             NavigationDestination.Book.name
-        } else if (platform.type == PlatformType.WEB) {
-            NavigationDestination.Landing.name
-        } else if (userSettingsRepository.isOnboardingComplete()) {
+        } else if (isOnboardingComplete) {
             if (currentExperience == Experience.TARAS) {
                 NavigationDestination.Chat.name
             } else {
@@ -144,12 +144,12 @@ fun App(
         }
     }
 
-    val onBack: () -> Unit = remember(navController, platform) {
+    val onBack: () -> Unit = remember(navController, platform, isOnboardingComplete, currentExperience) {
         {
             if (navController.previousBackStackEntry != null) {
                 navController.popBackStack()
             } else {
-                val home = if (platform.type == PlatformType.WEB) {
+                val home = if (platform.type == PlatformType.WEB && !isOnboardingComplete) {
                     NavigationDestination.Landing.name
                 } else {
                     if (currentExperience == Experience.TARAS) {

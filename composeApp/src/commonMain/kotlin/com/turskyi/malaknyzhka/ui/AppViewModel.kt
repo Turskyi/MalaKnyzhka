@@ -41,6 +41,7 @@ class AppViewModel(
 
     private val _isOnboardingComplete: MutableStateFlow<Boolean> =
         MutableStateFlow(userSettingsRepository.isOnboardingComplete())
+    val isOnboardingComplete: StateFlow<Boolean> = _isOnboardingComplete.asStateFlow()
 
     init {
         viewModelScope.launch {
