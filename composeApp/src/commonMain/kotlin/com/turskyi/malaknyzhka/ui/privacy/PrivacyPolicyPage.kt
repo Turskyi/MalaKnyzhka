@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -60,7 +61,6 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                 title = {
                     Text(
                         text = stringResource(Res.string.privacy_policy),
-                        modifier = Modifier.padding(horizontal = 8.dp),
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -87,6 +87,7 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                             Icon(
                                 painter = painterResource(Res.drawable.arrow_back),
                                 contentDescription = stringResource(Res.string.back_button_description),
+                                modifier = Modifier.size(24.dp),
                             )
                         }
                     }

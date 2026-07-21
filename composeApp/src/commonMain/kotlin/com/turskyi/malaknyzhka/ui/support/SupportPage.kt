@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -98,7 +99,6 @@ fun SupportPage(onBack: () -> Unit) {
                 title = {
                     Text(
                         text = stringResource(Res.string.support),
-                        modifier = Modifier.padding(horizontal = 8.dp),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -125,6 +125,7 @@ fun SupportPage(onBack: () -> Unit) {
                             Icon(
                                 painter = painterResource(Res.drawable.arrow_back),
                                 contentDescription = stringResource(Res.string.back_button_description),
+                                modifier = Modifier.size(24.dp),
                             )
                         }
                     }
