@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Мала Книжка ✦ Тарас Шевченко</string>
+    <string name="app_name">Тарас Шевченко ✦</string>
     <string name="language">Мова</string>
     <string name="book">«Мала книжка» Т. Г. Шевченка, 1846 – 1850 рр.</string>
     <string name="en">Англійська</string>
@@ -13,7 +13,7 @@
     <string name="support">Підтримка</string>
     <string name="about_app">Про застосунок</string>
     <string name="about_app_little_book">
-Про застосунок «Мала Книжка ✦ Тарас Шевченко»
+Про застосунок «Тарас Шевченко ✦»
     </string>
 
     <string name="sources_label">Джерела:</string>
@@ -52,7 +52,7 @@
 
     <string name="app_overview">Огляд додатку</string>
     <string name="portrait_description">Портрет Тараса Шевченка</string>
-    <string name="title">Мала Книжка</string>
+    <string name="title">Тарас Шевченко ✦</string>
     <string name="search_placeholder">Пошук…</string>
     <string name="no_results">Нічого не знайдено</string>
     <string name="search_description">Пошук</string>
@@ -68,21 +68,38 @@
 
     <string name="back_button_description">Назад</string>
 
-    <string name="can_change_font_size">- Чи можна змінювати розмір друкованого тексту? Ні, наразі він фіксований.</string>
-    <string name="turn_pages">- Перегортання сторінок за допомогою кнопок "&lt;" і "&gt;".</string>
-    <string name="size_changing">- Зміна розміру доступна лише для рукописних сторінок.</string>
-    <string name="page_saving">- Додаток автоматично запам’ятовує останню переглянуту сторінку.</string>
-    <string name="is_maintained">- Чи будуть оновлення? Так, плануються покращення функціоналу.</string>
-    <string name="thanks_for_using">Дякуємо, що використовуєте додаток "Мала Книжка ✦ Тарас Шевченко"!</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="manuscripts">Манускрипти</string>
+    <string name="mala_knyzhka">Мала Книжка</string>
+    <string name="experience_book">Книжковий режим</string>
+    <string name="experience_taras">Режим Тараса Шевченка</string>
+    <string name="switch_experience">Змінити режим</string>
+    <string name="add_bookmark">Додати закладку</string>
+    <string name="remove_bookmark">Видалити закладку</string>
+    <string name="no_bookmarks">У вас ще немає закладок</string>
+
+    <string name="faq">Часті запитання</string>
+
+    <string name="app_allows">«Тарас Шевченко ✦» поєднує спілкування зі штучним інтелектом та доступ до оригінальних рукописів Тараса Шевченка, що дозволяє користувачам досліджувати його життя, твори, мову та літературну спадщину в інтерактивний спосіб.</string>
+    <string name="how_to_use_ai_chat">• Почніть розмову з ШІ-представленням Тараса Шевченка.</string>
+    <string name="how_to_use_manuscripts">• Відкрийте «Малу Книжку», щоб переглянути оригінальний рукопис разом із його транскрипцією.</string>
+    <string name="how_to_use_page_saving">• Читач рукописів запам’ятовує останню відкриту сторінку.</string>
+    <string name="how_to_use_share_copy">• Використовуйте кнопки «Поділитися» або «Копіювати» на екрані розмови, якщо хочете зберегти цікавий діалог.</string>
+    <string name="faq_conversation_storage_q">Чи зберігається моя розмова?</string>
+    <string name="faq_conversation_storage_a">Ні. Розмови навмисно не зберігаються локально або віддалено. Якщо ви хочете зберегти розмову, скористайтеся кнопкою «Копіювати» або «Поділитися», доступною на екрані чату.</string>
+    <string name="faq_data_storage_q">Де зберігаються мої дані?</string>
+    <string name="faq_data_storage_a">Налаштування застосунку та закладки рукописів зберігаються локально на вашому пристрої. Історія розмов не зберігається.</string>
+    <string name="faq_customization_q">Чи можу я налаштувати відповіді ШІ?</string>
+    <string name="faq_customization_a">Ні. ШІ розроблений для представлення освітньої інтерпретації Тараса Шевченка і відповідає згідно зі своєю заздалегідь визначеною роллю.</string>
+    <string name="faq_internet_q">Чи потрібне підключення до Інтернету?</string>
+    <string name="faq_internet_a">Для спілкування з ШІ потрібне підключення до Інтернету. Читач рукописів залишається доступним офлайн.</string>
+    <string name="data_storage_info">Налаштування застосунку та закладки рукописів зберігаються локально на вашому пристрої. Історія розмов не зберігається.</string>
+    <string name="thanks_for_using">Дякуємо, що використовуєте додаток "Тарас Шевченко ✦"!</string>
     <string name="email_option">• Електронна адреса: </string>
     <string name="chat_option">• Чат для питань та пропозицій в телеграм: </string>
     <string name="developer_support_page">• Форма підтримки від розробника: </string>
     <string name="we_appreciate">Ми цінуємо ваші відгуки та працюємо над покращенням застосунку!</string>
     <string name="if_you_have_questions">Якщо у вас виникли запитання, пропозиції або ви зіткнулися з проблемою, ви можете звернутися за наступними каналами:</string>
-    <string name="has_bookmarks">- Чи можна додавати власні закладки? Так, за допомогою кнопки закладок. Вони зберігаються локально на вашому пристрої.</string>
-    <string name="data_storage_info">- Де зберігаються мої дані? Усі налаштування та закладки зберігаються лише локально. Вони будуть видалені, якщо ви видалите додаток або очистите його кеш.</string>
-
-    <string name="faq">Часті запитання</string>
 
     <string name="cover_description">Фонова обкладинка меню</string>
 
@@ -97,10 +114,58 @@
     <string name="badge_google_play_description">Значок Google Play</string>
     <string name="badge_macos_description">Значок MacOS</string>
     <string name="badge_test_flight_description">Значок TestFlight</string>
+    <string name="theme_system">Системна</string>
+    <string name="theme_light">Світла</string>
+    <string name="theme_dark">Темна</string>
+    <string name="tts_play">Слухати</string>
+    <string name="tts_stop">Зупинити</string>
 
-    <string name="app_allows">Додаток "Мала Книжка ✦ Тарас Шевченко" дозволяє переглядати оцифровану версію рукопису та його друкований текст.</string>
+    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
+    <string name="minimize_description">Згорнути</string>
+    <string name="full_screen_description">На весь екран</string>
+    <string name="close_description">Закрити</string>
+    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
+    <string name="ask_placeholder">Запитайте…</string>
+    <string name="send_description">Надіслати</string>
+    <string name="user_name">Ви</string>
+    <string name="taras_shevchenko_name">Тарас Шевченко</string>
+    <string name="share_description">Поділитися</string>
+    <string name="copy_description">Копіювати в буфер</string>
+    <string name="share_page">Сторінка %1$d</string>
+    <string name="share_from">Надіслано з Малої Книжки.</string>
+    <string name="share_ai_title">Розмова з Тарасом Шевченком</string>
+    <string name="ukrainian_label">Українська:</string>
+    <string name="english_label">Англійська:</string>
+    <string name="copied_to_clipboard">Скопійовано в буфер</string>
+    <string name="about_taras_title">Про застосунок «Тарас Шевченко ✦»</string>
+    <string name="about_taras_intro_part1">«Тарас Шевченко ✦» - це інтерактивний культурно-освітній застосунок, який дозволяє досліджувати життя, творчість та історичний контекст Тараса Шевченка через живий діалог.</string>
+    <string name="about_taras_intro_part2">За допомогою штучного інтелекту застосунок відтворює розмову, натхненну творчістю, листами, біографією та епохою поета. Це не історична реконструкція особистості, а сучасний спосіб глибше познайомитися з його спадщиною.</string>
+    <string name="about_taras_ask_title">Ставте запитання природною мовою</string>
+    <string name="about_taras_ask_desc">Замість пошуку інформації в численних джерелах ви можете просто запитати.</string>
+    <string name="about_taras_ask_examples_title">Наприклад:</string>
+    <string name="about_taras_ask_example1">• Що надихнуло вас написати цей вірш?</string>
+    <string name="about_taras_ask_example2">• Яким було життя на засланні?</string>
+    <string name="about_taras_ask_example3">• Чому тема свободи займає таке важливе місце у вашій творчості?</string>
+    <string name="about_taras_ask_example4">• Що б ви порадили сучасній молоді?</string>
+    <string name="about_taras_ask_footer">Штучний інтелект відповідає у стилі Тараса Шевченка, спираючись на його відомі твори, біографію та історичний контекст.</string>
+    <string name="about_taras_manuscripts_title">Досліджуйте «Малу Книжку»</string>
+    <string name="about_taras_manuscripts_desc1">До застосунку також входить повна цифрова версія рукописної збірки «Мала Книжка».</string>
+    <string name="about_taras_manuscripts_desc2">Під час читання будь-якої сторінки можна одразу перейти до розмови з Тарасом Шевченком. Поточна сторінка та її текст автоматично додаються до контексту запитання, що дозволяє обговорювати конкретний твір.</string>
+    <string name="about_taras_education_title">Для навчання та дослідження</string>
+    <string name="about_taras_education_desc1">Застосунок створений для студентів, викладачів, дослідників і всіх, хто цікавиться українською літературою, мовою, історією та культурою.</string>
+    <string name="about_taras_education_desc2">Штучний інтелект не замінює історичних джерел, а відкриває новий спосіб взаємодії з ними.</string>
+    <string name="about_taras_privacy_title">Конфіденційність</string>
+    <string name="about_taras_privacy_desc1">Розмови обробляються через захищені AI-сервіси.</string>
+    <string name="about_taras_privacy_desc2">Закладки та налаштування застосунку зберігаються локально на вашому пристрої.</string>
+    <string name="taras_landing_subtitle">Діалог із Шевченком</string>
+    <string name="taras_landing_invitation">Вітаю тебе, друже.\n\nЯ - Тарас Шевченко, відтворений у цьому застосунку за допомогою штучного інтелекту.\n\nМоя творчість, листи, картини та історія життя стали основою цієї розмови, щоб ми могли зустрітися крізь століття.\n\nЗапитуй мене про мої твори, Україну, історію, заслання або просто розпочни бесіду.\n\nЯкщо захочеш дослідити мою рукописну збірку «Мала Книжка», вона завжди доступна з меню застонку.</string>
+    <string name="taras_feature_1">Спілкуйся з Тарасом Шевченком за допомогою ШІ.</string>
+    <string name="taras_feature_2">Обговорюй вірші, історію та українську культуру.</string>
+    <string name="taras_feature_3">Продовжуй розмови з будь-якої сторінки рукопису.</string>
+    <string name="taras_feature_4">Досліджуй повну збірку рукописів «Мала книжка».</string>
+    <string name="taras_feature_5">Доступно офлайн, крім розмов з ШІ.</string>
     <string name="privacy"><![CDATA[
-Ця політика конфіденційності застосовується до додатка “Мала Книжка ✦ Тарас Шевченко” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
+Ця політика конфіденційності застосовується до додатка “Тарас Шевченко ✦” (надалі “Додаток”) для мобільних пристроїв, який створив Дмитро Турський (надалі “Постачальник послуг”) як безкоштовний сервіс. Цей сервіс надається для використання “як є”.
 
 Збір та використання інформації
 
@@ -8345,27 +8410,4 @@
 Давно се діялось колись.
 У неділю на селі,
     </string>
-    <string name="theme_system">Системна</string>
-    <string name="theme_light">Світла</string>
-    <string name="theme_dark">Темна</string>
-    <string name="tts_play">Слухати</string>
-    <string name="tts_stop">Зупинити</string>
-
-    <string name="chat_with_taras">Чат з Тарасом Шевченком</string>
-    <string name="minimize_description">Згорнути</string>
-    <string name="full_screen_description">На весь екран</string>
-    <string name="close_description">Закрити</string>
-    <string name="discussing_page">Ви обговорюєте сторінку %1$d</string>
-    <string name="ask_placeholder">Запитайте…</string>
-    <string name="send_description">Надіслати</string>
-    <string name="user_name">Ви</string>
-    <string name="taras_shevchenko_name">Тарас Шевченко</string>
-    <string name="share_description">Поділитися</string>
-    <string name="copy_description">Копіювати в буфер</string>
-    <string name="share_page">Сторінка %1$d</string>
-    <string name="share_from">Надіслано з Малої Книжки.</string>
-    <string name="share_ai_title">Розмова з Тарасом Шевченком</string>
-    <string name="ukrainian_label">Українська:</string>
-    <string name="english_label">Англійська:</string>
-    <string name="copied_to_clipboard">Скопійовано в буфер</string>
 </resources>

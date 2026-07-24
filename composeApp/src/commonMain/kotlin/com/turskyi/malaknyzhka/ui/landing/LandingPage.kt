@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.URL_TAG
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color
@@ -78,6 +79,13 @@ import malaknyzhka.composeapp.generated.resources.shevchenko_portrait
 import malaknyzhka.composeapp.generated.resources.sources_label
 import malaknyzhka.composeapp.generated.resources.subtitle
 import malaknyzhka.composeapp.generated.resources.support
+import malaknyzhka.composeapp.generated.resources.taras_feature_1
+import malaknyzhka.composeapp.generated.resources.taras_feature_2
+import malaknyzhka.composeapp.generated.resources.taras_feature_3
+import malaknyzhka.composeapp.generated.resources.taras_feature_4
+import malaknyzhka.composeapp.generated.resources.taras_feature_5
+import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
+import malaknyzhka.composeapp.generated.resources.taras_landing_subtitle
 import malaknyzhka.composeapp.generated.resources.test_flight_badge
 import malaknyzhka.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.DrawableResource
@@ -87,6 +95,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun LandingPage(
     platform: Platform,
+    currentExperience: Experience,
     onNavigateToBook: () -> Unit,
     onNavigateToChat: () -> Unit,
     onNavigateToPrivacyPolicy: () -> Unit,
@@ -151,7 +160,13 @@ fun LandingPage(
                             )
                         )
                         Text(
-                            text = stringResource(Res.string.subtitle),
+                            text = stringResource(
+                                if (currentExperience == Experience.TARAS) {
+                                    Res.string.taras_landing_subtitle
+                                } else {
+                                    Res.string.subtitle
+                                }
+                            ),
                             style = MaterialTheme.typography.subtitle1,
                             color = MaterialTheme.colors.onSurface.copy(
                                 alpha = 0.7f,
@@ -159,7 +174,13 @@ fun LandingPage(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         Text(
-                            text = stringResource(Res.string.landing_invitation),
+                            text = stringResource(
+                                if (currentExperience == Experience.TARAS) {
+                                    Res.string.taras_landing_invitation
+                                } else {
+                                    Res.string.landing_invitation
+                                }
+                            ),
                             style = MaterialTheme.typography.body1,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.padding(horizontal = 32.dp)
@@ -176,16 +197,18 @@ fun LandingPage(
                                     )
                                 )
                             }
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Button(
-                                onClick = onNavigateToBook,
-                                shape = RoundedCornerShape(8.dp)
-                            ) {
-                                Text(
-                                    text = "📖 " + stringResource(
-                                        Res.string.read_button_label,
+                            if (currentExperience == Experience.BOOK) {
+                                Spacer(modifier = Modifier.width(16.dp))
+                                Button(
+                                    onClick = onNavigateToBook,
+                                    shape = RoundedCornerShape(8.dp)
+                                ) {
+                                    Text(
+                                        text = "📖 " + stringResource(
+                                            Res.string.read_button_label,
+                                        )
                                     )
-                                )
+                                }
                             }
                         }
                         if (isWeb) {
@@ -200,17 +223,28 @@ fun LandingPage(
                                 modifier = Modifier.padding(horizontal = 16.dp),
                                 horizontalAlignment = Alignment.Start,
                             ) {
-                                listOf(
-                                    stringResource(
-                                        Res.string.feature_manuscript_with_printed,
-                                    ),
-                                    stringResource(
-                                        Res.string.feature_compare_original_modern,
-                                    ),
-                                    stringResource(
-                                        Res.string.feature_autosave_last_page,
-                                    ),
-                                ).forEach { feature: String ->
+                                val features = if (currentExperience == Experience.TARAS) {
+                                    listOf(
+                                        stringResource(Res.string.taras_feature_1),
+                                        stringResource(Res.string.taras_feature_2),
+                                        stringResource(Res.string.taras_feature_3),
+                                        stringResource(Res.string.taras_feature_4),
+                                        stringResource(Res.string.taras_feature_5),
+                                    )
+                                } else {
+                                    listOf(
+                                        stringResource(
+                                            Res.string.feature_manuscript_with_printed,
+                                        ),
+                                        stringResource(
+                                            Res.string.feature_compare_original_modern,
+                                        ),
+                                        stringResource(
+                                            Res.string.feature_autosave_last_page,
+                                        ),
+                                    )
+                                }
+                                features.forEach { feature: String ->
                                     Text(
                                         text = feature,
                                         style = MaterialTheme.typography.body2,

@@ -64,7 +64,7 @@ YOUR_TEAM_ID.com.turskyi.malaknyzhka
 Compose Multiplatform might not always embed the profile correctly for the App
 Store's subcomponent check.
 **Action**: Manually copy the profile to
-`Мала Книжка ✦ Тарас Шевченко.app/Contents/embedded.provisionprofile` and sign
+`Тарас Шевченко ✦.app/Contents/embedded.provisionprofile` and sign
 it before signing the main bundle.
 
 ### 6. JVM Hardened Runtime (MANDATORY FOR LAUNCH)
@@ -118,7 +118,7 @@ xattr -r -d com.apple.quarantine .
 ./gradlew :composeApp:packageReleasePkg || true
 
 # 5. Manual Fixes & Signing
-APP_NAME="Мала Книжка ✦ Тарас Шевченко"
+APP_NAME="Тарас Шевченко ✦"
 APP_BUNDLE="composeApp/build/compose/binaries/main-release/app/${APP_NAME}.app"
 IDENTITY="3rd Party Mac Developer Application: DMYTRO TURSKYI (26QZ8BPZFL)"
 IDENTITY_INSTALLER="3rd Party Mac Developer Installer: DMYTRO TURSKYI (26QZ8BPZFL)"
@@ -133,7 +133,7 @@ rm -f "${APP_BUNDLE}/Contents/app.provisionprofile"
 /usr/libexec/PlistBuddy -c "Set :LSMinimumSystemVersion 12.0" "${APP_BUNDLE}/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" "${APP_BUNDLE}/Contents/Info.plist" || true
 /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" "${APP_BUNDLE}/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :LSApplicationCategoryType public.app-category.books" "${APP_BUNDLE}/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :LSApplicationCategoryType public.app-category.education" "${APP_BUNDLE}/Contents/Info.plist"
 
 # Manual Embed Provisioning Profile
 cp "${PROVISIONING_PROFILE}" "${APP_BUNDLE}/Contents/embedded.provisionprofile"

@@ -1,4 +1,4 @@
-package com.turskyi.malaknyzhka.ui.theme
+package com.turskyi.malaknyzhka.ui.drawer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -17,51 +17,55 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.turskyi.malaknyzhka.models.ThemeMode
+import com.turskyi.malaknyzhka.models.Experience
 import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources.theme_dark
-import malaknyzhka.composeapp.generated.resources.theme_light
-import malaknyzhka.composeapp.generated.resources.theme_system
+import malaknyzhka.composeapp.generated.resources.experience_book
+import malaknyzhka.composeapp.generated.resources.experience_taras
+import malaknyzhka.composeapp.generated.resources.switch_experience
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ThemeSwitcher(
-    currentThemeMode: ThemeMode,
-    onThemeChange: (ThemeMode) -> Unit,
+fun ExperienceSwitcher(
+    currentExperience: Experience,
+    onExperienceChange: (Experience) -> Unit
 ) {
     Column(
-        modifier = Modifier.background(
-            // Semi-transparent black background.
-            color = Color.Black.copy(alpha = 0.8f),
-            shape = RoundedCornerShape(16.dp),
-        ).padding(horizontal = 12.dp, vertical = 4.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                // Semi-transparent black background.
+                color = Color.Black.copy(alpha = 0.8f),
+                shape = RoundedCornerShape(16.dp),
+            )
+            .padding(12.dp)
     ) {
-        ThemeOption(
-            text = stringResource(Res.string.theme_system),
-            selected = currentThemeMode == ThemeMode.SYSTEM,
-            onClick = { onThemeChange(ThemeMode.SYSTEM) }
+        Text(
+            text = stringResource(Res.string.switch_experience),
+            style = MaterialTheme.typography.caption,
+            color = Color.White.copy(alpha = 0.7f),
+            modifier = Modifier.padding(bottom = 8.dp, start = 4.dp)
         )
-        ThemeOption(
-            text = stringResource(Res.string.theme_light),
-            selected = currentThemeMode == ThemeMode.LIGHT,
-            onClick = { onThemeChange(ThemeMode.LIGHT) }
+        ExperienceOption(
+            text = stringResource(Res.string.experience_book),
+            selected = currentExperience == Experience.BOOK,
+            onClick = { onExperienceChange(Experience.BOOK) }
         )
-        ThemeOption(
-            text = stringResource(Res.string.theme_dark),
-            selected = currentThemeMode == ThemeMode.DARK,
-            onClick = { onThemeChange(ThemeMode.DARK) }
+        ExperienceOption(
+            text = stringResource(Res.string.experience_taras),
+            selected = currentExperience == Experience.TARAS,
+            onClick = { onExperienceChange(Experience.TARAS) }
         )
     }
 }
 
 @Composable
-private fun ThemeOption(
+private fun ExperienceOption(
     text: String,
     selected: Boolean,
     onClick: () -> Unit,
 ) {
     Row(
-        Modifier
+        modifier = Modifier
             .fillMaxWidth()
             .selectable(
                 selected = selected,

@@ -26,17 +26,18 @@ fun LanguageChip(
     label: String,
     icon: DrawableResource?,
     selected: Boolean,
+    unselectedContentColor: Color = MaterialTheme.colors.onSurface,
     onClick: () -> Unit
 ) {
     val backgroundColor: Color = if (selected)
         MaterialTheme.colors.primary
     else
-        Color.LightGray
+        unselectedContentColor.copy(alpha = 0.12f)
 
     val textColor: Color = if (selected)
-        Color.White
+        MaterialTheme.colors.onPrimary
     else
-        Color.Black
+        unselectedContentColor
 
     Box(
         modifier = Modifier

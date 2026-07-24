@@ -1,7 +1,7 @@
 package com.turskyi.malaknyzhka.ai
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -63,8 +63,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.models.AppLang
+import com.turskyi.malaknyzhka.models.Experience
+import com.turskyi.malaknyzhka.models.ThemeMode
+import com.turskyi.malaknyzhka.ui.LocalAppLanguage
+import com.turskyi.malaknyzhka.ui.LocalChangeAppLanguage
+import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
 import com.turskyi.malaknyzhka.ui.LocalShareManager
-import com.turskyi.malaknyzhka.usecases.isOnWeb
+import com.turskyi.malaknyzhka.ui.LocalThemeMode
+import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
@@ -74,8 +81,7 @@ import malaknyzhka.composeapp.generated.resources.copied_to_clipboard
 import malaknyzhka.composeapp.generated.resources.copy_description
 import malaknyzhka.composeapp.generated.resources.discussing_page
 import malaknyzhka.composeapp.generated.resources.full_screen_description
-import malaknyzhka.composeapp.generated.resources.logo
-import malaknyzhka.composeapp.generated.resources.logo_description
+import malaknyzhka.composeapp.generated.resources.menu
 import malaknyzhka.composeapp.generated.resources.minimize_description
 import malaknyzhka.composeapp.generated.resources.send_description
 import malaknyzhka.composeapp.generated.resources.share_ai_title
@@ -90,6 +96,15 @@ import org.jetbrains.compose.resources.stringResource
 fun ChatScreen(
     viewModel: ChatViewModel,
     onBack: () -> Unit,
+    currentExperience: Experience = Experience.TARAS,
+    onExperienceChange: (Experience) -> Unit = {},
+    showExperienceSwitcher: Boolean = false,
+    onNavigateToBook: () -> Unit = {},
+    onNavigateToBookmarks: () -> Unit = {},
+    onNavigateToAbout: () -> Unit = {},
+    onNavigateToPrivacyPolicy: () -> Unit = {},
+    onNavigateToSupport: () -> Unit = {},
+    onNavigateToChat: () -> Unit = {},
 ) {
     DisposableEffect(viewModel) {
         viewModel.setExpanded(true)
@@ -105,6 +120,15 @@ fun ChatScreen(
     val copiedLabel = stringResource(Res.string.copied_to_clipboard)
     val shareManager = LocalShareManager.current
 
+    val appGlobalLanguage: AppLang = LocalAppLanguage.current
+    val changeAppGlobalLanguage: (AppLang) -> Unit =
+        LocalChangeAppLanguage.current
+
+    val currentThemeMode: ThemeMode = LocalThemeMode.current
+    val onThemeChange: (ThemeMode) -> Unit = LocalChangeThemeMode.current
+
+    var isDrawerOpen: Boolean by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             Surface(
@@ -119,35 +143,21 @@ fun ChatScreen(
                         )
                     ),
                     navigationIcon = {
-                        if (isOnWeb()) {
-                            IconButton(
-                                modifier = Modifier.padding(
-                                    horizontal = 12.dp,
-                                    vertical = 2.dp,
-                                ),
-                                onClick = onBack
-                            ) {
-                                Image(
-                                    painter = painterResource(
-                                        Res.drawable.logo,
-                                    ),
-                                    contentDescription = stringResource(
-                                        Res.string.logo_description,
-                                    ),
-                                    modifier = Modifier.clip(
-                                        RoundedCornerShape(
-                                            10.dp,
-                                        ),
-                                    )
-                                )
-                            }
-                        } else {
+                        if (viewModel.currentPageNumber != null) {
                             IconButton(onClick = onBack) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                     contentDescription = stringResource(
                                         Res.string.back_button_description,
                                     )
+                                )
+                            }
+                        } else {
+                            IconButton(onClick = { isDrawerOpen = true }) {
+                                Icon(
+                                    painter = painterResource(Res.drawable.menu),
+                                    contentDescription = stringResource(Res.string.menu),
+                                    tint = MaterialTheme.colors.primary
                                 )
                             }
                         }
@@ -186,14 +196,15 @@ fun ChatScreen(
                                 )
                             )
                         }
-                        IconButton(onClick = onBack) {
-                            Icon(
-                                imageVector = Icons.Default.FullscreenExit,
-                                contentDescription = stringResource(
-                                    Res.string.minimize_description,
+                        if (currentExperience == Experience.BOOK)
+                            IconButton(onClick = onBack) {
+                                Icon(
+                                    imageVector = Icons.Default.FullscreenExit,
+                                    contentDescription = stringResource(
+                                        Res.string.minimize_description,
+                                    )
                                 )
-                            )
-                        }
+                            }
                     },
                     // Colour handled by `Surface`
                     backgroundColor = Color.Transparent,
@@ -207,6 +218,34 @@ fun ChatScreen(
     { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             ChatView(viewModel = viewModel)
+
+            // 🪟 Semi-transparent overlay for drawer.
+            if (isDrawerOpen) {
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.3f))
+                        .clickable { isDrawerOpen = false }
+                )
+            }
+
+            DrawerPanel(
+                visible = isDrawerOpen,
+                onClose = { isDrawerOpen = false },
+                onNavigateToAbout = onNavigateToAbout,
+                onNavigateToPrivacyPolicy = onNavigateToPrivacyPolicy,
+                onNavigateToSupport = onNavigateToSupport,
+                onNavigateToBookmarks = onNavigateToBookmarks,
+                onNavigateToBook = onNavigateToBook,
+                onNavigateToChat = onNavigateToChat,
+                currentExperience = currentExperience,
+                onExperienceChange = onExperienceChange,
+                showExperienceSwitcher = showExperienceSwitcher,
+                currentLanguage = appGlobalLanguage,
+                onLanguageChange = changeAppGlobalLanguage,
+                currentThemeMode = currentThemeMode,
+                onThemeChange = onThemeChange,
+            )
         }
     }
 }

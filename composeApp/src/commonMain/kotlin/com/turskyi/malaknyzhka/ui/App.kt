@@ -1,5 +1,9 @@
 package com.turskyi.malaknyzhka.ui
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
@@ -31,6 +35,7 @@ import com.turskyi.malaknyzhka.infrastructure.TextToSpeech
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
 import com.turskyi.malaknyzhka.models.BookmarkRepository
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.LocalWindowInfo
 import com.turskyi.malaknyzhka.models.PlatformType
 import com.turskyi.malaknyzhka.models.SettingsBookRepository
@@ -43,6 +48,7 @@ import com.turskyi.malaknyzhka.models.rememberAppLocale
 import com.turskyi.malaknyzhka.router.NavigationDestination
 import com.turskyi.malaknyzhka.share.ShareManager
 import com.turskyi.malaknyzhka.ui.about.AboutPage
+import com.turskyi.malaknyzhka.ui.about.AboutTarasPage
 import com.turskyi.malaknyzhka.ui.book.BookmarksPage
 import com.turskyi.malaknyzhka.ui.book.Page
 import com.turskyi.malaknyzhka.ui.landing.LandingPage
@@ -52,6 +58,7 @@ import com.turskyi.malaknyzhka.usecases.toInternalPageIndex
 import kotlinx.coroutines.flow.collectLatest
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.landing_invitation
+import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -91,7 +98,15 @@ fun App(
         viewModel.changeThemeMode(newMode)
     }
 
-    val startDestination: String = remember(platform) {
+    val currentExperience: Experience by viewModel.experience.collectAsState()
+
+    val isOnboardingComplete: Boolean by viewModel.isOnboardingComplete.collectAsState()
+
+    val showExperienceSwitcher: Boolean = remember(platform) {
+        platform.type == PlatformType.ANDROID || platform.type == PlatformType.WEB
+    }
+
+    val startDestination: String = remember(platform, currentExperience, isOnboardingComplete) {
         val initial = platform.initialRoute?.removePrefix("/")
         val matchedDestination = NavigationDestination.entries.firstOrNull {
             it.name.equals(
@@ -105,10 +120,12 @@ fun App(
         } else if (initial?.startsWith("book/") == true) {
             // Special handling for book deep links
             NavigationDestination.Book.name
-        } else if (platform.type == PlatformType.WEB) {
-            NavigationDestination.Landing.name
-        } else if (userSettingsRepository.isOnboardingComplete()) {
-            NavigationDestination.Book.name
+        } else if (isOnboardingComplete) {
+            if (currentExperience == Experience.TARAS) {
+                NavigationDestination.Chat.name
+            } else {
+                NavigationDestination.Book.name
+            }
         } else {
             NavigationDestination.Landing.name
         }
@@ -127,15 +144,19 @@ fun App(
         }
     }
 
-    val onBack: () -> Unit = remember(navController, platform) {
+    val onBack: () -> Unit = remember(navController, platform, isOnboardingComplete, currentExperience) {
         {
             if (navController.previousBackStackEntry != null) {
                 navController.popBackStack()
             } else {
-                val home = if (platform.type == PlatformType.WEB) {
+                val home = if (platform.type == PlatformType.WEB && !isOnboardingComplete) {
                     NavigationDestination.Landing.name
                 } else {
-                    NavigationDestination.Book.name
+                    if (currentExperience == Experience.TARAS) {
+                        NavigationDestination.Chat.name
+                    } else {
+                        NavigationDestination.Book.name
+                    }
                 }
                 // Avoid navigating to the same destination we are already on
                 if (navController.currentBackStackEntry?.destination?.route != home) {
@@ -145,6 +166,17 @@ fun App(
                         }
                     }
                 }
+            }
+        }
+    }
+
+    val navigateToChat: () -> Unit = remember(navController, chatViewModel) {
+        {
+            chatViewModel.currentPageNumber = null
+            chatViewModel.currentPageText = null
+            chatViewModel.setExpanded(true)
+            navController.navigate(NavigationDestination.Chat.name) {
+                launchSingleTop = true
             }
         }
     }
@@ -177,150 +209,312 @@ fun App(
                         CompositionLocalProvider(
                             LocalWindowInfo provides windowInfo,
                         ) {
-                            NavHost(
-                                navController = navController,
-                                startDestination = startDestination
-                            ) {
-                                composable(
-                                    route = NavigationDestination.Landing.name,
+                            AnimatedContent(
+                                targetState = currentExperience,
+                                transitionSpec = {
+                                    fadeIn() togetherWith fadeOut()
+                                }
+                            ) { experience ->
+                                NavHost(
+                                    navController = navController,
+                                    startDestination = startDestination
                                 ) {
-                                    val landingInvitation: String =
-                                        stringResource(Res.string.landing_invitation)
-                                    LandingPage(
-                                        platform = platform,
-                                        onNavigateToBook = {
-                                            viewModel.completeOnboarding()
-                                            navController.navigate(
-                                                NavigationDestination.Book.name
-                                            ) {
-                                                popUpTo(NavigationDestination.Landing.name) {
-                                                    inclusive = true
+                                    composable(
+                                        route = NavigationDestination.Landing.name,
+                                    ) {
+                                        val landingInvitation: String =
+                                            stringResource(
+                                                if (currentExperience == Experience.TARAS) {
+                                                    Res.string.taras_landing_invitation
+                                                } else {
+                                                    Res.string.landing_invitation
                                                 }
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToChat = {
-                                            viewModel.completeOnboarding()
-                                            chatViewModel.setInitialMessage(
-                                                landingInvitation
                                             )
-                                            navController.navigate(
-                                                NavigationDestination.Chat.name
-                                            ) {
-                                                popUpTo(NavigationDestination.Landing.name) {
-                                                    inclusive = true
+                                        LandingPage(
+                                            platform = platform,
+                                            currentExperience = currentExperience,
+                                            onNavigateToBook = {
+                                                viewModel.completeOnboarding()
+                                                if (showExperienceSwitcher) {
+                                                    viewModel.changeExperience(
+                                                        Experience.BOOK
+                                                    )
+                                                } else {
+                                                    viewModel.changeExperience(
+                                                        Experience.TARAS
+                                                    )
                                                 }
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToPrivacyPolicy = {
-                                            navController.navigate(
-                                                NavigationDestination.PrivacyPolicy.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToSupport = {
-                                            navController.navigate(
-                                                NavigationDestination.Support.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToAbout = {
-                                            navController.navigate(
-                                                NavigationDestination.About.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        }
-                                    )
-                                }
-                                composable(
-                                    route = NavigationDestination.Book.name,
-                                ) {
-                                    Page(
-                                        bookRepository = SettingsBookRepository(
-                                            settings
-                                        ),
-                                        bookmarkRepository = bookmarkRepository,
-                                        textToSpeech = textToSpeech,
-                                        chatViewModel = chatViewModel,
-                                        onNavigateToPrivacyPolicy = {
-                                            navController.navigate(
-                                                NavigationDestination.PrivacyPolicy.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToSupport = {
-                                            navController.navigate(
-                                                NavigationDestination.Support.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToAbout = {
-                                            navController.navigate(
-                                                NavigationDestination.About.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToBookmarks = {
-                                            navController.navigate(
-                                                NavigationDestination.Bookmarks.name,
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        },
-                                        onNavigateToChat = { pageNumber, pageText ->
-                                            chatViewModel.currentPageNumber =
-                                                pageNumber
-                                            chatViewModel.currentPageText =
-                                                pageText
-                                            chatViewModel.setExpanded(true)
-                                            navController.navigate(
-                                                NavigationDestination.Chat.name
-                                            ) {
-                                                launchSingleTop = true
-                                            }
-                                        }
-                                    )
-                                }
-                                composable(route = NavigationDestination.Chat.name) {
-                                    ChatScreen(
-                                        viewModel = chatViewModel,
-                                        onBack = onBack
-                                    )
-                                }
-                                composable(route = NavigationDestination.Bookmarks.name) {
-                                    BookmarksPage(
-                                        bookmarkRepository = bookmarkRepository,
-                                        onBookmarkClick = { pageNumber: Int ->
-                                            SettingsBookRepository(settings)
-                                                .saveCurrentPage(pageNumber)
-                                            navController.navigate(
-                                                NavigationDestination.Book.name
-                                            ) {
-                                                popUpTo(
+                                                navController.navigate(
                                                     NavigationDestination.Book.name
                                                 ) {
-                                                    inclusive = true
+                                                    popUpTo(
+                                                        NavigationDestination.Landing.name
+                                                    ) {
+                                                        inclusive = true
+                                                    }
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToChat = {
+                                                viewModel.completeOnboarding()
+                                                viewModel.changeExperience(
+                                                    Experience.TARAS
+                                                )
+                                                chatViewModel.setInitialMessage(
+                                                    landingInvitation
+                                                )
+                                                navController.navigate(
+                                                    NavigationDestination.Chat.name
+                                                ) {
+                                                    popUpTo(
+                                                        NavigationDestination.Landing.name
+                                                    ) {
+                                                        inclusive = true
+                                                    }
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToPrivacyPolicy = {
+                                                navController.navigate(
+                                                    NavigationDestination.PrivacyPolicy.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToSupport = {
+                                                navController.navigate(
+                                                    NavigationDestination.Support.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToAbout = {
+                                                navController.navigate(
+                                                    NavigationDestination.About.name,
+                                                ) {
+                                                    launchSingleTop = true
                                                 }
                                             }
-                                        },
-                                        onBack = onBack
-                                    )
-                                }
-                                composable(route = NavigationDestination.PrivacyPolicy.name) {
-                                    PrivacyPolicyPage(onBack = onBack)
-                                }
-                                composable(route = NavigationDestination.Support.name) {
-                                    SupportPage(onBack = onBack)
-                                }
-                                composable(route = NavigationDestination.About.name) {
-                                    AboutPage(onBack = onBack)
+                                        )
+                                    }
+                                    composable(
+                                        route = NavigationDestination.Book.name,
+                                    ) {
+                                        Page(
+                                            bookRepository = SettingsBookRepository(
+                                                settings
+                                            ),
+                                            bookmarkRepository = bookmarkRepository,
+                                            textToSpeech = textToSpeech,
+                                            chatViewModel = chatViewModel,
+                                            currentExperience = experience,
+                                            onExperienceChange = viewModel::changeExperience,
+                                            showExperienceSwitcher = showExperienceSwitcher,
+                                            onNavigateToPrivacyPolicy = {
+                                                navController.navigate(
+                                                    NavigationDestination.PrivacyPolicy.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToSupport = {
+                                                navController.navigate(
+                                                    NavigationDestination.Support.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToAbout = {
+                                                navController.navigate(
+                                                    NavigationDestination.About.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToBookmarks = {
+                                                navController.navigate(
+                                                    NavigationDestination.Bookmarks.name,
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToChat = navigateToChat,
+                                            onNavigateToChatWithContext = { pageNumber, pageText ->
+                                                chatViewModel.currentPageNumber =
+                                                    pageNumber
+                                                chatViewModel.currentPageText =
+                                                    pageText
+                                                chatViewModel.setExpanded(true)
+                                                navController.navigate(
+                                                    NavigationDestination.Chat.name
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            }
+                                        )
+                                    }
+                                    composable(route = NavigationDestination.Chat.name) {
+                                        ChatScreen(
+                                            viewModel = chatViewModel,
+                                            onBack = onBack,
+                                            currentExperience = experience,
+                                            onExperienceChange = viewModel::changeExperience,
+                                            showExperienceSwitcher = showExperienceSwitcher,
+                                            onNavigateToBook = {
+                                                navController.navigate(
+                                                    NavigationDestination.Book.name
+                                                ) {
+                                                    popUpTo(navController.graph.startDestinationId)
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToBookmarks = {
+                                                navController.navigate(
+                                                    NavigationDestination.Bookmarks.name
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToAbout = {
+                                                navController.navigate(
+                                                    NavigationDestination.About.name
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToPrivacyPolicy = {
+                                                navController.navigate(
+                                                    NavigationDestination.PrivacyPolicy.name
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToSupport = {
+                                                navController.navigate(
+                                                    NavigationDestination.Support.name
+                                                ) {
+                                                    launchSingleTop = true
+                                                }
+                                            },
+                                            onNavigateToChat = navigateToChat
+                                        )
+                                    }
+                                    composable(route = NavigationDestination.Bookmarks.name) {
+                                        BookmarksPage(
+                                            bookmarkRepository = bookmarkRepository,
+                                            onBookmarkClick = { pageNumber: Int ->
+                                                SettingsBookRepository(settings)
+                                                    .saveCurrentPage(pageNumber)
+                                                navController.navigate(
+                                                    NavigationDestination.Book.name
+                                                ) {
+                                                    popUpTo(
+                                                        NavigationDestination.Book.name
+                                                    ) {
+                                                        inclusive = true
+                                                    }
+                                                }
+                                            },
+                                            onBack = onBack
+                                        )
+                                    }
+                                    composable(route = NavigationDestination.PrivacyPolicy.name) {
+                                        PrivacyPolicyPage(onBack = onBack)
+                                    }
+                                    composable(route = NavigationDestination.Support.name) {
+                                        SupportPage(onBack = onBack)
+                                    }
+                                    composable(route = NavigationDestination.About.name) {
+                                        if (experience == Experience.TARAS) {
+                                            AboutTarasPage(
+                                                onBack = onBack,
+                                                currentExperience = experience,
+                                                onExperienceChange = viewModel::changeExperience,
+                                                showExperienceSwitcher = showExperienceSwitcher,
+                                                onNavigateToBook = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Book.name
+                                                    ) {
+                                                        popUpTo(navController.graph.startDestinationId)
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToBookmarks = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Bookmarks.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToAbout = {
+                                                    navController.navigate(
+                                                        NavigationDestination.About.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToPrivacyPolicy = {
+                                                    navController.navigate(
+                                                        NavigationDestination.PrivacyPolicy.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToSupport = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Support.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToChat = navigateToChat
+                                            )
+                                        } else {
+                                            AboutPage(
+                                                onBack = onBack,
+                                                currentExperience = experience,
+                                                onExperienceChange = viewModel::changeExperience,
+                                                showExperienceSwitcher = showExperienceSwitcher,
+                                                onNavigateToBook = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Book.name
+                                                    ) {
+                                                        popUpTo(navController.graph.startDestinationId)
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToBookmarks = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Bookmarks.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToAbout = {
+                                                    navController.navigate(
+                                                        NavigationDestination.About.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToPrivacyPolicy = {
+                                                    navController.navigate(
+                                                        NavigationDestination.PrivacyPolicy.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToSupport = {
+                                                    navController.navigate(
+                                                        NavigationDestination.Support.name
+                                                    ) {
+                                                        launchSingleTop = true
+                                                    }
+                                                },
+                                                onNavigateToChat = navigateToChat
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }

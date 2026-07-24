@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.models.UserSettingsRepository
 import com.turskyi.malaknyzhka.usecases.isOnAndroid
 import com.turskyi.malaknyzhka.usecases.isOnDesktop
+import com.turskyi.malaknyzhka.usecases.isOnIos
+import com.turskyi.malaknyzhka.usecases.isOnWeb
 import com.turskyi.malaknyzhka.usecases.toApLang
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,8 +29,19 @@ class AppViewModel(
         MutableStateFlow(userSettingsRepository.getThemeMode())
     val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
 
+    private val defaultExperience: Experience = if (isOnIos() || isOnDesktop() || isOnWeb()) {
+        Experience.TARAS
+    } else {
+        Experience.BOOK
+    }
+
+    private val _experience: MutableStateFlow<Experience> =
+        MutableStateFlow(userSettingsRepository.getExperience(defaultExperience))
+    val experience: StateFlow<Experience> = _experience.asStateFlow()
+
     private val _isOnboardingComplete: MutableStateFlow<Boolean> =
         MutableStateFlow(userSettingsRepository.isOnboardingComplete())
+    val isOnboardingComplete: StateFlow<Boolean> = _isOnboardingComplete.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -51,6 +65,11 @@ class AppViewModel(
     fun changeThemeMode(newMode: ThemeMode) {
         userSettingsRepository.saveThemeMode(newMode)
         _themeMode.value = newMode
+    }
+
+    fun changeExperience(newExperience: Experience) {
+        userSettingsRepository.saveExperience(newExperience)
+        _experience.value = newExperience
     }
 
     fun completeOnboarding() {

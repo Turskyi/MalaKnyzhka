@@ -64,27 +64,18 @@ class ContinueReadingWidget : GlanceAppWidget() {
         // Line height for 13sp is approx 18dp
         val dynamicMaxLines = maxOf(1, (availableHeight / 18).toInt())
 
-        val intent = if (data != null) {
-            Intent(
-                Intent.ACTION_VIEW,
-                "malaknyzhka://page/${data.pageNumber}".toUri()
-            ).apply {
-                setPackage(context.packageName)
-                addFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-                            or Intent.FLAG_ACTIVITY_CLEAR_TOP,
-                )
+        val intent = Intent(
+            context,
+            MainActivity::class.java,
+        ).apply {
+            if (data != null) {
+                action = Intent.ACTION_VIEW
+                this.data = "malaknyzhka://page/${data.pageNumber}".toUri()
             }
-        } else {
-            Intent(
-                context,
-                MainActivity::class.java,
-            ).apply {
-                addFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-                            or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                )
-            }
+            addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK
+                        or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            )
         }
 
         Box(
