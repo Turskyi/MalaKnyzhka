@@ -2,7 +2,7 @@
 dockName = "Тарас Шевченко ✦"
 versionName = "1.2.0"
 versionCode = "20"
-agp = "9.3.0"
+agp = "9.3.1"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
 compose-multiplatform = "1.11.1"
@@ -23,7 +23,7 @@ applicationId = "com.turskyi.malaknyzhka"
 appcompat = "1.7.1"
 kotlinx-serialization = "1.11.0"
 ktor = "3.5.1"
-logback = "1.5.38"
+logback = "1.6.0"
 dotenv = "6.5.1"
 
 [libraries]
