@@ -3,6 +3,7 @@ package com.turskyi.malaknyzhka.ui.landing
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,7 +40,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.Platform
@@ -50,11 +50,11 @@ import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
+import malaknyzhka.composeapp.generated.resources.app_store_badge
 import malaknyzhka.composeapp.generated.resources.arrow_forward
 import malaknyzhka.composeapp.generated.resources.available_on_platforms
+import malaknyzhka.composeapp.generated.resources.badge_app_store_description
 import malaknyzhka.composeapp.generated.resources.badge_google_play_description
-import malaknyzhka.composeapp.generated.resources.badge_macos_description
-import malaknyzhka.composeapp.generated.resources.badge_test_flight_description
 import malaknyzhka.composeapp.generated.resources.chat_button_label
 import malaknyzhka.composeapp.generated.resources.feature_autosave_last_page
 import malaknyzhka.composeapp.generated.resources.feature_compare_original_modern
@@ -63,7 +63,6 @@ import malaknyzhka.composeapp.generated.resources.ic_book
 import malaknyzhka.composeapp.generated.resources.ic_chat
 import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.landing_invitation
-import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.main_features
 import malaknyzhka.composeapp.generated.resources.open_in_new_window_description
 import malaknyzhka.composeapp.generated.resources.portrait_description
@@ -90,7 +89,6 @@ import malaknyzhka.composeapp.generated.resources.taras_feature_5
 import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
 import malaknyzhka.composeapp.generated.resources.taras_landing_subtitle
 import malaknyzhka.composeapp.generated.resources.taras_shevchenko_name
-import malaknyzhka.composeapp.generated.resources.test_flight_badge
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -327,10 +325,11 @@ fun LandingPage(
                                 color = MaterialTheme.colors.primaryVariant
                             )
                             Spacer(modifier = Modifier.height(16.dp))
-                            // 🏪 Google Play, TestFlight and MacOS Badges.
-                            val badgeSpacing: Dp = 12.dp
+                            // 🏪 Google Play and App Store Badges.
                             Row(
-                                modifier = Modifier.padding(horizontal = 16.dp),
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Image(
                                     painter = painterResource(
@@ -339,42 +338,30 @@ fun LandingPage(
                                     contentDescription = stringResource(
                                         Res.string.badge_google_play_description,
                                     ),
-                                    modifier = Modifier.clickable {
-                                        uriHandler.openUri(
-                                            uri = AppConstants.ANDROID_URI,
-                                        )
-                                    }.weight(1f, fill = false).height(64.dp)
-                                        .width(216.dp),
+                                    modifier = Modifier
+                                        .height(56.dp)
+                                        .clickable {
+                                            uriHandler.openUri(
+                                                uri = AppConstants.ANDROID_URI,
+                                            )
+                                        },
                                     contentScale = ContentScale.Fit,
                                 )
-                                Spacer(modifier = Modifier.width(badgeSpacing))
+                                Spacer(modifier = Modifier.width(12.dp))
                                 Image(
                                     painter = painterResource(
-                                        Res.drawable.test_flight_badge,
+                                        Res.drawable.app_store_badge,
                                     ),
                                     contentDescription = stringResource(
-                                        Res.string.badge_test_flight_description,
+                                        Res.string.badge_app_store_description,
                                     ),
-                                    modifier = Modifier.clickable {
-                                        uriHandler.openUri(
-                                            uri = AppConstants.TEST_FLIGHT_URI,
-                                        )
-                                    }.weight(1f, fill = false).height(64.dp),
-                                    contentScale = ContentScale.Fit,
-                                )
-                                Spacer(modifier = Modifier.width(badgeSpacing))
-                                Image(
-                                    painter = painterResource(
-                                        Res.drawable.macos_badge,
-                                    ),
-                                    contentDescription = stringResource(
-                                        Res.string.badge_macos_description,
-                                    ),
-                                    modifier = Modifier.clickable {
-                                        uriHandler.openUri(
-                                            uri = AppConstants.MACOS_URI,
-                                        )
-                                    }.weight(1f, fill = false).height(64.dp),
+                                    modifier = Modifier
+                                        .height(56.dp)
+                                        .clickable {
+                                            uriHandler.openUri(
+                                                uri = AppConstants.APP_STORE_URI,
+                                            )
+                                        },
                                     contentScale = ContentScale.Fit,
                                 )
                             }

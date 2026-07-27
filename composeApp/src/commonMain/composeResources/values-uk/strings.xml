@@ -108,15 +108,14 @@
 
     <string name="main_features">Основні можливості</string>
 
-    <string name="available_on_platforms">Доступно для Android, iOS та macOS!</string>
+    <string name="available_on_platforms">Доступно для Android та iOS!</string>
 
     <string name="feature_manuscript_with_printed">• Читайте рукопис разом із друкованим текстом.</string>
     <string name="feature_compare_original_modern">• Порівнюйте оригінал із сучасним написанням.</string>
     <string name="feature_autosave_last_page">• Автоматичне збереження останньої прочитаної сторінки.</string>
 
     <string name="badge_google_play_description">Значок Google Play</string>
-    <string name="badge_macos_description">Значок MacOS</string>
-    <string name="badge_test_flight_description">Значок TestFlight</string>
+    <string name="badge_app_store_description">Значок App Store</string>
     <string name="theme_system">Системна</string>
     <string name="theme_light">Світла</string>
     <string name="theme_dark">Темна</string>

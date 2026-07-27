@@ -97,7 +97,7 @@ The English translation of the poems was generated using artificial intelligence
     <string name="title">Taras Shevchenko ✦</string>
     <string name="subtitle">Original Manuscript by Taras Shevchenko</string>
 
-    <string name="available_on_platforms">Available for Android, iOS, and macOS!</string>
+    <string name="available_on_platforms">Available for Android and iOS!</string>
 
     <string name="feature_manuscript_with_printed">• Read the manuscript alongside the printed text.</string>
     <string name="feature_compare_original_modern">• Compare the original with modern spelling.</string>
@@ -111,8 +111,7 @@ The English translation of the poems was generated using artificial intelligence
     <string name="main_features">Main Features</string>
 
     <string name="badge_google_play_description">Google Play Badge</string>
-    <string name="badge_macos_description">MacOS Badge</string>
-    <string name="badge_test_flight_description">TestFlight Badge</string>
+    <string name="badge_app_store_description">App Store Badge</string>
 
     <string name="open_in_new_window_description">Open in new window</string>
 
