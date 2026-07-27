@@ -96,6 +96,7 @@ kotlin {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
             commonWebpackConfig {
+                configDirectory = project.file("webpack.config.d")
                 outputFileName = "composeApp.js"
                 devServer =
                     (devServer ?: KotlinWebpackConfig.DevServer()).apply {

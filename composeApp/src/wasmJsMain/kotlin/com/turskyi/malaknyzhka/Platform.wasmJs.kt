@@ -7,7 +7,7 @@ import kotlinx.browser.window
 class WasmPlatform : Platform {
     override val type: PlatformType = PlatformType.WEB
     override val initialRoute: String
-        get() = window.location.hash.removePrefix("#")
+        get() = window.location.pathname.removePrefix("/")
 }
 
 actual fun getPlatform(): Platform = WasmPlatform()
