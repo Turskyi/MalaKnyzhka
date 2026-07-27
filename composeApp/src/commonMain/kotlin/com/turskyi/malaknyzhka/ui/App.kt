@@ -56,10 +56,6 @@ import com.turskyi.malaknyzhka.ui.privacy.PrivacyPolicyPage
 import com.turskyi.malaknyzhka.ui.support.SupportPage
 import com.turskyi.malaknyzhka.usecases.toInternalPageIndex
 import kotlinx.coroutines.flow.collectLatest
-import malaknyzhka.composeapp.generated.resources.Res
-import malaknyzhka.composeapp.generated.resources.landing_invitation
-import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun App(
@@ -222,14 +218,6 @@ fun App(
                                     composable(
                                         route = NavigationDestination.Landing.name,
                                     ) {
-                                        val landingInvitation: String =
-                                            stringResource(
-                                                if (currentExperience == Experience.TARAS) {
-                                                    Res.string.taras_landing_invitation
-                                                } else {
-                                                    Res.string.landing_invitation
-                                                }
-                                            )
                                         LandingPage(
                                             platform = platform,
                                             currentExperience = currentExperience,
@@ -259,9 +247,6 @@ fun App(
                                                 viewModel.completeOnboarding()
                                                 viewModel.changeExperience(
                                                     Experience.TARAS
-                                                )
-                                                chatViewModel.setInitialMessage(
-                                                    landingInvitation
                                                 )
                                                 navController.navigate(
                                                     NavigationDestination.Chat.name

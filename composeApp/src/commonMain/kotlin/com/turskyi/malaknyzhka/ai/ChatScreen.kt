@@ -367,17 +367,29 @@ fun ChatView(
         }
 
         Box(modifier = Modifier.weight(1f)) {
-            SelectionContainer {
-                LazyColumn(
-                    state = listState,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 8.dp),
-                    contentPadding = PaddingValues(vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(messages) { message ->
-                        MessageBubble(message)
+            if (messages.isEmpty()) {
+                ChatEmptyView(
+                    onSuggestionClick = { suggestion ->
+                        viewModel.sendMessage(
+                            text = suggestion,
+                            pageNumber = viewModel.currentPageNumber,
+                            pageText = viewModel.currentPageText,
+                        )
+                    }
+                )
+            } else {
+                SelectionContainer {
+                    LazyColumn(
+                        state = listState,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 8.dp),
+                        contentPadding = PaddingValues(vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(messages) { message ->
+                            MessageBubble(message)
+                        }
                     }
                 }
             }
