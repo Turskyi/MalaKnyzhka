@@ -104,7 +104,7 @@ fun LandingPage(
     onNavigateToAbout: () -> Unit,
 ) {
 
-    val isWeb = platform.type == PlatformType.WEB
+    val isWeb: Boolean = platform.type == PlatformType.WEB
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
     Surface(
@@ -159,13 +159,17 @@ fun LandingPage(
                             )
                         ) {
                             Text(
-                                text = stringResource(Res.string.taras_shevchenko_name),
+                                text = stringResource(
+                                    Res.string.taras_shevchenko_name,
+                                ),
                                 style = MaterialTheme.typography.h4,
                                 color = MaterialTheme.colors.primaryVariant,
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Icon(
-                                painter = painterResource(Res.drawable.ic_sparkle),
+                                painter = painterResource(
+                                    Res.drawable.ic_sparkle,
+                                ),
                                 contentDescription = null,
                                 tint = MaterialTheme.colors.primaryVariant,
                                 modifier = Modifier.size(24.dp)
@@ -203,9 +207,13 @@ fun LandingPage(
                                 onClick = onNavigateToChat,
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
                                     Icon(
-                                        painter = painterResource(Res.drawable.ic_chat),
+                                        painter = painterResource(
+                                            Res.drawable.ic_chat,
+                                        ),
                                         contentDescription = null,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -223,9 +231,13 @@ fun LandingPage(
                                     onClick = onNavigateToBook,
                                     shape = RoundedCornerShape(8.dp)
                                 ) {
-                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                    ) {
                                         Icon(
-                                            painter = painterResource(Res.drawable.ic_book),
+                                            painter = painterResource(
+                                                Res.drawable.ic_book,
+                                            ),
                                             contentDescription = null,
                                             modifier = Modifier.size(18.dp)
                                         )
@@ -254,11 +266,21 @@ fun LandingPage(
                                 val features: List<String> =
                                     if (currentExperience == Experience.TARAS) {
                                         listOf(
-                                            stringResource(Res.string.taras_feature_1),
-                                            stringResource(Res.string.taras_feature_2),
-                                            stringResource(Res.string.taras_feature_3),
-                                            stringResource(Res.string.taras_feature_4),
-                                            stringResource(Res.string.taras_feature_5),
+                                            stringResource(
+                                                Res.string.taras_feature_1,
+                                            ),
+                                            stringResource(
+                                                Res.string.taras_feature_2,
+                                            ),
+                                            stringResource(
+                                                Res.string.taras_feature_3,
+                                            ),
+                                            stringResource(
+                                                Res.string.taras_feature_4,
+                                            ),
+                                            stringResource(
+                                                Res.string.taras_feature_5,
+                                            ),
                                         )
                                     } else {
                                         listOf(
@@ -327,7 +349,8 @@ fun LandingPage(
                             Spacer(modifier = Modifier.height(16.dp))
                             // 🏪 Google Play and App Store Badges.
                             Row(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                                modifier = Modifier.fillMaxWidth()
+                                    .padding(horizontal = 16.dp),
                                 horizontalArrangement = Arrangement.Center,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -374,7 +397,9 @@ fun LandingPage(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = stringResource(Res.string.sources_label),
+                                    text = stringResource(
+                                        Res.string.sources_label,
+                                    ),
                                     style = MaterialTheme.typography.caption,
                                     color = MaterialTheme.colors.onSurface.copy(
                                         alpha = 0.6f
@@ -398,7 +423,8 @@ fun LandingPage(
                                         pop()
                                     }
                                 SelectionContainer {
-                                    @Suppress("DEPRECATION") ClickableText(
+                                    @Suppress("DEPRECATION")
+                                    ClickableText(
                                         text = annotatedLinkString,
                                         style = MaterialTheme.typography.caption.copy(
                                             color = MaterialTheme.colors.onSurface
