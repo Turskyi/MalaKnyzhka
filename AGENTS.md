@@ -40,7 +40,7 @@ Developer workflows (commands to run)
         - Dev server is configured to serve both the project root and module
           dir (use Chrome for best results, see `README.md`).
 - Web (production artifact for hosting):
-    - ./gradlew :composeApp:wasmJsBrowserProductionExecutableDistribution
+    - ./gradlew :composeApp:wasmJsBrowserDistribution
         - The production build output expected by `firebase.json` is
           `composeApp/build/dist/wasmJs/productionExecutable`.
 - Android (local debug / release):
