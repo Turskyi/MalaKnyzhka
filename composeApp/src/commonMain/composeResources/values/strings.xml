@@ -7,7 +7,11 @@
     <string name="app_language">Мова застосунку: %1$s</string>
     <string name="change_lang">Змінити мову</string>
     <string name="logo_description">Мала Книжка</string>
-
+    <string name="chat_welcome_headline">Спілкуйтеся з Тарасом Шевченком</string>
+    <string name="chat_welcome_supporting_text">Ставте запитання про «Малу книжку», її рукописи, вірші, історичний контекст або життя Тараса Шевченка.\n\nВідповіді генеруються ШІ, натхненним його творами та історичними джерелами.</string>
+    <string name="suggestion_1">Розкажи про «Малу книжку»</string>
+    <string name="suggestion_2">Яким було твоє життя?</string>
+    <string name="suggestion_3">Порадь, з чого почати читання</string>
     <string name="privacy_policy">Політика конфіденційності</string>
 
     <string name="support">Підтримка</string>
@@ -8398,9 +8402,4 @@
 Давно се діялось колись.
 У неділю на селі,
     </string>
-    <string name="chat_welcome_headline">Спілкуйтеся з Тарасом Шевченком</string>
-    <string name="chat_welcome_supporting_text">Ставте запитання про «Малу книжку», її рукописи, вірші, історичний контекст або життя Тараса Шевченка.\n\nВідповіді генеруються ШІ, натхненним його творами та історичними джерелами.</string>
-    <string name="suggestion_1">Розкажи про «Малу книжку»</string>
-    <string name="suggestion_2">Яким було твоє життя?</string>
-    <string name="suggestion_3">Порадь, з чого почати читання</string>
 </resources>
