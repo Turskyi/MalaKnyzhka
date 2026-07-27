@@ -7,12 +7,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -28,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -50,13 +54,14 @@ import malaknyzhka.composeapp.generated.resources.about_app_ai_translation_info
 import malaknyzhka.composeapp.generated.resources.about_app_description_part1
 import malaknyzhka.composeapp.generated.resources.about_app_description_part2
 import malaknyzhka.composeapp.generated.resources.about_app_linguistic_example
-import malaknyzhka.composeapp.generated.resources.about_app_little_book
+import malaknyzhka.composeapp.generated.resources.about_app_little_book_no_sparkle
 import malaknyzhka.composeapp.generated.resources.about_app_no_alternatives
 import malaknyzhka.composeapp.generated.resources.about_app_search_description
 import malaknyzhka.composeapp.generated.resources.about_app_search_title
 import malaknyzhka.composeapp.generated.resources.about_app_target_audience
 import malaknyzhka.composeapp.generated.resources.about_app_thank_you_message
 import malaknyzhka.composeapp.generated.resources.data_storage_info
+import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
 import malaknyzhka.composeapp.generated.resources.menu
@@ -107,11 +112,19 @@ fun AboutPage(
             TopAppBar(
                 windowInsets = WindowInsets.statusBars,
                 title = {
-                    Text(
-                        text = stringResource(Res.string.about_app),
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = stringResource(Res.string.about_app),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_sparkle),
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
                 },
                 navigationIcon = {
                     if (isOnWeb()) {
@@ -155,11 +168,22 @@ fun AboutPage(
                         .padding(horizontal = 16.dp)
                         .verticalScroll(scrollState)
                 ) {
-                    Text(
-                        text = stringResource(Res.string.about_app_little_book),
-                        fontWeight = FontWeight.Bold,
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(bottom = 8.dp, top = 16.dp)
-                    )
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.about_app_little_book_no_sparkle),
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_sparkle),
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.primaryVariant,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
 
                     Text(
                         text = stringResource(

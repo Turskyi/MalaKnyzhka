@@ -7,12 +7,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -28,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -64,7 +68,8 @@ import malaknyzhka.composeapp.generated.resources.about_taras_manuscripts_title
 import malaknyzhka.composeapp.generated.resources.about_taras_privacy_desc1
 import malaknyzhka.composeapp.generated.resources.about_taras_privacy_desc2
 import malaknyzhka.composeapp.generated.resources.about_taras_privacy_title
-import malaknyzhka.composeapp.generated.resources.about_taras_title
+import malaknyzhka.composeapp.generated.resources.about_taras_title_no_sparkle
+import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
 import malaknyzhka.composeapp.generated.resources.menu
@@ -100,11 +105,19 @@ fun AboutTarasPage(
             TopAppBar(
                 windowInsets = WindowInsets.statusBars,
                 title = {
-                    Text(
-                        text = stringResource(Res.string.about_taras_title),
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = stringResource(Res.string.about_taras_title_no_sparkle),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_sparkle),
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
                 },
                 navigationIcon = {
                     if (isOnWeb()) {

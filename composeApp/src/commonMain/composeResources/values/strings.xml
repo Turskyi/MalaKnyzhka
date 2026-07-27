@@ -15,6 +15,9 @@
     <string name="about_app_little_book">
 Про застосунок «Тарас Шевченко ✦»
     </string>
+    <string name="about_app_little_book_no_sparkle">
+Про застосунок «Тарас Шевченко»
+    </string>
 
     <string name="search_hint">Пошук у рукописі…</string>
     <string name="search_results">Результати пошуку: %1$d</string>
@@ -124,6 +127,7 @@
     <string name="english_label">Англійська:</string>
     <string name="copied_to_clipboard">Скопійовано в буфер</string>
     <string name="about_taras_title">Про застосунок «Тарас Шевченко ✦»</string>
+    <string name="about_taras_title_no_sparkle">Про застосунок «Тарас Шевченко»</string>
     <string name="about_taras_intro_part1">«Тарас Шевченко ✦» - це інтерактивний культурно-освітній застосунок, який дозволяє досліджувати життя, творчість та історичний контекст Тараса Шевченка через живий діалог.</string>
     <string name="about_taras_intro_part2">За допомогою штучного інтелекту застосунок відтворює розмову, натхненну творчістю, листами, біографією та епохою поета. Це не історична реконструкція особистості, а сучасний спосіб глибше познайомитися з його спадщиною.</string>
     <string name="about_taras_ask_title">Ставте запитання природною мовою</string>

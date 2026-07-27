@@ -13,6 +13,9 @@
     <string name="about_app_little_book">
 About App «Taras Shevchenko ✦»
     </string>
+    <string name="about_app_little_book_no_sparkle">
+About App «Taras Shevchenko»
+    </string>
 
     <string name="search_hint">Search in manuscript…</string>
     <string name="search_results">Search results: %1$d</string>
@@ -138,6 +141,7 @@ The English translation of the poems was generated using artificial intelligence
     <string name="english_label">English:</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="about_taras_title">About “Taras Shevchenko ✦”</string>
+    <string name="about_taras_title_no_sparkle">About “Taras Shevchenko”</string>
     <string name="about_taras_intro_part1">"Taras Shevchenko ✦" is an interactive educational experience that lets you explore the life, ideas, poetry, and historical context of one of Ukraine’s most influential cultural figures through conversation.</string>
     <string name="about_taras_intro_part2">Using artificial intelligence, the application recreates a respectful conversational experience inspired by Taras Shevchenko’s writings, letters, biography, and the historical period in which he lived. It is intended for learning, exploration, and cultural discovery - not as a replacement for historical scholarship.</string>
     <string name="about_taras_ask_title">Ask questions naturally</string>
@@ -166,7 +170,7 @@ The English translation of the poems was generated using artificial intelligence
     <string name="taras_feature_5">Available offline except AI conversations.</string>
     <string name="privacy">
         <![CDATA[
-This privacy policy applies to the "Тарас Шевченко ✦" app (hereby referred to as "Application") that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the "Тарас Шевченко" app (hereby referred to as "Application") that was created by Dmytro Turskyi (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
 
 Information Collection and Use
 
@@ -4922,7 +4926,7 @@ Listen, gentlemen."
 The girls raked hay in the meadow,
 The lads stacked the piles,
 Glancing at the sun,
-Chattering nonsense—
+Chattering nonsense -
 As boys do.
 
 And the girls,

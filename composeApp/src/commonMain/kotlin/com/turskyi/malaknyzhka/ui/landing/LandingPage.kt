@@ -59,6 +59,9 @@ import malaknyzhka.composeapp.generated.resources.chat_button_label
 import malaknyzhka.composeapp.generated.resources.feature_autosave_last_page
 import malaknyzhka.composeapp.generated.resources.feature_compare_original_modern
 import malaknyzhka.composeapp.generated.resources.feature_manuscript_with_printed
+import malaknyzhka.composeapp.generated.resources.ic_book
+import malaknyzhka.composeapp.generated.resources.ic_chat
+import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.landing_invitation
 import malaknyzhka.composeapp.generated.resources.macos_badge
 import malaknyzhka.composeapp.generated.resources.main_features
@@ -86,8 +89,8 @@ import malaknyzhka.composeapp.generated.resources.taras_feature_4
 import malaknyzhka.composeapp.generated.resources.taras_feature_5
 import malaknyzhka.composeapp.generated.resources.taras_landing_invitation
 import malaknyzhka.composeapp.generated.resources.taras_landing_subtitle
+import malaknyzhka.composeapp.generated.resources.taras_shevchenko_name
 import malaknyzhka.composeapp.generated.resources.test_flight_badge
-import malaknyzhka.composeapp.generated.resources.title
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -150,15 +153,26 @@ fun LandingPage(
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.height(24.dp))
-                        Text(
-                            text = stringResource(Res.string.title),
-                            style = MaterialTheme.typography.h4,
-                            color = MaterialTheme.colors.primaryVariant,
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.padding(
                                 bottom = 8.dp,
                                 start = 8.dp,
                             )
-                        )
+                        ) {
+                            Text(
+                                text = stringResource(Res.string.taras_shevchenko_name),
+                                style = MaterialTheme.typography.h4,
+                                color = MaterialTheme.colors.primaryVariant,
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Icon(
+                                painter = painterResource(Res.drawable.ic_sparkle),
+                                contentDescription = null,
+                                tint = MaterialTheme.colors.primaryVariant,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
                         Text(
                             text = stringResource(
                                 if (currentExperience == Experience.TARAS) {
@@ -191,11 +205,19 @@ fun LandingPage(
                                 onClick = onNavigateToChat,
                                 shape = RoundedCornerShape(8.dp)
                             ) {
-                                Text(
-                                    text = "💬 " + stringResource(
-                                        Res.string.chat_button_label,
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        painter = painterResource(Res.drawable.ic_chat),
+                                        contentDescription = null,
+                                        modifier = Modifier.size(18.dp)
                                     )
-                                )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = stringResource(
+                                            Res.string.chat_button_label,
+                                        )
+                                    )
+                                }
                             }
                             if (currentExperience == Experience.BOOK) {
                                 Spacer(modifier = Modifier.width(16.dp))
@@ -203,11 +225,19 @@ fun LandingPage(
                                     onClick = onNavigateToBook,
                                     shape = RoundedCornerShape(8.dp)
                                 ) {
-                                    Text(
-                                        text = "📖 " + stringResource(
-                                            Res.string.read_button_label,
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(
+                                            painter = painterResource(Res.drawable.ic_book),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(18.dp)
                                         )
-                                    )
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        Text(
+                                            text = stringResource(
+                                                Res.string.read_button_label,
+                                            )
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -223,27 +253,28 @@ fun LandingPage(
                                 modifier = Modifier.padding(horizontal = 16.dp),
                                 horizontalAlignment = Alignment.Start,
                             ) {
-                                val features = if (currentExperience == Experience.TARAS) {
-                                    listOf(
-                                        stringResource(Res.string.taras_feature_1),
-                                        stringResource(Res.string.taras_feature_2),
-                                        stringResource(Res.string.taras_feature_3),
-                                        stringResource(Res.string.taras_feature_4),
-                                        stringResource(Res.string.taras_feature_5),
-                                    )
-                                } else {
-                                    listOf(
-                                        stringResource(
-                                            Res.string.feature_manuscript_with_printed,
-                                        ),
-                                        stringResource(
-                                            Res.string.feature_compare_original_modern,
-                                        ),
-                                        stringResource(
-                                            Res.string.feature_autosave_last_page,
-                                        ),
-                                    )
-                                }
+                                val features: List<String> =
+                                    if (currentExperience == Experience.TARAS) {
+                                        listOf(
+                                            stringResource(Res.string.taras_feature_1),
+                                            stringResource(Res.string.taras_feature_2),
+                                            stringResource(Res.string.taras_feature_3),
+                                            stringResource(Res.string.taras_feature_4),
+                                            stringResource(Res.string.taras_feature_5),
+                                        )
+                                    } else {
+                                        listOf(
+                                            stringResource(
+                                                Res.string.feature_manuscript_with_printed,
+                                            ),
+                                            stringResource(
+                                                Res.string.feature_compare_original_modern,
+                                            ),
+                                            stringResource(
+                                                Res.string.feature_autosave_last_page,
+                                            ),
+                                        )
+                                    }
                                 features.forEach { feature: String ->
                                     Text(
                                         text = feature,
