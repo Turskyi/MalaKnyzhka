@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.turskyi.malaknyzhka",
+      "sha256_cert_fingerprints": [
+        "E6:64:A3:1E:79:ED:BD:EC:E3:0B:90:24:9C:4D:F3:D8:89:71:7F:B3:B5:B3:0F:C8:88:4D:AB:F9:16:EE:BC:57"
+      ]
+    }
+  }
+]

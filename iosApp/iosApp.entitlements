@@ -6,5 +6,9 @@
 	<array>
 		<string>group.dmytrowidget</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:shevchenkoai.com</string>
+	</array>
 </dict>
 </plist>

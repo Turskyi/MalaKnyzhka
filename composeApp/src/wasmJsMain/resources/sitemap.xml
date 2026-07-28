@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Landing / Root -->
+    <url>
+        <loc>https://shevchenkoai.com/</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link href="https://shevchenkoai.com/" hreflang="uk" rel="alternate"/>
+        <xhtml:link href="https://shevchenkoai.com/en" hreflang="en" rel="alternate"/>
+        <xhtml:link href="https://shevchenkoai.com/" hreflang="x-default" rel="alternate"/>
+    </url>
+
+    <!-- Book -->
+    <url>
+        <loc>https://shevchenkoai.com/Book</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Chat -->
+    <url>
+        <loc>https://shevchenkoai.com/Chat</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- About -->
+    <url>
+        <loc>https://shevchenkoai.com/About</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Support -->
+    <url>
+        <loc>https://shevchenkoai.com/Support</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://shevchenkoai.com/PrivacyPolicy</loc>
+        <lastmod>2026-07-27</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+</urlset>

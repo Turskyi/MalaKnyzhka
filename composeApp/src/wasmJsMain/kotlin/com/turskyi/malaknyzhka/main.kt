@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalWasmJsInterop::class)
+
 package com.turskyi.malaknyzhka
 
 import androidx.compose.runtime.DisposableEffect
@@ -18,6 +20,12 @@ import org.w3c.dom.HTMLElement
 import org.w3c.dom.PopStateEvent
 import org.w3c.dom.events.Event
 
+@JsFun("() => hideLoadingOverlay()")
+external fun hideLoadingOverlay()
+
+@JsFun("(title, description, url) => updateMetadata(title, description, url)")
+external fun updateMetadata(title: String, description: String, url: String)
+
 @OptIn(
     ExperimentalComposeUiApi::class,
     ExperimentalBrowserHistoryApi::class,
@@ -35,6 +43,50 @@ fun main() {
             shareManager = remember { WasmShareManager() },
             navController = navController,
         )
+
+        LaunchedEffect(Unit) {
+            hideLoadingOverlay()
+        }
+
+        LaunchedEffect(navController) {
+            navController.currentBackStackEntryFlow.collect { entry ->
+                val route = entry.destination.route
+                val baseUrl = "https://shevchenkoai.com"
+                when (route) {
+                    com.turskyi.malaknyzhka.router.NavigationDestination.Landing.name -> {
+                        updateMetadata(
+                            "Тарас Шевченко ✦",
+                            "Досліджуйте творчість та життя Тараса Шевченка за допомогою ШІ.",
+                            baseUrl
+                        )
+                    }
+                    com.turskyi.malaknyzhka.router.NavigationDestination.Book.name -> {
+                        updateMetadata(
+                            "Мала Книжка ✦ Тарас Шевченко",
+                            "Читати поезію Тараса Шевченка онлайн.",
+                            "$baseUrl/Book"
+                        )
+                    }
+                    com.turskyi.malaknyzhka.router.NavigationDestination.Chat.name -> {
+                        updateMetadata(
+                            "Чат з Тарасом Шевченком",
+                            "Поспілкуйтеся з Кобзарем за допомогою штучного інтелекту.",
+                            "$baseUrl/Chat"
+                        )
+                    }
+                    else -> {
+                        if (route != null) {
+                            updateMetadata(
+                                "$route ✦ Тарас Шевченко",
+                                "Сторінка $route у додатку Тарас Шевченко.",
+                                "$baseUrl/$route"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
         LaunchedEffect(navController) {
             // Fix for the "BookBook" bug:
             // bindToBrowserNavigation captures the current pathname as the base URL.

@@ -12,13 +12,137 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="index, follow" name="robots">
+    <meta content="#FFD700" name="theme-color">
+    <link href="https://shevchenkoai.com/" rel="canonical">
+
+    <!-- SEO Metadata -->
+    <meta content="Досліджуйте творчість та життя Тараса Шевченка за допомогою ШІ. Читайте Кобзар та спілкуйтеся з поетом." name="description">
+    <meta content="Тарас Шевченко ✦" property="og:title">
+    <meta content="Досліджуйте творчість та життя Тараса Шевченка за допомогою ШІ." property="og:description">
+    <meta content="https://shevchenkoai.com/" property="og:url">
+    <meta content="website" property="og:type">
+    <meta content="https://shevchenkoai.com/logo.png" property="og:image">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="Тарас Шевченко ✦" name="twitter:title">
+    <meta content="Досліджуйте творчість та життя Тараса Шевченка за допомогою ШІ." name="twitter:description">
+    <meta content="https://shevchenkoai.com/logo.png" name="twitter:image">
+
+    <!-- hreflang -->
+    <link href="https://shevchenkoai.com/" hreflang="uk" rel="alternate">
+    <link href="https://shevchenkoai.com/en" hreflang="en" rel="alternate">
+    <link href="https://shevchenkoai.com/" hreflang="x-default" rel="alternate">
+
+    <!-- iOS Smart App Banner -->
+    <meta content="app-id=6743679879, app-argument=https://shevchenkoai.com/" name="apple-itunes-app">
+
     <!-- Favicon -->
     <link href="logo.png" rel="icon" type="image/png"/>
     <title>Тарас Шевченко ✦</title>
     <link type="text/css" rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Тарас Шевченко ✦",
+      "operatingSystem": "Android, iOS, Web, macOS",
+      "applicationCategory": "EducationApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "ratingCount": "1"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://shevchenkoai.com/",
+      "name": "Тарас Шевченко ✦"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mala Knyzhka",
+      "url": "https://shevchenkoai.com/",
+      "logo": "https://shevchenkoai.com/logo.png"
+    }
+    </script>
+
+    <style>
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        #loading-overlay h1 {
+            color: #333;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #333;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script>
+        function updateMetadata(title, description, url) {
+            document.title = title;
+            document.querySelector('meta[name="description"]').setAttribute("content", description);
+            document.querySelector('link[rel="canonical"]').setAttribute("href", url);
+            document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+            document.querySelector('meta[property="og:description"]').setAttribute("content", description);
+            document.querySelector('meta[property="og:url"]').setAttribute("content", url);
+            document.querySelector('meta[name="twitter:title"]').setAttribute("content", title);
+            document.querySelector('meta[name="twitter:description"]').setAttribute("content", description);
+        }
+
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 500);
+            }
+        }
+    </script>
+
     <!--suppress HtmlUnknownTarget -->
     <script type="application/javascript" src="composeApp.js"></script>
 </head>
 <body>
+    <div id="loading-overlay">
+        <h1>Тарас Шевченко ✦</h1>
+        <div class="spinner"></div>
+    </div>
 </body>
 </html>
