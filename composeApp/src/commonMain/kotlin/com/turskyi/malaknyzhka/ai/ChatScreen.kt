@@ -369,7 +369,7 @@ fun ChatView(
         Box(modifier = Modifier.weight(1f)) {
             if (messages.isEmpty()) {
                 ChatEmptyView(
-                    onSuggestionClick = { suggestion ->
+                    onSuggestionClick = { suggestion: String ->
                         viewModel.sendMessage(
                             text = suggestion,
                             pageNumber = viewModel.currentPageNumber,
@@ -387,7 +387,7 @@ fun ChatView(
                         contentPadding = PaddingValues(vertical = 8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        items(messages) { message ->
+                        items(messages) { message: ChatMessage ->
                             MessageBubble(message)
                         }
                     }

@@ -1,5 +1,6 @@
 package com.turskyi.malaknyzhka
 
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.PlatformType
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
@@ -8,6 +9,9 @@ import platform.Foundation.timeIntervalSince1970
 
 class IOSPlatform(override val initialRoute: String? = null) : Platform {
     override val type: PlatformType = PlatformType.IOS
+    override fun syncLauncherIcon(experience: Experience, immediate: Boolean) {
+        // iOS does not support dynamic icons via activity aliases.
+    }
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()

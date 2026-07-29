@@ -1,10 +1,14 @@
 package com.turskyi.malaknyzhka
 
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.PlatformType
 
 class JVMPlatform: Platform {
     override val type: PlatformType = PlatformType.DESKTOP
     override val initialRoute: String? = null
+    override fun syncLauncherIcon(experience: Experience, immediate: Boolean) {
+        // Desktop does not support dynamic icons via activity aliases.
+    }
 }
 
 actual fun getPlatform(): Platform = JVMPlatform()

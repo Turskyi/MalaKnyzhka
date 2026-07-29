@@ -2,6 +2,7 @@ package com.turskyi.malaknyzhka.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
 import com.turskyi.malaknyzhka.models.Experience
@@ -70,6 +71,8 @@ class AppViewModel(
     fun changeExperience(newExperience: Experience) {
         userSettingsRepository.saveExperience(newExperience)
         _experience.value = newExperience
+        // Add platform-specific launcher icon synchronization (non-immediate by default)
+        getPlatform().syncLauncherIcon(newExperience)
     }
 
     fun completeOnboarding() {
