@@ -7,4 +7,5 @@ object SettingsKeys {
     const val THEME_MODE = "themeMode"
     const val IS_ONBOARDING_COMPLETE = "isOnboardingComplete"
     const val EXPERIENCE = "experience"
+    const val HAS_TARAS_BEEN_SELECTED = "hasTarasBeenSelected"
 }
