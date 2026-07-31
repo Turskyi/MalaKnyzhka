@@ -9,6 +9,7 @@ import platform.Foundation.timeIntervalSince1970
 
 class IOSPlatform(override val initialRoute: String? = null) : Platform {
     override val type: PlatformType = PlatformType.IOS
+    override val hostname: String? = null
     override fun syncLauncherIcon(experience: Experience, immediate: Boolean) {
         // iOS does not support dynamic icons via activity aliases.
     }

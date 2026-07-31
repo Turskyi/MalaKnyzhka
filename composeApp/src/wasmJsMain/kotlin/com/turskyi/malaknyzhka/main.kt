@@ -21,6 +21,7 @@ import com.turskyi.malaknyzhka.models.SettingsKeys
 import com.turskyi.malaknyzhka.models.SettingsUserSettingsRepository
 import com.turskyi.malaknyzhka.share.WasmShareManager
 import com.turskyi.malaknyzhka.ui.App
+import com.turskyi.malaknyzhka.usecases.HostnameSettingsResolver
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
@@ -47,8 +48,10 @@ fun main() {
             SettingsUserSettingsRepository(settings)
         }
 
+        val overrides = remember(platform) { HostnameSettingsResolver.resolve(platform.hostname) }
+
         var currentExperience by remember {
-            mutableStateOf(userSettingsRepository.getExperience(Experience.TARAS))
+            mutableStateOf(overrides.experience ?: userSettingsRepository.getExperience(Experience.TARAS))
         }
 
         DisposableEffect(settings) {

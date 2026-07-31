@@ -6,6 +6,7 @@ import com.turskyi.malaknyzhka.models.PlatformType
 interface Platform {
     val type: PlatformType
     val initialRoute: String?
+    val hostname: String?
     fun syncLauncherIcon(experience: Experience, immediate: Boolean = false)
 }
 

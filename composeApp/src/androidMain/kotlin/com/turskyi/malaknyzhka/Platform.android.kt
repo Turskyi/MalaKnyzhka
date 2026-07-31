@@ -8,6 +8,7 @@ import com.turskyi.malaknyzhka.models.SettingsUserSettingsRepository
 
 class AndroidPlatform(override val initialRoute: String? = null) : Platform {
     override val type: PlatformType = PlatformType.ANDROID
+    override val hostname: String? = null
 
     companion object {
         var pendingExperience: Experience? = null

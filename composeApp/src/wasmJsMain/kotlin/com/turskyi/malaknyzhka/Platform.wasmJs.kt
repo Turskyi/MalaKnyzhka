@@ -15,6 +15,9 @@ class WasmPlatform : Platform {
     override val initialRoute: String
         get() = window.location.pathname.removePrefix("/")
 
+    override val hostname: String
+        get() = window.location.hostname
+
     override fun syncLauncherIcon(
         experience: Experience,
         immediate: Boolean,
