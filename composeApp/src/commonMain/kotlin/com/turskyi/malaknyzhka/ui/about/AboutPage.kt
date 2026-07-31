@@ -64,6 +64,7 @@ import malaknyzhka.composeapp.generated.resources.data_storage_info
 import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
+import malaknyzhka.composeapp.generated.resources.logo_taras
 import malaknyzhka.composeapp.generated.resources.menu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -136,7 +137,13 @@ fun AboutPage(
                             onClick = onBack
                         ) {
                             Image(
-                                painter = painterResource(Res.drawable.logo),
+                                painter = painterResource(
+                                    if (currentExperience == Experience.TARAS) {
+                                        Res.drawable.logo_taras
+                                    } else {
+                                        Res.drawable.logo
+                                    },
+                                ),
                                 contentDescription = stringResource(
                                     Res.string.logo_description,
                                 ),

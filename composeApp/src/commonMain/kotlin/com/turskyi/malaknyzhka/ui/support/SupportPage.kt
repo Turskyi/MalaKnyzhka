@@ -40,6 +40,7 @@ import com.turskyi.malaknyzhka.AppConstants.CHAT_CHANNEL
 import com.turskyi.malaknyzhka.CHAT_LINK_TAG
 import com.turskyi.malaknyzhka.EMAIL_LINK_TAG
 import com.turskyi.malaknyzhka.SUPPORT_LINK_TAG
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
@@ -67,6 +68,7 @@ import malaknyzhka.composeapp.generated.resources.how_to_use_share_copy
 import malaknyzhka.composeapp.generated.resources.if_you_have_questions
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
+import malaknyzhka.composeapp.generated.resources.logo_taras
 import malaknyzhka.composeapp.generated.resources.support
 import malaknyzhka.composeapp.generated.resources.thanks_for_using
 import malaknyzhka.composeapp.generated.resources.we_appreciate
@@ -89,7 +91,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param onBack Callback to navigate back to the previous screen.
  */
 @Composable
-fun SupportPage(onBack: () -> Unit) {
+fun SupportPage(onBack: () -> Unit, currentExperience: Experience = Experience.BOOK) {
     val scrollState: ScrollState = rememberScrollState()
     val uriHandler: UriHandler = LocalUriHandler.current
     Scaffold(
@@ -113,7 +115,13 @@ fun SupportPage(onBack: () -> Unit) {
                             onClick = onBack
                         ) {
                             Image(
-                                painter = painterResource(Res.drawable.logo),
+                                painter = painterResource(
+                                    if (currentExperience == Experience.TARAS) {
+                                        Res.drawable.logo_taras
+                                    } else {
+                                        Res.drawable.logo
+                                    },
+                                ),
                                 contentDescription = stringResource(
                                     Res.string.logo_description,
                                 ),

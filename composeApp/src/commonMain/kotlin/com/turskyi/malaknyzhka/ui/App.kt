@@ -404,10 +404,16 @@ fun App(
                                         )
                                     }
                                     composable(route = NavigationDestination.PrivacyPolicy.name) {
-                                        PrivacyPolicyPage(onBack = onBack)
+                                        PrivacyPolicyPage(
+                                            onBack = onBack,
+                                            currentExperience = experience,
+                                        )
                                     }
                                     composable(route = NavigationDestination.Support.name) {
-                                        SupportPage(onBack = onBack)
+                                        SupportPage(
+                                            onBack = onBack,
+                                            currentExperience = experience,
+                                        )
                                     }
                                     composable(route = NavigationDestination.About.name) {
                                         if (experience == Experience.TARAS) {
