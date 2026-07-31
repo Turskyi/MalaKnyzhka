@@ -44,8 +44,10 @@ import androidx.compose.ui.unit.dp
 import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.URL_TAG
+import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.PlatformType
+import com.turskyi.malaknyzhka.ui.LocalAppLanguage
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import malaknyzhka.composeapp.generated.resources.GetItOnGooglePlay_Badge_Web_color
 import malaknyzhka.composeapp.generated.resources.Res
@@ -105,6 +107,7 @@ fun LandingPage(
 ) {
 
     val isWeb: Boolean = platform.type == PlatformType.WEB
+    val currentLanguage: AppLang = LocalAppLanguage.current
     val uriHandler: UriHandler = LocalUriHandler.current
     val scrollState: ScrollState = rememberScrollState()
     Surface(
@@ -307,22 +310,24 @@ fun LandingPage(
                             }
 
                             Spacer(modifier = Modifier.height(16.dp))
+                            if (currentLanguage != AppLang.English) {
 
-                            val iPhoneScreenshots: List<DrawableResource> =
-                                listOf(
-                                    Res.drawable.screenshot_1,
-                                    Res.drawable.screenshot_2,
-                                    Res.drawable.screenshot_3,
-                                    Res.drawable.screenshot_4,
+                                val iPhoneScreenshots: List<DrawableResource> =
+                                    listOf(
+                                        Res.drawable.screenshot_1,
+                                        Res.drawable.screenshot_2,
+                                        Res.drawable.screenshot_3,
+                                        Res.drawable.screenshot_4,
+                                    )
+
+                                ScreenshotCarousel(
+                                    screenshots = iPhoneScreenshots,
+                                    ratio = 9f / 19.5f,
+                                    height = 480.dp,
                                 )
 
-                            ScreenshotCarousel(
-                                screenshots = iPhoneScreenshots,
-                                ratio = 9f / 19.5f,
-                                height = 480.dp,
-                            )
-
-                            Spacer(modifier = Modifier.height(8.dp))
+                                Spacer(modifier = Modifier.height(8.dp))
+                            }
 
                             val iPadScreenshots: List<DrawableResource> =
                                 listOf(
