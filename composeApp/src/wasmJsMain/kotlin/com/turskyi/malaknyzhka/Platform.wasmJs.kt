@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalWasmJsInterop::class)
+
 package com.turskyi.malaknyzhka
 
 import com.turskyi.malaknyzhka.models.Experience
@@ -5,12 +7,23 @@ import com.turskyi.malaknyzhka.models.PlatformType
 
 import kotlinx.browser.window
 
+@JsFun("(iconUrl) => updateFavicon(iconUrl)")
+external fun updateFavicon(iconUrl: String)
+
 class WasmPlatform : Platform {
     override val type: PlatformType = PlatformType.WEB
     override val initialRoute: String
         get() = window.location.pathname.removePrefix("/")
-    override fun syncLauncherIcon(experience: Experience, immediate: Boolean) {
-        // WASM does not support dynamic icons via activity aliases.
+
+    override fun syncLauncherIcon(
+        experience: Experience,
+        immediate: Boolean,
+    ) {
+        val iconUrl = when (experience) {
+            Experience.BOOK -> "logo_book.png"
+            Experience.TARAS -> "logo_taras.png"
+        }
+        updateFavicon(iconUrl)
     }
 }
 

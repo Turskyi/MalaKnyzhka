@@ -4,14 +4,21 @@ package com.turskyi.malaknyzhka
 
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import androidx.navigation.ExperimentalBrowserHistoryApi
 import androidx.navigation.NavHostController
 import androidx.navigation.bindToBrowserNavigation
 import androidx.navigation.compose.rememberNavController
+import com.russhwolf.settings.ObservableSettings
 import com.turskyi.malaknyzhka.infrastructure.WasmTextToSpeech
+import com.turskyi.malaknyzhka.models.Experience
+import com.turskyi.malaknyzhka.models.SettingsKeys
+import com.turskyi.malaknyzhka.models.SettingsUserSettingsRepository
 import com.turskyi.malaknyzhka.share.WasmShareManager
 import com.turskyi.malaknyzhka.ui.App
 import kotlinx.browser.document
@@ -34,28 +41,63 @@ external fun updateMetadata(title: String, description: String, url: String)
 fun main() {
     val body: HTMLElement = document.body ?: return
     ComposeViewport(body) {
+        val settings = remember { createSettings() }
+        val platform = remember { getPlatform() }
+        val userSettingsRepository = remember(settings) {
+            SettingsUserSettingsRepository(settings)
+        }
+
+        var currentExperience by remember {
+            mutableStateOf(userSettingsRepository.getExperience(Experience.TARAS))
+        }
+
+        DisposableEffect(settings) {
+            val observableSettings = settings as? ObservableSettings
+            val listener = observableSettings?.addStringListener(
+                SettingsKeys.EXPERIENCE,
+                Experience.TARAS.name
+            ) { newValue ->
+                currentExperience = try {
+                    Experience.valueOf(newValue)
+                } catch (_: Exception) {
+                    Experience.TARAS
+                }
+            }
+            onDispose {
+                listener?.deactivate()
+            }
+        }
+
+        // Reconcile favicon on startup
+        LaunchedEffect(Unit) {
+            platform.syncLauncherIcon(currentExperience, immediate = true)
+        }
+
         val navController: NavHostController = rememberNavController()
         App(
-            settings = remember {
-                createSettings()
-            },
+            settings = settings,
             textToSpeech = remember { WasmTextToSpeech() },
             shareManager = remember { WasmShareManager() },
             navController = navController,
+            platform = platform
         )
 
         LaunchedEffect(Unit) {
             hideLoadingOverlay()
         }
 
-        LaunchedEffect(navController) {
-            navController.currentBackStackEntryFlow.collect { entry ->
-                val route = entry.destination.route
+        LaunchedEffect(navController, currentExperience) {
+            val updateMetadataForRoute: (String?) -> Unit = { route ->
                 val baseUrl = "https://shevchenkoai.com"
                 when (route) {
                     com.turskyi.malaknyzhka.router.NavigationDestination.Landing.name -> {
+                        val title = if (currentExperience == Experience.BOOK) {
+                            "Мала Книжка ✦ Тарас Шевченко"
+                        } else {
+                            "Тарас Шевченко ✦"
+                        }
                         updateMetadata(
-                            "Тарас Шевченко ✦",
+                            title,
                             "Досліджуйте творчість та життя Тараса Шевченка за допомогою ШІ.",
                             baseUrl
                         )
@@ -84,6 +126,13 @@ fun main() {
                         }
                     }
                 }
+            }
+
+            // Update immediately when experience changes on current route
+            updateMetadataForRoute(navController.currentBackStackEntry?.destination?.route)
+
+            navController.currentBackStackEntryFlow.collect { entry ->
+                updateMetadataForRoute(entry.destination.route)
             }
         }
 

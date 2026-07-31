@@ -217,7 +217,10 @@ fun ChatScreen(
     )
     { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
-            ChatView(viewModel = viewModel)
+            ChatView(
+                viewModel = viewModel,
+                experience = currentExperience,
+            )
 
             // 🪟 Semi-transparent overlay for drawer.
             if (isDrawerOpen) {
@@ -256,6 +259,7 @@ fun ChatView(
     onClose: (() -> Unit)? = null,
     onToggleFullScreen: (() -> Unit)? = null,
     isFullScreen: Boolean = true,
+    experience: Experience = Experience.TARAS,
 ) {
     val messages by viewModel.messages.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -369,6 +373,7 @@ fun ChatView(
         Box(modifier = Modifier.weight(1f)) {
             if (messages.isEmpty()) {
                 ChatEmptyView(
+                    experience = experience,
                     onSuggestionClick = { suggestion: String ->
                         viewModel.sendMessage(
                             text = suggestion,

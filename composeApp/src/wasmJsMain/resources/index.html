@@ -125,6 +125,19 @@
             document.querySelector('meta[name="twitter:description"]').setAttribute("content", description);
         }
 
+        function updateFavicon(iconUrl) {
+            const link = document.querySelector('link[rel="icon"]');
+            if (link) {
+                link.href = iconUrl;
+            } else {
+                const newLink = document.createElement('link');
+                newLink.rel = 'icon';
+                newLink.href = iconUrl;
+                newLink.type = 'image/png';
+                document.head.appendChild(newLink);
+            }
+        }
+
         function hideLoadingOverlay() {
             const overlay = document.getElementById('loading-overlay');
             if (overlay) {

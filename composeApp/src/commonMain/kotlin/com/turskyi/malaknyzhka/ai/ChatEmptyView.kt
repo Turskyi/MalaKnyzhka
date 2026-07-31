@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.turskyi.malaknyzhka.models.Experience
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.chat_welcome_headline
 import malaknyzhka.composeapp.generated.resources.chat_welcome_supporting_text
@@ -43,12 +44,14 @@ import malaknyzhka.composeapp.generated.resources.suggestion_1
 import malaknyzhka.composeapp.generated.resources.suggestion_2
 import malaknyzhka.composeapp.generated.resources.suggestion_3
 import malaknyzhka.composeapp.generated.resources.taras_with_book
+import malaknyzhka.composeapp.generated.resources.taras_with_quill
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ChatEmptyView(
+    experience: Experience,
     onSuggestionClick: (String) -> Unit
 ) {
     var visible by remember { mutableStateOf(false) }
@@ -76,8 +79,14 @@ fun ChatEmptyView(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.sizeIn(maxWidth = 600.dp)
             ) {
+                val tarasImage = if (experience == Experience.TARAS) {
+                    Res.drawable.taras_with_quill
+                } else {
+                    Res.drawable.taras_with_book
+                }
+
                 Image(
-                    painter = painterResource(Res.drawable.taras_with_book),
+                    painter = painterResource(tarasImage),
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
