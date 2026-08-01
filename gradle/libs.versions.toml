@@ -1,7 +1,7 @@
 [versions]
 dockName = "Тарас Шевченко ✦"
-versionName = "1.2.1"
-versionCode = "21"
+versionName = "1.2.2"
+versionCode = "22"
 agp = "9.3.1"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
