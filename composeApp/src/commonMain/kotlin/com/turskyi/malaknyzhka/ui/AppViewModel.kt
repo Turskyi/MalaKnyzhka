@@ -2,11 +2,13 @@ package com.turskyi.malaknyzhka.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.AppLocale
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
 import com.turskyi.malaknyzhka.models.UserSettingsRepository
+import com.turskyi.malaknyzhka.usecases.HostnameSettingsResolver
 import com.turskyi.malaknyzhka.usecases.isOnAndroid
 import com.turskyi.malaknyzhka.usecases.isOnDesktop
 import com.turskyi.malaknyzhka.usecases.isOnIos
@@ -21,8 +23,10 @@ class AppViewModel(
     private val appLocale: AppLocale,
     private val userSettingsRepository: UserSettingsRepository,
 ) : ViewModel() {
+    private val overrides = HostnameSettingsResolver.resolve(getPlatform().hostname)
+
     private val _appGlobalLanguage: MutableStateFlow<AppLang> =
-        MutableStateFlow(appLocale.getLocale().toApLang())
+        MutableStateFlow(overrides.language ?: appLocale.getLocale().toApLang())
     val appGlobalLanguage: StateFlow<AppLang> = _appGlobalLanguage.asStateFlow()
 
     private val _themeMode: MutableStateFlow<ThemeMode> =
@@ -36,7 +40,7 @@ class AppViewModel(
     }
 
     private val _experience: MutableStateFlow<Experience> =
-        MutableStateFlow(userSettingsRepository.getExperience(defaultExperience))
+        MutableStateFlow(overrides.experience ?: userSettingsRepository.getExperience(defaultExperience))
     val experience: StateFlow<Experience> = _experience.asStateFlow()
 
     private val _isOnboardingComplete: MutableStateFlow<Boolean> =
@@ -44,6 +48,9 @@ class AppViewModel(
     val isOnboardingComplete: StateFlow<Boolean> = _isOnboardingComplete.asStateFlow()
 
     init {
+        overrides.language?.let { appLocale.setLocale(it) }
+        overrides.experience?.let { userSettingsRepository.saveExperience(it) }
+
         viewModelScope.launch {
             if (isOnDesktop()) {
                 appLocale.setLocale(_appGlobalLanguage.value)
@@ -70,6 +77,8 @@ class AppViewModel(
     fun changeExperience(newExperience: Experience) {
         userSettingsRepository.saveExperience(newExperience)
         _experience.value = newExperience
+        // Add platform-specific launcher icon synchronization (non-immediate by default)
+        getPlatform().syncLauncherIcon(newExperience)
     }
 
     fun completeOnboarding() {

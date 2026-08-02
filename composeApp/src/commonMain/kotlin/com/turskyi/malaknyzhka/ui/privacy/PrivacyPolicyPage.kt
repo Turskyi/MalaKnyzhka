@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.usecases.isOnWeb
 import malaknyzhka.composeapp.generated.resources.Res
@@ -30,6 +31,7 @@ import malaknyzhka.composeapp.generated.resources.arrow_back
 import malaknyzhka.composeapp.generated.resources.back_button_description
 import malaknyzhka.composeapp.generated.resources.logo
 import malaknyzhka.composeapp.generated.resources.logo_description
+import malaknyzhka.composeapp.generated.resources.logo_taras
 import malaknyzhka.composeapp.generated.resources.privacy
 import malaknyzhka.composeapp.generated.resources.privacy_policy
 import org.jetbrains.compose.resources.painterResource
@@ -51,7 +53,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param onBack Callback to navigate back to the previous screen.
  */
 @Composable
-fun PrivacyPolicyPage(onBack: () -> Unit) {
+fun PrivacyPolicyPage(onBack: () -> Unit, currentExperience: Experience = Experience.BOOK) {
     val scrollState: ScrollState = rememberScrollState()
 
     Scaffold(
@@ -75,7 +77,13 @@ fun PrivacyPolicyPage(onBack: () -> Unit) {
                             onClick = onBack
                         ) {
                             Image(
-                                painter = painterResource(Res.drawable.logo),
+                                painter = painterResource(
+                                    if (currentExperience == Experience.TARAS) {
+                                        Res.drawable.logo_taras
+                                    } else {
+                                        Res.drawable.logo
+                                    },
+                                ),
                                 contentDescription = stringResource(
                                     Res.string.logo_description,
                                 ),

@@ -104,11 +104,24 @@ target platform. For detailed guidelines, refer to the following:
 
 #### Web Application
 
-Build and run the web application using this Gradle task:
+**Development:** Build and run the web application using this Gradle task:
 
 ```bash
 ./gradlew :composeApp:wasmJsBrowserDevelopmentRun
 ```
+
+**Production:** To build a production version of the web application and deploy
+it to Firebase Hosting:
+
+1. **Build the production executable**:
+   ```bash
+   ./gradlew :composeApp:wasmJsBrowserDistribution
+   ```
+
+2. **Deploy to Firebase Hosting**:
+   ```bash
+   firebase deploy --only hosting
+   ```
 
 **Troubleshooting:** If the build fails with an error like
 `Lock file was changed. Run the 'kotlinWasmUpgradeYarnLock' task to actualize lock file`,

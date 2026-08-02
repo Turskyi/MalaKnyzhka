@@ -7,13 +7,20 @@
     <string name="app_language">Мова застосунку: %1$s</string>
     <string name="change_lang">Змінити мову</string>
     <string name="logo_description">Мала Книжка</string>
-
+    <string name="chat_welcome_headline">Спілкуйтеся з Тарасом Шевченком</string>
+    <string name="chat_welcome_supporting_text">Ставте запитання про «Малу книжку», її рукописи, вірші, історичний контекст або життя Тараса Шевченка.\n\nВідповіді генеруються ШІ, натхненним його творами та історичними джерелами.</string>
+    <string name="suggestion_1">Розкажи про «Малу книжку»</string>
+    <string name="suggestion_2">Яким було твоє життя?</string>
+    <string name="suggestion_3">Порадь, з чого почати читання</string>
     <string name="privacy_policy">Політика конфіденційності</string>
 
     <string name="support">Підтримка</string>
     <string name="about_app">Про застосунок</string>
     <string name="about_app_little_book">
 Про застосунок «Тарас Шевченко ✦»
+    </string>
+    <string name="about_app_little_book_no_sparkle">
+Про застосунок «Тарас Шевченко»
     </string>
 
     <string name="search_hint">Пошук у рукописі…</string>
@@ -94,13 +101,12 @@
     <string name="if_you_have_questions">Якщо у вас виникли запитання, пропозиції або ви зіткнулися з проблемою, ви можете звернутися за наступними каналами:</string>
     <string name="cover_description">Фонова обкладинка меню</string>
     <string name="main_features">Основні можливості</string>
-    <string name="available_on_platforms">Доступно для Android, iOS та macOS!</string>
+    <string name="available_on_platforms">Доступно для Android та iOS!</string>
     <string name="feature_manuscript_with_printed">• Читайте рукопис разом із друкованим текстом.</string>
     <string name="feature_compare_original_modern">• Порівнюйте оригінал із сучасним написанням.</string>
     <string name="feature_autosave_last_page">• Автоматичне збереження останньої прочитаної сторінки.</string>
     <string name="badge_google_play_description">Значок Google Play</string>
-    <string name="badge_macos_description">Значок MacOS</string>
-    <string name="badge_test_flight_description">Значок TestFlight</string>
+    <string name="badge_app_store_description">Значок App Store</string>
     <string name="theme_system">Системна</string>
     <string name="theme_light">Світла</string>
     <string name="theme_dark">Темна</string>
@@ -124,6 +130,7 @@
     <string name="english_label">Англійська:</string>
     <string name="copied_to_clipboard">Скопійовано в буфер</string>
     <string name="about_taras_title">Про застосунок «Тарас Шевченко ✦»</string>
+    <string name="about_taras_title_no_sparkle">Про застосунок «Тарас Шевченко»</string>
     <string name="about_taras_intro_part1">«Тарас Шевченко ✦» - це інтерактивний культурно-освітній застосунок, який дозволяє досліджувати життя, творчість та історичний контекст Тараса Шевченка через живий діалог.</string>
     <string name="about_taras_intro_part2">За допомогою штучного інтелекту застосунок відтворює розмову, натхненну творчістю, листами, біографією та епохою поета. Це не історична реконструкція особистості, а сучасний спосіб глибше познайомитися з його спадщиною.</string>
     <string name="about_taras_ask_title">Ставте запитання природною мовою</string>

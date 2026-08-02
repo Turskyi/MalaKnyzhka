@@ -369,7 +369,8 @@ fun Page(
                                 onNavigateToChatWithContext(currentPage, ukrainianText)
                             }
                         },
-                        isFullScreen = false
+                        isFullScreen = false,
+                        experience = currentExperience,
                     )
                 }
             }

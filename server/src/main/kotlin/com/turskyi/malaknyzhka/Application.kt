@@ -57,6 +57,7 @@ fun Application.module() {
 
     install(CORS) {
         allowHost("mala-knyzhka.web.app", schemes = listOf("https"))
+        allowHost("shevchenkoai.com", schemes = listOf("https"))
         allowHost("localhost:8081") // Web dev server default port
         allowHost("localhost:8080")
         allowHeader(HttpHeaders.ContentType)

@@ -9,6 +9,8 @@ interface UserSettingsRepository {
     fun saveOnboardingComplete(isComplete: Boolean)
     fun getExperience(defaultExperience: Experience): Experience
     fun saveExperience(experience: Experience)
+    fun hasTarasBeenSelected(): Boolean
+    fun saveTarasSelected(isSelected: Boolean)
 }
 
 class SettingsUserSettingsRepository(private val settings: Settings) :
@@ -53,5 +55,13 @@ class SettingsUserSettingsRepository(private val settings: Settings) :
 
     override fun saveExperience(experience: Experience) {
         settings.putString(SettingsKeys.EXPERIENCE, experience.name)
+    }
+
+    override fun hasTarasBeenSelected(): Boolean {
+        return settings.getBoolean(SettingsKeys.HAS_TARAS_BEEN_SELECTED, false)
+    }
+
+    override fun saveTarasSelected(isSelected: Boolean) {
+        settings.putBoolean(SettingsKeys.HAS_TARAS_BEEN_SELECTED, isSelected)
     }
 }

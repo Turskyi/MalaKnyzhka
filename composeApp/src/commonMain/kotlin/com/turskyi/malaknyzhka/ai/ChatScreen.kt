@@ -217,7 +217,10 @@ fun ChatScreen(
     )
     { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
-            ChatView(viewModel = viewModel)
+            ChatView(
+                viewModel = viewModel,
+                experience = currentExperience,
+            )
 
             // 🪟 Semi-transparent overlay for drawer.
             if (isDrawerOpen) {
@@ -256,6 +259,7 @@ fun ChatView(
     onClose: (() -> Unit)? = null,
     onToggleFullScreen: (() -> Unit)? = null,
     isFullScreen: Boolean = true,
+    experience: Experience = Experience.TARAS,
 ) {
     val messages by viewModel.messages.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -367,17 +371,30 @@ fun ChatView(
         }
 
         Box(modifier = Modifier.weight(1f)) {
-            SelectionContainer {
-                LazyColumn(
-                    state = listState,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 8.dp),
-                    contentPadding = PaddingValues(vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(messages) { message ->
-                        MessageBubble(message)
+            if (messages.isEmpty()) {
+                ChatEmptyView(
+                    experience = experience,
+                    onSuggestionClick = { suggestion: String ->
+                        viewModel.sendMessage(
+                            text = suggestion,
+                            pageNumber = viewModel.currentPageNumber,
+                            pageText = viewModel.currentPageText,
+                        )
+                    }
+                )
+            } else {
+                SelectionContainer {
+                    LazyColumn(
+                        state = listState,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 8.dp),
+                        contentPadding = PaddingValues(vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(messages) { message: ChatMessage ->
+                            MessageBubble(message)
+                        }
                     }
                 }
             }

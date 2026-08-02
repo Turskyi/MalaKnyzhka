@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.turskyi.malaknyzhka",
+      "sha256_cert_fingerprints": [
+        "E6:64:A3:1E:79:ED:BD:EC:E3:0B:90:24:9C:4D:F3:D8:89:71:7F:B3:B5:B3:0F:C8:88:4D:AB:F9:16:EE:BC:57",
+        "73:AF:2B:7E:D1:A9:E1:DA:84:BF:E6:18:B9:F8:E9:AF:46:04:2F:B3:EE:CF:07:01:C4:43:4F:DB:9A:CA:1A:E5"
+      ]
+    }
+  }
+]

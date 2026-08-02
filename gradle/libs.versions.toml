@@ -1,7 +1,7 @@
 [versions]
 dockName = "Тарас Шевченко ✦"
-versionName = "1.2.0"
-versionCode = "20"
+versionName = "1.2.2"
+versionCode = "22"
 agp = "9.3.1"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
@@ -22,8 +22,9 @@ android-targetSdk = "37"
 applicationId = "com.turskyi.malaknyzhka"
 appcompat = "1.7.1"
 kotlinx-serialization = "1.11.0"
+# Ignore linter upgrade to 3.5.2; io.ktor.plugin is not yet available in that version.
 ktor = "3.5.1"
-logback = "1.6.0"
+logback = "1.6.1"
 dotenv = "6.5.1"
 
 [libraries]

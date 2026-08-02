@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Taras Shevchenko ✦</string>
+    <string name="app_name_book_return">Mala Knyzhka ✦ Taras Shevchenko</string>
     <string name="widget_page_label">Page %1$d</string>
     <string name="widget_continue_reading">Continue Reading</string>
     <string name="widget_open_app">Open Mala Knyzhka</string>
