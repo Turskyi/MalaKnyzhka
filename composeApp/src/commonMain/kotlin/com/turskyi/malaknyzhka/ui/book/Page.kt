@@ -41,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.ai.ChatView
 import com.turskyi.malaknyzhka.ai.ChatViewModel
 import com.turskyi.malaknyzhka.infrastructure.BookContentRegistry
@@ -91,6 +92,7 @@ fun Page(
     onNavigateToBookmarks: () -> Unit,
     onNavigateToChat: () -> Unit,
     onNavigateToChatWithContext: (pageNumber: Int, pageText: String) -> Unit,
+    platform: Platform,
 ) {
     val viewModel: BookViewModel = viewModel {
         BookViewModel(bookRepository, bookmarkRepository, textToSpeech)
@@ -350,7 +352,7 @@ fun Page(
                         .width(400.dp)
                         .fillMaxHeight(),
                     shape = RoundedCornerShape(16.dp),
-                    elevation = 16.dp,
+                    elevation = if (platform.isEmulator) 2.dp else 16.dp,
                     border = androidx.compose.foundation.BorderStroke(
                         1.dp,
                         MaterialTheme.colors.primary.copy(alpha = 0.2f)
@@ -371,6 +373,7 @@ fun Page(
                         },
                         isFullScreen = false,
                         experience = currentExperience,
+                        platform = platform,
                     )
                 }
             }
@@ -404,6 +407,7 @@ fun Page(
                 },
                 currentThemeMode = currentThemeMode,
                 onThemeChange = onThemeChange,
+                platform = platform,
             )
 
             if (isSearchOpen) {
@@ -412,7 +416,8 @@ fun Page(
                     onResultClick = { pageIndex ->
                         viewModel.setSearchOpen(false)
                         viewModel.onNewPage(pageIndex)
-                    }
+                    },
+                    platform = platform,
                 )
             }
         }

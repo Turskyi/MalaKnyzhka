@@ -38,6 +38,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.Platform
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
@@ -89,6 +91,7 @@ fun AboutTarasPage(
     onNavigateToPrivacyPolicy: () -> Unit = {},
     onNavigateToSupport: () -> Unit = {},
     onNavigateToChat: () -> Unit = {},
+    platform: Platform = getPlatform(),
 ) {
     val scrollState: ScrollState = rememberScrollState()
 
@@ -104,6 +107,7 @@ fun AboutTarasPage(
     Scaffold(
         topBar = {
             TopAppBar(
+                elevation = if (platform.isEmulator) 0.dp else 4.dp,
                 windowInsets = WindowInsets.statusBars,
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -354,7 +358,8 @@ fun AboutTarasPage(
                 onThemeChange = {
                     onThemeChange(it)
                     isDrawerOpen = false
-                }
+                },
+                platform = platform
             )
         }
     }

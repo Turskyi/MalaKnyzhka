@@ -39,7 +39,9 @@ import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.AppConstants.CHAT_CHANNEL
 import com.turskyi.malaknyzhka.CHAT_LINK_TAG
 import com.turskyi.malaknyzhka.EMAIL_LINK_TAG
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.SUPPORT_LINK_TAG
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.usecases.isOnWeb
@@ -91,12 +93,17 @@ import org.jetbrains.compose.resources.stringResource
  * @param onBack Callback to navigate back to the previous screen.
  */
 @Composable
-fun SupportPage(onBack: () -> Unit, currentExperience: Experience = Experience.BOOK) {
+fun SupportPage(
+    onBack: () -> Unit,
+    currentExperience: Experience = Experience.BOOK,
+    platform: Platform = getPlatform(),
+) {
     val scrollState: ScrollState = rememberScrollState()
     val uriHandler: UriHandler = LocalUriHandler.current
     Scaffold(
         topBar = {
             TopAppBar(
+                elevation = if (platform.isEmulator) 0.dp else 4.dp,
                 windowInsets = WindowInsets.statusBars,
                 title = {
                     Text(

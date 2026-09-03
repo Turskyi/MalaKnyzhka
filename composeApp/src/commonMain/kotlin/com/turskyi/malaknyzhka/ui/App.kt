@@ -1,6 +1,8 @@
 package com.turskyi.malaknyzhka.ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
@@ -208,7 +210,12 @@ fun App(
                             AnimatedContent(
                                 targetState = currentExperience,
                                 transitionSpec = {
-                                    fadeIn() togetherWith fadeOut()
+                                    if (platform.isEmulator) {
+                                        EnterTransition.None togetherWith
+                                                ExitTransition.None
+                                    } else {
+                                        fadeIn() togetherWith fadeOut()
+                                    }
                                 }
                             ) { experience ->
                                 NavHost(
@@ -335,7 +342,8 @@ fun App(
                                                 ) {
                                                     launchSingleTop = true
                                                 }
-                                            }
+                                            },
+                                            platform = platform,
                                         )
                                     }
                                     composable(route = NavigationDestination.Chat.name) {
@@ -381,7 +389,8 @@ fun App(
                                                     launchSingleTop = true
                                                 }
                                             },
-                                            onNavigateToChat = navigateToChat
+                                            onNavigateToChat = navigateToChat,
+                                            platform = platform
                                         )
                                     }
                                     composable(route = NavigationDestination.Bookmarks.name) {
@@ -407,12 +416,14 @@ fun App(
                                         PrivacyPolicyPage(
                                             onBack = onBack,
                                             currentExperience = experience,
+                                            platform = platform,
                                         )
                                     }
                                     composable(route = NavigationDestination.Support.name) {
                                         SupportPage(
                                             onBack = onBack,
                                             currentExperience = experience,
+                                            platform = platform,
                                         )
                                     }
                                     composable(route = NavigationDestination.About.name) {
@@ -458,7 +469,8 @@ fun App(
                                                         launchSingleTop = true
                                                     }
                                                 },
-                                                onNavigateToChat = navigateToChat
+                                                onNavigateToChat = navigateToChat,
+                                                platform = platform
                                             )
                                         } else {
                                             AboutPage(
@@ -502,7 +514,8 @@ fun App(
                                                         launchSingleTop = true
                                                     }
                                                 },
-                                                onNavigateToChat = navigateToChat
+                                                onNavigateToChat = navigateToChat,
+                                                platform = platform
                                             )
                                         }
                                     }

@@ -130,7 +130,7 @@ fun LandingPage(
                     AppBarLanguageSwitcher()
                 }
                 Card(
-                    elevation = 8.dp,
+                    elevation = if (platform.isEmulator) 2.dp else 8.dp,
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.padding(
                         vertical = 16.dp, horizontal = 24.dp

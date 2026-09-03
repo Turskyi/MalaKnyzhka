@@ -61,8 +61,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
@@ -105,6 +107,7 @@ fun ChatScreen(
     onNavigateToPrivacyPolicy: () -> Unit = {},
     onNavigateToSupport: () -> Unit = {},
     onNavigateToChat: () -> Unit = {},
+    platform: Platform = getPlatform(),
 ) {
     DisposableEffect(viewModel) {
         viewModel.setExpanded(true)
@@ -132,7 +135,7 @@ fun ChatScreen(
     Scaffold(
         topBar = {
             Surface(
-                elevation = 4.dp,
+                elevation = if (platform.isEmulator) 0.dp else 4.dp,
                 color = MaterialTheme.colors.surface
             ) {
                 TopAppBar(
@@ -220,6 +223,7 @@ fun ChatScreen(
             ChatView(
                 viewModel = viewModel,
                 experience = currentExperience,
+                platform = platform,
             )
 
             // 🪟 Semi-transparent overlay for drawer.
@@ -260,6 +264,7 @@ fun ChatView(
     onToggleFullScreen: (() -> Unit)? = null,
     isFullScreen: Boolean = true,
     experience: Experience = Experience.TARAS,
+    platform: Platform = getPlatform(),
 ) {
     val messages by viewModel.messages.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -393,7 +398,7 @@ fun ChatView(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         items(messages) { message: ChatMessage ->
-                            MessageBubble(message)
+                            MessageBubble(message, platform)
                         }
                     }
                 }
@@ -402,7 +407,7 @@ fun ChatView(
 
         Divider()
 
-        Surface(elevation = 8.dp) {
+        Surface(elevation = if (platform.isEmulator) 2.dp else 8.dp) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -463,7 +468,10 @@ fun ChatView(
 }
 
 @Composable
-fun MessageBubble(message: ChatMessage) {
+fun MessageBubble(
+    message: ChatMessage,
+    platform: Platform = getPlatform()
+) {
     val isUser = message.role == MessageRole.USER
     val alignment = if (isUser) Alignment.End else Alignment.Start
     val backgroundColor = if (isUser) {
@@ -488,7 +496,7 @@ fun MessageBubble(message: ChatMessage) {
                 .widthIn(max = 600.dp) // Max width for very wide screens
                 .fillMaxWidth(0.85f), // Take up to 85% of screen width on mobile
             color = backgroundColor,
-            elevation = if (isUser) 0.dp else 2.dp,
+            elevation = if (isUser || platform.isEmulator) 0.dp else 2.dp,
             shape = bubbleShape,
             border = if (isUser) null
             else androidx.compose.foundation.BorderStroke(
