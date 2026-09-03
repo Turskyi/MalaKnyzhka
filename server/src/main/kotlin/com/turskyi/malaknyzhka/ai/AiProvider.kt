@@ -4,6 +4,7 @@ import com.turskyi.malaknyzhka.ai.models.ChatMessage
 
 interface AiProvider {
     val name: String
+    val modelName: String
     suspend fun generateResponse(
         prompt: String,
         message: String,

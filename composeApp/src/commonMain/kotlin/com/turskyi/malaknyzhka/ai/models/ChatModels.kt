@@ -20,6 +20,7 @@ data class ChatRequest(
 data class ChatResponse(
     val answer: String,
     val providerUsed: String,
+    val modelUsed: String? = null,
 )
 
 enum class MessageRole {
@@ -31,4 +32,5 @@ data class ChatMessage(
     val role: MessageRole,
     val text: String,
     val timestamp: Long = 0L,
+    val providerInfo: String? = null,
 )

@@ -14,6 +14,7 @@ class MistralProvider(
     private val client: HttpClient
 ) : AiProvider {
     override val name: String = "mistral"
+    override val modelName: String = "mistral-large-latest"
 
     @Serializable
     private data class MistralRequest(

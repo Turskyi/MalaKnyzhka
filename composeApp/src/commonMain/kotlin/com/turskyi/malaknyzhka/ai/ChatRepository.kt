@@ -54,10 +54,13 @@ class ChatRepository(private val api: ChatApi) {
                 pageText = pageText,
             )
             val response = api.sendMessage(request)
+            val info = response.modelUsed?.let { "${response.providerUsed} ($it)" }
+                ?: response.providerUsed
             val aiMessage = ChatMessage(
                 role = MessageRole.SHEVCHENKO,
                 text = response.answer,
                 timestamp = getCurrentTimeMillis(),
+                providerInfo = info,
             )
             _messages.value += aiMessage
         } catch (e: Exception) {

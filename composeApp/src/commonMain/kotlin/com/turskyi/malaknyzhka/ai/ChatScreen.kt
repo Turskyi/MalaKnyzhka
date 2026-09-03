@@ -497,17 +497,32 @@ fun MessageBubble(message: ChatMessage) {
             )
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
-                Text(
-                    text = if (isUser) stringResource(Res.string.user_name)
-                    else stringResource(
-                        Res.string.taras_shevchenko_name
-                    ),
-                    style = MaterialTheme.typography.caption.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = if (isUser) MaterialTheme.colors.primary
-                        else MaterialTheme.colors.secondary
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = if (isUser) stringResource(Res.string.user_name)
+                        else stringResource(Res.string.taras_shevchenko_name),
+                        style = MaterialTheme.typography.caption.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = if (isUser) MaterialTheme.colors.primary
+                            else MaterialTheme.colors.secondary
+                        )
                     )
-                )
+
+                    if (!isUser && message.providerInfo != null) {
+                        Text(
+                            text = message.providerInfo,
+                            style = MaterialTheme.typography.caption.copy(
+                                fontSize = 10.sp,
+                                color = Color.Gray.copy(alpha = 0.7f)
+                            ),
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = message.text,

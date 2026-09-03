@@ -10,6 +10,7 @@ class AiServiceTest {
 
     class MockProvider(
         override val name: String,
+        override val modelName: String = "mock-model",
         private val shouldFail: Boolean = false,
         private val response: String = "Success"
     ) : AiProvider {
