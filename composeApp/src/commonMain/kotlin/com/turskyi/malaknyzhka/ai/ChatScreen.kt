@@ -74,6 +74,7 @@ import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
 import com.turskyi.malaknyzhka.ui.LocalShareManager
 import com.turskyi.malaknyzhka.ui.LocalThemeMode
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
+import com.turskyi.malaknyzhka.ui.parseMarkdown
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
@@ -533,7 +534,7 @@ fun MessageBubble(
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = message.text,
+                    text = parseMarkdown(message.text),
                     style = MaterialTheme.typography.body1.copy(
                         fontSize = 16.sp,
                         lineHeight = 22.sp
