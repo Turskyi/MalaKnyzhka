@@ -11,9 +11,11 @@ import kotlinx.serialization.Serializable
 
 class GroqProvider(
     private val apiKey: String,
+    private val model: String,
     private val client: HttpClient
 ) : AiProvider {
     override val name: String = "groq"
+    override val modelName: String = model
 
     @Serializable
     private data class GroqRequest(
@@ -59,13 +61,16 @@ class GroqProvider(
                 contentType(ContentType.Application.Json)
                 setBody(
                     GroqRequest(
-                        model = "llama-3.3-70b-versatile",
+                        model = model,
                         messages = messages
                     )
                 )
             }.body()
 
-        return response.choices.firstOrNull()?.message?.content
+        val content = response.choices.firstOrNull()?.message?.content
             ?: throw Exception("Empty response from Groq")
+
+        // Remove reasoning trace if present (common in models like Qwen or o1/R1)
+        return content.replace(Regex("<think>.*?</think>", RegexOption.DOT_MATCHES_ALL), "").trim()
     }
 }

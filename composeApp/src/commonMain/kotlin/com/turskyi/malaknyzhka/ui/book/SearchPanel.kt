@@ -36,6 +36,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.turskyi.malaknyzhka.Platform
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.SearchResult
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.clear_search
@@ -54,7 +56,8 @@ fun SearchPanel(
     onClose: () -> Unit,
     onResultClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = viewModel { SearchViewModel() }
+    viewModel: SearchViewModel = viewModel { SearchViewModel() },
+    platform: Platform = getPlatform(),
 ) {
     val query: String by viewModel.query.collectAsState()
     val results: List<SearchResult> by viewModel.results.collectAsState()
@@ -68,7 +71,7 @@ fun SearchPanel(
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colors.surface,
-        elevation = 8.dp
+        elevation = if (platform.isEmulator) 0.dp else 8.dp
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // Search Bar

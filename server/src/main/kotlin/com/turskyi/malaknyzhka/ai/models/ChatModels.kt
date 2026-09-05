@@ -19,5 +19,6 @@ data class ChatRequest(
 @Serializable
 data class ChatResponse(
     val answer: String,
-    val providerUsed: String
+    val providerUsed: String,
+    val modelUsed: String? = null
 )

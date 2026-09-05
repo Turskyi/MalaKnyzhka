@@ -28,7 +28,7 @@ class AiService(
                     pageNumber,
                     pageText
                 )
-                return ChatResponse(answer, provider.name)
+                return ChatResponse(answer, provider.name, provider.modelName)
             } catch (e: Exception) {
                 val errorMessage = "${provider.name}: ${e.message}"
                 logger.warn("AI provider failed: $errorMessage")

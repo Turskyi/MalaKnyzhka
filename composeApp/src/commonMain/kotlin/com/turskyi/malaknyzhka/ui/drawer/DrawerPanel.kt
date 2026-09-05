@@ -27,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.Platform
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
@@ -61,6 +63,7 @@ fun DrawerPanel(
     onLanguageChange: (AppLang) -> Unit,
     currentThemeMode: ThemeMode,
     onThemeChange: (ThemeMode) -> Unit,
+    platform: Platform = getPlatform(),
 ) {
     // Desired duration. 700 milliseconds.
     val customAnimationDurationMillis = 700
@@ -121,7 +124,7 @@ fun DrawerPanel(
                     .width(width)
                     .fillMaxHeight()
                     .background(Color.Black.copy(alpha = 0.4f))
-                    .shadow(1.dp)
+                    .shadow(if (platform.isEmulator) 0.dp else 1.dp)
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {

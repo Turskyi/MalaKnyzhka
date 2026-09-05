@@ -22,6 +22,7 @@ object StringResourceResolver {
         val currentEnv = getSystemResourceEnvironment()
         val ukrainianEnv = ResourceEnvironment(
             language = LanguageQualifier(AppLang.Ukraine.code),
+            script = currentEnv.script,
             region = currentEnv.region,
             theme = currentEnv.theme,
             density = currentEnv.density

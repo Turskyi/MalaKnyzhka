@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.Platform
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.ui.language.AppBarLanguageSwitcher
 import com.turskyi.malaknyzhka.usecases.isOnWeb
@@ -53,12 +55,17 @@ import org.jetbrains.compose.resources.stringResource
  * @param onBack Callback to navigate back to the previous screen.
  */
 @Composable
-fun PrivacyPolicyPage(onBack: () -> Unit, currentExperience: Experience = Experience.BOOK) {
+fun PrivacyPolicyPage(
+    onBack: () -> Unit,
+    currentExperience: Experience = Experience.BOOK,
+    platform: Platform = getPlatform(),
+) {
     val scrollState: ScrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
             TopAppBar(
+                elevation = if (platform.isEmulator) 0.dp else 4.dp,
                 windowInsets = WindowInsets.statusBars,
                 title = {
                     Text(

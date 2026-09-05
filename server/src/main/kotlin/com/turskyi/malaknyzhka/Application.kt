@@ -48,7 +48,7 @@ fun Application.module() {
     }
 
     val providers = listOf(
-        GroqProvider(config.groqApiKey, httpClient),
+        GroqProvider(config.groqApiKey, config.groqModel, httpClient),
         MistralProvider(config.mistralApiKey, httpClient),
         GeminiProvider(config.geminiApiKey, httpClient)
     )

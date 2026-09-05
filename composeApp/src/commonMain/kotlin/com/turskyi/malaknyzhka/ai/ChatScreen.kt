@@ -61,8 +61,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.ai.models.ChatMessage
 import com.turskyi.malaknyzhka.ai.models.MessageRole
+import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
 import com.turskyi.malaknyzhka.models.Experience
 import com.turskyi.malaknyzhka.models.ThemeMode
@@ -72,6 +74,7 @@ import com.turskyi.malaknyzhka.ui.LocalChangeThemeMode
 import com.turskyi.malaknyzhka.ui.LocalShareManager
 import com.turskyi.malaknyzhka.ui.LocalThemeMode
 import com.turskyi.malaknyzhka.ui.drawer.DrawerPanel
+import com.turskyi.malaknyzhka.ui.parseMarkdown
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.ask_placeholder
 import malaknyzhka.composeapp.generated.resources.back_button_description
@@ -105,6 +108,7 @@ fun ChatScreen(
     onNavigateToPrivacyPolicy: () -> Unit = {},
     onNavigateToSupport: () -> Unit = {},
     onNavigateToChat: () -> Unit = {},
+    platform: Platform = getPlatform(),
 ) {
     DisposableEffect(viewModel) {
         viewModel.setExpanded(true)
@@ -132,7 +136,7 @@ fun ChatScreen(
     Scaffold(
         topBar = {
             Surface(
-                elevation = 4.dp,
+                elevation = if (platform.isEmulator) 0.dp else 4.dp,
                 color = MaterialTheme.colors.surface
             ) {
                 TopAppBar(
@@ -220,6 +224,7 @@ fun ChatScreen(
             ChatView(
                 viewModel = viewModel,
                 experience = currentExperience,
+                platform = platform,
             )
 
             // 🪟 Semi-transparent overlay for drawer.
@@ -260,6 +265,7 @@ fun ChatView(
     onToggleFullScreen: (() -> Unit)? = null,
     isFullScreen: Boolean = true,
     experience: Experience = Experience.TARAS,
+    platform: Platform = getPlatform(),
 ) {
     val messages by viewModel.messages.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -393,7 +399,7 @@ fun ChatView(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         items(messages) { message: ChatMessage ->
-                            MessageBubble(message)
+                            MessageBubble(message, platform)
                         }
                     }
                 }
@@ -402,7 +408,7 @@ fun ChatView(
 
         Divider()
 
-        Surface(elevation = 8.dp) {
+        Surface(elevation = if (platform.isEmulator) 2.dp else 8.dp) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -463,7 +469,10 @@ fun ChatView(
 }
 
 @Composable
-fun MessageBubble(message: ChatMessage) {
+fun MessageBubble(
+    message: ChatMessage,
+    platform: Platform = getPlatform()
+) {
     val isUser = message.role == MessageRole.USER
     val alignment = if (isUser) Alignment.End else Alignment.Start
     val backgroundColor = if (isUser) {
@@ -488,7 +497,7 @@ fun MessageBubble(message: ChatMessage) {
                 .widthIn(max = 600.dp) // Max width for very wide screens
                 .fillMaxWidth(0.85f), // Take up to 85% of screen width on mobile
             color = backgroundColor,
-            elevation = if (isUser) 0.dp else 2.dp,
+            elevation = if (isUser || platform.isEmulator) 0.dp else 2.dp,
             shape = bubbleShape,
             border = if (isUser) null
             else androidx.compose.foundation.BorderStroke(
@@ -497,20 +506,35 @@ fun MessageBubble(message: ChatMessage) {
             )
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
-                Text(
-                    text = if (isUser) stringResource(Res.string.user_name)
-                    else stringResource(
-                        Res.string.taras_shevchenko_name
-                    ),
-                    style = MaterialTheme.typography.caption.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = if (isUser) MaterialTheme.colors.primary
-                        else MaterialTheme.colors.secondary
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = if (isUser) stringResource(Res.string.user_name)
+                        else stringResource(Res.string.taras_shevchenko_name),
+                        style = MaterialTheme.typography.caption.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = if (isUser) MaterialTheme.colors.primary
+                            else MaterialTheme.colors.secondary
+                        )
                     )
-                )
+
+                    if (!isUser && message.providerInfo != null) {
+                        Text(
+                            text = message.providerInfo,
+                            style = MaterialTheme.typography.caption.copy(
+                                fontSize = 10.sp,
+                                color = Color.Gray.copy(alpha = 0.7f)
+                            ),
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = message.text,
+                    text = parseMarkdown(message.text),
                     style = MaterialTheme.typography.body1.copy(
                         fontSize = 16.sp,
                         lineHeight = 22.sp

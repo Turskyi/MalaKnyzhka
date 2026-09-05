@@ -13,6 +13,7 @@ class GeminiProvider(
     private val client: HttpClient
 ) : AiProvider {
     override val name: String = "gemini"
+    override val modelName: String = "gemini-1.5-flash"
 
     @Serializable
     private data class GeminiRequest(

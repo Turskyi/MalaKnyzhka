@@ -12,6 +12,7 @@ external fun updateFavicon(iconUrl: String)
 
 class WasmPlatform : Platform {
     override val type: PlatformType = PlatformType.WEB
+    override val isEmulator: Boolean = false
     override val initialRoute: String
         get() = window.location.pathname.removePrefix("/")
 

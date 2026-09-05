@@ -5,6 +5,7 @@ import com.turskyi.malaknyzhka.models.PlatformType
 
 class JVMPlatform: Platform {
     override val type: PlatformType = PlatformType.DESKTOP
+    override val isEmulator: Boolean = false
     override val initialRoute: String? = null
     override val hostname: String? = null
     override fun syncLauncherIcon(experience: Experience, immediate: Boolean) {
