@@ -13,7 +13,7 @@ class GeminiProvider(
     private val client: HttpClient
 ) : AiProvider {
     override val name: String = "gemini"
-    override val modelName: String = "gemini-1.5-flash"
+    override val modelName: String = "gemini-2.5-flash"
 
     @Serializable
     private data class GeminiRequest(
@@ -50,7 +50,7 @@ class GeminiProvider(
         pageText: String?
     ): String {
         val url =
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey"
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=$apiKey"
 
         val contents = mutableListOf<Content>()
         history?.forEach { msg ->
