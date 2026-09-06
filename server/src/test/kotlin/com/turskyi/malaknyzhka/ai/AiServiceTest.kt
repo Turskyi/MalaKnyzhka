@@ -92,4 +92,17 @@ class AiServiceTest {
         val result = service.chat("hello", null, null, null)
         assertEquals("Hello!", result.answer)
     }
+
+    @Test
+    fun testBlankAnswerAfterCleaningFails() = runBlocking {
+        val providers = listOf(
+            MockProvider("groq", response = "<think>only reasoning</think>"),
+            MockProvider("mistral", response = "Mistral answer")
+        )
+        val service = AiService(providers)
+
+        val result = service.chat("hello", null, null, null)
+        assertEquals("mistral", result.providerUsed)
+        assertEquals("Mistral answer", result.answer)
+    }
 }

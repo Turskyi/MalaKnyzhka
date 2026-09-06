@@ -29,7 +29,13 @@ class AiService(
                     pageText
                 )
                 val cleanedAnswer = answer.removeReasoning()
-                return ChatResponse(cleanedAnswer, provider.name, provider.modelName)
+                if (cleanedAnswer.isNotBlank()) {
+                    return ChatResponse(cleanedAnswer, provider.name, provider.modelName)
+                } else {
+                    val errorMessage = "${provider.name}: Blank answer after cleaning reasoning"
+                    logger.warn(errorMessage)
+                    errors.add(errorMessage)
+                }
             } catch (e: Exception) {
                 val errorMessage = "${provider.name}: ${e.message}"
                 logger.warn("AI provider failed: $errorMessage")
