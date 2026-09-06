@@ -67,10 +67,7 @@ class GroqProvider(
                 )
             }.body()
 
-        val content = response.choices.firstOrNull()?.message?.content
+        return response.choices.firstOrNull()?.message?.content
             ?: throw Exception("Empty response from Groq")
-
-        // Remove reasoning trace if present (common in models like Qwen or o1/R1)
-        return content.replace(Regex("<think>.*?</think>", RegexOption.DOT_MATCHES_ALL), "").trim()
     }
 }
