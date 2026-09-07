@@ -11,15 +11,14 @@ COPY gradle.properties .
 
 # Copy server module
 COPY server server
-# We also need to copy common parts if server depends on them (e.g. libs.versions.toml)
-# libs.versions.toml is inside gradle/ which we already copied.
+
+# Remove composeApp from settings.gradle.kts to avoid configuration failure since it's not in the context
+RUN sed -i '/include(":composeApp")/d' settings.gradle.kts
+
+# Make gradlew executable
+RUN chmod +x gradlew
 
 # Build the server (installDist creates a runnable distribution)
-# We use -PcomposeApp.skip=true or just build the specific task.
-# Since settings.gradle.kts includes :composeApp, we should at least have the directory
-# or Gradle might complain. Let's create an empty one just in case.
-RUN mkdir composeApp
-
 RUN ./gradlew :server:installDist --no-daemon
 
 # Runtime stage
