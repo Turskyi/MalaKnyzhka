@@ -302,6 +302,11 @@ fun AboutTarasPage(
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
                     )
 
+                    if (isOnWeb()) {
+                        Spacer(modifier = Modifier.height(24.dp))
+                        AppStoreBadges()
+                    }
+
                     Spacer(modifier = Modifier.height(32.dp))
                 }
             }

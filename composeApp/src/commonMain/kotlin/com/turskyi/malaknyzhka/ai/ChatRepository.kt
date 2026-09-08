@@ -32,12 +32,14 @@ class ChatRepository(private val api: ChatApi) {
         pageNumber: Int?,
         pageText: String?,
     ) {
-        val history: List<ChatHistoryMessage> = _messages.value.map { msg ->
-            ChatHistoryMessage(
-                role = if (msg.role == MessageRole.USER) "user" else "assistant",
-                content = msg.text,
-            )
-        }
+        val history: List<ChatHistoryMessage> = _messages.value
+            .filter { it.text.isNotBlank() }
+            .map { msg ->
+                ChatHistoryMessage(
+                    role = if (msg.role == MessageRole.USER) "user" else "assistant",
+                    content = msg.text,
+                )
+            }
 
         val userMessage = ChatMessage(
             role = MessageRole.USER,
@@ -54,6 +56,9 @@ class ChatRepository(private val api: ChatApi) {
                 pageText = pageText,
             )
             val response = api.sendMessage(request)
+            if (response.answer.isBlank()) {
+                throw Exception("AI returned a blank response")
+            }
             val info = response.modelUsed?.let { "${response.providerUsed} ($it)" }
                 ?: response.providerUsed
             val aiMessage = ChatMessage(

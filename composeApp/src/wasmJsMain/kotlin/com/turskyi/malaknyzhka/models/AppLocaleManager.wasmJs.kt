@@ -78,11 +78,9 @@ class WasmJsAppLocale : AppLocale {
 actual fun rememberAppLocale(): AppLocale {
     return remember {
         val locale = WasmJsAppLocale()
-        // Initialize navigator language from stored preference on startup.
-        val preferred: String? = localStorage[PREFERRED_LOCALE_KEY]
-        if (preferred != null) {
-            setNavigatorLanguage(preferred)
-        }
+        // Initialize navigator language from current effective locale on startup.
+        // This ensures Compose Resource library sees the correct language immediately.
+        setNavigatorLanguage(locale.getLocale())
         locale
     }
 }

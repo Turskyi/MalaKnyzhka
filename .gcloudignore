@@ -1,0 +1,25 @@
+# .gcloudignore
+# Exclude source control
+.git/
+.gitignore
+
+# Exclude local build artifacts and IDE config
+.gradle/
+.idea/
+build/
+composeApp/
+iosApp/
+screenshots/
+.firebase/
+.artifacts/
+.fleet/
+.vscode/
+kotlin-js-store/
+*.log
+
+# Exclude Docker files (they are used by Cloud Build, but we don't need them in the context if gcloud ignores them)
+# Actually, gcloud builds submit uses the current directory as context, so we SHOULD NOT ignore Dockerfile.
+# But we can ignore other things.
+
+node_modules/
+.DS_Store

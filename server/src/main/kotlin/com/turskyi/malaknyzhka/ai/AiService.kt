@@ -28,7 +28,14 @@ class AiService(
                     pageNumber,
                     pageText
                 )
-                return ChatResponse(answer, provider.name, provider.modelName)
+                val cleanedAnswer = answer.removeReasoning()
+                if (cleanedAnswer.isNotBlank()) {
+                    return ChatResponse(cleanedAnswer, provider.name, provider.modelName)
+                } else {
+                    val errorMessage = "${provider.name}: Blank answer after cleaning reasoning"
+                    logger.warn(errorMessage)
+                    errors.add(errorMessage)
+                }
             } catch (e: Exception) {
                 val errorMessage = "${provider.name}: ${e.message}"
                 logger.warn("AI provider failed: $errorMessage")
@@ -69,5 +76,13 @@ class AiService(
             }
 
         return basePrompt + contextPrompt
+    }
+
+    private fun String.removeReasoning(): String {
+        return this.replace(Regex("<think>.*?</think>", RegexOption.DOT_MATCHES_ALL), "")
+            .replace(Regex("<think>.*", RegexOption.DOT_MATCHES_ALL), "")
+            .replace(Regex("<thought>.*?</thought>", RegexOption.DOT_MATCHES_ALL), "")
+            .replace(Regex("<thought>.*", RegexOption.DOT_MATCHES_ALL), "")
+            .trim()
     }
 }

@@ -52,7 +52,7 @@ class AppViewModel(
         overrides.experience?.let { userSettingsRepository.saveExperience(it) }
 
         viewModelScope.launch {
-            if (isOnDesktop()) {
+            if (isOnDesktop() || isOnWeb()) {
                 appLocale.setLocale(_appGlobalLanguage.value)
             } else if (isOnAndroid() && !appLocale.hasUserEverSetLanguage()) {
                 if (_appGlobalLanguage.value == AppLang.DEFAULT) {

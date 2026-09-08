@@ -69,4 +69,40 @@ class AiServiceTest {
             }
         }
     }
+
+    @Test
+    fun testRemoveReasoning() = runBlocking {
+        val providers = listOf(
+            MockProvider("groq", response = "<think>reasoning</think>Actual answer"),
+            MockProvider("mistral", response = "<thought>reasoning</thought>Mistral answer")
+        )
+        val service = AiService(providers)
+
+        val result = service.chat("hello", null, null, null)
+        assertEquals("Actual answer", result.answer)
+    }
+
+    @Test
+    fun testRemoveTruncatedReasoning() = runBlocking {
+        val providers = listOf(
+            MockProvider("groq", response = "Hello! <think>reasoning... (truncated)"),
+        )
+        val service = AiService(providers)
+
+        val result = service.chat("hello", null, null, null)
+        assertEquals("Hello!", result.answer)
+    }
+
+    @Test
+    fun testBlankAnswerAfterCleaningFails() = runBlocking {
+        val providers = listOf(
+            MockProvider("groq", response = "<think>only reasoning</think>"),
+            MockProvider("mistral", response = "Mistral answer")
+        )
+        val service = AiService(providers)
+
+        val result = service.chat("hello", null, null, null)
+        assertEquals("mistral", result.providerUsed)
+        assertEquals("Mistral answer", result.answer)
+    }
 }

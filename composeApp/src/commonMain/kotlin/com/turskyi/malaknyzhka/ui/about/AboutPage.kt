@@ -235,6 +235,11 @@ fun AboutPage(
                         style = MaterialTheme.typography.body1
                     )
 
+                    if (isOnWeb()) {
+                        Spacer(modifier = Modifier.height(24.dp))
+                        AppStoreBadges()
+                    }
+
                     Spacer(modifier = Modifier.height(24.dp))
 
                     Text(
