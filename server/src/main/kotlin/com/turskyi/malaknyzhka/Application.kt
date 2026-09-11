@@ -25,13 +25,19 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation as ClientCon
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
-    embeddedServer(
-        Netty,
-        port = port,
-        host = "0.0.0.0",
-        module = Application::module
-    )
-        .start(wait = true)
+    println("Starting server on port $port...")
+    try {
+        embeddedServer(
+            Netty,
+            port = port,
+            host = "0.0.0.0",
+            module = Application::module
+        )
+            .start(wait = true)
+    } catch (e: Exception) {
+        println("Server failed to start: ${e.message}")
+        e.printStackTrace()
+    }
 }
 
 fun Application.module() {
@@ -47,11 +53,21 @@ fun Application.module() {
         }
     }
 
-    val providers = listOf(
-        GroqProvider(config.groqApiKey, config.groqModel, httpClient),
-        MistralProvider(config.mistralApiKey, httpClient),
-        GeminiProvider(config.geminiApiKey, httpClient)
-    )
+    val providers = buildList {
+        if (config.groqApiKey.isNotBlank()) {
+            add(GroqProvider(config.groqApiKey, config.groqModel, httpClient))
+        }
+        if (config.mistralApiKey.isNotBlank()) {
+            add(MistralProvider(config.mistralApiKey, httpClient))
+        }
+        if (config.geminiApiKey.isNotBlank()) {
+            add(GeminiProvider(config.geminiApiKey, httpClient))
+        }
+    }
+
+    if (providers.isEmpty()) {
+        println("No AI providers configured. Set GROQ_API_KEY, MISTRAL_API_KEY, and/or GEMINI_API_KEY.")
+    }
 
     val aiService = AiService(providers)
 

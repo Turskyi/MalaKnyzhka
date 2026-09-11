@@ -1,11 +1,12 @@
 package com.turskyi.malaknyzhka.ai
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import kotlinx.serialization.Serializable
 
@@ -28,16 +29,6 @@ class MistralProvider(
         val content: String
     )
 
-    @Serializable
-    private data class MistralResponse(
-        val choices: List<Choice>
-    )
-
-    @Serializable
-    private data class Choice(
-        val message: MistralMessage
-    )
-
     override suspend fun generateResponse(
         prompt: String,
         message: String,
@@ -54,19 +45,22 @@ class MistralProvider(
 
         messages.add(MistralMessage(role = "user", content = message))
 
-        val response: MistralResponse =
-            client.post("https://api.mistral.ai/v1/chat/completions") {
-                header("Authorization", "Bearer $apiKey")
-                contentType(ContentType.Application.Json)
-                setBody(
-                    MistralRequest(
-                        model = "mistral-large-latest",
-                        messages = messages
-                    )
+        val response = client.post("https://api.mistral.ai/v1/chat/completions") {
+            header("Authorization", "Bearer $apiKey")
+            contentType(ContentType.Application.Json)
+            setBody(
+                MistralRequest(
+                    model = "mistral-large-latest",
+                    messages = messages
                 )
-            }.body()
+            )
+        }
 
-        return response.choices.firstOrNull()?.message?.content
-            ?: throw Exception("Empty response from Mistral")
+        val bodyText = response.bodyAsText()
+        if (response.status != HttpStatusCode.OK) {
+            throw Exception("Mistral API error: ${response.status} - $bodyText")
+        }
+
+        return AiResponseParser.extractOpenAiStyleText(bodyText, name)
     }
 }

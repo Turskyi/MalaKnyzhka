@@ -1,9 +1,16 @@
 .git
 .gradle
 .idea
-build
+/build
 composeApp
 iosApp
+server/src
+# Keep only the built distribution
+server/build/classes
+server/build/generated
+server/build/libs
+server/build/tmp
+server/build/kotlin
 screenshots
 .firebase
 .artifacts
