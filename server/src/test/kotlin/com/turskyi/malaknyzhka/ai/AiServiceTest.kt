@@ -105,4 +105,26 @@ class AiServiceTest {
         assertEquals("mistral", result.providerUsed)
         assertEquals("Mistral answer", result.answer)
     }
+
+    @Test
+    fun testOpenAiErrorPayloadIsReportedClearly() {
+        val exception = assertFailsWith<Exception> {
+            AiResponseParser.extractOpenAiStyleText(
+                "{\"error\":{\"message\":\"invalid api key\"}}",
+                "groq"
+            )
+        }
+
+        assertEquals("groq API error: invalid api key", exception.message)
+    }
+
+    @Test
+    fun testGeminiTextExtractionSupportsNestedParts() {
+        val result = AiResponseParser.extractGeminiText(
+            "{\"candidates\":[{\"content\":{\"parts\":[{\"text\":\"Hello\"},{\"text\":\" world\"}]}}]}",
+            "gemini"
+        )
+
+        assertEquals("Hello world", result)
+    }
 }

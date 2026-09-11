@@ -6,8 +6,16 @@
 # Exclude local build artifacts and IDE config
 .gradle/
 .idea/
-build/
+# Ignore root build and composeApp build
+/build/
 composeApp/
+# For server, ignore source and intermediate build files
+server/src/
+server/build/classes/
+server/build/generated/
+server/build/libs/
+server/build/tmp/
+server/build/kotlin/
 iosApp/
 screenshots/
 .firebase/

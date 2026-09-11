@@ -1,9 +1,9 @@
 package com.turskyi.malaknyzhka.ai
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import kotlinx.serialization.Serializable
@@ -30,16 +30,6 @@ class GeminiProvider(
     @Serializable
     private data class Part(
         val text: String
-    )
-
-    @Serializable
-    private data class GeminiResponse(
-        val candidates: List<Candidate>? = null
-    )
-
-    @Serializable
-    private data class Candidate(
-        val content: Content
     )
 
     override suspend fun generateResponse(
@@ -69,7 +59,7 @@ class GeminiProvider(
             )
         )
 
-        val response: GeminiResponse = client.post(url) {
+        val responseBody = client.post(url) {
             contentType(ContentType.Application.Json)
             setBody(
                 GeminiRequest(
@@ -77,9 +67,8 @@ class GeminiProvider(
                     contents = contents
                 )
             )
-        }.body()
+        }.bodyAsText()
 
-        return response.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text
-            ?: throw Exception("Empty response from Gemini")
+        return AiResponseParser.extractGeminiText(responseBody, name)
     }
 }
