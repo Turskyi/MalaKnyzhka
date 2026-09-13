@@ -200,7 +200,7 @@ android {
                 storePassword = cmKeystorePassword
                 keyAlias = cmKeyAlias
                 keyPassword = cmKeyPassword
-            } else if (signingKeyDebugPath.isNotBlank()) {
+            } else if (signingKeyDebugPath.isNotEmpty()) {
                 storeFile = file(signingKeyDebugPath)
                 storePassword = signingKeyDebugPassword
                 keyAlias = signingKeyDebugKey
@@ -222,7 +222,7 @@ android {
                 storePassword = cmKeystorePassword
                 keyAlias = cmKeyAlias
                 keyPassword = cmKeyPassword
-            } else if (signingKeyReleasePath.isNotBlank()) {
+            } else if (signingKeyReleasePath.isNotEmpty()) {
                 storeFile = file(signingKeyReleasePath)
                 storePassword = signingKeyReleasePassword
                 keyAlias = signingKeyReleaseKey
