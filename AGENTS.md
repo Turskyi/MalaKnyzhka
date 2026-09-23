@@ -76,6 +76,10 @@ Project-specific patterns & gotchas
 - Monolith orientation: everything is inside `:composeApp` (UI + Android
   manifest + wasm config + desktop entry). Expect the module to be large and
   cross-target.
+- **Zero-Cost Architecture Constraint:** All backend services, APIs, and hosting
+  must aim for zero cost ($0). The only exceptions are the yearly Apple
+  Developer Program fee and domain renewal for https://shevchenkoai.com. Do not
+  introduce paid APIs or services.
 - expect/actual platform surface: `Platform.kt` defines
   `expect fun getPlatform()` with `actual` implementations in `androidMain`,
   `iosMain`, `desktopMain`, `wasmJsMain`. Use that to detect platform behaviour
@@ -148,4 +152,7 @@ If you need more: run these file reads first
 - `composeApp/src/wasmJsMain/kotlin/.../main.kt` and
   `composeApp/src/desktopMain/kotlin/.../main.kt` (entrypoints)
 
-# This is an end of AGENTS.md and this line should never be below line number 200. If we need to add something to this file, we simply have to remove something less critical.
+# This is an end of AGENTS.md and this line should never be below line number 200.
+
+If we need to add something to this file, we simply have to remove something
+less critical.
