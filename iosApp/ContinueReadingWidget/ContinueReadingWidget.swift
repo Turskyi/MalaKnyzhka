@@ -2,13 +2,13 @@ import WidgetKit
 import SwiftUI
 import ComposeApp
 
-struct Provider: TimelineProvider {
+struct ContinueReadingProvider: TimelineProvider {
     private var isUk: Bool {
         Locale.current.language.languageCode?.identifier == "uk"
     }
 
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(
+    func placeholder(in context: Context) -> ContinueReadingEntry {
+        ContinueReadingEntry(
             date: Date(),
             pageNumber: 1,
             excerpt: isUk ? "Завантаження..." : "Loading...",
@@ -16,9 +16,9 @@ struct Provider: TimelineProvider {
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (ContinueReadingEntry) -> ()) {
         WidgetBridge.shared.getWidgetData { data in
-            let entry = SimpleEntry(
+            let entry = ContinueReadingEntry(
                 date: Date(),
                 pageNumber: data != nil ? Int(data!.pageNumber) : 1,
                 excerpt: data?.excerpt ?? (isUk ? "Продовжити читання" : "Continue Reading"),
@@ -28,9 +28,9 @@ struct Provider: TimelineProvider {
         }
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<ContinueReadingEntry>) -> ()) {
         WidgetBridge.shared.getWidgetData { data in
-            let entry = SimpleEntry(
+            let entry = ContinueReadingEntry(
                 date: Date(),
                 pageNumber: data != nil ? Int(data!.pageNumber) : 1,
                 excerpt: data?.excerpt ?? (isUk ? "Продовжити читання" : "Continue Reading"),
@@ -42,7 +42,7 @@ struct Provider: TimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct ContinueReadingEntry: TimelineEntry {
     let date: Date
     let pageNumber: Int
     let excerpt: String
@@ -50,54 +50,62 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct ContinueReadingWidgetEntryView: View {
-    var entry: Provider.Entry
+    var entry: ContinueReadingProvider.Entry
 
-    // Localized strings map
+    private var isUk: Bool {
+        Locale.current.language.languageCode?.identifier == "uk"
+    }
+
     private var appName: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Мала Книжка" : "Mala Knyzhka"
+        isUk ? "Тарас Шевченко ✦" : "Taras Shevchenko ✦"
     }
 
     private var pageLabel: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Сторінка \(entry.pageNumber)" : "Page \(entry.pageNumber)"
-    }
-
-    private var continueReading: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Продовжити читання" : "Continue Reading"
-    }
-
-    private var openApp: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Відкрийте додаток" : "Open the app to start"
+        isUk ? "Сторінка \(entry.pageNumber)" : "Page \(entry.pageNumber)"
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(appName)
-                .font(.caption)
-                .fontWeight(.bold)
-                .foregroundColor(.accentColor)
+        HStack(spacing: 0) {
+            // Subtle vertical spine bar along the left edge in ink blue
+            Rectangle()
+                .fill(Color(hex: "1B365D"))
+                .frame(width: 4)
 
-            if entry.isPlaceholder {
-                Text(continueReading)
-                    .font(.headline)
-                Text(openApp)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            } else {
-                Text(pageLabel)
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(appName)
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundColor(Color(hex: "1B365D"))
 
-                Text(entry.excerpt)
-                    .font(.subheadline)
-                    .lineLimit(3)
-                    .foregroundColor(.secondary)
+                // Single thin ink-blue rule under header
+                Rectangle()
+                    .fill(Color(hex: "1B365D"))
+                    .frame(height: 1)
+
+                if entry.isPlaceholder {
+                    Text(isUk ? "Продовжити читання" : "Continue Reading")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(Color(hex: "2B2D31"))
+                    Text(isUk ? "Відкрийте додаток" : "Open the app to start")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color(hex: "5C5E66"))
+                } else {
+                    // Page number as hero (largest element)
+                    Text(pageLabel)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color(hex: "2B2D31"))
+
+                    Text(entry.excerpt)
+                        .font(.system(size: 12))
+                        .lineLimit(3)
+                        .foregroundColor(Color(hex: "2B2D31"))
+                }
+                Spacer()
             }
-            Spacer()
+            .padding(.all, 10)
         }
-        .containerBackground(.clear, for: .widget)
+        .containerBackground(for: .widget) {
+            Color(hex: "F4F5F7")
+        }
         .widgetURL(URL(string: "malaknyzhka://page/\(entry.pageNumber)"))
     }
 }
@@ -105,22 +113,29 @@ struct ContinueReadingWidgetEntryView: View {
 struct ContinueReadingWidget: Widget {
     let kind: String = "ContinueReadingWidget"
 
-    private var displayName: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Продовжити читання" : "Continue Reading"
-    }
-
-    private var descriptionText: String {
-        let isUk = Locale.current.language.languageCode?.identifier == "uk"
-        return isUk ? "Швидко повертайтеся до останньої відкритої сторінки." : "Quickly return to your last opened page."
+    private var isUk: Bool {
+        Locale.current.language.languageCode?.identifier == "uk"
     }
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: ContinueReadingProvider()) { entry in
             ContinueReadingWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName(displayName)
-        .description(descriptionText)
+        .configurationDisplayName(isUk ? "Продовжити читання" : "Continue Reading")
+        .description(isUk ? "Швидко повертайтеся до останньої відкритої сторінки." : "Quickly return to your last opened page.")
         .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        _ = scanner.scanString("#")
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+        let r = Double((rgbValue & 0xFF0000) >> 16) / 255.0
+        let g = Double((rgbValue & 0x00FF00) >> 8) / 255.0
+        let b = Double(rgbValue & 0x0000FF) / 255.0
+        self.init(red: r, green: g, blue: b)
     }
 }

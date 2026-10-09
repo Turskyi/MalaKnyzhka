@@ -70,7 +70,18 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		663C0EAE2FEA956B00AA04AA /* ContinueReadingWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (663C0EBC2FEA956C00AA04AA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ContinueReadingWidget; sourceTree = "<group>"; };
+		663C0EAE2FEA956B00AA04AA /* ContinueReadingWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				663C0EBC2FEA956C00AA04AA /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = ContinueReadingWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */

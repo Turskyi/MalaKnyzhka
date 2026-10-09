@@ -1,6 +1,7 @@
 package com.turskyi.malaknyzhka.infrastructure
 
 import com.turskyi.malaknyzhka.createDataStore
+import com.turskyi.malaknyzhka.models.RandomVerseData
 import com.turskyi.malaknyzhka.models.SettingsBookRepository
 import com.turskyi.malaknyzhka.models.WidgetData
 import kotlinx.coroutines.MainScope
@@ -14,6 +15,13 @@ object WidgetBridge {
         MainScope().launch {
             val bookRepository = SettingsBookRepository(createDataStore())
             val data = WidgetDataProvider.getWidgetData(bookRepository)
+            completion(data)
+        }
+    }
+
+    fun getRandomVerseData(completion: (RandomVerseData?) -> Unit) {
+        MainScope().launch {
+            val data = RandomVerseDataProvider.getRandomVerseData()
             completion(data)
         }
     }

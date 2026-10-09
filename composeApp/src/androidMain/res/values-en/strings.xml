@@ -4,4 +4,8 @@
     <string name="widget_page_label">Page %1$d</string>
     <string name="widget_continue_reading">Continue Reading</string>
     <string name="widget_open_app">Open Mala Knyzhka</string>
+    <string name="random_verse_widget_name">Random Verse</string>
+    <string name="random_verse_widget_description">Shows a random verse from Mala Knyzhka every day.</string>
+    <string name="continue_reading_widget_name">Continue Reading</string>
+    <string name="continue_reading_widget_description">Quickly return to your last opened page.</string>
 </resources>
