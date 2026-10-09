@@ -56,8 +56,8 @@ class RandomVerseWidget : GlanceAppWidget() {
     @Composable
     private fun WidgetContent(context: Context, data: RandomVerseData?) {
         val size = LocalSize.current
-        val availableHeight = size.height.value - 65
-        val dynamicMaxLines = maxOf(1, (availableHeight / 18).toInt())
+        val availableHeight = size.height.value - 60
+        val dynamicMaxLines = maxOf(3, (availableHeight / 18).toInt())
 
         val pageNumber = data?.pageNumber ?: 1
         val intent = Intent(
@@ -134,7 +134,7 @@ class RandomVerseWidget : GlanceAppWidget() {
                     maxLines = dynamicMaxLines
                 )
 
-                Spacer(GlanceModifier.size(4.dp))
+                Spacer(GlanceModifier.defaultWeight())
 
                 // Footer: Small muted footer label "Сторінка {N}"
                 Text(

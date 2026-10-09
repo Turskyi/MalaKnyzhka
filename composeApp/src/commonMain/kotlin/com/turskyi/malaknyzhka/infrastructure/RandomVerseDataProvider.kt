@@ -8,7 +8,7 @@ import kotlin.random.Random
 
 /**
  * Dataset generated from BookContentRegistry.allPoemPages (Ukrainian poem text of Mala Knyzhka).
- * Each entry pairs a 1-based user page number with a 2-4 line meaningful snippet extracted
+ * Each entry pairs a 1-based user page number with a meaningful snippet extracted
  * from that page verbatim, ending at line/sentence boundary with ellipsis if truncated.
  * 
  * NOTE: Generated from BookContentRegistry.allPoemPages string resources.
@@ -35,11 +35,11 @@ object RandomVerseDataProvider {
 
     private fun extractSnippet(fullText: String): String {
         val lines = fullText.lines().filter { it.isNotBlank() }
-        val selectedLines = lines.take(3)
+        val selectedLines = lines.take(18)
         val combined = selectedLines.joinToString("\n")
-        val truncated = if (combined.length > 280) {
-            combined.take(280).substringBeforeLast(" ", combined.take(280)) + "…"
-        } else if (lines.size > 3) {
+        val truncated = if (combined.length > 750) {
+            combined.take(750).substringBeforeLast(" ", combined.take(750)) + "…"
+        } else if (lines.size > 18) {
             "$combined…"
         } else {
             combined
