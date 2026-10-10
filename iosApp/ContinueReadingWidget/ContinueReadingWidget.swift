@@ -50,6 +50,7 @@ struct ContinueReadingEntry: TimelineEntry {
 }
 
 struct ContinueReadingWidgetEntryView: View {
+    @Environment(\.widgetFamily) var family
     var entry: ContinueReadingProvider.Entry
 
     private var isUk: Bool {
@@ -62,6 +63,19 @@ struct ContinueReadingWidgetEntryView: View {
 
     private var pageLabel: String {
         isUk ? "Сторінка \(entry.pageNumber)" : "Page \(entry.pageNumber)"
+    }
+
+    private var maxLines: Int {
+        switch family {
+        case .systemSmall:
+            return 4
+        case .systemMedium:
+            return 6
+        case .systemLarge:
+            return 15
+        default:
+            return 6
+        }
     }
 
     var body: some View {
@@ -96,7 +110,7 @@ struct ContinueReadingWidgetEntryView: View {
 
                     Text(entry.excerpt)
                         .font(.system(size: 12))
-                        .lineLimit(3)
+                        .lineLimit(maxLines)
                         .foregroundColor(Color(hex: "2B2D31"))
                 }
                 Spacer()
@@ -123,7 +137,7 @@ struct ContinueReadingWidget: Widget {
         }
         .configurationDisplayName(isUk ? "Продовжити читання" : "Continue Reading")
         .description(isUk ? "Швидко повертайтеся до останньої відкритої сторінки." : "Quickly return to your last opened page.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 

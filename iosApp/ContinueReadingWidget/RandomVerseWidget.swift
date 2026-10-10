@@ -50,6 +50,7 @@ struct RandomVerseEntry: TimelineEntry {
 }
 
 struct RandomVerseWidgetEntryView: View {
+    @Environment(\.widgetFamily) var family
     var entry: RandomVerseProvider.Entry
 
     private var isUk: Bool {
@@ -58,6 +59,19 @@ struct RandomVerseWidgetEntryView: View {
 
     private var pageLabel: String {
         isUk ? "Сторінка \(entry.pageNumber)" : "Page \(entry.pageNumber)"
+    }
+
+    private var maxLines: Int {
+        switch family {
+        case .systemSmall:
+            return 4
+        case .systemMedium:
+            return 6
+        case .systemLarge:
+            return 15
+        default:
+            return 6
+        }
     }
 
     var body: some View {
@@ -76,7 +90,7 @@ struct RandomVerseWidgetEntryView: View {
                 .font(.system(size: 13, weight: .regular, design: .serif))
                 .italic()
                 .foregroundColor(Color(hex: "3D2C1E"))
-                .lineLimit(3)
+                .lineLimit(maxLines)
 
             Spacer()
 
@@ -105,6 +119,6 @@ struct RandomVerseWidget: Widget {
         }
         .configurationDisplayName(isUk ? "Випадковий вірш" : "Random Verse")
         .description(isUk ? "Показує випадковий вірш з Малої Книжки на кожен день." : "Shows a random verse from Mala Knyzhka every day.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
