@@ -235,14 +235,16 @@ android {
 
     buildTypes {
         getByName("debug") {
-            val hasDevSigning = signingConfigs.getByName("dev").storeFile != null
+            val hasDevSigning =
+                signingConfigs.getByName("dev").storeFile != null
             if (hasDevSigning) {
                 signingConfig = signingConfigs.getByName("dev")
             }
         }
         getByName("release") {
             isMinifyEnabled = false
-            val hasProductionSigning = signingConfigs.getByName("production").storeFile != null
+            val hasProductionSigning =
+                signingConfigs.getByName("production").storeFile != null
             if (hasProductionSigning) {
                 signingConfig = signingConfigs.getByName("production")
             }
@@ -300,7 +302,8 @@ compose.desktop {
                 infoPlist {
                     extraKeysRawXml =
                         "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
-                                "<key>LSApplicationCategoryType</key><string>public.app-category.education</string>"
+                                "<key>LSApplicationCategoryType</key>" +
+                                "<string>public.app-category.education</string>"
                 }
             }
             windows {
