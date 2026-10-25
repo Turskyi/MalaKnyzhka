@@ -1,7 +1,9 @@
 [versions]
+applicationId = "com.turskyi.malaknyzhka"
 dockName = "Тарас Шевченко ✦"
 versionName = "1.2.7"
 versionCode = "27"
+
 agp = "9.4.1"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
@@ -19,7 +21,6 @@ googleFirebaseCrashlytics = "3.0.8"
 android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
-applicationId = "com.turskyi.malaknyzhka"
 appcompat = "1.8.0"
 kotlinx-serialization = "1.11.0"
 

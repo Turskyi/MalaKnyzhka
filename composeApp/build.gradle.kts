@@ -25,7 +25,9 @@ val keyProperties: Properties = Properties()
 if (keyPropertiesFile.exists()) {
     keyProperties.load(keyPropertiesFile.inputStream())
 } else {
-    logger.warn("key.properties file is missing. Android signing will not work.")
+    logger.warn(
+        "key.properties file is missing. Android signing will not work.",
+    )
 }
 
 // Debug environment variables.
@@ -126,15 +128,27 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(
+                compose.components.uiToolingPreview,
+            )
             implementation(compose.preview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(
+                libs.androidx.lifecycle.viewmodel,
+            )
+            implementation(
+                libs.androidx.lifecycle.viewmodelCompose,
+            )
+            implementation(
+                libs.androidx.lifecycle.runtime.compose,
+            )
             implementation(libs.navigation.compose)
             implementation(libs.ktorClientCore)
-            implementation(libs.ktorClientContentNegotiation)
-            implementation(libs.ktorSerializationKotlinxJson)
+            implementation(
+                libs.ktorClientContentNegotiation,
+            )
+            implementation(
+                libs.ktorSerializationKotlinxJson,
+            )
             api(libs.multiplatform.settings)
         }
         androidMain.dependencies {
@@ -163,7 +177,9 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(
+                    kotlin("test"),
+                )
             }
         }
     }
@@ -272,7 +288,9 @@ compose.desktop {
         buildTypes {
             release {
                 proguard {
-                    configurationFiles.from(project.file("proguard-desktop-rules.pro"))
+                    configurationFiles.from(
+                        project.file("proguard-desktop-rules.pro"),
+                    )
                 }
             }
         }
