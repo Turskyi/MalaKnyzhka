@@ -4,4 +4,8 @@
     <string name="widget_page_label">Сторінка %1$d</string>
     <string name="widget_continue_reading">Продовжити читання</string>
     <string name="widget_open_app">Відкрити Малу Книжку</string>
+    <string name="random_verse_widget_name">Випадковий вірш</string>
+    <string name="random_verse_widget_description">Показує випадковий вірш з Малої Книжки на кожен день.</string>
+    <string name="continue_reading_widget_name">Продовжити читання</string>
+    <string name="continue_reading_widget_description">Швидко повертайтеся до останньої відкритої сторінки.</string>
 </resources>

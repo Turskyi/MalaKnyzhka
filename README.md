@@ -144,7 +144,7 @@ To run the AI backend server locally:
    Create a `server/.env` file in the project root and add your API keys:
    ```env
    GROQ_API_KEY=your_key
-   GROQ_MODEL=qwen/qwen3.6-27b
+   GROQ_MODEL=qwen/qwen3.8-27b
    MISTRAL_API_KEY=your_key
    GEMINI_API_KEY=your_key
    ```
@@ -259,7 +259,7 @@ To deploy the backend to Google Cloud Run:
    You can update them via the Google Cloud Console or using:
    ```bash
    gcloud run services update mala-knyzhka-server \
-     --set-env-vars GROQ_API_KEY=your_key,GROQ_MODEL=qwen/qwen3.6-27b,MISTRAL_API_KEY=your_key,GEMINI_API_KEY=your_key
+     --set-env-vars GROQ_API_KEY=your_key,GROQ_MODEL=qwen/qwen3.8-27b,MISTRAL_API_KEY=your_key,GEMINI_API_KEY=your_key
    ```
 
 ## How to Contribute

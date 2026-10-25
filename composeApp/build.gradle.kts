@@ -189,40 +189,65 @@ android {
 
     signingConfigs {
         create("dev") {
-            if (System.getenv("FCI_BUILD_ID") != null) {
-                storeFile = file(System.getenv("CM_KEYSTORE_PATH"))
-                storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("CM_KEY_ALIAS")
-                keyPassword = System.getenv("CM_KEY_PASSWORD")
-            } else {
+            val cmBuildId = System.getenv("FCI_BUILD_ID")
+            val cmKeystorePath = System.getenv("CM_KEYSTORE_PATH")
+            val cmKeystorePassword = System.getenv("CM_KEYSTORE_PASSWORD")
+            val cmKeyAlias = System.getenv("CM_KEY_ALIAS")
+            val cmKeyPassword = System.getenv("CM_KEY_PASSWORD")
+
+            if (!cmBuildId.isNullOrBlank() && !cmKeystorePath.isNullOrBlank()) {
+                storeFile = file(cmKeystorePath)
+                storePassword = cmKeystorePassword
+                keyAlias = cmKeyAlias
+                keyPassword = cmKeyPassword
+            } else if (signingKeyDebugPath.isNotEmpty()) {
                 storeFile = file(signingKeyDebugPath)
                 storePassword = signingKeyDebugPassword
                 keyAlias = signingKeyDebugKey
                 keyPassword = signingKeyDebugKeyPassword
+            } else {
+                logger.warn("Android debug signing keys are not configured; skipping dev signing.")
             }
         }
+
         create("production") {
-            if (System.getenv("FCI_BUILD_ID") != null) {
-                storeFile = file(System.getenv("CM_KEYSTORE_PATH"))
-                storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("CM_KEY_ALIAS")
-                keyPassword = System.getenv("CM_KEY_PASSWORD")
-            } else {
+            val cmBuildId = System.getenv("FCI_BUILD_ID")
+            val cmKeystorePath = System.getenv("CM_KEYSTORE_PATH")
+            val cmKeystorePassword = System.getenv("CM_KEYSTORE_PASSWORD")
+            val cmKeyAlias = System.getenv("CM_KEY_ALIAS")
+            val cmKeyPassword = System.getenv("CM_KEY_PASSWORD")
+
+            if (!cmBuildId.isNullOrBlank() && !cmKeystorePath.isNullOrBlank()) {
+                storeFile = file(cmKeystorePath)
+                storePassword = cmKeystorePassword
+                keyAlias = cmKeyAlias
+                keyPassword = cmKeyPassword
+            } else if (signingKeyReleasePath.isNotEmpty()) {
                 storeFile = file(signingKeyReleasePath)
                 storePassword = signingKeyReleasePassword
                 keyAlias = signingKeyReleaseKey
                 keyPassword = signingKeyReleaseKeyPassword
+            } else {
+                logger.warn("Android release signing keys are not configured; skipping production signing.")
             }
         }
     }
 
     buildTypes {
         getByName("debug") {
-            signingConfig = signingConfigs.getByName("dev")
+            val hasDevSigning =
+                signingConfigs.getByName("dev").storeFile != null
+            if (hasDevSigning) {
+                signingConfig = signingConfigs.getByName("dev")
+            }
         }
         getByName("release") {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("production")
+            val hasProductionSigning =
+                signingConfigs.getByName("production").storeFile != null
+            if (hasProductionSigning) {
+                signingConfig = signingConfigs.getByName("production")
+            }
         }
     }
 
@@ -277,7 +302,8 @@ compose.desktop {
                 infoPlist {
                     extraKeysRawXml =
                         "<key>ITSAppUsesNonExemptEncryption</key><false/>" +
-                                "<key>LSApplicationCategoryType</key><string>public.app-category.education</string>"
+                                "<key>LSApplicationCategoryType</key>" +
+                                "<string>public.app-category.education</string>"
                 }
             }
             windows {

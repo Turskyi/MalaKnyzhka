@@ -13,7 +13,7 @@ class AppConfig {
     }
 
     val groqApiKey: String = getEnv("GROQ_API_KEY")
-    val groqModel: String = getEnv("GROQ_MODEL", "qwen/qwen3.6-27b")
+    val groqModel: String = getEnv("GROQ_MODEL", "qwen/qwen3.8-27b")
     val mistralApiKey: String = getEnv("MISTRAL_API_KEY")
     val geminiApiKey: String = getEnv("GEMINI_API_KEY")
 
