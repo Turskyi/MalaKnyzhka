@@ -86,7 +86,7 @@ struct RandomVerseWidgetEntryView: View {
 
             Spacer(minLength: 2)
 
-            Text("“ \(entry.snippet)")
+            Text("“\(entry.snippet)”")
                 .font(.system(size: 13, weight: .regular, design: .serif))
                 .italic()
                 .foregroundColor(Color(hex: "3D2C1E"))

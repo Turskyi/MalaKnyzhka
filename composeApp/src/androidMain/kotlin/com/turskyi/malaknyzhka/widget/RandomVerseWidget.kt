@@ -123,9 +123,9 @@ class RandomVerseWidget : GlanceAppWidget() {
                 Spacer(GlanceModifier.size(6.dp))
 
                 val snippetText = data?.snippet ?: "..."
-                // Hero: Snippet text, large, italic, with decorative opening quote mark “
+                // Hero: Snippet text, large, italic, enclosed in quote marks “...”
                 Text(
-                    text = "“ $snippetText",
+                    text = "“$snippetText”",
                     style = TextStyle(
                         fontStyle = FontStyle.Italic,
                         fontSize = 13.sp,

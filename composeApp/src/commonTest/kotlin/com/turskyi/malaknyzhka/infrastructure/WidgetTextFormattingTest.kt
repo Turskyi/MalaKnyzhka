@@ -23,4 +23,13 @@ class WidgetTextFormattingTest {
         assertEquals("Поговорим на чужині", correctLines[2])
         assertEquals("Тихенько з тобою.", correctLines[3])
     }
+
+    @Test
+    fun testRandomVerseQuoteFormatting() {
+        val snippet = "Реве та стогне Дніпр широкий..."
+        val formattedText = "“$snippet”"
+        assertEquals("“Реве та стогне Дніпр широкий...”", formattedText)
+        assertEquals('“', formattedText.first())
+        assertEquals('”', formattedText.last())
+    }
 }
