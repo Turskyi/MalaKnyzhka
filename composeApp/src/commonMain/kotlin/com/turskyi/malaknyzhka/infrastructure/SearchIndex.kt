@@ -47,7 +47,7 @@ class SearchIndex {
         resource: StringResource
     ): String {
         return pageCache.getOrPut(index) {
-            getString(resource)
+            getString(resource).trimIndent().trim()
         }
     }
 

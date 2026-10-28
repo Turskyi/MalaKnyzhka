@@ -22,7 +22,7 @@ object RandomVerseDataProvider {
         val list = mutableListOf<RandomVerseData>()
         for (i in BookContentRegistry.allPoemPages.indices) {
             val res = BookContentRegistry.allPoemPages[i]
-            val text = StringResourceResolver.getStringInUkrainian(res).trim()
+            val text = StringResourceResolver.getStringInUkrainian(res).trimIndent().trim()
             if (text.length > 10) {
                 val snippet = extractSnippet(text)
                 val pageNumber = i.toUserPageNumber()

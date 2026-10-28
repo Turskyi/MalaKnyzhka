@@ -13,7 +13,7 @@ object WidgetDataProvider {
         val userPageNumber: Int = currentPageIndex.toUserPageNumber()
         val textResource = BookContentRegistry.allPoemPages[currentPageIndex]
         val fullText: String =
-            StringResourceResolver.getStringInUkrainian(textResource)
+            StringResourceResolver.getStringInUkrainian(textResource).trimIndent().trim()
 
         // Truncate to a reasonable excerpt length for the widget.
         // Increased to 1000 characters to support larger resizable widgets on Android.

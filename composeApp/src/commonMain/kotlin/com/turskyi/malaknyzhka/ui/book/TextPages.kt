@@ -44,7 +44,7 @@ fun TextPages(currentPage: Int, appLang: AppLang) {
         ) {
             SelectionContainer {
                 Text(
-                    text = stringResource(poemPages[currentPage]),
+                    text = stringResource(poemPages[currentPage]).trimIndent().trim(),
                     textAlign = TextAlign.Justify,
                     color = MaterialTheme.colors.onSurface
                 )

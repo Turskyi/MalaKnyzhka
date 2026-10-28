@@ -27,6 +27,6 @@ object StringResourceResolver {
             theme = currentEnv.theme,
             density = currentEnv.density
         )
-        return getString(ukrainianEnv, resource)
+        return getString(ukrainianEnv, resource).trimIndent().trim()
     }
 }
