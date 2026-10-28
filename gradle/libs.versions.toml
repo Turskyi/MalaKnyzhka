@@ -4,10 +4,7 @@ dockName = "Тарас Шевченко ✦"
 versionName = "1.2.7"
 versionCode = "27"
 
-# Do not update to AGP 9.5.0+ until Android Studio is updated
-#(latest supported version by current IDE is AGP 9.4.x)
-agp = "9.4.1"
-
+agp = "9.5.0"
 androidx-activityCompose = "1.13.0"
 androidx-lifecycle = "2.11.0"
 compose-multiplatform = "1.12.2"
