@@ -17,8 +17,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
@@ -27,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
@@ -36,6 +41,7 @@ import com.turskyi.malaknyzhka.ui.language.LanguageSwitcher
 import com.turskyi.malaknyzhka.ui.theme.ThemeSwitcher
 import malaknyzhka.composeapp.generated.resources.Res
 import malaknyzhka.composeapp.generated.resources.about_app
+import malaknyzhka.composeapp.generated.resources.app_version
 import malaknyzhka.composeapp.generated.resources.bookmarks
 import malaknyzhka.composeapp.generated.resources.chat_with_taras
 import malaknyzhka.composeapp.generated.resources.cover
@@ -218,6 +224,27 @@ fun DrawerPanel(
                         onExperienceChange = onExperienceChange
                     )
                 }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Text(
+                    text = stringResource(
+                        Res.string.app_version,
+                        AppConstants.VERSION_NAME,
+                        AppConstants.VERSION_CODE,
+                    ),
+                    style = MaterialTheme.typography.caption,
+                    color = Color.White,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .background(
+                            color = Color.Black.copy(alpha = 0.4f),
+                            shape = RoundedCornerShape(8.dp),
+                        )
+                        .padding(horizontal = 12.dp, vertical = 4.dp),
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }

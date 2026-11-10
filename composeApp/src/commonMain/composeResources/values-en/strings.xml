@@ -10247,4 +10247,5 @@ This happened once.
 On Sunday,
 In the village…
 </string>
+    <string name="app_version">Version %1$s (%2$s)</string>
 </resources>

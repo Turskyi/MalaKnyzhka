@@ -15,4 +15,7 @@ object AppConstants {
 
     const val AI_CHAT_BASE_URL: String =
         "https://mala-knyzhka-server-593576053721.us-central1.run.app"
+
+    const val VERSION_NAME: String = "1.2.7"
+    const val VERSION_CODE: String = "27"
 }

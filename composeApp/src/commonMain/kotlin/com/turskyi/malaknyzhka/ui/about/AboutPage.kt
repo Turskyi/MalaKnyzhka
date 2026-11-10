@@ -38,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.turskyi.malaknyzhka.AppConstants
 import com.turskyi.malaknyzhka.Platform
 import com.turskyi.malaknyzhka.getPlatform
 import com.turskyi.malaknyzhka.models.AppLang
@@ -62,6 +63,7 @@ import malaknyzhka.composeapp.generated.resources.about_app_search_description
 import malaknyzhka.composeapp.generated.resources.about_app_search_title
 import malaknyzhka.composeapp.generated.resources.about_app_target_audience
 import malaknyzhka.composeapp.generated.resources.about_app_thank_you_message
+import malaknyzhka.composeapp.generated.resources.app_version
 import malaknyzhka.composeapp.generated.resources.data_storage_info
 import malaknyzhka.composeapp.generated.resources.ic_sparkle
 import malaknyzhka.composeapp.generated.resources.logo
@@ -278,6 +280,18 @@ fun AboutPage(
 
                     Text(
                         text = stringResource(Res.string.data_storage_info),
+                        style = MaterialTheme.typography.caption,
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = stringResource(
+                            Res.string.app_version,
+                            AppConstants.VERSION_NAME,
+                            AppConstants.VERSION_CODE,
+                        ),
                         style = MaterialTheme.typography.caption,
                         color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)
                     )
